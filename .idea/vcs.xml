@@ -4,8 +4,8 @@
     <option name="links">
       <list>
         <IssueNavigationLink>
-          <option name="issueRegexp" value="#(\d+)-(\d+)" />
-          <option name="linkRegexp" value="https://github.com/users/taraswww777/projects/$1/views/$2" />
+          <option name="issueRegexp" value="#(\d+)" />
+          <option name="linkRegexp" value="https://github.com/taraswww777/sky-trainer/issues/$1" />
         </IssueNavigationLink>
       </list>
     </option>
