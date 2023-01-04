@@ -1,6 +1,11 @@
 @import '~foundation-sites/scss/foundation.scss';
 
+@include foundation-normalize();
+
+.container-fluid {
+    @include xy-grid-container(100%);
+}
+
 .container {
-    @include xy-grid-container;
-    color: red;
+    @include xy-grid-container();
 }
