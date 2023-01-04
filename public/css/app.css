@@ -196,6 +196,10 @@ template {
   -webkit-user-select: none;
 }
 
+html, body {
+  background: #E3E3E3;
+}
+
 .container-fluid {
   padding-right: 0.625rem;
   padding-left: 0.625rem;
@@ -222,4 +226,9 @@ template {
     padding-right: 0.9375rem;
     padding-left: 0.9375rem;
   }
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
 }
