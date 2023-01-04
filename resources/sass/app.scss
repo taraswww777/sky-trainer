@@ -1,6 +1,10 @@
 @import '~foundation-sites/scss/foundation.scss';
+@import './colors';
 
-.container {
-    @include xy-grid-container;
-    color: red;
+@include foundation-normalize();
+
+@import '~foundation-sites/assets/foundation-prototype';
+
+html, body{
+    background: $colorBgBody;
 }

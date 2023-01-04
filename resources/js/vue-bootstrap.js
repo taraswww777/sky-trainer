@@ -1,9 +1,23 @@
 import {createApp} from 'vue'
-import RootComponent from '../components/RootComponent';
-import ExampleComponent from "../components/ExampleComponent";
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faBars, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import {faUser, faClock} from '@fortawesome/free-regular-svg-icons'
+import RootComponent from '../vue/RootComponent';
+import * as allComponents from "../vue/components";
+import {router} from './vue-router-config'
+import {registerComponents} from "./vue-bootstrap-utils";
 
 const app = createApp(RootComponent);
 
-app.component('example-component', ExampleComponent)
+app.use(router);
+
+library.add(faBars, faMagnifyingGlass);
+library.add(faUser, faClock);
+
+app.component('Fa', FontAwesomeIcon);
+
+registerComponents(app)(allComponents);
+
 
 app.mount('#rootVueApp');
