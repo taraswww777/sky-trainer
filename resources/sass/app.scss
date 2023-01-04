@@ -3,18 +3,8 @@
 
 @include foundation-normalize();
 
+@import '~foundation-sites/assets/foundation-prototype';
+
 html, body{
     background: $colorBgBody;
-}
-
-.container-fluid {
-    @include xy-grid-container(100%);
-}
-
-.container {
-    @include xy-grid-container();
-}
-
-.row {
-    @include xy-grid();
 }

@@ -1,8 +1,6 @@
 <template>
     <BaseTemplate>
-
-        <ExampleComponent></ExampleComponent>
-
+        <router-view></router-view>
     </BaseTemplate>
 </template>
 
