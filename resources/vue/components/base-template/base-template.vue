@@ -1,11 +1,21 @@
 <template>
     <div class="container">
         <header class="row header">
-            <div class="headerLogo">logo</div>
-            <div class="search">search</div>
-            <div class="time">time</div>
-            <div class="user">user</div>
-            <div class="menuToggle">menuToggle</div>
+            <div class="headerLogo">
+                <img src="/logo.svg" alt="logo">
+            </div>
+            <div class="search">
+                <span class="icon"><Fa icon="magnifying-glass"/></span>
+            </div>
+            <div class="time">
+                <span class="icon"><Fa :icon="['far','clock']"/></span>
+            </div>
+            <div class="user">
+                <span class="icon"><Fa :icon="['far','user']"/></span>
+            </div>
+            <div class="menuToggle">
+                <span class="icon"><Fa icon="bars"/></span>
+            </div>
         </header>
         <main>
             Вот тут какойто контент
@@ -62,6 +72,18 @@ export default {
 
 .menuToggle {
     @include xy-cell(1);
+    font-size: 20px;
+}
+
+.icon {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    background: $colorWhite;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
 
 .copyright {
