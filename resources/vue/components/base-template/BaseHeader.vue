@@ -4,16 +4,16 @@
             <img src="/logo.svg" alt="logo">
         </div>
         <div class="cell hide-for-small-only medium-4">
-            <span class="icon"><Fa icon="magnifying-glass"/></span>
+            <span class="iconCircleWrapper"><Fa icon="magnifying-glass"/></span>
         </div>
         <div class="cell hide-for-small-only medium-3">
-            <span class="icon"><Fa :icon="['far','clock']"/></span>
+            <span class="iconCircleWrapper"><Fa :icon="['far','clock']"/></span>
         </div>
         <div class="cell hide-for-small-only medium-3">
-            <span class="icon"><Fa :icon="['far','user']"/></span>
+            <UserStatusWidget :userName="'Иван Иванов'" :userId="2843"/>
         </div>
         <div class="cell small-4 medium-1 text-right">
-            <span class="icon"><Fa icon="bars"/></span>
+            <span class="iconCircleWrapper"><Fa icon="bars"/></span>
         </div>
     </div>
 </template>
@@ -29,14 +29,4 @@ export default {}
     font-size: 20px;
 }
 
-.icon {
-    display: inline-flex;
-    width: 40px;
-    height: 40px;
-    background: $colorWhite;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-}
 </style>
