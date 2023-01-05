@@ -14,21 +14,8 @@
         <div class="cell hide-for-small-only medium-3">
             <UserStatusWidget :userName="'Иван Иванов'" :userId="2843"/>
         </div>
-        <div class="cell small-4 medium-1 text-right">
-            <span class="iconCircleWrapper"><Fa icon="bars"/></span>
+        <div class="cell small-4 medium-1">
+            <MobileMainMenu/>
         </div>
     </div>
 </template>
-<script>
-export default {}
-</script>
-<style lang="scss">
-@import '~foundation-sites/scss/foundation.scss';
-@import '../../../sass/colors';
-
-.menuToggle {
-    @include xy-cell(1);
-    font-size: 20px;
-}
-
-</style>
