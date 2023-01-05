@@ -7150,3 +7150,19 @@ ol.list-upper-roman {
 html, body {
   background: #E3E3E3;
 }
+
+h1 {
+  font-size: 2rem;
+  color: #1c1c1c;
+}
+
+.iconCircleWrapper {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}

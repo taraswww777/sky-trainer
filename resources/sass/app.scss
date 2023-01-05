@@ -5,6 +5,22 @@
 
 @import '~foundation-sites/assets/foundation-prototype';
 
-html, body{
+html, body {
     background: $colorBgBody;
+}
+
+h1 {
+    font-size: 2rem;
+    color: $colorBrand
+}
+
+.iconCircleWrapper {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    background: $colorWhite;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
