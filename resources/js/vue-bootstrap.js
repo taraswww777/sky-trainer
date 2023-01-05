@@ -7,10 +7,13 @@ import {
     faRightToBracket,
     faPen,
     faPhone,
-    faEnvelope
+    faEnvelope,
+    faChartPie,
+    faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import {
-    faUser, faClock
+    faFolderClosed,
+    faUser, faClock, faIdBadge,
 } from '@fortawesome/free-regular-svg-icons'
 import RootComponent from '../vue/RootComponent';
 import * as allComponents from "../vue/components";
@@ -21,8 +24,11 @@ const app = createApp(RootComponent);
 
 app.use(router);
 
-library.add(faBars, faMagnifyingGlass, faRightToBracket, faPen, faEnvelope, faPhone);
-library.add(faUser, faClock);
+library.add(
+    faBars, faMagnifyingGlass, faRightToBracket,
+    faPen, faEnvelope, faPhone, faXmark, faIdBadge,
+    faUser, faClock, faChartPie, faFolderClosed
+);
 
 app.component('Fa', FontAwesomeIcon);
 
