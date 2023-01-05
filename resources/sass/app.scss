@@ -5,6 +5,11 @@
 
 @import '~foundation-sites/assets/foundation-prototype';
 
-html, body{
+html, body {
     background: $colorBgBody;
+}
+
+h1 {
+    font-size: 2rem;
+    color: $colorBrand
 }

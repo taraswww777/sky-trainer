@@ -7150,3 +7150,8 @@ ol.list-upper-roman {
 html, body {
   background: #E3E3E3;
 }
+
+h1 {
+  font-size: 2rem;
+  color: #1c1c1c;
+}

@@ -5,9 +5,11 @@ import {
     LoginPage,
     ContactsPage,
     AboutPage,
+    RegisterPage,
+    ForgotPasswordPage,
     SupportPage
 } from "../vue/pages";
-import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 
 
 const routes = [
@@ -15,8 +17,9 @@ const routes = [
     {path: '/about', component: AboutPage},
     {path: '/contacts', component: ContactsPage},
     {path: '/support', component: SupportPage},
-    {path: '/login', component: LoginPage},
-    {path: '/login', component: LoginPage},
+    {path: '/auth/login', component: LoginPage},
+    {path: '/auth/forgot', component: ForgotPasswordPage},
+    {path: '/auth/register', component: RegisterPage},
     {path: '/courses', component: CoursesPage},
     {path: '/courses/:courseId', component: CurrentCoursePage},
 ];

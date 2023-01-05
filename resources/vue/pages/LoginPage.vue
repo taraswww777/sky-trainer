@@ -1,17 +1,16 @@
 <template>
-    <div>
-        HomePage
-        <b>{{ title }}</b>
-        <!--  Вот так обращаемся к props.children -->
-        <slot></slot>
+    <div class="grid-x">
+        <div class="cell small-12">
+            <h1>Вход в личный кабинет</h1>
+        </div>
+        <div class="cell small-12">
+            <LoginForm/>
+        </div>
     </div>
 </template>
 <script>
+
 export default {
-    props: ['title'],
-    data: () => ({
-        title: ''
-    }),
     mounted() {
         console.log('Example:mounted: this.$options', this.$options)
     }
