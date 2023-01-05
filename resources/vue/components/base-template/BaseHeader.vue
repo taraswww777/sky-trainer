@@ -1,7 +1,9 @@
 <template>
     <div class="grid-x">
         <div class="cell small-8 medium-1">
-            <img src="/logo.svg" alt="logo">
+            <router-link to="/">
+                <img src="/logo.svg" alt="logo">
+            </router-link>
         </div>
         <div class="cell hide-for-small-only medium-4">
             <span class="iconCircleWrapper"><Fa icon="magnifying-glass"/></span>
