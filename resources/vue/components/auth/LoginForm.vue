@@ -14,10 +14,10 @@
             </label>
         </div>
         <div class="cell small-12 margin-top-2">
-            <button type="submit" class="button primary">
+            <PrimaryButton type="submit">
                 <Fa icon="right-to-bracket"/>
                 Войти
-            </button>
+            </PrimaryButton>
         </div>
         <div class="cell small-12 margin-top-2">
             <ul class="menu horizontal simple">
@@ -60,14 +60,7 @@ input {
 }
 
 .button {
-    border-radius: 2rem;
-    padding: 1rem 2rem;
     width: 100%;
-    margin: 0;
-}
-
-.button.primary {
-    background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
 }
 
 a {
