@@ -1,9 +1,19 @@
 <template>
-    <div>
-        HomePage
-        <b>{{ title }}</b>
-        <!--  Вот так обращаемся к props.children -->
-        <slot></slot>
+    <div class="grid-x">
+        <div class="cell small-12 margin-top-1">
+            <Breadcrumbs
+                :crumbs="[
+                    {url:'/', title:'Гланая'},
+                    {title:'Все курсы'}
+                ]"
+            />
+        </div>
+        <div class="cell small-12">
+            <h1>Все курсы</h1>
+        </div>
+        <div class="cell small-12">
+
+        </div>
     </div>
 </template>
 <script>
