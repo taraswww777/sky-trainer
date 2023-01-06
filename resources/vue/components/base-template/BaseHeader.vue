@@ -12,10 +12,24 @@
             <span class="iconCircleWrapper"><Fa :icon="['far','clock']"/></span>
         </div>
         <div class="cell hide-for-small-only medium-3">
-            <UserStatusWidget :userName="'Иван Иванов'" :userId="2843"/>
+            <UserStatusWidget
+                :userName="user.name"
+                :userId="user.id"
+            />
         </div>
         <div class="cell small-4 medium-1">
             <MobileMainMenu/>
         </div>
     </div>
 </template>
+<script>
+import MOCK_DATA from '../../mocked-data.json';
+
+export default {
+    data() {
+        return {
+            user: MOCK_DATA.user
+        }
+    }
+}
+</script>

@@ -2,7 +2,7 @@
     <div class="mainMenu grid-x">
         <div class="cell small-12 grid-x flex-nowrap">
             <div class="cell auto">
-                <UserStatusWidget :userName="'Иван Иванов'" :userId="2843"/>
+                <UserStatusWidget :userName="user.name" :userId="user.id"/>
             </div>
             <div class="cell small-2 text-right">
                 <button
@@ -30,10 +30,16 @@
     </div>
 </template>
 <script>
+import MOCK_DATA from '../../mocked-data.json';
 
 export default {
     props: {
         onClose: Function,
+    },
+    data() {
+        return {
+            user: MOCK_DATA.user
+        }
     }
 }
 </script>
