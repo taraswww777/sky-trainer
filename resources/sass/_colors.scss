@@ -10,16 +10,19 @@ $colorRed: #EB5757;
 $colorOrange: #F2994A;
 $colorYellow: #F2C94C;
 
-$colorGreen1: #219653;
-$colorGreen2: #27AE60;
-$colorGreen3: #6FCF97;
+$colorDarkGreen: #219653;
+$colorGreen: #27AE60;
+$colorLightGreen: #6FCF97;
 
-$colorBlue1: #2F80ED;
-$colorBlue2: #2D9CDB;
-$colorBlue3: #56CCF2;
+$colorDarkBlue: #2F80ED;
+$colorBlue: #2D9CDB;
+$colorLightBlue: #56CCF2;
 
-$colorPurple1: #9B51E0;
-$colorPurple2: #BB6BD9;
+$colorDarkPurple: #9B51E0;
+$colorPurple: #BB6BD9;
 
 $colorBrand: #1c1c1c;
+
 $colorBgBody: #E3E3E3;
+$colorBgCard: rgba(255, 255, 255, 0.75);
+$colorBgActiveCard: $colorWhite;

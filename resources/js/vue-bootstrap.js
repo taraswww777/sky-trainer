@@ -9,6 +9,7 @@ import {
     faPhone,
     faEnvelope,
     faChartPie,
+    faInfo,
     faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -25,7 +26,7 @@ const app = createApp(RootComponent);
 app.use(router);
 
 library.add(
-    faBars, faMagnifyingGlass, faRightToBracket,
+    faBars, faMagnifyingGlass, faRightToBracket, faInfo,
     faPen, faEnvelope, faPhone, faXmark, faIdBadge,
     faUser, faClock, faChartPie, faFolderClosed
 );
