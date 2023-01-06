@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-import MOCK_DATA from '../../mocked-data.json';
+import {MOCK_DATA_currentUser} from '../../mocked-data';
 
 export default {
     props: {
@@ -38,7 +38,7 @@ export default {
     },
     data() {
         return {
-            user: MOCK_DATA.user
+            user: MOCK_DATA_currentUser
         }
     }
 }
