@@ -5,9 +5,9 @@
         </div>
         <div class="cell small-12 grid-x align-justify align-middle">
             <PrimaryButton>Начать тренировку</PrimaryButton>
-            <circleButton>
+            <CircleButton>
                 <Fa icon="info"/>
-            </circleButton>
+            </CircleButton>
         </div>
     </div>
 </template>
@@ -29,7 +29,6 @@ export default {
 
     &:hover {
         background: $colorBgActiveCard;
-        cursor: pointer;
     }
 }
 </style>

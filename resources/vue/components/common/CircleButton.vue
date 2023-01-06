@@ -33,6 +33,7 @@ export default {
     justify-content: center;
     align-items: center;
     align-content: center;
+    cursor: pointer;
 
     &:hover {
         border-color: $colorGray2;
