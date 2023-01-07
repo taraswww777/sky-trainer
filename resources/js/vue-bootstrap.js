@@ -20,10 +20,12 @@ import RootComponent from '../vue/RootComponent';
 import * as allComponents from "../vue/components";
 import {router} from './vue-router-config'
 import {registerComponents} from "./vue-bootstrap-utils";
+import {vueStore} from "./vue-store";
 
 const app = createApp(RootComponent);
 
 app.use(router);
+app.use(vueStore);
 
 library.add(
     faBars, faMagnifyingGlass, faRightToBracket, faInfo,

@@ -7,7 +7,7 @@
 <script>
 export default {
     mounted() {
-        console.log('Root:mounted:this.$options', this.$options)
+        console.log('RootComponent')
     }
 }
 </script>
