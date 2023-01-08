@@ -7,6 +7,7 @@ import ContactsPage from "./ContactsPage";
 import SupportPage from "./SupportPage";
 import RegisterPage from "./RegisterPage";
 import ForgotPasswordPage from "./ForgotPasswordPage";
+import LogoutPage from "./LogoutPage";
 
 export {
     SupportPage,
@@ -17,5 +18,6 @@ export {
     HomePage,
     LoginPage,
     CurrentCoursePage,
-    CoursesPage
+    CoursesPage,
+    LogoutPage
 }

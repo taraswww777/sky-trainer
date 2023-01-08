@@ -7,7 +7,8 @@ import {
     AboutPage,
     RegisterPage,
     ForgotPasswordPage,
-    SupportPage
+    SupportPage,
+    LogoutPage
 } from "../../vue/pages";
 import {createRouter, createWebHashHistory} from 'vue-router';
 import {PAGE_NAMES} from "../constants";
@@ -29,7 +30,10 @@ const routes = [
     },
     {
         path: '/auth/login', component: LoginPage, name: PAGE_NAMES.login,
-        beforeEnter: checkAuth
+        // beforeEnter: checkAuth
+    },
+    {
+        path: '/auth/logout', component: LogoutPage, name: PAGE_NAMES.logout
     },
     {
         path: '/auth/forgot', component: ForgotPasswordPage, name: PAGE_NAMES.forgotPassword,

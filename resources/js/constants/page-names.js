@@ -4,6 +4,7 @@ export const PAGE_NAMES = {
     contacts: 'contacts',
     support: 'support',
     login: 'login',
+    logout: 'logout',
     forgotPassword: 'forgotPassword',
     register: 'register',
     courses: 'courses',

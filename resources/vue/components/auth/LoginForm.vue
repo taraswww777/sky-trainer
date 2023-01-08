@@ -58,7 +58,7 @@ export default {
                 url: '/sanctum/token'
             }).then(({data: {token}}) => {
                 setToken(token);
-                router.push({name: PAGE_NAMES.home})
+                router.push({name: PAGE_NAMES.home});
             });
         }
     }

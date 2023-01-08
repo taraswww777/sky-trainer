@@ -40,7 +40,11 @@
                 </ul>
             </li>
             <li>
-                <router-link to="/logout" @click="onClose" active-class="active">
+                <router-link
+                    :to="{name: PAGE_NAMES.logout}"
+                    @click="onClose"
+                    active-class="active"
+                >
                     <Fa icon="right-to-bracket"/>
                     Выход
                 </router-link>
@@ -49,9 +53,13 @@
     </nav>
 </template>
 <script>
+const {PAGE_NAMES} = require("../../../js/constants");
 import {noop} from "lodash";
 
 export default {
+    data() {
+        return {PAGE_NAMES}
+    },
     props: {
         onClose: {
             type: Function,
