@@ -18,7 +18,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import RootComponent from '../vue/RootComponent';
 import * as allComponents from "../vue/components";
-import {router} from './vue-router-config'
+import {router} from './vue-router'
 import {registerComponents} from "./vue-bootstrap-utils";
 import {vueStore} from "./vue-store";
 

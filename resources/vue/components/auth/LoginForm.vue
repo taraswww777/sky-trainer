@@ -1,16 +1,16 @@
 <template>
-    <div class="grid-x loginForm">
+    <form class="grid-x loginForm" @submit="doLogin">
         <div class="cell small-12">
             <label>
                 Ваш логин
-                <input type="text">
+                <input type="email" v-model="email">
             </label>
         </div>
 
         <div class="cell small-12">
             <label>
                 Ваш пароль
-                <input type="password">
+                <input type="password" v-model="password">
             </label>
         </div>
         <div class="cell small-12 margin-top-2">
@@ -29,16 +29,38 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </form>
 </template>
 <script>
+import {isLogin, setToken} from "../../../js/vue-store/auth";
+import {router} from "../../../js/vue-router";
+import {PAGE_NAMES} from "../../../js/constants";
+
 export default {
-    props: ['title'],
+    beforeMount() {
+        if (isLogin()) {
+            router.push({name: PAGE_NAMES.home});
+        }
+    },
     data: () => ({
-        title: ''
+        password: 'demo123demo',
+        email: 'demo@skytrainer.pro',
     }),
-    mounted() {
-        console.log('Example:mounted: this.$options', this.$options)
+    methods: {
+        doLogin() {
+            axios({
+                params: {
+                    email: this.email,
+                    password: this.password,
+                },
+                method: 'post',
+                baseURL: 'https://api.skytrainer.pro',
+                url: '/sanctum/token'
+            }).then(({data: {token}}) => {
+                setToken(token);
+                router.push({name: PAGE_NAMES.home})
+            });
+        }
     }
 }
 </script>
