@@ -17,14 +17,11 @@
     </div>
 </template>
 <script>
-import {MOCK_DATA_products} from '../mocked-data';
-
 export default {
-    data: () => ({
-        courses: MOCK_DATA_products
-    }),
-    mounted() {
-        console.log('Example:mounted: this.$options', this.$options)
+    computed: {
+        courses() {
+            return this.$store.getters.getCourses
+        }
     }
 }
 </script>

@@ -6,12 +6,10 @@
     </div>
 </template>
 <script>
-import {MOCK_DATA_currentUser} from '../mocked-data';
-
 export default {
-    data() {
-        return {
-            user: MOCK_DATA_currentUser
+    computed: {
+        user() {
+            return this.$store.getters.getCurrentUserInfo
         }
     }
 }
