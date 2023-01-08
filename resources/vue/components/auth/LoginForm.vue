@@ -35,6 +35,7 @@
 import {isLogin, setToken} from "../../../js/vue-store/auth";
 import {router} from "../../../js/vue-router";
 import {PAGE_NAMES} from "../../../js/constants";
+import {requestLogin} from "../../../js/requests";
 
 export default {
     beforeMount() {
@@ -48,14 +49,9 @@ export default {
     }),
     methods: {
         doLogin() {
-            axios({
-                params: {
-                    email: this.email,
-                    password: this.password,
-                },
-                method: 'post',
-                baseURL: 'https://api.skytrainer.pro',
-                url: '/sanctum/token'
+            requestLogin({
+                email: this.email,
+                password: this.password,
             }).then(({data: {token}}) => {
                 setToken(token);
                 router.push({name: PAGE_NAMES.home});
