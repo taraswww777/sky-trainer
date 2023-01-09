@@ -12,7 +12,7 @@
             <span class="iconCircleWrapper"><Fa :icon="['far','clock']"/></span>
         </div>
         <div class="cell hide-for-small-only medium-3">
-            <UserStatusWidget
+            <UserStatusWidget v-if="user"
                 :userName="user.name"
                 :userId="user.id"
             />

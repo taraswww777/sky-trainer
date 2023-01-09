@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-x userCardWidget">
+    <div class="grid-x userCardWidget" v-if="userInfo">
         <div class="cell small-12 grid-x align-justify align-middle userLine">
             <div class="userName">
                 {{ userInfo.name }}
