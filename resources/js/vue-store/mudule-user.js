@@ -1,8 +1,6 @@
-import {MOCK_DATA_currentUser} from '../../mocked-data';
-
 export const moduleUser = {
     state: {
-        currentUserInfo: MOCK_DATA_currentUser
+        currentUserInfo: undefined
     },
     getters: {
         getCurrentUserInfo(state) {
@@ -10,14 +8,13 @@ export const moduleUser = {
         }
     },
     mutations: {
-        // setToken(state, token) {
-        //     sessionStorage.setItem('token', token);
-        // }
+        setCurrentUserInfo(state, currentUserInfo) {
+            state.currentUserInfo = currentUserInfo;
+        }
     },
     actions: {
-        // setToken({commit}, token) {
-        //     // console.log('setToken:', state, payload)
-        //     commit('setToken', token);
-        // },
+        setCurrentUserInfo({commit}, currentUserInfo) {
+            commit('setCurrentUserInfo', currentUserInfo);
+        },
     }
 };

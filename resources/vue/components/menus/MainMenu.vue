@@ -2,7 +2,7 @@
     <div class="mainMenu grid-x">
         <div class="cell small-12 grid-x flex-nowrap">
             <div class="cell auto">
-                <UserStatusWidget :userName="user.name" :userId="user.id"/>
+                <UserStatusWidget v-if="user" :userName="user.name" :userId="user.id"/>
             </div>
             <div class="cell small-2 text-right">
                 <button
