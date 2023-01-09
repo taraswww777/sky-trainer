@@ -11,6 +11,6 @@ export const requestLogin = async ({email, password}) => (
         },
         method: 'post',
         baseURL: API_URL,
-        url: '/sanctum/token'
+        url: '/token'
     })
 );

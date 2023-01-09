@@ -53,8 +53,11 @@ export default {
                 email: this.email,
                 password: this.password,
             }).then(({data: {token}}) => {
-                setToken(token);
-                router.push({name: PAGE_NAMES.home});
+                console.log('token:', token);
+                if (token) {
+                    setToken(token);
+                    router.push({name: PAGE_NAMES.home});
+                }
             });
         }
     }
