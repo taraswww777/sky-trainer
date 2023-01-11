@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\RemoteSkyTrainerController;
+use App\Http\Controllers\RemoteSkyTrainer\UsersController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('token', [RemoteSkyTrainerController::class, 'getToken']);
-Route::get('current-user', [RemoteSkyTrainerController::class, 'getCurrentUser']);
+Route::post('token', [UsersController::class, 'getToken']);
+Route::get('current-user', [UsersController::class, 'getCurrentUser']);
