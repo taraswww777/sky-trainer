@@ -9,7 +9,7 @@ abstract class BaseProxy
 {
     static string $API_URL = 'https://api.skytrainer.pro';
 
-    function client(string $authorization = null): Client
+   protected function client(string $authorization = null): Client
     {
         $headers = [];
         if ($authorization) {
