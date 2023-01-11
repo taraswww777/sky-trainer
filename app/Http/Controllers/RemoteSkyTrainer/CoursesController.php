@@ -25,12 +25,28 @@ class CoursesController extends BaseRemoteSkyTrainerController
         return $this->__coursesProxy->getListCourses($authorization, $userId);
     }
 
-    function getCourseById(Request $request, $courseId): string
+    function getCourse(Request $request, $courseId): string
     {
         $authorization = $this->getAuthorization($request);
         $userId = $this->__usersProxy->getIdCurrentUser($authorization);
 
         return $this->__coursesProxy->getCourseById($authorization, $userId, $courseId);
+    }
+
+    function getCoursePhrases(Request $request, $courseId): string
+    {
+        $authorization = $this->getAuthorization($request);
+        $userId = $this->__usersProxy->getIdCurrentUser($authorization);
+
+        return $this->__coursesProxy->getCoursePhrases($authorization, $userId, $courseId);
+    }
+
+    function getCoursePhraseById(Request $request, $courseId, $phraseId): string
+    {
+        $authorization = $this->getAuthorization($request);
+        $userId = $this->__usersProxy->getIdCurrentUser($authorization);
+
+        return $this->__coursesProxy->getCoursePhraseById($authorization, $userId, $courseId, $phraseId);
     }
 
 }
