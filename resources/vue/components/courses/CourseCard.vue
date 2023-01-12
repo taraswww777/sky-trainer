@@ -4,7 +4,11 @@
             {{ course.name }}
         </div>
         <div class="cell small-12 grid-x align-justify align-middle">
-            <PrimaryButton>Начать тренировку</PrimaryButton>
+            <PrimaryButton>
+                <router-link :to="{name:PAGE_NAMES.courseItem, params:{courseId: course.id}}">
+                    Начать тренировку
+                </router-link>
+            </PrimaryButton>
             <CircleButton>
                 <Fa icon="info"/>
             </CircleButton>
@@ -12,7 +16,12 @@
     </div>
 </template>
 <script>
+import {PAGE_NAMES} from '../../../js/constants';
+
 export default {
+    data() {
+        return {PAGE_NAMES}
+    },
     props: {
         course: Object
     }

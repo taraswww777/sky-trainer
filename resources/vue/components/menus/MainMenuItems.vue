@@ -20,24 +20,10 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="/courses" @click="onClose" active-class="active">
+                <router-link :to="{name: PAGE_NAMES.courses}" @click="onClose" active-class="active">
                     <Fa :icon="['far','folder-closed']"/>
                     Курсы
                 </router-link>
-                <ul class="list-none">
-                    <li>
-                        <router-link to="/courses/1" @click="onClose">Презентации</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/courses/2" @click="onClose">Звонки</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/courses/3" @click="onClose">Презентации</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/courses/4" @click="onClose">Встречи</router-link>
-                    </li>
-                </ul>
             </li>
             <li>
                 <router-link

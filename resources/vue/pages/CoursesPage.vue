@@ -17,7 +17,14 @@
     </div>
 </template>
 <script>
+import {requestCourses} from "../../js/requests/courses";
+
 export default {
+    mounted() {
+        requestCourses().then(({data}) => {
+            this.$store.dispatch('setCourses', data);
+        });
+    },
     computed: {
         courses() {
             return this.$store.getters.getCourses

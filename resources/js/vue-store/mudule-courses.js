@@ -1,12 +1,20 @@
-import {MOCK_DATA_products} from '../../mocked-data';
-
 export const moduleCourses = {
     state: {
-        courses: MOCK_DATA_products
+        courses: []
     },
     getters: {
         getCourses(state) {
             return state.courses
+        }
+    },
+    mutations: {
+        setCourses(state, courses) {
+            state.courses = courses;
+        }
+    },
+    actions: {
+        setCourses({commit}, courses) {
+            commit('setCourses', courses);
         }
     }
 };
