@@ -112,6 +112,11 @@ class Dump
             exit('<p>' . __FILE__ . '::' . __LINE__ . '</p>');
     }
 
+    public static function xfContinue($var = null, $rewrite = false)
+    {
+        self::xf($var, true, '../../logs/dump.txt', $rewrite);
+    }
+
     /**
      * Выведет дамп $var в файл
      *
