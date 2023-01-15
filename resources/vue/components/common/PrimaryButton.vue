@@ -17,7 +17,7 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import '~foundation-sites/scss/foundation.scss';
 @import '../../../sass/colors';
 
@@ -32,9 +32,17 @@ export default {
             border-color: $colorDarkPurple;
             color: $colorDarkPurple;
 
+            a {
+                color: $colorDarkPurple;
+            }
+
             &:hover {
                 color: $colorWhite;
                 background: linear-gradient(84.09deg, $colorPurple 4.37%, $colorDarkPurple 94.11%);
+
+                a {
+                    color: $colorWhite;
+                }
             }
         }
     }

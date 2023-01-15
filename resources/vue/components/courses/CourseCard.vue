@@ -27,7 +27,7 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import '~foundation-sites/scss/foundation.scss';
 @import '../../../sass/colors';
 
