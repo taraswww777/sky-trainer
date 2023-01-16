@@ -13,7 +13,7 @@ export default {
         title: ''
     }),
     mounted() {
-        console.log('Example:mounted: this.$options', this.$options)
+        // console.log('Example:mounted: this.$options', this.$options)
     }
 }
 </script>
