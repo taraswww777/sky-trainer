@@ -13,3 +13,15 @@ export const requestCourses = () => (
         url: '/courses'
     })
 );
+
+export const requestCourseById = (courseId) => (
+    axios({
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        },
+        method: 'get',
+        baseURL: API_URL,
+        url: `/courses/${courseId}`
+    })
+);

@@ -10,6 +10,7 @@ import {
     faEnvelope,
     faChartPie,
     faInfo,
+    faSpinner,
     faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -30,7 +31,7 @@ app.use(vueStore);
 library.add(
     faBars, faMagnifyingGlass, faRightToBracket, faInfo,
     faPen, faEnvelope, faPhone, faXmark, faIdBadge,
-    faUser, faClock, faChartPie, faFolderClosed
+    faUser, faClock, faChartPie, faFolderClosed, faSpinner
 );
 
 app.component('Fa', FontAwesomeIcon);
