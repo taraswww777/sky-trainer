@@ -9,11 +9,11 @@ abstract class BaseProxy
 {
     static string $API_URL = 'https://api.skytrainer.pro';
 
-   protected function client(string $authorization = null): Client
+    protected function client(string $token = null): Client
     {
         $headers = [];
-        if ($authorization) {
-            $headers['authorization'] = $authorization;
+        if ($token) {
+            $headers['authorization'] = $token;
         }
         return new Client([
             'base_uri' => self::$API_URL,
