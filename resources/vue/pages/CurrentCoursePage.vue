@@ -16,36 +16,66 @@
                     они будут недоступны. Вот так:)
                 </Notice>
             </div>
-            <form class="grid-x" @submit="start">
+            <form class="grid-x width-100" @submit="start">
                 <div class="cell small-4">
-                    Выберете тип тренировки
-                    {{ course?.extra?.training_types }}
+                    <label>
+                        Выберете тип тренировки
+                        <select
+                            class="margin-bottom-0"
+                            v-if="course?.extra?.training_types"
+                            v-model="training_type"
+                            required
+                        >
+                            <option disabled value="">Select your training type</option>
+                            <option
+                                v-for="training_type in course.extra.training_types"
+                                :key="training_type.id"
+                                :value="training_type.value"
+                            >
+                                {{ training_type.caption }}
+                            </option>
+                        </select>
+                    </label>
                 </div>
                 <div class="cell small-4">
-                    Выберете стадию
-                    <select v-if="course?.extra?.stages" v-model="stage" required>
-                        <option disabled value="">Select your stage</option>
-                        <option
-                            v-for="stage in course.extra.stages"
-                            :key="stage.id"
-                            :value="stage.id"
+                    <label>
+                        Выберете стадию
+                        <select
+                            class="margin-bottom-0"
+                            v-if="course?.extra?.stages"
+                            v-model="stage"
+                            required
                         >
-                            {{ stage.caption }}
-                        </option>
-                    </select>
+                            <option disabled value="">Select your stage</option>
+                            <option
+                                v-for="stage in course.extra.stages"
+                                :key="stage.id"
+                                :value="stage.id"
+                            >
+                                {{ stage.caption }}
+                            </option>
+                        </select>
+                    </label>
                 </div>
                 <div class="cell small-4">
-                    Тип диалога
-                    <select v-if="course?.available_trainers" v-model="trainer" required>
-                        <option disabled  value="">Select your trainer</option>
-                        <option
-                            v-for="trainer in course.available_trainers"
-                            :key="trainer.id"
-                            :value="trainer.id"
+                    <label>
+                        Тип диалога
+                        <select
+                            class="margin-bottom-0"
+                            v-if="course?.available_trainers"
+                            v-model="trainer"
+                            required
                         >
-                            {{ trainer.name }}
-                        </option>
-                    </select>
+                            <option disabled value="">Select your trainer</option>
+                            <option
+                                v-for="trainer in course.available_trainers"
+                                :key="trainer.id"
+                                :value="trainer.id"
+                            >
+                                {{ trainer.name }}
+                            </option>
+                        </select>
+                    </label>
                 </div>
                 <div class="cell small-12 margin-top-1 margin-bottom-1">
                     <button type="submit" class="button primary">
@@ -70,6 +100,7 @@ export default {
         bem,
         isLoading: false,
         stage: undefined,
+        training_type: undefined,
         trainer: undefined
     }),
     mounted() {
@@ -85,6 +116,7 @@ export default {
         start(e) {
             e.preventDefault();
             e.stopPropagation();
+            console.log('this.training_type:', this.training_type)
             console.log('this.stage:', this.stage)
             console.log('this.trainer:', this.trainer)
         }
