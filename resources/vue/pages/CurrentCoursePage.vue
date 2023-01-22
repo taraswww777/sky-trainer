@@ -92,6 +92,7 @@
 <script>
 import {requestCourseById} from "../../js/requests/courses";
 import useBem from "vue3-bem";
+import {requestDialogStart} from "../../js/requests";
 
 const bem = useBem("current-course-page");
 
@@ -119,6 +120,17 @@ export default {
             console.log('this.training_type:', this.training_type)
             console.log('this.stage:', this.stage)
             console.log('this.trainer:', this.trainer)
+            requestDialogStart({
+                courseId: this.$route.params.courseId,
+                phaseId: this.training_type,
+                stageId: this.stage,
+                trainerId: this.trainer,
+            }).then(({data}) => {
+                console.log(data)
+                this.$store.dispatch('setCurrentDialog', data);
+            }).finally(() => {
+                this.isLoading = false;
+            });
         }
     },
     computed: {
