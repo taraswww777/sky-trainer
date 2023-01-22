@@ -1,17 +1,11 @@
-import axios from "axios";
-import {API_URL} from "./constants";
+import {axiosPost} from "./base";
 
 export const requestLogin = async ({email, password}) => (
-    axios({
-        headers: {
-            Accept: 'application/json'
-        },
+    axiosPost({
         params: {
             email: email,
             password: password,
         },
-        method: 'post',
-        baseURL: API_URL,
         url: '/token'
     })
 );
