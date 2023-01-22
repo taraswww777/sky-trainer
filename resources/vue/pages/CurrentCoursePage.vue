@@ -90,7 +90,7 @@
     </BasePage>
 </template>
 <script>
-import {requestCourseById} from "../../js/requests/courses";
+import {requestCourseById} from "../../js/requests";
 import useBem from "vue3-bem";
 import {requestDialogStart} from "../../js/requests";
 
@@ -99,18 +99,17 @@ const bem = useBem("current-course-page");
 export default {
     data: () => ({
         bem,
-        isLoading: false,
         stage: undefined,
         training_type: undefined,
         trainer: undefined
     }),
     mounted() {
         console.log('CurrentCoursePage.vue')
-        this.isLoading = true;
+        this.$store.dispatch('setLoadingStart');
         requestCourseById(this.$route.params.courseId).then(({data}) => {
             this.$store.dispatch('setCurrentCourse', data);
         }).finally(() => {
-            this.isLoading = false;
+            this.$store.dispatch('setLoadingStop');
         });
     },
     methods: {
@@ -120,6 +119,7 @@ export default {
             console.log('this.training_type:', this.training_type)
             console.log('this.stage:', this.stage)
             console.log('this.trainer:', this.trainer)
+            this.$store.dispatch('setLoadingStart');
             requestDialogStart({
                 courseId: this.$route.params.courseId,
                 phaseId: this.training_type,
@@ -129,11 +129,14 @@ export default {
                 console.log(data)
                 this.$store.dispatch('setCurrentDialog', data);
             }).finally(() => {
-                this.isLoading = false;
+                this.$store.dispatch('setLoadingStop');
             });
         }
     },
     computed: {
+        isLoading() {
+            return this.$store.getters.getIsLoading
+        },
         course() {
             return this.$store.getters.getCurrentCourse
         }
