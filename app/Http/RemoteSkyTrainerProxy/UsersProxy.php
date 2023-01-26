@@ -7,16 +7,16 @@ use App\MyTools\Dump;
 class UsersProxy extends BaseProxy
 {
 
-    function getCurrentUser(string $authorization): string
+    function getCurrentUser(string $token): string
     {
-        $response = $this->client($authorization)->get('/api/user/current');
+        $response = $this->client($token)->get('/api/user/current');
 
         return $response->getBody()->getContents();
     }
 
-    function getIdCurrentUser(string $authorization): int
+    function getIdCurrentUser(string $token): int
     {
-        $jsonString = $this->getCurrentUser($authorization);
+        $jsonString = $this->getCurrentUser($token);
         $jsonObj = json_decode($jsonString);
         return $jsonObj->id;
     }

@@ -16,36 +16,66 @@
                     они будут недоступны. Вот так:)
                 </Notice>
             </div>
-            <form class="grid-x" @submit="start">
+            <form class="grid-x width-100" @submit="start" v-if="status === STATUSES.new">
                 <div class="cell small-4">
-                    Выберете тип тренировки
-                    {{ course?.extra?.training_types }}
+                    <label>
+                        Выберете тип тренировки
+                        <select
+                            class="margin-bottom-0"
+                            v-if="course?.extra?.training_types"
+                            v-model="training_type"
+                            required
+                        >
+                            <option disabled value="">Select your training type</option>
+                            <option
+                                v-for="training_type in course.extra.training_types"
+                                :key="training_type.id"
+                                :value="training_type.value"
+                            >
+                                {{ training_type.caption }}
+                            </option>
+                        </select>
+                    </label>
                 </div>
                 <div class="cell small-4">
-                    Выберете стадию
-                    <select v-if="course?.extra?.stages" v-model="stage" required>
-                        <option disabled value="">Select your stage</option>
-                        <option
-                            v-for="stage in course.extra.stages"
-                            :key="stage.id"
-                            :value="stage.id"
+                    <label>
+                        Выберете стадию
+                        <select
+                            class="margin-bottom-0"
+                            v-if="course?.extra?.stages"
+                            v-model="stage"
+                            required
                         >
-                            {{ stage.caption }}
-                        </option>
-                    </select>
+                            <option disabled value="">Select your stage</option>
+                            <option
+                                v-for="stage in course.extra.stages"
+                                :key="stage.id"
+                                :value="stage.id"
+                            >
+                                {{ stage.caption }}
+                            </option>
+                        </select>
+                    </label>
                 </div>
                 <div class="cell small-4">
-                    Тип диалога
-                    <select v-if="course?.available_trainers" v-model="trainer" required>
-                        <option disabled  value="">Select your trainer</option>
-                        <option
-                            v-for="trainer in course.available_trainers"
-                            :key="trainer.id"
-                            :value="trainer.id"
+                    <label>
+                        Тип диалога
+                        <select
+                            class="margin-bottom-0"
+                            v-if="course?.available_trainers"
+                            v-model="trainer"
+                            required
                         >
-                            {{ trainer.name }}
-                        </option>
-                    </select>
+                            <option disabled value="">Select your trainer</option>
+                            <option
+                                v-for="trainer in course.available_trainers"
+                                :key="trainer.id"
+                                :value="trainer.id"
+                            >
+                                {{ trainer.name }}
+                            </option>
+                        </select>
+                    </label>
                 </div>
                 <div class="cell small-12 margin-top-1 margin-bottom-1">
                     <button type="submit" class="button primary">
@@ -53,45 +83,93 @@
                     </button>
                 </div>
             </form>
-            <div class="cell small-12 ">
-                <!--            {{ JSON.stringify(course) }}-->
+            <div class="cell small-12">
+                <!--            <div class="cell small-12" v-if="status === STATUSES.inProgress">-->
+                <div
+                    class="cell small-12 margin-top-1 margin-bottom-1 grid-x"
+                    style="justify-content: space-between">
+                    <button type="submit" class="button warning margin-bottom-0">
+                        Завершить звонок
+                    </button>
+                    <div
+                        class="grid-x align-middle align-right align-center-middle"
+                        style="{flex-grow: 1; align-content: center}">
+                        <TagList :tags="[training_type, stage, trainer]"/>
+                    </div>
+                </div>
+                <div>
+                    <HelpPanel
+                        help-text="Дмитрий Сергеевич, Ранее Вы заполняли анкету на сайте Скайтрэйнер Банка для получения кредита
+                    наличными верно?"/>
+                </div>
+                {{ JSON.stringify(dialog) }}
             </div>
         </div>
     </BasePage>
 </template>
 <script>
-import {requestCourseById} from "../../js/requests/courses";
+import {requestCourseById} from "../../js/requests";
 import useBem from "vue3-bem";
+import {requestDialogStart} from "../../js/requests";
+import HelpPanel from "../components/common/HelpPanel";
 
 const bem = useBem("current-course-page");
+const STATUSES = {
+    new: 'new',
+    inProgress: 'inProgress',
+    done: 'done',
+}
 
 export default {
+    components: {HelpPanel},
     data: () => ({
+        status: STATUSES.new,
+        STATUSES,
         bem,
-        isLoading: false,
         stage: undefined,
+        training_type: undefined,
         trainer: undefined
     }),
     mounted() {
         console.log('CurrentCoursePage.vue')
-        this.isLoading = true;
+        this.$store.dispatch('setLoadingStart');
         requestCourseById(this.$route.params.courseId).then(({data}) => {
             this.$store.dispatch('setCurrentCourse', data);
         }).finally(() => {
-            this.isLoading = false;
+            this.$store.dispatch('setLoadingStop');
         });
     },
     methods: {
         start(e) {
             e.preventDefault();
             e.stopPropagation();
+            console.log('this.training_type:', this.training_type)
             console.log('this.stage:', this.stage)
             console.log('this.trainer:', this.trainer)
+            this.$store.dispatch('setLoadingStart');
+            this.status = STATUSES.inProgress;
+            requestDialogStart({
+                courseId: this.$route.params.courseId,
+                phaseId: this.training_type,
+                stageId: this.stage,
+                trainerId: this.trainer,
+            }).then(({data}) => {
+                console.log(data)
+                this.$store.dispatch('setCurrentDialog', data);
+            }).finally(() => {
+                this.$store.dispatch('setLoadingStop');
+            });
         }
     },
     computed: {
+        isLoading() {
+            return this.$store.getters.getIsLoading
+        },
         course() {
             return this.$store.getters.getCurrentCourse
+        },
+        dialog() {
+            return this.$store.getters.getCurrentDialog
         }
     }
 }

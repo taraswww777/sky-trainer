@@ -1,10 +1,14 @@
 import {createStore} from 'vuex'
-import {moduleUser} from "./mudule-user";
-import {moduleCourses} from "./mudule-courses";
+import {moduleUser} from "./module-user";
+import {moduleCourses} from "./module-courses";
+import {moduleDialog} from "./module-dialog";
+import {moduleLoadings} from "./module-loadings";
 
 export const vueStore = createStore({
     modules: {
         moduleUser,
-        moduleCourses
+        moduleCourses,
+        moduleDialog,
+        moduleLoadings
     }
 });
