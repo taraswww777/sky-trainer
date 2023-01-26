@@ -9,19 +9,19 @@ export const moduleDialog = {
         getHistory(state) {
             return state.history
         },
-        getCurrent(state) {
+        getCurrentDialog(state) {
             return state.current
         },
     },
     mutations: {
-        setCurrent(state, dialog) {
+        setCurrentDialog(state, dialog) {
             state.history.push(dialog);
             state.current = dialog;
         }
     },
     actions: {
         setCurrentDialog({commit}, dialog) {
-            commit('setCurrent', dialog);
+            commit('setCurrentDialog', dialog);
         }
     }
 };

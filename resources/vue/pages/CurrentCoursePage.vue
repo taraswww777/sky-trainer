@@ -16,7 +16,7 @@
                     они будут недоступны. Вот так:)
                 </Notice>
             </div>
-            <form class="grid-x width-100" @submit="start">
+            <form class="grid-x width-100" @submit="start" v-if="status === STATUSES.new">
                 <div class="cell small-4">
                     <label>
                         Выберете тип тренировки
@@ -83,8 +83,26 @@
                     </button>
                 </div>
             </form>
-            <div class="cell small-12 ">
-                <!--            {{ JSON.stringify(course) }}-->
+            <div class="cell small-12">
+                <!--            <div class="cell small-12" v-if="status === STATUSES.inProgress">-->
+                <div
+                    class="cell small-12 margin-top-1 margin-bottom-1 grid-x"
+                    style="justify-content: space-between">
+                    <button type="submit" class="button warning margin-bottom-0">
+                        Завершить звонок
+                    </button>
+                    <div
+                        class="grid-x align-middle align-right align-center-middle"
+                        style="{flex-grow: 1; align-content: center}">
+                        <TagList :tags="[training_type, stage, trainer]"/>
+                    </div>
+                </div>
+                <div>
+                    <HelpPanel
+                        help-text="Дмитрий Сергеевич, Ранее Вы заполняли анкету на сайте Скайтрэйнер Банка для получения кредита
+                    наличными верно?"/>
+                </div>
+                {{ JSON.stringify(dialog) }}
             </div>
         </div>
     </BasePage>
@@ -93,11 +111,20 @@
 import {requestCourseById} from "../../js/requests";
 import useBem from "vue3-bem";
 import {requestDialogStart} from "../../js/requests";
+import HelpPanel from "../components/common/HelpPanel";
 
 const bem = useBem("current-course-page");
+const STATUSES = {
+    new: 'new',
+    inProgress: 'inProgress',
+    done: 'done',
+}
 
 export default {
+    components: {HelpPanel},
     data: () => ({
+        status: STATUSES.new,
+        STATUSES,
         bem,
         stage: undefined,
         training_type: undefined,
@@ -120,6 +147,7 @@ export default {
             console.log('this.stage:', this.stage)
             console.log('this.trainer:', this.trainer)
             this.$store.dispatch('setLoadingStart');
+            this.status = STATUSES.inProgress;
             requestDialogStart({
                 courseId: this.$route.params.courseId,
                 phaseId: this.training_type,
@@ -139,6 +167,9 @@ export default {
         },
         course() {
             return this.$store.getters.getCurrentCourse
+        },
+        dialog() {
+            return this.$store.getters.getCurrentDialog
         }
     }
 }
