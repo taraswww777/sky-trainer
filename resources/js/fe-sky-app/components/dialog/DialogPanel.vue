@@ -63,9 +63,26 @@ export default {
     &__messages {
         padding: 20px;
         width: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         flex-grow: 1;
+
+        &::-webkit-scrollbar {
+            width: 5px; /* ширина scrollbar */
+            border-radius: 20px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #EAEAEA; /* цвет дорожки */
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            width: 4px;
+            background-color: #8C63F7; /* цвет плашки */
+            border-radius: 20px; /* закругления плашки */
+            border: 3px solid #8C63F7; /* padding вокруг плашки */
+        }
     }
 
     &__message-item {
