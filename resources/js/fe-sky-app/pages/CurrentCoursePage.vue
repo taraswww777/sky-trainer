@@ -102,6 +102,11 @@
                         help-text="Дмитрий Сергеевич, Ранее Вы заполняли анкету на сайте Скайтрэйнер Банка для получения кредита
                     наличными верно?"/>
                 </div>
+                <div>
+                    <DialogPanel
+
+                    />
+                </div>
                 {{ JSON.stringify(dialog) }}
             </div>
         </div>
@@ -111,6 +116,7 @@
 import {requestCourseById} from "../requests";
 import useBem from "vue3-bem";
 import {requestDialogStart} from "../requests";
+import {DialogPanel} from "../components/dialog";
 
 const bem = useBem("current-course-page");
 const STATUSES = {
@@ -120,6 +126,9 @@ const STATUSES = {
 }
 
 export default {
+    components: {
+        DialogPanel
+    },
     data: () => ({
         status: STATUSES.new,
         STATUSES,
