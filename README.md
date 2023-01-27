@@ -22,7 +22,8 @@
 2. In directory `sky-trainer` run commands `composer install`, `npm i`
 3. for next steps need checks and fix apache settings and DB credentials
 4. In directory `sky-trainer` rum command `php artisan migrate`
-5. Done!
+5. In root directory need run `npm run build`
+6. Done!
 
 If U have some problems with installing, please write about this resolved issue in chapter **FAQ**
 

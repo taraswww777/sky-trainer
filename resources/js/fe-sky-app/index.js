@@ -1,0 +1,1 @@
+export {initFeSkyApp} from './bootstrap'

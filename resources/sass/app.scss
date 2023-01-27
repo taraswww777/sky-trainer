@@ -1,9 +1,9 @@
-@import '~foundation-sites/scss/foundation.scss';
+@import 'foundation-sites/scss/foundation.scss';
 @import './colors';
 
 @include foundation-normalize();
 
-@import '~foundation-sites/assets/foundation-prototype';
+@import 'foundation-sites/assets/foundation-prototype';
 
 html, body {
     background: $colorBgBody;
