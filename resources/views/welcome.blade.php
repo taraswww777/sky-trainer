@@ -7,7 +7,7 @@
 
     <title>Laravel</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Inter:100,200,500,600" rel="stylesheet">
+{{--    <link href="https://fonts.googleapis.com/css?family=Inter:100,200,500,600" rel="stylesheet">--}}
 </head>
 <body>
 
