@@ -113,12 +113,14 @@
     </BasePage>
 </template>
 <script>
-import {requestCourseById} from "../requests";
+import {requestCourseById} from "../../requests";
 import useBem from "vue3-bem";
-import {requestDialogStart} from "../requests";
-import {DialogPanel} from "../components/dialog";
+import {requestDialogStart} from "../../requests";
+import DialogPanel from "./components/DialogPanel.vue";
 
-const bem = useBem("current-course-page");
+const componentName = 'CurrentCoursePage';
+
+const bem = useBem(componentName);
 const STATUSES = {
     new: 'new',
     inProgress: 'inProgress',
@@ -138,7 +140,6 @@ export default {
         trainer: undefined
     }),
     mounted() {
-        console.log('CurrentCoursePage.vue')
         this.$store.dispatch('setLoadingStart');
         requestCourseById(this.$route.params.courseId).then(({data}) => {
             this.$store.dispatch('setCurrentCourse', data);
@@ -150,9 +151,6 @@ export default {
         start(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('this.training_type:', this.training_type)
-            console.log('this.stage:', this.stage)
-            console.log('this.trainer:', this.trainer)
             this.$store.dispatch('setLoadingStart');
             this.status = STATUSES.inProgress;
             requestDialogStart({
@@ -183,7 +181,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import 'foundation-sites/scss/foundation.scss';
-@import '../../../sass/colors';
+@import '../../../../sass/colors';
 
 .current-course-page {
 

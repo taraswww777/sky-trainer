@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../../../sass/mixins';
+@import '../../../../../sass/mixins';
 
 .dialog-panel {
     @include borderRadius;
