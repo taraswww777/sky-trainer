@@ -1,0 +1,7 @@
+@mixin borderRadius() {
+    border-radius: 8px;
+}
+
+@mixin borderCircle() {
+    border-radius: 50%;
+}
