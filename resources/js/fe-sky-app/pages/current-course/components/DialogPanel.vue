@@ -4,12 +4,11 @@
             Лог разговора
         </div>
         <div :class="bem('messages')">
-            <div :class="bem('message-item')" v-for="message of messages">
-                <!-- direction="out"-->
+            <div :class="bem('message-item')" v-for="message of dialogLogs">
                 <Message
-                    direction="in"
-                    :caption="message?.caption"
-                    :text="message?.text"
+                    :directionType="message?.type"
+                    :caption="message?.type"
+                    :text="message?.text_to_find"
                 />
             </div>
         </div>
@@ -37,8 +36,9 @@ export default {
         bem,
     }),
     props: {
-        messages: {
+        dialogLogs: {
             type: Array,
+            default: []
         },
     },
 }

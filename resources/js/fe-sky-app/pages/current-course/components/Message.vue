@@ -1,5 +1,5 @@
 <template>
-    <div :class="bem(undefined, direction)">
+    <div :class="bem(undefined, directionType)">
         <span :class="bem('icon')">
             <Fa :icon="['far','user']"/>
         </span>
@@ -27,8 +27,8 @@ export default {
         bem,
     }),
     props: {
-        direction: {
-            /** out / in */
+        directionType: {
+            /** out - manager / in - bot  */
             type: String,
         },
         caption: {
@@ -50,11 +50,11 @@ export default {
     overflow: hidden;
     justify-content: flex-start;
 
-    &--in {
+    &--in, &--bot {
         flex-direction: row-reverse;
     }
 
-    &--in > &__box {
+    &--in, &--bot > &__box {
         background: #F2F2F2;
         margin-right: 15px;
         text-align: right;
@@ -70,15 +70,15 @@ export default {
         }
     }
 
-    &--out {
+    &--out, &--manager {
         flex-direction: row;
     }
 
-    &--out > &__icon {
+    &--out, &--manager > &__icon {
         background: linear-gradient(45deg, #2DC358, #1ABAB0);
     }
 
-    &--out > &__box {
+    &--out, &--manager > &__box {
         background: #DFFFE8;
         margin-left: 15px;
         text-align: left;

@@ -17,4 +17,4 @@ Route::get('courses/{courseId}/phrases/{phraseId}', [CoursesController::class, '
 Route::get('dialog/start/{courseId}', [DialogController::class, 'start']);
 Route::get('dialog/stop/{courseId}', [DialogController::class, 'stop']);
 Route::get('dialog/reset/{courseId}', [DialogController::class, 'reset']);
-Route::post('dialog/speech-result', [DialogController::class, 'speechResult']);
+Route::post('dialog/speech-result/{courseId}', [DialogController::class, 'speechResult']);

@@ -123,7 +123,7 @@ class CoursesProxy extends BaseProxy
         $response = $this->client($token)->post(
             "api/user/$userId/products/$courseId/dialogflow/speech_result",
             [
-                'body' => array_filter([
+                'form_params' => array_filter([
                     'speech_result' => $speechResult,
                     'timing' => $timing,
                 ])

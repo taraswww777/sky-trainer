@@ -104,7 +104,7 @@
                     <HelpPanel :helpPhrases="helpPhrases"/>
                 </div>
                 <div>
-                    <DialogPanel :messages="messages"/>
+                    <DialogPanel :dialogLogs="dialogLogs"/>
                 </div>
             </div>
         </div>
@@ -175,8 +175,8 @@ export default {
         course() {
             return this.$store.getters.getCurrentCourse
         },
-        messages() {
-            return this.$store.getters.getMessages
+        dialogLogs() {
+            return this.$store.getters.getDialogLogs
         },
         helpPhrases() {
             return this.$store.getters.getHelpPhrases

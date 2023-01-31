@@ -1,14 +1,19 @@
 <template>
-    <div :class="bem()">
+    <form :class="bem()" @submit="pushMessage">
         <button :class="bem('btn-rec')" type="button">
             <img src="./mic.svg">
         </button>
-        <textarea :class="bem('textarea')"></textarea>
-    </div>
+        <input
+            :class="bem('textarea')"
+            type="text"
+            v-model="speechResult"
+            placeholder="Введите фразу"/>
+    </form>
 </template>
 
 <script>
 import useBem from "vue3-bem";
+import {requestDialogSpeechResult} from "../../../requests";
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
@@ -17,7 +22,32 @@ export default {
     name: componentName,
     data: () => ({
         bem,
+        speechResult: undefined
     }),
+    computed: {
+        courseId() {
+            return this.$store.getters.getCurrentCourseId
+        },
+    },
+    methods: {
+        pushMessage() {
+            console.log('this.outputMessage:', this.speechResult, this.courseId);
+            requestDialogSpeechResult({
+                courseId: this.courseId,
+                speechResult: this.speechResult,
+                // TODO: Убрать раздкод когда перейдём на распознавание голоса
+                timing: 4100
+            }).then(({data: {dialog_logs, next_phrases, dialog_end}}) => {
+                this.speechResult = undefined;
+                this.$store.dispatch('setDialogLogs', dialog_logs);
+                this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
+
+                if(dialog_end){
+                    alert('Диалог заверщён');
+                }
+            })
+        }
+    }
 }
 </script>
 
