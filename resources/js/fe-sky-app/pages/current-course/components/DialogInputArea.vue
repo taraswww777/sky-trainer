@@ -41,11 +41,16 @@ export default {
                 this.speechResult = undefined;
                 this.$store.dispatch('setDialogLogs', dialog_logs);
                 this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
+                this.scrollToBottom();
 
-                if(dialog_end){
+                if (dialog_end) {
                     alert('Диалог заверщён');
                 }
             })
+        },
+        scrollToBottom() {
+            const container = document.querySelector("#DialogPanel__messages");
+            container.scroll(0, container.scrollWidth || 0);
         }
     }
 }

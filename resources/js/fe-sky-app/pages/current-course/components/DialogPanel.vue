@@ -3,7 +3,7 @@
         <div :class="bem('header')">
             Лог разговора
         </div>
-        <div :class="bem('messages')">
+        <div :class="bem('messages')" id="DialogPanel__messages">
             <div :class="bem('message-item')" v-for="message of dialogLogs">
                 <Message
                     :directionType="message?.type"
