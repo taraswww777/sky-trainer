@@ -4,18 +4,12 @@
             Лог разговора
         </div>
         <div :class="bem('messages')">
-            <div :class="bem('message-item')">
+            <div :class="bem('message-item')" v-for="message of messages">
+                <!-- direction="out"-->
                 <Message
                     direction="in"
-                    caption="Клиент"
-                    text="Да, Ольга слушаю вас"
-                />
-            </div>
-            <div :class="bem('message-item')">
-                <Message
-                    direction="out"
-                    caption="Лояльность 5"
-                    text="Добрый день, меня зовут ольга, скачать тренер бан, вам удобно сейчас разговаривать?"
+                    :caption="message?.caption"
+                    :text="message?.text"
                 />
             </div>
         </div>
@@ -42,6 +36,11 @@ export default {
     data: () => ({
         bem,
     }),
+    props: {
+        messages: {
+            type: Array,
+        },
+    },
 }
 </script>
 

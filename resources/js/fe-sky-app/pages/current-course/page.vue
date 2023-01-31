@@ -103,11 +103,8 @@
                     наличными верно?"/>
                 </div>
                 <div>
-                    <DialogPanel
-
-                    />
+                    <DialogPanel :messages="messages"/>
                 </div>
-                {{ JSON.stringify(dialog) }}
             </div>
         </div>
     </BasePage>
@@ -159,8 +156,13 @@ export default {
                 stageId: this.stage,
                 trainerId: this.trainer,
             }).then(({data}) => {
-                console.log(data)
-                this.$store.dispatch('setCurrentDialog', data);
+                console.log('dialogData:', data)
+                this.$store.dispatch('pushMessage', {
+                    caption: 'Клиент',
+                    direction: 'in',
+                    text: data?.next_phrases?.phrases[0].join('')
+                });
+                this.$store.dispatch('pushDialog', data);
             }).finally(() => {
                 this.$store.dispatch('setLoadingStop');
             });
@@ -170,11 +172,14 @@ export default {
         isLoading() {
             return this.$store.getters.getIsLoading
         },
+        dialogData(){
+            return this.$store.getters.getDialogsData
+        },
         course() {
             return this.$store.getters.getCurrentCourse
         },
-        dialog() {
-            return this.$store.getters.getCurrentDialog
+        messages() {
+            return this.$store.getters.getMessages
         }
     }
 }
