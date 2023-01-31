@@ -27,6 +27,9 @@
                             required
                         >
                             <option disabled value="">Select your training type</option>
+                            <option key="1" value="1">
+                                Тренировка 1
+                            </option>
                             <option
                                 v-for="training_type in course.extra.training_types"
                                 :key="training_type.id"
@@ -98,9 +101,7 @@
                     </div>
                 </div>
                 <div>
-                    <HelpPanel
-                        help-text="Дмитрий Сергеевич, Ранее Вы заполняли анкету на сайте Скайтрэйнер Банка для получения кредита
-                    наличными верно?"/>
+                    <HelpPanel :helpPhrases="helpPhrases"/>
                 </div>
                 <div>
                     <DialogPanel :messages="messages"/>
@@ -157,11 +158,7 @@ export default {
                 trainerId: this.trainer,
             }).then(({data}) => {
                 console.log('dialogData:', data)
-                this.$store.dispatch('pushMessage', {
-                    caption: 'Клиент',
-                    direction: 'in',
-                    text: data?.next_phrases?.phrases[0].join('')
-                });
+                this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);
                 this.$store.dispatch('pushDialog', data);
             }).finally(() => {
                 this.$store.dispatch('setLoadingStop');
@@ -172,7 +169,7 @@ export default {
         isLoading() {
             return this.$store.getters.getIsLoading
         },
-        dialogData(){
+        dialogData() {
             return this.$store.getters.getDialogsData
         },
         course() {
@@ -180,6 +177,9 @@ export default {
         },
         messages() {
             return this.$store.getters.getMessages
+        },
+        helpPhrases() {
+            return this.$store.getters.getHelpPhrases
         }
     }
 }

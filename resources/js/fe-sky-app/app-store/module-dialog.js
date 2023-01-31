@@ -12,18 +12,27 @@ export const moduleDialog = {
         getDialogsData(state) {
             return state.dialogs
         },
+        getHelpPhrases(state) {
+            return state.helpPhrases
+        },
     },
     mutations: {
         pushDialog(state, dialogData) {
             state.dialogs.push(dialogData);
         },
-        pushMessage(state, message){
+        pushMessage(state, message) {
             state.messages.push(message);
-        }
+        },
+        setHelpPhrases(state, helpPhrases) {
+            state.helpPhrases = helpPhrases;
+        },
     },
     actions: {
-        pushMessage({commit}, message){
+        pushMessage({commit}, message) {
             commit('pushMessage', message);
+        },
+        setHelpPhrases({commit}, helpPhrases) {
+            commit('setHelpPhrases', helpPhrases);
         },
         pushDialog({commit}, dialogData) {
             commit('pushDialog', dialogData);

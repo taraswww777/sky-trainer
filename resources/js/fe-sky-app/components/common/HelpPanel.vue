@@ -12,23 +12,27 @@
             </div>
         </div>
         <div :class="bem('text')" v-if="isShowHelpText">
-            {{ helpText }}
+            <ul class="margin-bottom-0">
+                <li v-for="item in helpPhrases">{{ item }}</li>
+            </ul>
         </div>
     </div>
 </template>
 <script>
 import useBem from "vue3-bem";
 
-const bem = useBem("help-panel");
+const componentName = 'HelpPanel';
+const bem = useBem(componentName);
 export default {
+    name: componentName,
     data: () => ({
         bem,
         isShowHelpText: true
     }),
     props: {
-        helpText: {
-            type: String,
-            default: ''
+        helpPhrases: {
+            type: Array,
+            default: []
         }
     },
     methods: {
