@@ -1,5 +1,7 @@
 import {requestCurrentUser} from "../requests";
 import {isString} from "lodash";
+import {appRouter} from "../app-router";
+import {PAGE_NAMES} from "../constants";
 
 export const setToken = (token) => {
     localStorage.setItem('token', token);
@@ -23,6 +25,8 @@ export const refreshCurrentUser = (dispatch) => {
             if (!isString(data)) {
                 dispatch('setCurrentUserInfo', data)
                 return true;
+            } else {
+                appRouter.push({name: PAGE_NAMES.logout})
             }
             return false;
         })

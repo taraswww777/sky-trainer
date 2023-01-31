@@ -12,7 +12,7 @@ import {PAGE_NAMES} from "../constants";
 export default {
     beforeMount() {
         removeToken();
-        appRouter.push({name: PAGE_NAMES.home});
+        appRouter.push({name: PAGE_NAMES.login});
     }
 }
 </script>
