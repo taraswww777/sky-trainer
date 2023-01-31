@@ -17,3 +17,20 @@ export const requestDialogStart = (
         }
     })
 );
+
+export const requestDialogSpeechResult = (
+    {
+        courseId,
+        speechResult,
+        timing
+    }
+) => (
+    axiosAuthGet({
+        url: `/dialog/speech-result/${courseId}`,
+        method: 'post',
+        data: {
+            speechResult,
+            timing
+        },
+    })
+);

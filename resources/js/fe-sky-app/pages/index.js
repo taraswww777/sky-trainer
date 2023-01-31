@@ -1,6 +1,6 @@
 import HomePage from "./HomePage.vue";
 import CoursesPage from "./CoursesPage.vue";
-import CurrentCoursePage from "./CurrentCoursePage.vue";
+import CurrentCoursePage from "./current-course/page.vue";
 import LoginPage from "./LoginPage.vue";
 import AboutPage from "./AboutPage.vue";
 import ContactsPage from "./ContactsPage.vue";

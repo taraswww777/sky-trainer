@@ -27,6 +27,9 @@
                             required
                         >
                             <option disabled value="">Select your training type</option>
+                            <option key="1" value="1">
+                                Тренировка 1
+                            </option>
                             <option
                                 v-for="training_type in course.extra.training_types"
                                 :key="training_type.id"
@@ -98,21 +101,24 @@
                     </div>
                 </div>
                 <div>
-                    <HelpPanel
-                        help-text="Дмитрий Сергеевич, Ранее Вы заполняли анкету на сайте Скайтрэйнер Банка для получения кредита
-                    наличными верно?"/>
+                    <HelpPanel :helpPhrases="helpPhrases"/>
                 </div>
-                {{ JSON.stringify(dialog) }}
+                <div>
+                    <DialogPanel :dialogLogs="dialogLogs"/>
+                </div>
             </div>
         </div>
     </BasePage>
 </template>
 <script>
-import {requestCourseById} from "../requests";
+import {requestCourseById} from "../../requests";
 import useBem from "vue3-bem";
-import {requestDialogStart} from "../requests";
+import {requestDialogStart} from "../../requests";
+import DialogPanel from "./components/DialogPanel.vue";
 
-const bem = useBem("current-course-page");
+const componentName = 'CurrentCoursePage';
+
+const bem = useBem(componentName);
 const STATUSES = {
     new: 'new',
     inProgress: 'inProgress',
@@ -120,6 +126,9 @@ const STATUSES = {
 }
 
 export default {
+    components: {
+        DialogPanel
+    },
     data: () => ({
         status: STATUSES.new,
         STATUSES,
@@ -129,7 +138,6 @@ export default {
         trainer: undefined
     }),
     mounted() {
-        console.log('CurrentCoursePage.vue')
         this.$store.dispatch('setLoadingStart');
         requestCourseById(this.$route.params.courseId).then(({data}) => {
             this.$store.dispatch('setCurrentCourse', data);
@@ -141,9 +149,6 @@ export default {
         start(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('this.training_type:', this.training_type)
-            console.log('this.stage:', this.stage)
-            console.log('this.trainer:', this.trainer)
             this.$store.dispatch('setLoadingStart');
             this.status = STATUSES.inProgress;
             requestDialogStart({
@@ -152,8 +157,9 @@ export default {
                 stageId: this.stage,
                 trainerId: this.trainer,
             }).then(({data}) => {
-                console.log(data)
-                this.$store.dispatch('setCurrentDialog', data);
+                console.log('dialogData:', data)
+                this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);
+                this.$store.dispatch('pushDialog', data);
             }).finally(() => {
                 this.$store.dispatch('setLoadingStop');
             });
@@ -163,18 +169,24 @@ export default {
         isLoading() {
             return this.$store.getters.getIsLoading
         },
+        dialogData() {
+            return this.$store.getters.getDialogsData
+        },
         course() {
             return this.$store.getters.getCurrentCourse
         },
-        dialog() {
-            return this.$store.getters.getCurrentDialog
+        dialogLogs() {
+            return this.$store.getters.getDialogLogs
+        },
+        helpPhrases() {
+            return this.$store.getters.getHelpPhrases
         }
     }
 }
 </script>
 <style lang="scss" scoped>
 @import 'foundation-sites/scss/foundation.scss';
-@import '../../../sass/colors';
+@import '../../../../sass/colors';
 
 .current-course-page {
 

@@ -1,34 +1,43 @@
 <template>
-    <div :class="bem()" v-if="tags.length > 0">
+    <div :class="bem()">
         <div :class="bem('header')">
             <div :class="bem('title')">
                 Подсказки
             </div>
             <div :class="bem('toggle')">
-                <label>
+                <label @change="toggleIsShowHelpText">
                     Включить подсказки
-                    <input type="checkbox" value="{{isShowHelpText}}"/>
+                    <input type="checkbox" value="{{isShowHelpText}}" checked="{{isShowHelpText && 'checked'}}"/>
                 </label>
             </div>
         </div>
-        <div :class="bem('text')">
-            {{helpText}}
+        <div :class="bem('text')" v-if="isShowHelpText">
+            <ul class="margin-bottom-0">
+                <li v-for="item in helpPhrases">{{ item }}</li>
+            </ul>
         </div>
     </div>
 </template>
 <script>
 import useBem from "vue3-bem";
 
-const bem = useBem("help-panel");
+const componentName = 'HelpPanel';
+const bem = useBem(componentName);
 export default {
+    name: componentName,
     data: () => ({
         bem,
         isShowHelpText: true
     }),
     props: {
-        helpText: {
-            type: String,
-            default: ''
+        helpPhrases: {
+            type: Array,
+            default: []
+        }
+    },
+    methods: {
+        toggleIsShowHelpText() {
+            this.isShowHelpText = !this.isShowHelpText;
         }
     }
 }
@@ -41,19 +50,38 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    background: #ffffff;
+    padding: 20px 20px 20px 30px;
+    border-radius: 8px;
 
 
-    &__item {
-        background: $colorGray5;
-        padding: 10px 18px;
-        border-radius: 50px;
-        color: $colorBrand;
-        font-weight: bold;
-        line-height: 1;
+    &__header {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-        & + & {
-            margin-left: 10px;
+    &__title {
+        flex-grow: 1;
+    }
+
+    &__toggle {
+        &, label, input {
+            cursor: pointer;
+        }
+
+        input {
+            padding-left: 10px;
+            margin: 0;
         }
     }
+
+    &__text {
+        width: 100%;
+        background: #EAEEF6;
+        border-radius: 8px;
+        padding: 10px 16px;
+    }
+
 }
 </style>

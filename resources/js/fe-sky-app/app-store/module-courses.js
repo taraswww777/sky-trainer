@@ -12,6 +12,9 @@ export const moduleCourses = {
         getCurrentCourse(state) {
             return state.currentCourse
         },
+        getCurrentCourseId(state) {
+            return state.currentCourse?.id
+        },
     },
     mutations: {
         setCourses(state, courses) {

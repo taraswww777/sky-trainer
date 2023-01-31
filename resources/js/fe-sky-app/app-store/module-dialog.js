@@ -2,26 +2,42 @@ import {map} from 'lodash';
 
 export const moduleDialog = {
     state: {
-        history: [],
-        current: {}
+        messages: [],
+        dialogs: [],
+        helpPhrases: [],
+        dialogLogs: []
     },
     getters: {
-        getHistory(state) {
-            return state.history
+        getDialogsData(state) {
+            return state.dialogs
         },
-        getCurrentDialog(state) {
-            return state.current
+        getHelpPhrases(state) {
+            return state.helpPhrases
+        },
+        getDialogLogs(state) {
+            return state.dialogLogs
         },
     },
     mutations: {
-        setCurrentDialog(state, dialog) {
-            state.history.push(dialog);
-            state.current = dialog;
-        }
+        pushDialog(state, dialogData) {
+            state.dialogs.push(dialogData);
+        },
+        setHelpPhrases(state, helpPhrases) {
+            state.helpPhrases = helpPhrases;
+        },
+        setDialogLogs(state, dialogLogs) {
+            state.dialogLogs = dialogLogs;
+        },
     },
     actions: {
-        setCurrentDialog({commit}, dialog) {
-            commit('setCurrentDialog', dialog);
+        setHelpPhrases({commit}, helpPhrases) {
+            commit('setHelpPhrases', helpPhrases);
+        },
+        setDialogLogs({commit}, dialogLogs) {
+            commit('setDialogLogs', dialogLogs);
+        },
+        pushDialog({commit}, dialogData) {
+            commit('pushDialog', dialogData);
         }
     }
 };
