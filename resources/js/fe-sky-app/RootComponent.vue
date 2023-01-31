@@ -5,15 +5,11 @@
 </template>
 
 <script>
-import {requestCurrentUser} from "./requests";
+import {refreshCurrentUser} from "./app-store/auth";
 
 export default {
     mounted() {
-        requestCurrentUser().then(({data})=>{
-            if (data) {
-                this.$store.dispatch('setCurrentUserInfo', data)
-            }
-        })
+        refreshCurrentUser(this.$store.dispatch);
     }
 }
 </script>
