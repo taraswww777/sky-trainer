@@ -32,7 +32,7 @@
     </form>
 </template>
 <script>
-import {isLogin} from "../../app-store/auth";
+import {isLogin, refreshCurrentUser, setToken} from "../../app-store/auth";
 import {requestLogin} from "../../requests";
 import {appRouter} from "../../app-router";
 import {PAGE_NAMES} from "../../constants";
@@ -44,8 +44,8 @@ export default {
         }
     },
     data: () => ({
-        password: 'demo123demo',
-        email: 'demo@skytrainer.pro',
+        password: '',
+        email: '',
     }),
     methods: {
         doLogin() {
@@ -53,12 +53,20 @@ export default {
                 email: this.email,
                 password: this.password,
             }).then(({data: {token}}) => {
-                console.log('token:', token);
                 if (token) {
                     setToken(token);
-                    appRouter.push({name: PAGE_NAMES.home});
+                    refreshCurrentUser(this.$store.dispatch).then((isLoad) => {
+                        if (isLoad) {
+                            appRouter.push({name: PAGE_NAMES.home});
+                        }
+                    });
                 }
             });
+        }
+    },
+    mounted() {
+        if (isLogin()) {
+            appRouter.push({name: PAGE_NAMES.home});
         }
     }
 }
