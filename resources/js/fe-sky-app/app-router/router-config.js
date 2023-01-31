@@ -30,7 +30,6 @@ const routes = [
     },
     {
         path: '/auth/login', component: LoginPage, name: PAGE_NAMES.login,
-        // beforeEnter: checkAuth
     },
     {
         path: '/auth/logout', component: LogoutPage, name: PAGE_NAMES.logout
