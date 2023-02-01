@@ -24,7 +24,7 @@
                 <div
                     class="cell small-12 margin-top-1 margin-bottom-1 grid-x"
                     style="justify-content: space-between">
-                    <button type="submit" class="button warning margin-bottom-0">
+                    <button type="submit" class="button warning margin-bottom-0" @click="endCall">
                         Завершить звонок
                     </button>
                     <div
@@ -49,6 +49,8 @@ import useBem from "vue3-bem";
 import DialogPanel from "./components/DialogPanel.vue";
 import StartPanel from "./components/StartPanel.vue";
 import {STATUSES} from "../../constants/common";
+import {appRouter} from "../../app-router";
+import {PAGE_NAMES} from "../../constants";
 
 const componentName = 'CurrentCoursePage';
 
@@ -95,6 +97,9 @@ export default {
         },
         helpPhrases() {
             return this.$store.getters.getHelpPhrases
+        },
+        endCall(){
+            appRouter.push({name: PAGE_NAMES.courses});
         }
     }
 }
