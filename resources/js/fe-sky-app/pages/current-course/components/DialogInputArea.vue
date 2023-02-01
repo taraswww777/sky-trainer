@@ -1,6 +1,10 @@
 <template>
     <form :class="bem()" @submit="pushMessage">
-        <button :class="bem('btn-rec')" type="button">
+        <button
+            :class="bem('btn-rec', `${isOnRec && 'recording'}`)"
+            type="button"
+            @click="onRec"
+        >
             <img src="./mic.svg">
         </button>
         <input
@@ -14,6 +18,8 @@
 <script>
 import useBem from "vue3-bem";
 import {requestDialogSpeechResult} from "../../../requests";
+import {noop} from "lodash";
+import {recognizer} from "../../../utils/recognizer";
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
@@ -22,6 +28,7 @@ export default {
     name: componentName,
     data: () => ({
         bem,
+        isOnRec: false,
         speechResult: undefined
     }),
     computed: {
@@ -29,19 +36,37 @@ export default {
             return this.$store.getters.getCurrentCourseId
         },
     },
+    mounted() {
+        // Используем колбек для обработки результатов
+        recognizer.onresult = (event) => {
+            const result = event.results[event.resultIndex];
+            this.speechResult = result[0].transcript;
+            this.speechTimeStamp = event.timeStamp;
+            if (result.isFinal) {
+                console.log('result:', result)
+                this.pushMessage();
+                this.isOnRec = false;
+            }
+        };
+    },
+    unmounted() {
+        recognizer.onresult = noop;
+    },
     methods: {
         pushMessage() {
             console.log('this.outputMessage:', this.speechResult, this.courseId);
             requestDialogSpeechResult({
                 courseId: this.courseId,
                 speechResult: this.speechResult,
-                // TODO: Убрать раздкод когда перейдём на распознавание голоса
-                timing: 4100
+                timing: this.speechTimeStamp
             }).then(({data: {dialog_logs, next_phrases, dialog_end}}) => {
                 this.speechResult = undefined;
                 this.$store.dispatch('setDialogLogs', dialog_logs);
                 this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
-                this.scrollToBottom();
+
+                setTimeout(() => {
+                    this.scrollToBottom();
+                })
 
                 if (dialog_end) {
                     alert('Диалог заверщён');
@@ -51,6 +76,12 @@ export default {
         scrollToBottom() {
             const container = document.querySelector("#DialogPanel__messages");
             container.scroll(0, container.scrollWidth || 0);
+        },
+        onRec() {
+            console.log('rec:');
+            this.isOnRec = true;
+            // Начинаем слушать микрофон и распознавать голос
+            recognizer.start();
         }
     }
 }
@@ -73,6 +104,10 @@ export default {
         cursor: pointer;
         width: fit-content;
         height: fit-content;
+
+        &--recording{
+            background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
+        }
     }
 
     &__textarea {
