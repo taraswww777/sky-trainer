@@ -57,7 +57,7 @@ export default {
                     setToken(token);
                     refreshCurrentUser(this.$store.dispatch).then((isLoad) => {
                         if (isLoad) {
-                            appRouter.push({name: PAGE_NAMES.home});
+                            appRouter.push({name: PAGE_NAMES.courses});
                         }
                     });
                 }
