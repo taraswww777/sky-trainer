@@ -53,7 +53,7 @@ export default {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    max-height: 100vh;
+    max-height: calc(100vh - 200px);
     flex-direction: column;
     overflow: hidden;
 
