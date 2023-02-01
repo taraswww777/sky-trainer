@@ -98,7 +98,7 @@ export default {
         helpPhrases() {
             return this.$store.getters.getHelpPhrases
         },
-        endCall(){
+        endCall() {
             appRouter.push({name: PAGE_NAMES.courses});
         }
     }
