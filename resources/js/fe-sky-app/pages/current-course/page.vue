@@ -8,7 +8,7 @@
         ]"
     >
         <div class="grid-x" :class="bem()">
-            <div class="cell small-12 margin-bottom-1" :class="bem('notice')">
+            <div class="cell small-12 margin-bottom-1" :class="bem('notice')" v-if="false">
                 <Notice>
                     Супер! Выбери тип занятия и выключи подсказки, если уверен в своих силах. На тренировке подсказки не
                     влияют на лояльность. В режиме обучения каждая подсказка будет отнимать очки лояльности. А на
@@ -16,78 +16,11 @@
                     они будут недоступны. Вот так:)
                 </Notice>
             </div>
-            <form class="grid-x width-100" @submit="start" v-if="status === STATUSES.new">
-                <div class="cell small-4">
-                    <label>
-                        Выберете тип тренировки
-                        <select
-                            class="margin-bottom-0"
-                            v-if="course?.extra?.training_types"
-                            v-model="training_type"
-                            required
-                        >
-                            <option disabled value="">Select your training type</option>
-                            <option key="1" value="1">
-                                Тренировка 1
-                            </option>
-                            <option
-                                v-for="training_type in course.extra.training_types"
-                                :key="training_type.id"
-                                :value="training_type.value"
-                            >
-                                {{ training_type.caption }}
-                            </option>
-                        </select>
-                    </label>
-                </div>
-                <div class="cell small-4">
-                    <label>
-                        Выберете стадию
-                        <select
-                            class="margin-bottom-0"
-                            v-if="course?.extra?.stages"
-                            v-model="stage"
-                            required
-                        >
-                            <option disabled value="">Select your stage</option>
-                            <option
-                                v-for="stage in course.extra.stages"
-                                :key="stage.id"
-                                :value="stage.id"
-                            >
-                                {{ stage.caption }}
-                            </option>
-                        </select>
-                    </label>
-                </div>
-                <div class="cell small-4">
-                    <label>
-                        Тип диалога
-                        <select
-                            class="margin-bottom-0"
-                            v-if="course?.available_trainers"
-                            v-model="trainer"
-                            required
-                        >
-                            <option disabled value="">Select your trainer</option>
-                            <option
-                                v-for="trainer in course.available_trainers"
-                                :key="trainer.id"
-                                :value="trainer.id"
-                            >
-                                {{ trainer.name }}
-                            </option>
-                        </select>
-                    </label>
-                </div>
-                <div class="cell small-12 margin-top-1 margin-bottom-1">
-                    <button type="submit" class="button primary">
-                        Начать звонок
-                    </button>
-                </div>
-            </form>
-            <div class="cell small-12">
-                <!--            <div class="cell small-12" v-if="status === STATUSES.inProgress">-->
+            <StartPanel
+                :onChangeStatus="onChangeStatus"
+                v-if="status === STATUSES.new"
+            />
+            <div class="cell small-12" v-if="status === STATUSES.inProgress">
                 <div
                     class="cell small-12 margin-top-1 margin-bottom-1 grid-x"
                     style="justify-content: space-between">
@@ -97,7 +30,7 @@
                     <div
                         class="grid-x align-middle align-right align-center-middle"
                         style="{flex-grow: 1; align-content: center}">
-                        <TagList :tags="[training_type, stage, trainer]"/>
+                        <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
                     </div>
                 </div>
                 <div>
@@ -113,21 +46,18 @@
 <script>
 import {requestCourseById} from "../../requests";
 import useBem from "vue3-bem";
-import {requestDialogStart} from "../../requests";
 import DialogPanel from "./components/DialogPanel.vue";
+import StartPanel from "./components/StartPanel.vue";
+import {STATUSES} from "../../constants/common";
 
 const componentName = 'CurrentCoursePage';
 
 const bem = useBem(componentName);
-const STATUSES = {
-    new: 'new',
-    inProgress: 'inProgress',
-    done: 'done',
-}
 
 export default {
     components: {
-        DialogPanel
+        DialogPanel,
+        StartPanel
     },
     data: () => ({
         status: STATUSES.new,
@@ -146,23 +76,8 @@ export default {
         });
     },
     methods: {
-        start(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.$store.dispatch('setLoadingStart');
-            this.status = STATUSES.inProgress;
-            requestDialogStart({
-                courseId: this.$route.params.courseId,
-                phaseId: this.training_type,
-                stageId: this.stage,
-                trainerId: this.trainer,
-            }).then(({data}) => {
-                console.log('dialogData:', data)
-                this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);
-                this.$store.dispatch('pushDialog', data);
-            }).finally(() => {
-                this.$store.dispatch('setLoadingStop');
-            });
+        onChangeStatus(status) {
+            this.status = status
         }
     },
     computed: {
