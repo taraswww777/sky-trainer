@@ -125,7 +125,7 @@ class Dump
      * @param string $file
      * @param bool $rewrite
      */
-    public static function xf($var = null, $isP = true, $file = '../../logs/dump.txt', $rewrite = true)
+    public static function xf($var = null, $isP = true, $file = 'logs/dump.txt', $rewrite = true)
     {
         if ($isP) {
             ob_start();
@@ -137,7 +137,7 @@ class Dump
             $info = ob_get_clean();
         }
         $path = (!empty($_SERVER['DOCUMENT_ROOT'])) ? $_SERVER['DOCUMENT_ROOT'] : $_SERVER['PWD'];
-        $file = $path . $file;
+        $file = $path . DIRECTORY_SEPARATOR . $file;
         if (!@mkdir(dirname($file)) && !is_dir(dirname($file))) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', dirname($file)));
         }
