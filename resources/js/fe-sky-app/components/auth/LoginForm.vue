@@ -3,7 +3,7 @@
         <div class="cell small-12">
             <label>
                 Ваш логин
-                <input type="email" v-model="email">
+                <input type="text" v-model="email">
             </label>
         </div>
 
