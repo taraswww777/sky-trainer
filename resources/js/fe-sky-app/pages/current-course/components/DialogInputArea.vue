@@ -59,10 +59,13 @@ export default {
                 courseId: this.courseId,
                 speechResult: this.speechResult,
                 timing: this.speechTimeStamp
-            }).then(({data: {dialog_logs, next_phrases, dialog_end}}) => {
+            }).then(({data: {dialog_logs, next_phrases, dialog_end, $phrase}}) => {
                 this.speechResult = undefined;
                 this.$store.dispatch('setDialogLogs', dialog_logs);
                 this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
+
+                const audio = new Audio($phrase.audio);
+                audio.play();
 
                 setTimeout(() => {
                     this.scrollToBottom();
@@ -78,10 +81,15 @@ export default {
             container.scroll(0, container.scrollWidth || 0);
         },
         onRec() {
-            console.log('rec:');
-            this.isOnRec = true;
-            // Начинаем слушать микрофон и распознавать голос
-            recognizer.start();
+            console.log('onRec:');
+            if (!this.isOnRec) {
+                // Начинаем слушать микрофон и распознавать голос
+                this.isOnRec = true;
+                recognizer.start();
+            } else {
+                this.isOnRec = false;
+                recognizer.stop();
+            }
         }
     }
 }
@@ -105,7 +113,7 @@ export default {
         width: fit-content;
         height: fit-content;
 
-        &--recording{
+        &--recording {
             background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
         }
     }
