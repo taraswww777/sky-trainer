@@ -64,7 +64,11 @@
             </label>
         </div>
         <div class="cell small-12 margin-top-1 margin-bottom-1">
-            <button type="submit" class="button primary">
+            <button
+                type="submit"
+                :class="bem('btn-start-call')"
+            >
+                <Fa icon="phone"/>
                 Начать звонок
             </button>
         </div>
@@ -80,6 +84,7 @@ const componentName = 'StartPanel';
 const bem = useBem(componentName);
 
 export default {
+    name: componentName,
     props: {
         status: {
             type: String
@@ -89,8 +94,8 @@ export default {
         }
     },
     data: () => ({
-        STATUSES,
         bem,
+        STATUSES,
         stageId: 1,
         training_type: 1,
         trainer: 1
@@ -137,7 +142,15 @@ export default {
 <style lang="scss" scoped>
 @import 'foundation-sites/scss/foundation.scss';
 @import '../../../../../sass/colors';
+@import '../../../../../sass/mixins';
 
 .start-panel {
+    &__btn-start-call {
+        @include borderRadius(50px);
+        cursor: pointer;
+        padding: 15px;
+        background: linear-gradient(45deg, #2DC358, #1ABAB0);
+        color: #FFFFFF;
+    }
 }
 </style>
