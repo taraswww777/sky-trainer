@@ -22,7 +22,7 @@
             <MainMenuItems :onClose="onClose"/>
         </div>
         <div class="cell small-12">
-            time status
+            time status x
         </div>
         <div class="cell small-12">
             theme switcher
