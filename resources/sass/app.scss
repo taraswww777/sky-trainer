@@ -23,8 +23,25 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
+
+	img
+	{
+		display: block;
+	
+		max-width: 100%;
+		max-height: 100%;
+	}
 }
 
 .flex-nowrap {
     flex-wrap: nowrap;
+}
+
+
+body
+{
+    color: #1C1C1C;
+    font-family: "Inter";
+    font-size: 13px;
+    line-height: 1.23;
 }

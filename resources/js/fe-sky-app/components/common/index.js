@@ -5,6 +5,7 @@ import Notice from './Notice.vue';
 import Loader from './Loader.vue';
 import TagList from './TagList.vue';
 import HelpPanel from './HelpPanel.vue';
+import SearchInput from './SearchInput.vue';
 
 export {
     HelpPanel,
@@ -13,5 +14,6 @@ export {
     Notice,
     Breadcrumbs,
     PrimaryButton,
-    CircleButton
+    CircleButton,
+	SearchInput
 }

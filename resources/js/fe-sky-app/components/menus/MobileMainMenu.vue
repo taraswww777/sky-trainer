@@ -8,9 +8,7 @@
             <Fa icon="bars"/>
         </button>
         <div class="wrapperMainMenuModal" v-show="isOpen">
-            <div class="wrapperMainMenu">
-                <MainMenu :onClose="closeMenu"/>
-            </div>
+            <MainMenu :onClose="closeMenu"/>
         </div>
     </div>
 </template>
@@ -31,23 +29,24 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "../../../../sass/media";
+
 .wrapperMainMenuModal {
-    display: block;
-    position: absolute;
-    right: 0;
+    display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+	align-content: flex-start;
+	flex-wrap: wrap;
+    position: fixed;
+    left: 0;
     top: 0;
     background: rgba(0, 0, 0, 0.75);
     width: 100%;
     height: 100%;
-    z-index: 1;
-}
+    z-index: 100;
 
-.wrapperMainMenu {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    max-width: 320px;
+	@media (min-width: $mb3) {
+		width: 247px;
+	}
 }
 </style>
