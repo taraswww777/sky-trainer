@@ -2,7 +2,7 @@
     <div class="head-user">
         <div :class="bem('icon iconCircleWrapper')">
             <!-- <span class="iconCircleWrapper"><Fa :icon="['far','user']"/></span> -->
-			<img src="../../../../img/logo.svg" alt="">
+			<img src="../../../../img/ic_user.svg" alt="">
         </div>
         <div :class="bem('box')">
             <div :class="bem('name userName')">{{ userName }}</div>
@@ -36,7 +36,7 @@ export default {
         flex-shrink: 0;
 
         margin-right: 10px;
-        padding: 12px;
+        padding: 11px;
 		box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
     }
 

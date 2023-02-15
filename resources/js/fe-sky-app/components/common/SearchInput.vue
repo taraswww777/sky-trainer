@@ -22,7 +22,7 @@ export default {
     width: 100%;
     margin-bottom: 9px;
 
-	@media (min-width: $mb3) {
+	@media (min-width: $mb_large) {
 		display: none;
 	}
 
@@ -40,7 +40,7 @@ export default {
 
         border: 1px solid #E6E6E6;
         border-radius: 50px;
-        background: #FFF url(../../../../img/logo.svg) 18px 50%/16px auto no-repeat;
+        background: #FFF url(../../../../img/ic_search.svg) 18px 50%/16px auto no-repeat;
         box-shadow: none;
     }
 }
