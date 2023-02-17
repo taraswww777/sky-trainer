@@ -6,7 +6,7 @@
 @import 'foundation-sites/assets/foundation-prototype';
 
 html, body {
-    background: $colorBgBody;
+    background: #fff;
 }
 
 h1 {
@@ -38,10 +38,58 @@ h1 {
 }
 
 
+html,
+body,
+#rootVueApp{
+	height: 100%;
+}
+
 body
 {
     color: #1C1C1C;
     font-family: "Inter";
     font-size: 13px;
     line-height: 1.23;
+}
+
+
+.cont-page{
+	padding: 0 30px 0 278px;
+
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	position: relative;
+
+	&:before{
+		content: '';
+		position: absolute;
+		left: 47px;
+		top: -45px;
+		width: 950px;
+		height: 590px;
+		background: url(../img/pattern.svg) 50%/contain no-repeat;
+	}
+
+	&.big{
+		padding-left: 128px;
+	}
+}
+
+.main-sector{
+	flex: 1 0 auto;
+	position: relative;
+}
+
+._flex{
+	display: flex;
+	justify-content: flex-start;
+	align-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.footer{
+	padding: 35px 0;
+	position: relative;
 }
