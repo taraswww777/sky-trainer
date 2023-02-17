@@ -153,7 +153,7 @@ export default {
 
         margin-bottom: 20px;
 
-		@media (min-width: $mb_large) {
+		@media (min-width: $mb_exlarge) {
 			display: none;
 		}
     }
@@ -181,7 +181,7 @@ export default {
 		width: 100%;
 		margin-top: 58px;
 
-		@media (min-width: $mb_large) {
+		@media (min-width: $mb_exlarge) {
 			display: none;
 		}
 	}
@@ -222,7 +222,7 @@ export default {
         line-height: normal;
     }
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		&__menu
 		{
 			flex-grow: 1;

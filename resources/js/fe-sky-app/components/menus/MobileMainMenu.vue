@@ -8,7 +8,7 @@
             <Fa icon="bars"/>
         </button>
         <div class="wrap-aside" v-show="isOpen">
-			<!-- При клике на .wrap-aside__close добавлять фсешму, a для .wrap-aside добавлять класс small -->
+			<!-- При клике на .wrap-aside__close добавлять фсешму, a для .wrap-aside добавлять класс small, для .cont-page добавить big -->
 			<button class="wrap-aside__close">
 				<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M10.4708 12.4715C10.7311 12.2111 10.7311 11.789 10.4708 11.5287L6.94216 8.00008L10.4708 4.47149C10.7311 4.21114 10.7311 3.78903 10.4708 3.52868C10.2104 3.26833 9.78829 3.26833 9.52794 3.52868L5.52794 7.52868C5.26759 7.78903 5.26759 8.21114 5.52794 8.47149L9.52794 12.4715C9.78829 12.7318 10.2104 12.7318 10.4708 12.4715Z"/>
@@ -52,7 +52,7 @@ export default {
     height: 100%;
     z-index: 100;
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		&.small{
 			width: 98px;
 		}
@@ -128,7 +128,7 @@ export default {
 		}
 	}
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		width: 247px;
 
 		display: block !important;
