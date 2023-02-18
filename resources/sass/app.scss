@@ -49,9 +49,14 @@ body,
 body
 {
     color: #1C1C1C;
-    font-family: "Inter";
+    font-family: "Inter", Helvetica, Roboto, Arial, sans-serif;
     font-size: 13px;
     line-height: 1.23;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+	font-family: "Inter", Helvetica, Roboto, Arial, sans-serif;
+	margin: 0;
 }
 
 
