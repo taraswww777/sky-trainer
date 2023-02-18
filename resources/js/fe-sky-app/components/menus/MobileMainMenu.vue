@@ -52,7 +52,7 @@ export default {
     height: 100%;
     z-index: 100;
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		&.small{
 			width: 98px;
 		}
@@ -128,7 +128,7 @@ export default {
 		}
 	}
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		width: 247px;
 
 		display: block !important;

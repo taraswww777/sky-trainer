@@ -150,7 +150,7 @@ export default {
         margin-top: 11px;
     }
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		&__item._nopc{
 			display: none;
 		}
@@ -240,7 +240,7 @@ export default {
 		}
     }
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		.small &__link{
 			width: 42px;
 			justify-content: center;
@@ -310,7 +310,7 @@ export default {
         }
     }
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		.small &__icon{
 			margin-right: 0;
 		}
@@ -323,7 +323,7 @@ export default {
         display: block;
     }
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		.small &__name{
 			display: none;
 		}
@@ -335,7 +335,7 @@ export default {
 		padding-bottom: 13px;
 	}
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		.small &__submenu{
 			display: none;
 		}
@@ -371,7 +371,7 @@ export default {
 		}
     }
 
-	@media (min-width: $mb_large) {
+	@media (min-width: $mb_exlarge) {
 		.small &{
 			min-width: 1px;
 			width: 42px;

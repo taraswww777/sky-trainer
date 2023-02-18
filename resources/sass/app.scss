@@ -5,8 +5,10 @@
 
 @import 'foundation-sites/assets/foundation-prototype';
 
+@import "./media";
+
 html, body {
-    background: #fff;
+    background: #EAEEF6;
 }
 
 h1 {
@@ -54,7 +56,7 @@ body
 
 
 .cont-page{
-	padding: 0 30px 0 278px;
+	padding: 0 24px;
 
 	display: flex;
 	flex-direction: column;
@@ -64,15 +66,42 @@ body
 	&:before{
 		content: '';
 		position: absolute;
-		left: 47px;
-		top: -45px;
-		width: 950px;
-		height: 590px;
+		right: 42px;
+		top: -14px;
+		width: 497px;
+		height: 309px;
 		background: url(../img/pattern.svg) 50%/contain no-repeat;
 	}
 
-	&.big{
-		padding-left: 128px;
+	@media (min-width: $mb_small) {
+		&:before{
+			left: 0;
+			right: auto;
+			max-width: 100%;
+		}
+	}
+
+	@media (min-width: $mb_middle) {
+		padding: 0 30px;
+
+		&:before{
+			left: -197px;
+			top: -45px;
+			width: 950px;
+			height: 590px;
+		}
+	}
+
+	@media (min-width: $mb_exlarge) {
+		padding: 0 30px 0 278px;
+
+		&.big{
+			padding-left: 128px;
+		}
+
+		&:before{
+			left: 47px;
+		}
 	}
 }
 
@@ -85,11 +114,59 @@ body
 	display: flex;
 	justify-content: flex-start;
 	align-content: flex-start;
-	align-items: center;
+	align-items: flex-start;
 	flex-wrap: wrap;
 }
 
-.footer{
-	padding: 35px 0;
+.btn-purple{
+	border: 1px solid #7458F8;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 38px;
+	color: #7458F8;
+	text-decoration: none;
+	text-align: center;
+	padding: 0 23px;
 	position: relative;
+	border-radius: 50px;
+	background: transparent;
+	cursor: pointer;
+	transition: color .2s linear, border .2s linear;
+
+	&::before{
+		content: '';
+		position: absolute;
+		left: -1px;
+		top: -1px;
+		width: calc(100% + 2px);
+		height: calc(100% + 2px);
+		background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
+		border-radius: 50px;
+		opacity: 0;
+		transition: opacity .2s linear;
+	}
+
+	span{
+		position: relative;
+	}
+
+	@media (any-hover: hover) {
+		&:hover{
+			border-color: transparent;
+			color: #fff;
+
+			&:before{
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.footer{
+	padding: 53px 0 30px;
+	position: relative;
+
+	@media (min-width: $mb_exlarge) {
+		padding-bottom: 35px;
+	}
 }
