@@ -1,11 +1,12 @@
 <template>
     <div>
         <button
-            class="iconCircleWrapper"
+            class="header__mob-menu-btn mob-menu-btn iconCircleWrapper"
             type="button"
             @click.prevent="openMenu"
         >
-            <Fa icon="bars"/>
+            <!-- <Fa icon="bars"/> -->
+			<img src="../../../../img/burger.svg" alt="">
         </button>
         <div class="wrap-aside" v-show="isOpen">
 			<!-- При клике на .wrap-aside__close добавлять фсешму, a для .wrap-aside добавлять класс small, для .cont-page добавить big -->

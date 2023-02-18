@@ -1,7 +1,7 @@
 <template>
     <div class="cont-page">
 		<div class="main-sector">
-			<header class="header">
+			<header>
 				<BaseHeader/>
 			</header>
 
