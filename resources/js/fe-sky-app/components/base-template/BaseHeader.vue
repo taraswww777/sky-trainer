@@ -57,13 +57,23 @@ export default {
 		justify-content: space-between;
 	}
 
-	&__logo a,
-	&__logo img{
-		display: block;
+	&__logo{
+		a,
+		img{
+			display: block;
+		}
+
+		@media (min-width: $mb_exlarge) {
+			display: none;
+		}
 	}
 
 	&__search{
 		display: none;
+
+		@media (min-width: $mb_exlarge) {
+			display: block;
+		}
 	}
 
 	&__time-block.time-block
