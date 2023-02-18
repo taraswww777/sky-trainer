@@ -1,29 +1,39 @@
 <template>
-    <div class="grid-x">
-        <div class="cell small-8 medium-1">
-            <router-link to="/">
-                <img src="../../../../img/logo.svg" alt="logo">
-            </router-link>
-        </div>
-        <div class="cell hide-for-small-only medium-4">
-            <span class="iconCircleWrapper"><Fa icon="magnifying-glass"/></span>
-        </div>
-        <div class="cell hide-for-small-only medium-3">
-            <span class="iconCircleWrapper"><Fa :icon="['far','clock']"/></span>
-        </div>
-        <div class="cell hide-for-small-only medium-3">
-            <UserStatusWidget v-if="user"
-                :userName="user.name"
-                :userId="user.id"
-            />
-        </div>
-        <div class="cell small-4 medium-1">
-            <MobileMainMenu/>
-        </div>
-    </div>
+	<div :class="bem()">
+		<div :class="bem('flex _flex')">
+			<div :class="bem('coll _flex')">
+				<div :class="bem('logo')">
+					<router-link to="/">
+						<img src="../../../../img/logo_big.svg" alt="logo">
+					</router-link>
+				</div>
+
+				<SearchInput :class="bem('search')"/>
+			</div>
+
+			<div :class="bem('colr _flex')">
+				<TimeWidget :class="bem('time-block')"/>
+
+				<UserStatusWidget v-if="user"
+					:class="bem('head-user')"
+					:userName="user.name"
+					:userId="user.id"
+				/>
+
+				<MobileMainMenu/>
+			</div>
+		</div>
+	</div>
 </template>
 <script>
+import useBem from "vue3-bem";
+
+const bem = useBem("header");
+
 export default {
+	data: () => ({
+        bem
+    }),
     computed: {
         user() {
             return this.$store.getters.getCurrentUserInfo
@@ -31,3 +41,59 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "../../../../sass/media";
+
+.header
+{
+	padding: 18px 0;
+
+	@media (min-width: $mb_middle) {
+		padding: 24px 0 28px;
+	}
+
+	&__flex{
+		justify-content: space-between;
+	}
+
+	&__logo{
+		a,
+		img{
+			display: block;
+		}
+
+		@media (min-width: $mb_exlarge) {
+			display: none;
+		}
+	}
+
+	&__search{
+		display: none;
+
+		@media (min-width: $mb_exlarge) {
+			display: block;
+		}
+	}
+
+	&__time-block.time-block
+	{
+		display: none;
+
+		@media (min-width: $mb_middle) {
+			margin-left: 31px;
+			display: flex;
+		}
+	}
+
+	&__head-user.head-user
+	{
+		display: none;
+
+		@media (min-width: $mb_middle) {
+			margin-left: 31px;
+			display: flex;
+		}
+	}
+}
+</style>
