@@ -7,38 +7,32 @@
             {title:'Все курсы', url: '/courses'}
         ]"
     >
-        <div class="grid-x" :class="bem()">
-            <div class="cell small-12 margin-bottom-1" :class="bem('notice')" v-if="false">
-                <Notice>
-                    Супер! Выбери тип занятия и выключи подсказки, если уверен в своих силах. На тренировке подсказки не
-                    влияют на лояльность. В режиме обучения каждая подсказка будет отнимать очки лояльности. А на
-                    экзамене
-                    они будут недоступны. Вот так:)
-                </Notice>
-            </div>
+        <div :class="bem()">
             <StartPanel
                 :onChangeStatus="onChangeStatus"
                 v-if="status === STATUSES.new"
             />
-            <div class="cell small-12" v-if="status === STATUSES.inProgress">
-                <div
-                    class="cell small-12 margin-top-1 margin-bottom-1 grid-x"
-                    style="justify-content: space-between">
-                    <button type="submit" class="button warning margin-bottom-0" @click="endCall">
-                        Завершить звонок
-                    </button>
-                    <div
-                        class="grid-x align-middle align-right align-center-middle"
-                        style="{flex-grow: 1; align-content: center}">
-                        <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
-                    </div>
-                </div>
-                <div>
-                    <HelpPanel :helpPhrases="helpPhrases"/>
-                </div>
-                <div>
-                    <DialogPanel :dialogLogs="dialogLogs"/>
-                </div>
+
+            <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
+				<div :class="bem('coll')">
+					<div :class="bem('top _flex')">
+						<div :class="bem('top-box')">
+							<TagList :tags="['Тренировка', 'Открытый Диалог']"/>
+						</div>
+
+						<button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
+							<span>Завершить звонок</span>
+						</button>
+					</div>
+
+					<HelpPanel :helpPhrases="helpPhrases"/>
+
+					<div>
+						<DialogPanel :dialogLogs="dialogLogs"/>
+					</div>
+				</div>
+
+				<div :class="bem('colr')"></div>
             </div>
         </div>
     </BasePage>
@@ -105,19 +99,85 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import 'foundation-sites/scss/foundation.scss';
-@import '../../../../sass/colors';
+/* @import 'foundation-sites/scss/foundation.scss';
+@import '../../../../sass/colors'; */
+@import "../../../../sass/media";
 
 .current-course-page {
 
-    &__notice {
-
+    &__flex {
+		justify-content: space-between;
     }
 
-    &__filter {
-    }
+	&__coll{
+		width: 100%;
+	}
 
-    &__main {
-    }
+	&__colr{
+		width: 100%;
+		height: 100%;
+		background: #000;
+
+		& > :last-child{
+			margin-bottom: 0;
+		}
+	}
+
+	&__top{
+		margin-bottom: 25px;
+	}
+
+	&__top-box{
+		width: 100%;
+	}
+
+	&__top-btn{
+		margin-top: 18px;
+	}
+
+	@media (min-width: $mb_middle) {
+		&__flex{
+			margin-left: -28px;
+		}
+
+		&__coll{
+			width: calc(100% - 318px);
+			margin-left: 28px;
+			min-width: 560px;
+			
+			flex-grow: 1;
+		}
+
+		&__colr{
+			width: 262px;
+			margin-left: 28px;
+
+			flex-grow: 1;
+
+			& > :last-child{
+				margin-bottom: 0;
+			}
+		}
+
+		&__top{
+			flex-wrap: nowrap;
+			justify-content: space-between;
+		}
+
+		&__top-box{
+			width: auto;
+			order: 2;
+			align-self: center;
+		}
+
+		&__top-box .tag-list{
+			justify-content: flex-end;
+		}
+
+		&__top-btn{
+			margin: 0 20px 0 0;
+			flex-shrink: 0;
+		}
+	}
 }
 </style>

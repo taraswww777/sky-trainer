@@ -28,19 +28,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-@import "../../../sass/media";
-
-.page-head{
-	margin-bottom: 30px;
-
-	&__title{
-		font-weight: 300;
-		font-size: 32px;
-		line-height: 1.12;
-
-		color: #1C1C1C;
-	}
-}
-</style>
