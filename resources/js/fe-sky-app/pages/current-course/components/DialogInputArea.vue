@@ -7,11 +7,13 @@
         >
             <img src="./mic.svg">
         </button>
-        <input
+
+		<textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу"></textarea>
+        <!-- <input
             :class="bem('textarea')"
             type="text"
             v-model="speechResult"
-            placeholder="Введите фразу"/>
+            placeholder="Введите фразу"/> -->
     </form>
 </template>
 
@@ -96,22 +98,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../../../../sass/mixins';
+/* @import '../../../../../sass/mixins'; */
+@import "../../../../../sass/media";
+
 
 .dialog-input-area {
-    width: 100%;
-    padding: 25px 20px;
+    padding: 25px;
     background: #EAEEF6;
     display: flex;
     flex-wrap: nowrap;
+	border-radius: 0 0 8px 8px;
 
     &__btn-rec {
-        @include borderCircle;
-        padding: 12px 13.5px;
-        background: linear-gradient(45deg, #D485F1, #7156F8);
+        padding: 12px;
+        background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
         cursor: pointer;
-        width: fit-content;
-        height: fit-content;
+        width: 36px;
+        height: 36px;
+		border-radius: 50%;
+		flex-shrink: 0;
+		margin: 5px 12px 0 0;
 
         &--recording {
             background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
@@ -119,15 +125,60 @@ export default {
     }
 
     &__textarea {
-        @include borderRadius;
-        margin: 0 0 0 16px;
-        padding: 10px 18px;
-        color: #737373;
-        min-height: 52px;
+        margin: 0;
+        padding: 15px 18px;
+
+        background: #FFFFFF;
+		border-radius: 8px;
+
         resize: none;
-        font-size: 13px;
-        line-height: 1.1;
-        flex-grow: 1;
-    }
+
+		height: 110px;
+		width: 100%;
+		display: block;
+
+		font: 13px "Inter", Helvetica, Roboto, Arial, sans-serif;
+		color: #29343E;
+		border: none;
+		box-shadow: none;
+
+		scrollbar-color: #EAEAEA #8C63F7;
+		scrollbar-width: thin;
+	
+		&::-webkit-scrollbar
+		{
+			width: 5px;
+			height: 5px;
+
+			background-color: #EAEAEA;
+		}
+
+		&::-webkit-scrollbar-track
+		{
+			background-color: #EAEAEA;
+		}
+
+		&::-webkit-scrollbar-thumb
+		{
+			background-color: #8C63F7;
+		}
+	}
+
+	@media (min-width: $mb_middle) {
+		&__btn-rec {
+			width: 46px;
+			height: 46px;
+
+			margin: 0 16px 0 0;
+			padding: 12px;
+		}
+	}
+
+	@media (min-width: $mb_huge) {
+		&__textarea{
+			padding: 10px 18px;
+			height: 52px;
+		}
+	}
 }
 </style>
