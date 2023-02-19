@@ -19,13 +19,6 @@ export default {
 
 .search
 {
-    width: 100%;
-    margin-bottom: 9px;
-
-	@media (min-width: $mb_large) {
-		display: none;
-	}
-
     &__input
     {
         color: #000;

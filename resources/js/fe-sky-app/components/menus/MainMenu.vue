@@ -14,7 +14,7 @@
             </div>
             <button
 				v-if="onClose"
-				:class="bem('head-close iconCircleWrapper')"
+				class="mob-menu-btn iconCircleWrapper"
 				type="button"
 				@click.prevent="onClose"
 			>
@@ -28,7 +28,9 @@
             <MainMenuItems :onClose="onClose"/>
         </div>
 
-		<div :class="bem('time')">
+		<!-- Старое время, вынес в компонент
+			
+			<div :class="bem('time')">
 			<div :class="bem('time-icon iconCircleWrapper')">
 				<img src="../../../../img/ic_time.svg" alt="">
 			</div>
@@ -38,7 +40,9 @@
 
 				<div :class="bem('time-text')">Общее время тренировок</div>
 			</div>
-		</div>
+		</div> -->
+
+		<TimeWidget/>
 
 		<button :class="bem('theme')">
 			<span :class="bem('theme-item active')">
@@ -107,7 +111,7 @@ export default {
 			padding-right: 0;
 		}
 
-		.small & > *:not(.aside__menu,.aside__logo){
+		.small & > *:not(.aside__menu, .aside__logo){
 			display: none;
 		}
 
@@ -163,21 +167,17 @@ export default {
         width: calc(100% - 50px);
     }
 
-    &__head-close
-    {
-        flex-shrink: 0;
-        margin-left: 10px;
-        padding: 13px 10px;
-		box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
-    }
+	
+	& .search{
+		width: 100%;
+		margin-bottom: 9px;
 
-	&__time{
-		display: flex;
-		justify-content: flex-start;
-		align-content: flex-start;
-		align-items: flex-start;
-		flex-wrap: nowrap;
+		@media (min-width: $mb_exlarge) {
+			display: none;
+		}
+	}
 
+	& .time-block{
 		width: 100%;
 		margin-top: 58px;
 
@@ -185,42 +185,6 @@ export default {
 			display: none;
 		}
 	}
-
-    &__time-icon
-    {
-        flex-shrink: 0;
-
-        margin-right: 11px;
-        padding: 11px;
-
-        box-shadow: 0px 0px 44px rgba(0, 0, 0, .1);
-    }
-
-    &__time-box
-    {
-        width: 100%;
-        padding-top: 6px;
-    }
-
-    &__time-val
-    {
-        color: #29343E;
-        font-size: 14px;
-        font-weight: 500;
-
-        font-style: normal;
-        line-height: normal;
-    }
-
-    &__time-text
-    {
-        color: #29343E;
-        font-size: 11px;
-        font-weight: 400;
-
-        font-style: normal;
-        line-height: normal;
-    }
 
 	@media (min-width: $mb_exlarge) {
 		&__menu

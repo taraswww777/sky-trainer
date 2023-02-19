@@ -6,6 +6,7 @@ import Loader from './Loader.vue';
 import TagList from './TagList.vue';
 import HelpPanel from './HelpPanel.vue';
 import SearchInput from './SearchInput.vue';
+import TimeWidget from './TimeWidget.vue';
 
 export {
     HelpPanel,
@@ -15,5 +16,6 @@ export {
     Breadcrumbs,
     PrimaryButton,
     CircleButton,
-	SearchInput
+	SearchInput,
+	TimeWidget
 }
