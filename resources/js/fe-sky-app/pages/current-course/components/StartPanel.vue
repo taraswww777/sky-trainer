@@ -19,7 +19,7 @@
 						:value="training_type"
 						:onChangeValue="onChange_training_type"
 						:options="[
-							{id:1, caption:'Приветствие'},
+							{id:1, caption:'Тренировка по стадиям'},
 							{id:2, caption:'Потребности'},
 							{id:3, caption:'Презентация'},
 							{id:4, caption:'Возражения'}

@@ -1,6 +1,6 @@
 <template>
     <div :class="bem()">
-        <div :class="[bem('placeholder'), {active: isActive}]" @click="onToggle">
+        <div :class="bem('placeholder', {active: isActive})" @click="onToggle">
             {{ options.find(({id}) => value === id).caption }}
         </div>
 
@@ -83,6 +83,7 @@ export default {
 
 		padding: 0 49px 0 19px;
 		position: relative;
+		transition: border-color .2s linear;
 
 		&::before{
 			content: '';
@@ -95,6 +96,10 @@ export default {
 			background: url(../../../../img/ic_arrow2.svg) 50%/contain no-repeat;
 		}
     }
+
+	&__placeholder--active{
+		border-color: #7156F8;
+	}
 
     &__list {
         background: #FFFFFF;
