@@ -6,22 +6,26 @@
 	</Notice>
 
     <form :class="bem()" class="_marg" @submit="start">
-		<div class="cell small-4">
-            <CustomSelect
-                :value="1"
-                :options="[
-            {id:1, caption:'one'},
-            {id:2, caption:'two'},
-            {id:3, caption:'tree'}
-            ]"
-            />
-        </div>
+		<!-- <div class="cell small-4">
+            <p>{{ training_type }}</p>
+            
+        </div> -->
 		<div :class="bem('flex _four _flex')">
 			<div :class="bem('line')">
 				<div :class="bem('label')">Выберете тип тренировки</div>
 
 				<div :class="bem('field')">
-					<select
+					<CustomSelect
+						:value="training_type"
+						:onChangeValue="onChange_training_type"
+						:options="[
+							{id:1, caption:'Приветствие'},
+							{id:2, caption:'Потребности'},
+							{id:3, caption:'Презентация'},
+							{id:4, caption:'Возражения'}
+						]"
+					/>
+					<!-- <select
 						class="margin-bottom-0"
 						v-if="course?.extra?.training_types"
 						v-model="training_type"
@@ -38,7 +42,7 @@
 						>
 							{{ training_type.caption }}
 						</option>
-					</select>
+					</select> -->
 				</div>
 			</div>
 
@@ -46,7 +50,18 @@
 				<div :class="bem('label')">Выберете стадию</div>
 
 				<div :class="bem('field')">
-					<select
+					<CustomSelect
+						:value="training_type"
+						:onChangeValue="onChange_training_type"
+						:options="[
+							{id:1, caption:'Приветствие'},
+							{id:2, caption:'Потребности'},
+							{id:3, caption:'Презентация'},
+							{id:4, caption:'Возражения'}
+						]"
+					/>
+
+					<!-- <select
 						class="margin-bottom-0"
 						v-if="course?.extra?.stages"
 						v-model="stageId"
@@ -60,7 +75,7 @@
 						>
 							{{ stage.caption }}
 						</option>
-					</select>
+					</select> -->
 				</div>
 			</div>
 
@@ -213,6 +228,10 @@ export default {
             }).finally(() => {
                 this.$store.dispatch('setLoadingStop');
             });
+        },
+        onChange_training_type(training) {
+            console.log('training:', training);
+            this.training_type = training.id
         }
     },
     computed: {
