@@ -1,33 +1,36 @@
 <template>
-    <div :class="bem()">
-        <div :class="bem('placeholder', {active: isActive})" @click="onToggle">
-            {{ options.find(({id}) => value === id).caption }}
-        </div>
+  <div :class="bem()">
+    <div
+      :class="bem('placeholder', {active: isActive})"
+      @click="onToggle"
+    >
+      {{ options.find(({id}) => value === id).caption }}
+    </div>
 
-        <div :class="bem('list')" v-if="isOpen">
-            <div :class="bem('scroll')">
+    <div :class="bem('list')" v-if="isOpen">
+      <div :class="bem('scroll')">
         <div
           v-for="option in options"
-                    :key="option.id"
+          :key="option.id"
           :class="bem('item',isSelected(option)?'selected':'')"
           @click="()=>onChange(option)"
         >
           <span>{{ option.caption }}</span>
         </div>
       </div>
-        </div>
     </div>
+  </div>
 </template>
 
 <script>
 import useBem from 'vue3-bem';
 import {noop} from 'lodash';
 
-const componentName = 'CustomSelect';
-const bem = useBem(componentName);
+const name = 'CustomSelect';
+const bem = useBem(name);
 
 export default {
-  name: componentName,
+  name,
   props: {
     options: {
       type: Array,
@@ -55,20 +58,29 @@ export default {
       this.isOpen = !this.isOpen;
       this.isActive = !this.isActive;
     },
+    onHide() {
+      this.isOpen = false;
+      this.isActive = false;
+    },
     isSelected(option) {
       return Boolean(this.value === option.id);
     },
   },
-
+  mounted() {
+    document.addEventListener('click', this.onHide.bind(this), true);
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.onHide, true);
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .custom-select {
-    position: relative;
+  position: relative;
 
-    &__placeholder{
-        width: 100%;
+  &__placeholder {
+    width: 100%;
     border: 1px solid #DEDEDE;
     cursor: pointer;
     border-radius: 50px;
@@ -86,7 +98,7 @@ export default {
     position: relative;
     transition: border-color .2s linear;
 
-    &::before{
+    &::before {
       content: '';
       position: absolute;
       right: 19px;
@@ -96,51 +108,49 @@ export default {
       margin-top: -4px;
       background: url(../../../../img/ic_arrow2.svg) 50%/contain no-repeat;
     }
+  }
 
-  &--active{
+  &--active {
     border-color: #7156F8;
   }}
 
-    &__list {
-        background: #FFFFFF;
+  &__list {
+    background: #FFFFFF;
     box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-        position: absolute;
-        top: calc(100% + 17px);
-        left: 0;
+    position: absolute;
+    top: calc(100% + 17px);
+    left: 0;
     z-index: 99;
-        width: 100%;
+    width: 100%;
   }
 
-  &__scroll{
-        max-height: 200px;
-        overflow: hidden;
+  &__scroll {
+    max-height: 200px;
+    overflow: hidden;
     overflow-y: auto;
 
     scrollbar-color: #EAEAEA #8C63F7;
     scrollbar-width: thin;
 
-    &::-webkit-scrollbar
-    {
+    &::-webkit-scrollbar {
       width: 5px;
       height: 5px;
 
       background-color: #EAEAEA;
     }
 
-    &::-webkit-scrollbar-track
-    {
+    &::-webkit-scrollbar-track {
       background-color: #EAEAEA;
     }
 
-    &::-webkit-scrollbar-thumb
-    {
+    &::-webkit-scrollbar-thumb {
       background-color: #8C63F7;
     }
   }
 
-    &__item {
-        padding: 4px 20px;
+  &__item {
+    padding: 4px 20px;
     font-size: 13px;
     line-height: 18px;
 
@@ -157,28 +167,25 @@ export default {
     transition: background .2s linear, color .2s linear;
 
     @media (any-hover: hover) {
-      &:hover
-      {
+      &:hover {
         color: #7156F8;
       }
     }
-
-		&--selected{
+&--selected{
 			background: #EAEEF6;
 			color: #313131;
 		}
     }
 
-  &__item:first-child{
+  &__item:first-child {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
 
-  &__item:last-child{
+  &__item:last-child {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
-
 
 }
 </style>
