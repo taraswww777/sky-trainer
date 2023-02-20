@@ -4,7 +4,7 @@
             Лог разговора
         </div>
         <div :class="bem('messages')" id="DialogPanel__messages">
-            <div :class="bem('message-item')" v-for="message of dialogLogs">
+            <div :class="bem('message-item')" v-for="message of dialogLogs" :key="message.type">
                 <Message
                     :directionType="message?.type"
                     :caption="message?.type"
@@ -19,29 +19,29 @@
 </template>
 
 <script>
-import useBem from "vue3-bem";
-import Message from "./Message.vue";
-import DialogInputArea from "./DialogInputArea.vue";
+import useBem from 'vue3-bem';
+import Message from './Message.vue';
+import DialogInputArea from './DialogInputArea.vue';
 
-const componentName = 'DialogPanel';
-const bem = useBem(componentName);
+const name = 'DialogPanel';
+const bem = useBem(name);
 
 export default {
-    name: componentName,
-    components: {
-        Message,
-        DialogInputArea
+  name,
+  components: {
+    Message,
+    DialogInputArea,
+  },
+  data: () => ({
+    bem,
+  }),
+  props: {
+    dialogLogs: {
+      type: Array,
+      default: () => [],
     },
-    data: () => ({
-        bem,
-    }),
-    props: {
-        dialogLogs: {
-            type: Array,
-            default: []
-        },
-    }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">

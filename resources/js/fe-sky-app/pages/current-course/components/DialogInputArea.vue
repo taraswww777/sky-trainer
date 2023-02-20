@@ -16,83 +16,87 @@
 </template>
 
 <script>
-import useBem from "vue3-bem";
-import {requestDialogSpeechResult} from "../../../requests";
-import {noop} from "lodash";
-import {recognizer} from "../../../utils/recognizer";
+import useBem from 'vue3-bem';
+import {noop} from 'lodash';
+import {requestDialogSpeechResult} from '../../../requests';
+import {recognizer} from '../../../utils/recognizer';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
 
 export default {
-    name: componentName,
-    data: () => ({
-        bem,
-        isOnRec: false,
-        speechResult: undefined
-    }),
-    computed: {
-        courseId() {
-            return this.$store.getters.getCurrentCourseId
-        },
+  name: componentName,
+  data: () => ({
+    bem,
+    isOnRec: false,
+    speechResult: undefined,
+  }),
+  computed: {
+    courseId() {
+      return this.$store.getters.getCurrentCourseId;
     },
-    mounted() {
-        // Используем колбек для обработки результатов
-        recognizer.onresult = (event) => {
-            const result = event.results[event.resultIndex];
-            this.speechResult = result[0].transcript;
-            this.speechTimeStamp = event.timeStamp;
-            if (result.isFinal) {
-                console.log('result:', result)
-                this.pushMessage();
-                this.isOnRec = false;
-            }
-        };
-    },
-    unmounted() {
-        recognizer.onresult = noop;
-    },
-    methods: {
-        pushMessage() {
-            console.log('this.outputMessage:', this.speechResult, this.courseId);
-            requestDialogSpeechResult({
-                courseId: this.courseId,
-                speechResult: this.speechResult,
-                timing: this.speechTimeStamp
-            }).then(({data: {dialog_logs, next_phrases, dialog_end, $phrase}}) => {
-                this.speechResult = undefined;
-                this.$store.dispatch('setDialogLogs', dialog_logs);
-                this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
-
-                const audio = new Audio($phrase.audio);
-                audio.play();
-
-                setTimeout(() => {
-                    this.scrollToBottom();
-                })
-
-                if (dialog_end) {
-                    alert('Диалог заверщён');
-                }
-            })
+  },
+  mounted() {
+    // Используем колбек для обработки результатов
+    recognizer.onresult = (event) => {
+      const result = event.results[event.resultIndex];
+      this.speechResult = result[0].transcript;
+      this.speechTimeStamp = event.timeStamp;
+      if (result.isFinal) {
+        console.log('result:', result);
+        this.pushMessage();
+        this.isOnRec = false;
+      }
+    };
+  },
+  unmounted() {
+    recognizer.onresult = noop;
+  },
+  methods: {
+    pushMessage() {
+      console.log('this.outputMessage:', this.speechResult, this.courseId);
+      requestDialogSpeechResult({
+        courseId: this.courseId,
+        speechResult: this.speechResult,
+        timing: this.speechTimeStamp,
+      }).then(({
+        data: {
+          dialog_logs, next_phrases, dialog_end, $phrase,
         },
-        scrollToBottom() {
-            const container = document.querySelector("#DialogPanel__messages");
-            container.scroll(0, container.scrollWidth || 0);
-        },
-        onRec() {
-            console.log('onRec:');
-            if (!this.isOnRec) {
-                // Начинаем слушать микрофон и распознавать голос
-                this.isOnRec = true;
-                recognizer.start();
-            } else {
-                this.isOnRec = false;
-                recognizer.stop();
-            }
+      }) => {
+        this.speechResult = undefined;
+        this.$store.dispatch('setDialogLogs', dialog_logs);
+        this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
+
+        const audio = new Audio($phrase.audio);
+        audio.play();
+
+        setTimeout(() => {
+          this.scrollToBottom();
+        });
+
+        if (dialog_end) {
+          alert('Диалог заверщён');
         }
-    }
-}
+      });
+    },
+    scrollToBottom() {
+      const container = document.querySelector('#DialogPanel__messages');
+      container.scroll(0, container.scrollWidth || 0);
+    },
+    onRec() {
+      console.log('onRec:');
+      if (!this.isOnRec) {
+        // Начинаем слушать микрофон и распознавать голос
+        this.isOnRec = true;
+        recognizer.start();
+      } else {
+        this.isOnRec = false;
+        recognizer.stop();
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">

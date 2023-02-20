@@ -32,8 +32,8 @@
 </template>
 <script>
 export default {
-    props: ['userInfo']
-}
+  props: ['userInfo'],
+};
 </script>
 <style lang="scss" scoped>
 @import 'foundation-sites/scss/foundation.scss';

@@ -1,27 +1,27 @@
 <template>
     <ul class="coursesTabs">
-        <template v-for="tab in tabs">
+        <template v-for="tab in tabs" :key="tab.id">
             <li v-if="tab.id===activeTabId" class="item is-active">{{ tab.title }}</li>
             <li v-else @click="()=>onChangeTab(tab.id)" class="item">{{ tab.title }}</li>
         </template>
     </ul>
 </template>
 <script>
-import {noop} from "lodash";
+import {noop} from 'lodash';
 
 export default {
-    props: {
-        activeTabId: String,
-        tabs: {
-            type: Array,
-            default: []
-        },
-        onChangeTab: {
-            type: Function,
-            default: noop
-        }
-    }
-}
+  props: {
+    activeTabId: String,
+    tabs: {
+      type: Array,
+      default: () => [],
+    },
+    onChangeTab: {
+      type: Function,
+      default: noop,
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 @import 'foundation-sites/scss/foundation.scss';

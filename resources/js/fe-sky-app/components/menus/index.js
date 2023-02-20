@@ -3,7 +3,7 @@ import MobileMainMenu from './MobileMainMenu.vue';
 import MainMenuItems from './MainMenuItems.vue';
 
 export {
-    MainMenuItems,
-    MainMenu,
-    MobileMainMenu
-}
+  MainMenuItems,
+  MainMenu,
+  MobileMainMenu,
+};

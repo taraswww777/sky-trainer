@@ -1,7 +1,7 @@
-import Breadcrumbs from './Breadcrumbs.vue';
+import CommonBreadcrumbs from './CommonBreadcrumbs.vue';
 import PrimaryButton from './PrimaryButton.vue';
 import CircleButton from './CircleButton.vue';
-import Notice from './Notice.vue';
+import CommonNotice from './CommonNotice.vue';
 import Loader from './Loader.vue';
 import TagList from './TagList.vue';
 import HelpPanel from './HelpPanel.vue';
@@ -9,13 +9,13 @@ import SearchInput from './SearchInput.vue';
 import TimeWidget from './TimeWidget.vue';
 
 export {
-    HelpPanel,
-    TagList,
-    Loader,
-    Notice,
-    Breadcrumbs,
-    PrimaryButton,
-    CircleButton,
-	SearchInput,
-	TimeWidget
-}
+  HelpPanel,
+  TagList,
+  Loader,
+  CommonNotice,
+  CommonBreadcrumbs,
+  PrimaryButton,
+  CircleButton,
+  SearchInput,
+  TimeWidget,
+};

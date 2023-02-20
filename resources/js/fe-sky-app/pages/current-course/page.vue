@@ -1,102 +1,105 @@
 <template>
-    <BasePage
-        :isLoading="isLoading"
-        :title=" course?.name"
-        :crumbs="[
+  <BasePage
+    :isLoading="isLoading"
+    :title=" course?.name"
+    :crumbs="[
             {url:'/', title:'Гланая'},
             {title:'Все курсы', url: '/courses'}
         ]"
-    >
-        <div :class="bem()">
-            <StartPanel
-                :onChangeStatus="onChangeStatus"
-                v-if="status === STATUSES.new"
-            />
+  >
+    <div :class="bem()">
+      <StartPanel
+        :onChangeStatus="onChangeStatus"
+        v-if="status === STATUSES.new"
+      />
 
-            <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
-				<div :class="bem('coll')">
-					<div :class="bem('top _flex')">
-						<div :class="bem('top-box')">
-							<TagList :tags="['Тренировка', 'Открытый Диалог']"/>
-						</div>
-
-						<button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
-							<span>Завершить звонок</span>
-						</button>
-					</div>
-
-					<HelpPanel :helpPhrases="helpPhrases"/>
-
-					<div>
-						<DialogPanel :dialogLogs="dialogLogs"/>
-					</div>
-				</div>
-
-				<div :class="bem('colr')"></div>
+      <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
+        <div :class="bem('coll')">
+          <div :class="bem('top _flex')">
+            <div :class="bem('top-box')">
+              <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
             </div>
+
+            <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
+              <span>Завершить звонок</span>
+            </button>
+          </div>
+
+          <HelpPanel :helpPhrases="helpPhrases"/>
+
+          <div>
+            <DialogPanel :dialogLogs="dialogLogs"/>
+          </div>
         </div>
-    </BasePage>
+
+        <div :class="bem('colr')"></div>
+      </div>
+    </div>
+  </BasePage>
 </template>
 <script>
-import {requestCourseById} from "../../requests";
-import useBem from "vue3-bem";
-import DialogPanel from "./components/DialogPanel.vue";
-import StartPanel from "./components/StartPanel.vue";
-import {STATUSES} from "../../constants/common";
-import {appRouter} from "../../app-router";
-import {PAGE_NAMES} from "../../constants";
+import useBem from 'vue3-bem';
+import {requestCourseById} from '../../requests';
+import DialogPanel from './components/DialogPanel.vue';
+import StartPanel from './components/StartPanel.vue';
+import {STATUSES} from '../../constants/common';
+import {appRouter} from '../../app-router';
+import {PAGE_NAMES} from '../../constants';
 
-const componentName = 'CurrentCoursePage';
+const name = 'CurrentCoursePage';
 
-const bem = useBem(componentName);
+const bem = useBem(name);
 
 export default {
-    components: {
-        DialogPanel,
-        StartPanel
+  name,
+  components: {
+    DialogPanel,
+    StartPanel,
+  },
+  data: () => ({
+    status: STATUSES.new,
+    STATUSES,
+    bem,
+    stage: undefined,
+    training_type: undefined,
+    trainer: undefined,
+  }),
+  mounted() {
+    this.$store.dispatch('setLoadingStart');
+    requestCourseById(this.$route.params.courseId)
+      .then(({data}) => {
+        this.$store.dispatch('setCurrentCourse', data);
+      })
+      .finally(() => {
+        this.$store.dispatch('setLoadingStop');
+      });
+  },
+  methods: {
+    onChangeStatus(status) {
+      this.status = status;
     },
-    data: () => ({
-        status: STATUSES.new,
-        STATUSES,
-        bem,
-        stage: undefined,
-        training_type: undefined,
-        trainer: undefined
-    }),
-    mounted() {
-        this.$store.dispatch('setLoadingStart');
-        requestCourseById(this.$route.params.courseId).then(({data}) => {
-            this.$store.dispatch('setCurrentCourse', data);
-        }).finally(() => {
-            this.$store.dispatch('setLoadingStop');
-        });
+    endCall() {
+      appRouter.push({name: PAGE_NAMES.courses});
     },
-    methods: {
-        onChangeStatus(status) {
-            this.status = status
-        }
+  },
+  computed: {
+    isLoading() {
+      return this.$store.getters.getIsLoading;
     },
-    computed: {
-        isLoading() {
-            return this.$store.getters.getIsLoading
-        },
-        dialogData() {
-            return this.$store.getters.getDialogsData
-        },
-        course() {
-            return this.$store.getters.getCurrentCourse
-        },
-        dialogLogs() {
-            return this.$store.getters.getDialogLogs
-        },
-        helpPhrases() {
-            return this.$store.getters.getHelpPhrases
-        },
-        endCall() {
-            appRouter.push({name: PAGE_NAMES.courses});
-        }
-    }
-}
+    dialogData() {
+      return this.$store.getters.getDialogsData;
+    },
+    course() {
+      return this.$store.getters.getCurrentCourse;
+    },
+    dialogLogs() {
+      return this.$store.getters.getDialogLogs;
+    },
+    helpPhrases() {
+      return this.$store.getters.getHelpPhrases;
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 /* @import 'foundation-sites/scss/foundation.scss';
@@ -105,79 +108,79 @@ export default {
 
 .current-course-page {
 
+  &__flex {
+    justify-content: space-between;
+  }
+
+  &__coll {
+    width: 100%;
+  }
+
+  &__colr {
+    width: 100%;
+    height: 100%;
+    background: #000;
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__top {
+    margin-bottom: 25px;
+  }
+
+  &__top-box {
+    width: 100%;
+  }
+
+  &__top-btn {
+    margin-top: 18px;
+  }
+
+  @media (min-width: $mb_middle) {
     &__flex {
-		justify-content: space-between;
+      margin-left: -28px;
     }
 
-	&__coll{
-		width: 100%;
-	}
+    &__coll {
+      width: calc(100% - 318px);
+      margin-left: 28px;
+      min-width: 560px;
 
-	&__colr{
-		width: 100%;
-		height: 100%;
-		background: #000;
+      flex-grow: 1;
+    }
 
-		& > :last-child{
-			margin-bottom: 0;
-		}
-	}
+    &__colr {
+      width: 262px;
+      margin-left: 28px;
 
-	&__top{
-		margin-bottom: 25px;
-	}
+      flex-grow: 1;
 
-	&__top-box{
-		width: 100%;
-	}
+      & > :last-child {
+        margin-bottom: 0;
+      }
+    }
 
-	&__top-btn{
-		margin-top: 18px;
-	}
+    &__top {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
 
-	@media (min-width: $mb_middle) {
-		&__flex{
-			margin-left: -28px;
-		}
+    &__top-box {
+      width: auto;
+      order: 2;
+      align-self: center;
+    }
 
-		&__coll{
-			width: calc(100% - 318px);
-			margin-left: 28px;
-			min-width: 560px;
-			
-			flex-grow: 1;
-		}
+    &__top-box .tag-list {
+      justify-content: flex-end;
+    }
 
-		&__colr{
-			width: 262px;
-			margin-left: 28px;
-
-			flex-grow: 1;
-
-			& > :last-child{
-				margin-bottom: 0;
-			}
-		}
-
-		&__top{
-			flex-wrap: nowrap;
-			justify-content: space-between;
-		}
-
-		&__top-box{
-			width: auto;
-			order: 2;
-			align-self: center;
-		}
-
-		&__top-box .tag-list{
-			justify-content: flex-end;
-		}
-
-		&__top-btn{
-			margin: 0 20px 0 0;
-			flex-shrink: 0;
-		}
-	}
+    &__top-btn {
+      margin: 0 20px 0 0;
+      flex-shrink: 0;
+    }
+  }
 }
 </style>

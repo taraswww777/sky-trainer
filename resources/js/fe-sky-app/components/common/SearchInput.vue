@@ -1,18 +1,18 @@
 <template>
-	<form :class="bem()">
-		<input type="text" name="" value="" placeholder="Search" :class="bem('input')">
-	</form>
+  <form :class="bem()">
+    <input type="text" name="" value="" placeholder="Search" :class="bem('input')">
+  </form>
 </template>
 <script>
-import useBem from "vue3-bem";
+import useBem from 'vue3-bem';
 
-const bem = useBem("search");
+const bem = useBem('search');
 
 export default {
-    data: () => ({
-        bem
-    })
-}
+  data: () => ({
+    bem,
+  }),
+};
 </script>
 <style lang="scss" scoped>
 @import "../../../../sass/media";

@@ -1,19 +1,17 @@
 <template>
     <div class="cont-page">
-		<div class="main-sector">
-			<header>
-				<BaseHeader/>
-			</header>
+    <div class="main-sector">
+      <header>
+        <BaseHeader/>
+      </header>
 
-			<main>
-				<slot></slot>
-			</main>
-		</div>
+      <main>
+        <slot></slot>
+      </main>
+    </div>
 
-		<footer class="footer">
-			<BaseFooter/>
-		</footer>
+    <footer class="footer">
+      <BaseFooter/>
+    </footer>
     </div>
 </template>
-
-
