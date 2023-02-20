@@ -2,7 +2,7 @@
     <div class="head-user">
         <div :class="bem('icon iconCircleWrapper')">
             <!-- <span class="iconCircleWrapper"><Fa :icon="['far','user']"/></span> -->
-			<img src="../../../../img/ic_user.svg" alt="">
+      <img src="../../../../img/ic_user.svg" alt="">
         </div>
         <div :class="bem('box')">
             <div :class="bem('name userName')">{{ userName }}</div>
@@ -11,16 +11,16 @@
     </div>
 </template>
 <script>
-import useBem from "vue3-bem";
+import useBem from 'vue3-bem';
 
-const bem = useBem("head-user");
+const bem = useBem('head-user');
 
 export default {
-    props: ['userName', 'userId'],
-	data: () => ({
-        bem
-    })
-}
+  props: ['userName', 'userId'],
+  data: () => ({
+    bem,
+  }),
+};
 </script>
 <style lang="scss" scoped>
 .head-user
@@ -37,7 +37,7 @@ export default {
 
         margin-right: 10px;
         padding: 11px;
-		box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
     }
 
     &__box

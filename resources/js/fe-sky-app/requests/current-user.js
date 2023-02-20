@@ -1,7 +1,7 @@
-import {axiosAuthGet} from "./base";
+import {axiosAuthGet} from './base';
 
 export const requestCurrentUser = () => (
-    axiosAuthGet({
-        url: '/current-user'
-    })
+  axiosAuthGet({
+    url: '/current-user',
+  })
 );

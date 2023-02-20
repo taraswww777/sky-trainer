@@ -7,10 +7,10 @@
 </template>
 <script>
 export default {
-    computed: {
-        user() {
-            return this.$store.getters.getCurrentUserInfo
-        }
-    }
-}
+  computed: {
+    user() {
+      return this.$store.getters.getCurrentUserInfo;
+    },
+  },
+};
 </script>

@@ -36,29 +36,29 @@
 </template>
 
 <script>
-import useBem from "vue3-bem";
+import useBem from 'vue3-bem';
 
 const componentName = 'Message';
 const bem = useBem(componentName);
 
 export default {
-    name: componentName,
-    data: () => ({
-        bem,
-    }),
-    // props: {
-    //     directionType: {
-            /** out - manager / in - bot  */
-    //         type: String,
+  name: componentName,
+  data: () => ({
+    bem,
+  }),
+  //props: {
+    //directionType: {
+      /** out - manager / in - bot  */
+    //  type: String,
+    //},
+    //caption: {
+    //  type: String,
+    //},
+    //text: {
+    //  type: String,
     //     },
-    //     caption: {
-    //         type: String,
-    //     },
-    //     text: {
-    //         type: String,
-    //     }
-    // },
-}
+  // },
+};
 </script>
 
 <style scoped lang="scss">
@@ -112,7 +112,7 @@ export default {
             border-left: 9px solid currentColor;
         }
     }
-	
+
 	&--manager &__box{
 		color: rgba(223, 255, 232, 0.75);
 		margin-right: 0;

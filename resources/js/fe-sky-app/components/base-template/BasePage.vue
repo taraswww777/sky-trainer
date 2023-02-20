@@ -2,11 +2,11 @@
     <div :class="bem()">
         <Breadcrumbs :crumbs="crumbs"/>
 
-		<div class="page-head">
-			<h1 class="page-head__title">
-				<span>{{ title }}</span>
-			</h1>
-		</div>
+        <div class="page-head">
+            <h1 class="page-head__title">
+                <span>{{ title }}</span>
+            </h1>
+        </div>
 
         <div :class="bem('content')">
             <slot></slot>
@@ -15,19 +15,20 @@
     </div>
 </template>
 <script>
-import useBem from "vue3-bem";
+import useBem from 'vue3-bem';
 
-const bem = useBem("base-page");
+const bem = useBem('base-page');
 
 export default {
-    props: ['title', 'crumbs', 'isLoading'],
-    data: () => ({
-        bem,
-        crumbs: [],
-        title: '',
-        isLoading: false
-    })
-}
+  props: {
+    title: {type: String, default: ''},
+    crumbs: {type: Array, default: () => []},
+    isLoading: {type: Boolean, default: false},
+  },
+  data: () => ({
+    bem,
+  }),
+};
 </script>
 <style lang="scss" scoped>
 /* @import 'foundation-sites/scss/foundation.scss';
@@ -52,9 +53,9 @@ export default {
         line-height: 1;
     } */
 
-	background: #fff;
-	padding: 30px;
-	box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 </style>
