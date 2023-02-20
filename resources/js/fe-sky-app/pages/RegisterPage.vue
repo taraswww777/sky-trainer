@@ -1,7 +1,7 @@
 <template>
-    <div>
-        RegisterPage
-    </div>
+  <BaseTemplate>
+    RegisterPage
+  </BaseTemplate>
 </template>
 <script>
 export default {
