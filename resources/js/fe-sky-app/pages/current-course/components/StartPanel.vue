@@ -6,6 +6,16 @@
 	</Notice>
 
     <form :class="bem()" class="_marg" @submit="start">
+		<div class="cell small-4">
+            <CustomSelect
+                :value="1"
+                :options="[
+            {id:1, caption:'one'},
+            {id:2, caption:'two'},
+            {id:3, caption:'tree'}
+            ]"
+            />
+        </div>
 		<div :class="bem('flex _four _flex')">
 			<div :class="bem('line')">
 				<div :class="bem('label')">Выберете тип тренировки</div>
@@ -158,6 +168,7 @@
 import useBem from "vue3-bem";
 import {requestDialogStart} from "../../../requests";
 import {STATUSES} from "../../../constants/common";
+import {CustomSelect} from "../../../components/form";
 
 const componentName = 'StartPanel';
 
@@ -166,6 +177,9 @@ const bem = useBem('form');
 
 export default {
     name: componentName,
+    components: {
+        CustomSelect
+    },
     props: {
         status: {
             type: String
