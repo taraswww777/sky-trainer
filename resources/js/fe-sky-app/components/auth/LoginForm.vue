@@ -1,5 +1,7 @@
 <template>
     <form :class="bem()" @submit="doLogin">
+			<div :class="bem('title')">Вход в личный кабинет</div>
+
         <div :class="bem('line')">
 			<div :class="bem('label')">Ваш логин</div>
 
@@ -22,7 +24,7 @@
             </PrimaryButton>
         </div>
 
-        <div :class="bem('links')">
+        <div :class="bem('links _flex')">
 			<div :class="bem('links-item')">
 				<router-link to="/auth/fagot" :class="bem('links-link')">Забыли пароль?</router-link>
 			</div>
@@ -39,7 +41,7 @@ import {appRouter} from '../../app-router';
 import {PAGE_NAMES} from '../../constants';
 
 import useBem from 'vue3-bem';
-const bem = useBem('form');
+const bem = useBem('form-login');
 
 export default {
   beforeMount() {
@@ -50,7 +52,7 @@ export default {
   data: () => ({
     password: '',
     email: '',
-	bem
+		bem
   }),
   methods: {
     doLogin() {
@@ -79,9 +81,19 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../sass/media";
 
-.form {
-	&._marg {
-		margin-top: 22px;
+.form-login {
+	padding: 37px 30px 54px;
+	background: #FFFFFF;
+	box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
+	border-radius: 16px;
+
+	&__title{
+		font-weight: 300;
+		font-size: 32px;
+		line-height: 1.12;
+
+		color: #1C1C1C;
+		margin-bottom: 47px;
 	}
 
 	&__line {
@@ -127,10 +139,36 @@ export default {
 		width: 100%;
 	}
 
-	@media (min-width: $mb_small) {
+	&__links{
+		margin: 18px 0 0 -7px;
 	}
 
+	&__links-item{
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 20px;
+
+		color: #656565;
+		margin: 7px 0 0 7px;
+	}
+
+	&__links-link{
+		color: #656565;
+		text-decoration: none;
+		border-bottom: 1px solid currentColor;
+		transition: border .2s linear;
+
+		@media (any-hover: hover) {
+      &:hover{
+				border-bottom-color: transparent;
+			}
+		}
+	}
 	@media (min-width: $mb_middle) {
+		padding: 0;
+		background: none;
+		box-shadow: none;
+		border-radius: 0;
 	}
 
 	@media (min-width: $mb_large) {
