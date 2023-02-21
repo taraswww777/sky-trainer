@@ -4,8 +4,8 @@ import BaseFooter from './BaseFooter.vue';
 import BasePage from './BasePage.vue';
 
 export {
-    BasePage,
-    BaseHeader,
-    BaseFooter,
-    BaseTemplate
-}
+  BasePage,
+  BaseHeader,
+  BaseFooter,
+  BaseTemplate,
+};

@@ -5,17 +5,17 @@
 </template>
 <script>
 export default {
-    props: {
-        crumbs: {
-            type: Array,
-            default: []
-        },
-        type: {
-            type: String,
-            default: 'button'
-        }
-    }
-}
+  props: {
+    crumbs: {
+      type: Array,
+      default: () => [],
+    },
+    type: {
+      type: String,
+      default: 'button',
+    },
+  },
+};
 </script>
 <style lang="scss">
 @import 'foundation-sites/scss/foundation.scss';

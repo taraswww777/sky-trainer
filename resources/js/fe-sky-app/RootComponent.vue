@@ -1,15 +1,13 @@
 <template>
-    <BaseTemplate>
-        <router-view></router-view>
-    </BaseTemplate>
+  <router-view></router-view>
 </template>
 
 <script>
-import {refreshCurrentUser} from "./app-store/auth";
+import {refreshCurrentUser} from './app-store/auth';
 
 export default {
-    mounted() {
-        refreshCurrentUser(this.$store.dispatch);
-    }
-}
+  mounted() {
+    refreshCurrentUser(this.$store.dispatch);
+  },
+};
 </script>

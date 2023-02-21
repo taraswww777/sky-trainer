@@ -6,15 +6,17 @@
     </div>
 </template>
 <script>
-import useBem from "vue3-bem";
+import useBem from 'vue3-bem';
 
-const bem = useBem("loader");
+const name = 'loader';
+const bem = useBem(name);
 
 export default {
-    data: () => ({
-        bem
-    })
-}
+  name,
+  data: () => ({
+    bem,
+  }),
+};
 </script>
 <style lang="scss" scoped>
 @import 'foundation-sites/scss/foundation.scss';
@@ -38,7 +40,6 @@ export default {
         display: inline-block;
         animation: rotate 1.5s linear infinite;
     }
-
 
     @keyframes rotate {
         100% {

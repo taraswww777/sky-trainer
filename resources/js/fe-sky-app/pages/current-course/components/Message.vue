@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import useBem from "vue3-bem";
+import useBem from 'vue3-bem';
 
 const componentName = 'Message';
 const bem = useBem(componentName);

@@ -1,19 +1,29 @@
 <template>
-    <div>
-        HomePage
-        <b>{{ title }}</b>
-        <!--  Вот так обращаемся к props.children -->
-        <slot></slot>
+  <BaseTemplate>
+    <div :class="bem()">
+      HomePage
+      <b>{{ title }}</b>
+      <!--  Вот так обращаемся к props.children -->
+      <slot></slot>
     </div>
+  </BaseTemplate>
 </template>
 <script>
+import useBem from 'vue3-bem';
+
+const name = 'SupportPage';
+const bem = useBem(name);
+
 export default {
-    props: ['title'],
-    data: () => ({
-        title: ''
-    }),
-    mounted() {
-        // console.log('Example:mounted: this.$options', this.$options)
-    }
-}
+  name,
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+  },
+  data: () => ({
+    bem,
+  }),
+};
 </script>

@@ -1,73 +1,86 @@
 <template>
-    <div :class="bem()">
-        <div :class="bem('placeholder', {active: isActive})" @click="onToggle">
-            {{ options.find(({id}) => value === id).caption }}
-        </div>
-
-        <div :class="bem('list')" v-if="isOpen">
-            <div :class="bem('scroll')">
-				<div
-					v-for="option in options"
-					:class="bem('item',isSelected(option)?'selected':'')"
-					@click="()=>onChange(option)"
-				>
-					<span>{{ option.caption }}</span>
-				</div>
-			</div>
-        </div>
+  <div :class="bem()">
+    <div
+      :class="bem('placeholder', {active: isActive})"
+      @click="onToggle"
+    >
+      {{ options.find(({id}) => value === id).caption }}
     </div>
+
+    <div :class="bem('list')" v-if="isOpen">
+      <div :class="bem('scroll')">
+        <div
+          v-for="option in options"
+          :key="option.id"
+          :class="bem('item',isSelected(option)?'selected':'')"
+          @click="()=>onChange(option)"
+        >
+          <span>{{ option.caption }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import useBem from "vue3-bem";
-import {noop} from "lodash";
+import useBem from 'vue3-bem';
+import {noop} from 'lodash';
 
-const componentName = 'CustomSelect';
-const bem = useBem(componentName);
+const name = 'CustomSelect';
+const bem = useBem(name);
 
 export default {
-    name: componentName,
-    props: {
-        options: {
-            type: Array
-        },
-        value: {
-            type: String
-        },
-        onChangeValue: {
-            type: Function,
-            default: noop
-        }
+  name,
+  props: {
+    options: {
+      type: Array,
     },
-    data: () => ({
-        bem,
-        isOpen: false,
-		isActive: false
-    }),
-    methods: {
-        onChange(v) {
-            this.isOpen = false;
-            this.onChangeValue(v);
-			this.isActive = false;
-        },
-        onToggle() {
-            this.isOpen = !this.isOpen;
-			this.isActive = !this.isActive;
-        },
-        isSelected(option) {
-            return Boolean(this.value === option.id)
-        }
-    }
-
-}
+    value: {
+      type: String,
+    },
+    onChangeValue: {
+      type: Function,
+      default: noop,
+    },
+  },
+  data: () => ({
+    bem,
+    isOpen: false,
+    isActive: false,
+  }),
+  methods: {
+    onChange(v) {
+      this.isOpen = false;
+      this.onChangeValue(v);
+      this.isActive = false;
+    },
+    onToggle() {
+      this.isOpen = !this.isOpen;
+      this.isActive = !this.isActive;
+    },
+    onHide() {
+      this.isOpen = false;
+      this.isActive = false;
+    },
+    isSelected(option) {
+      return Boolean(this.value === option.id);
+    },
+  },
+  mounted() {
+    document.addEventListener('click', this.onHide.bind(this), true);
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.onHide, true);
+  }
+};
 </script>
 
 <style scoped lang="scss">
 .custom-select {
-    position: relative;
+	position: relative;
 
-    &__placeholder{
-        width: 100%;
+	&__placeholder {
+		width: 100%;
 		border: 1px solid #DEDEDE;
 		cursor: pointer;
 		border-radius: 50px;
@@ -85,7 +98,7 @@ export default {
 		position: relative;
 		transition: border-color .2s linear;
 
-		&::before{
+		&::before {
 			content: '';
 			position: absolute;
 			right: 19px;
@@ -99,7 +112,7 @@ export default {
 		&--active{
 			border-color: #7156F8;
 		}
-    }
+	}
 
     &__list {
         background: #FFFFFF;
@@ -167,16 +180,16 @@ export default {
 			background: #EAEEF6;
 			color: #313131;
 		}
-    }
-
-	&__item:first-child{
-		border-top-left-radius: 8px;
-		border-top-right-radius: 8px;
 	}
 
-	&__item:last-child{
-		border-bottom-left-radius: 8px;
-		border-bottom-right-radius: 8px;
+	&__item:first-child {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	}
+
+	&__item:last-child {
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 	}
 }
 </style>

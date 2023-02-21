@@ -1,18 +1,18 @@
 <template>
-    <BasePage
-        :isLoading="isLoading"
-        :title=" course?.name"
-        :crumbs="[
-            {url:'/', title:'Гланая'},
-            {title:'Все курсы', url: '/courses'}
-        ]"
-    >
-        <div :class="bem()">
-            <StartPanel
-                :onChangeStatus="onChangeStatus"
-                v-if="status === STATUSES.new"
-            />
+	<BasePage
+	:isLoading="isLoading"
+	:title=" course?.name"
+	:crumbs="[
+			{url:'/', title:'Гланая'},
+			{title:'Все курсы', url: '/courses'}
+		]"
+	>
 
+	<div :class="bem()">
+		<StartPanel
+		:onChangeStatus="onChangeStatus"
+		v-if="status === STATUSES.new"
+		/>
             <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
 				<div :class="bem('coll')">
 					<div :class="bem('top _flex')">
@@ -33,9 +33,9 @@
 				<div :class="bem('colr')">
 					<SpeedSpeech />
 				</div>
-            </div>
-        </div>
-    </BasePage>
+			</div>
+		</div>
+	</BasePage>
 </template>
 <script>
 import {requestCourseById} from "../../requests";
@@ -47,58 +47,61 @@ import {appRouter} from "../../app-router";
 import {PAGE_NAMES} from "../../constants";
 import SpeedSpeech from "./components/SpeedSpeech.vue";
 
-const componentName = 'CurrentCoursePage';
+const name = 'CurrentCoursePage';
 
-const bem = useBem(componentName);
+const bem = useBem(name);
 
 export default {
-    components: {
-        DialogPanel,
-        StartPanel,
-        SpeedSpeech
+  name,
+  components: {
+    DialogPanel,
+    StartPanel,
+    SpeedSpeech
+  },
+  data: () => ({
+    status: STATUSES.new,
+    STATUSES,
+    bem,
+    stage: undefined,
+    training_type: undefined,
+    trainer: undefined,
+  }),
+  mounted() {
+    this.$store.dispatch('setLoadingStart');
+    requestCourseById(this.$route.params.courseId)
+      .then(({data}) => {
+        this.$store.dispatch('setCurrentCourse', data);
+      })
+      .finally(() => {
+        this.$store.dispatch('setLoadingStop');
+      });
+  },
+  methods: {
+    onChangeStatus(status) {
+      this.status = status;
     },
-    data: () => ({
-        status: STATUSES.new,
-        STATUSES,
-        bem,
-        stage: undefined,
-        training_type: undefined,
-        trainer: undefined
-    }),
-    mounted() {
-        this.$store.dispatch('setLoadingStart');
-        requestCourseById(this.$route.params.courseId).then(({data}) => {
-            this.$store.dispatch('setCurrentCourse', data);
-        }).finally(() => {
-            this.$store.dispatch('setLoadingStop');
-        });
+    endCall() {
+      appRouter.push({name: PAGE_NAMES.courses});
     },
-    methods: {
-        onChangeStatus(status) {
-            this.status = status
-        }
+  },
+  computed: {
+    isLoading() {
+      return this.$store.getters.getIsLoading;
     },
-    computed: {
-        isLoading() {
-            return this.$store.getters.getIsLoading
-        },
-        dialogData() {
-            return this.$store.getters.getDialogsData
-        },
-        course() {
-            return this.$store.getters.getCurrentCourse
-        },
-        dialogLogs() {
-            return this.$store.getters.getDialogLogs
-        },
-        helpPhrases() {
-            return this.$store.getters.getHelpPhrases
-        },
-        endCall() {
-            appRouter.push({name: PAGE_NAMES.courses});
-        }
-    }
-}
+    dialogData() {
+      return this.$store.getters.getDialogsData;
+    },
+    course() {
+      return this.$store.getters.getCurrentCourse;
+    },
+    dialogLogs() {
+      return this.$store.getters.getDialogLogs;
+    },
+    helpPhrases() {
+      return this.$store.getters.getHelpPhrases;
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 /* @import 'foundation-sites/scss/foundation.scss';
@@ -106,40 +109,40 @@ export default {
 @import "../../../../sass/media";
 
 .current-course-page {
-
-    &__flex {
+	&__flex {
 		justify-content: space-between;
 		margin-top: -20px;
-    }
+	}
 
-	&__coll{
+	&__coll {
 		width: 100%;
 		margin-top: 20px;
 	}
 
-	&__colr{
+	&__colr {
 		width: 100%;
 		margin-top: 20px;
 
-		& > :last-child{
+		& > :last-child {
 			margin-bottom: 0;
 		}
 	}
 
-	&__top{
+	&__top {
 		margin-bottom: 25px;
 	}
 
-	&__top-box{
+	&__top-box {
 		width: 100%;
 	}
 
-	&__top-btn{
+	&__top-btn {
 		margin-top: 18px;
 	}
 
 	@media (min-width: $mb_middle) {
-		&__flex{
+		&__flex {
+			justify-content: space-between;
 			margin-left: -28px;
 		}
 
