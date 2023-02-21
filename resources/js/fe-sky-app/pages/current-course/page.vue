@@ -1,52 +1,53 @@
 <template>
-  <BasePage
-  :isLoading="isLoading"
-  :title=" course?.name"
-  :crumbs="[
+  <BaseTemplate>
+    <BasePage
+      :isLoading="isLoading"
+      :title=" course?.name"
+      :crumbs="[
       {url:'/', title:'Гланая'},
       {title:'Все курсы', url: '/courses'}
     ]"
-  >
+    >
+      <div :class="bem()">
+        <StartPanel
+          :onChangeStatus="onChangeStatus"
+          v-if="status === STATUSES.new"/>
 
-  <div :class="bem()">
-    <StartPanel
-    :onChangeStatus="onChangeStatus"
-    v-if="status === STATUSES.new"/>
+        <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
+          <div :class="bem('coll')">
+            <div :class="bem('top _flex')">
+              <div :class="bem('top-box')">
+                <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
+              </div>
 
-            <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
-        <div :class="bem('coll')">
-          <div :class="bem('top _flex')">
-            <div :class="bem('top-box')">
-              <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
+              <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
+                <span>Завершить звонок</span>
+              </button>
             </div>
 
-            <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
-              <span>Завершить звонок</span>
-            </button>
+            <HelpPanel :helpPhrases="helpPhrases"/>
+
+            <DialogPanel :dialogLogs="dialogLogs"/>
           </div>
 
-          <HelpPanel :helpPhrases="helpPhrases"/>
+          <div :class="bem('colr')">
+            <SpeedSpeech/>
 
-          <DialogPanel :dialogLogs="dialogLogs"/>
-        </div>
-
-        <div :class="bem('colr')">
-          <SpeedSpeech />
-
-          <QualityControl />
+            <QualityControl/>
+          </div>
         </div>
       </div>
-    </div>
-  </BasePage>
+    </BasePage>
+  </BaseTemplate>
 </template>
 <script>
 import useBem from 'vue3-bem';
 import {requestCourseById} from '../../requests';
-import DialogPanel from './components/DialogPanel.vue';
-import StartPanel from './components/StartPanel.vue';
 import {STATUSES} from '../../constants/common';
 import {appRouter} from '../../app-router';
 import {PAGE_NAMES} from '../../constants';
+import DialogPanel from './components/DialogPanel.vue';
+import StartPanel from './components/StartPanel.vue';
 import SpeedSpeech from './components/SpeedSpeech.vue';
 import QualityControl from './components/QualityControl.vue';
 
@@ -166,7 +167,7 @@ export default {
 
       align-self: flex-end;
 
-      & > :last-child{
+      & > :last-child {
         margin-bottom: 0;
       }
     }
