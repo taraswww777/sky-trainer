@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-x userCardWidget" v-if="userInfo">
+    <div :class="bem()" class="grid-x userCardWidget" v-if="userInfo">
         <div class="cell small-12 grid-x align-justify align-middle userLine">
             <div class="userName">
                 {{ userInfo.name }}
@@ -31,8 +31,21 @@
     </div>
 </template>
 <script>
+import useBem from 'vue3-bem';
+
+const name = 'ProgressWidget';
+const bem = useBem(name);
+
 export default {
-  props: ['userInfo'],
+  name,
+  data: () => ({
+    bem,
+  }),
+  props: {
+    userInfo: {
+      type: Object
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
