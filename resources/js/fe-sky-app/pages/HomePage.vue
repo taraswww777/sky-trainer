@@ -42,7 +42,7 @@ export default {
     VoiceAnalysisWidget,
     ResponsibilityWidget,
     MistakesNegotiationsWidget,
-    UserCardWidget
+    UserCardWidget,
   },
   computed: {
     user() {

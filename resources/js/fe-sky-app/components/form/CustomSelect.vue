@@ -71,7 +71,7 @@ export default {
   },
   beforeUnmount() {
     document.removeEventListener('click', this.onHide, true);
-  }
+  },
 };
 </script>
 
@@ -110,9 +110,10 @@ export default {
     }
   }
 
-  &--active {
-    border-color: #7156F8;
-  }}
+    &--active{
+      border-color: #7156F8;
+    }
+  }
 
   &__list {
     background: #FFFFFF;
@@ -133,18 +134,21 @@ export default {
     scrollbar-color: #EAEAEA #8C63F7;
     scrollbar-width: thin;
 
-    &::-webkit-scrollbar {
+    &::-webkit-scrollbar{
+
       width: 5px;
       height: 5px;
 
       background-color: #EAEAEA;
     }
 
-    &::-webkit-scrollbar-track {
+    &::-webkit-scrollbar-track{
+
       background-color: #EAEAEA;
     }
 
-    &::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar-thumb{
+
       background-color: #8C63F7;
     }
   }
@@ -167,25 +171,26 @@ export default {
     transition: background .2s linear, color .2s linear;
 
     @media (any-hover: hover) {
-      &:hover {
+      &:hover{
+
         color: #7156F8;
-      }
+
     }
-&--selected{
-			background: #EAEEF6;
-			color: #313131;
-		}
+}
+    &--selected{
+      background: #EAEEF6;
+      color: #313131;
     }
+  }
 
   &__item:first-child {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   }
 
   &__item:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   }
-
 }
 </style>

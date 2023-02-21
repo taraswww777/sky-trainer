@@ -54,9 +54,9 @@ export default {
     border-radius: 8px;
     padding: 18px 25px 32px;
 
-	&--marg{
-		margin-bottom: 18px;
-	}
+  &--marg{
+    margin-bottom: 18px;
+  }
 
     &__header {
         display: flex;
@@ -119,11 +119,11 @@ export default {
         }
     }
 
-	@media (min-width: $mb_middle) {
-		&--marg{
-			margin-bottom: 30px;
-		}
-	}
+  @media (min-width: $mb_middle) {
+    &--marg{
+      margin-bottom: 30px;
+    }
+  }
 }
 
 .checkbox-toggle {

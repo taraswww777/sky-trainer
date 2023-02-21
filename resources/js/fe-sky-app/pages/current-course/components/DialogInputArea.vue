@@ -8,7 +8,7 @@
             <img src="./mic.svg">
         </button>
 
-		<textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу"></textarea>
+    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу"></textarea>
         <!-- <input
             :class="bem('textarea')"
             type="text"
@@ -105,13 +105,12 @@ export default {
 /* @import '../../../../../sass/mixins'; */
 @import "../../../../../sass/media";
 
-
 .dialog-input-area {
     padding: 25px;
     background: #EAEEF6;
     display: flex;
     flex-wrap: nowrap;
-	border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
 
     &__btn-rec {
         padding: 12px;
@@ -119,9 +118,9 @@ export default {
         cursor: pointer;
         width: 36px;
         height: 36px;
-		border-radius: 50%;
-		flex-shrink: 0;
-		margin: 5px 12px 0 0;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin: 5px 12px 0 0;
 
         &--recording {
             background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
@@ -133,56 +132,56 @@ export default {
         padding: 15px 18px;
 
         background: #FFFFFF;
-		border-radius: 8px;
+    border-radius: 8px;
 
         resize: none;
 
-		height: 110px;
-		width: 100%;
-		display: block;
+    height: 110px;
+    width: 100%;
+    display: block;
 
-		font: 13px "Inter", Helvetica, Roboto, Arial, sans-serif;
-		color: #29343E;
-		border: none;
-		box-shadow: none;
+    font: 13px "Inter", Helvetica, Roboto, Arial, sans-serif;
+    color: #29343E;
+    border: none;
+    box-shadow: none;
 
-		scrollbar-color: #EAEAEA #8C63F7;
-		scrollbar-width: thin;
-	
-		&::-webkit-scrollbar
-		{
-			width: 5px;
-			height: 5px;
+    scrollbar-color: #EAEAEA #8C63F7;
+    scrollbar-width: thin;
 
-			background-color: #EAEAEA;
-		}
+    &::-webkit-scrollbar
+    {
+      width: 5px;
+      height: 5px;
 
-		&::-webkit-scrollbar-track
-		{
-			background-color: #EAEAEA;
-		}
+      background-color: #EAEAEA;
+    }
 
-		&::-webkit-scrollbar-thumb
-		{
-			background-color: #8C63F7;
-		}
-	}
+    &::-webkit-scrollbar-track
+    {
+      background-color: #EAEAEA;
+    }
 
-	@media (min-width: $mb_middle) {
-		&__btn-rec {
-			width: 46px;
-			height: 46px;
+    &::-webkit-scrollbar-thumb
+    {
+      background-color: #8C63F7;
+    }
+  }
 
-			margin: 0 16px 0 0;
-			padding: 12px;
-		}
-	}
+  @media (min-width: $mb_middle) {
+    &__btn-rec {
+      width: 46px;
+      height: 46px;
 
-	@media (min-width: $mb_huge) {
-		&__textarea{
-			padding: 10px 18px;
-			height: 52px;
-		}
-	}
+      margin: 0 16px 0 0;
+      padding: 12px;
+    }
+  }
+
+  @media (min-width: $mb_huge) {
+    &__textarea{
+      padding: 10px 18px;
+      height: 52px;
+    }
+  }
 }
 </style>

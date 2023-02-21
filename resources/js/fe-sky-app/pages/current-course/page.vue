@@ -1,19 +1,19 @@
 <template>
   <BasePage
-    :isLoading="isLoading"
-    :title=" course?.name"
-    :crumbs="[
-            {url:'/', title:'Гланая'},
-            {title:'Все курсы', url: '/courses'}
-        ]"
+  :isLoading="isLoading"
+  :title=" course?.name"
+  :crumbs="[
+      {url:'/', title:'Гланая'},
+      {title:'Все курсы', url: '/courses'}
+    ]"
   >
-    <div :class="bem()">
-      <StartPanel
-        :onChangeStatus="onChangeStatus"
-        v-if="status === STATUSES.new"
-      />
 
-      <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
+  <div :class="bem()">
+    <StartPanel
+    :onChangeStatus="onChangeStatus"
+    v-if="status === STATUSES.new"/>
+
+            <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
         <div :class="bem('coll')">
           <div :class="bem('top _flex')">
             <div :class="bem('top-box')">
@@ -28,17 +28,16 @@
           <HelpPanel :helpPhrases="helpPhrases"/>
 
           <DialogPanel :dialogLogs="dialogLogs"/>
-
         </div>
 
-				<div :class="bem('colr')">
-					<SpeedSpeech />
+        <div :class="bem('colr')">
+          <SpeedSpeech />
 
-					<QualityControl />
-				</div>
-			</div>
-		</div>
-	</BasePage>
+          <QualityControl />
+        </div>
+      </div>
+    </div>
+  </BasePage>
 </template>
 <script>
 import useBem from 'vue3-bem';
@@ -48,8 +47,8 @@ import StartPanel from './components/StartPanel.vue';
 import {STATUSES} from '../../constants/common';
 import {appRouter} from '../../app-router';
 import {PAGE_NAMES} from '../../constants';
-import SpeedSpeech from "./components/SpeedSpeech.vue";
-import QualityControl from "./components/QualityControl.vue";
+import SpeedSpeech from './components/SpeedSpeech.vue';
+import QualityControl from './components/QualityControl.vue';
 
 const name = 'CurrentCoursePage';
 
@@ -61,7 +60,7 @@ export default {
     DialogPanel,
     StartPanel,
     SpeedSpeech,
-    QualityControl
+    QualityControl,
   },
   data: () => ({
     status: STATUSES.new,
@@ -114,16 +113,15 @@ export default {
 @import "../../../../sass/media";
 
 .current-course-page {
-
   &__flex {
     justify-content: space-between;
-margin-top: -20px;
-    }
+    margin-top: -20px;
+  }
 
   &__coll {
     width: 100%;
-  margin-top: 20px;
-	}
+    margin-top: 20px;
+  }
 
   &__colr {
     width: 100%;
@@ -148,6 +146,7 @@ margin-top: -20px;
 
   @media (min-width: $mb_middle) {
     &__flex {
+
       margin-left: -28px;
     }
 
@@ -165,7 +164,9 @@ margin-top: -20px;
 
       flex-grow: 1;
 
-      align-self: flex-end;& > :last-child {
+      align-self: flex-end;
+
+      & > :last-child{
         margin-bottom: 0;
       }
     }

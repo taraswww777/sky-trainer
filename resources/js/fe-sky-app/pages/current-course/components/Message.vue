@@ -8,16 +8,16 @@
         <div :class="bem('box')">
             <div :class="bem('caption')">
                 <!-- {{ caption }} -->
-				Клиент
+        Клиент
             </div>
             <div :class="bem('text')">
                 <!-- {{ text }} -->
-				Да, Ольга слушаю вас
+        Да, Ольга слушаю вас
             </div>
         </div>
     </div>
 
-	<div :class="bem()" class="message--manager">
+  <div :class="bem()" class="message--manager">
         <span :class="bem('icon')">
             <img src="../../../../../img/ic_user2.svg" alt="">
         </span>
@@ -25,11 +25,11 @@
         <div :class="bem('box')">
             <div :class="bem('caption')">
                 <!-- {{ caption }} -->
-				Лояльность 5
+        Лояльность 5
             </div>
             <div :class="bem('text')">
                 <!-- {{ text }} -->
-				Добрый день, меня зовут ольга, скачать тренер бан, вам удобно сейчас разговаривать?
+        Добрый день, меня зовут ольга, скачать тренер бан, вам удобно сейчас разговаривать?
             </div>
         </div>
     </div>
@@ -46,17 +46,17 @@ export default {
   data: () => ({
     bem,
   }),
-  //props: {
-    //directionType: {
-      /** out - manager / in - bot  */
-    //  type: String,
-    //},
-    //caption: {
-    //  type: String,
-    //},
-    //text: {
-    //  type: String,
-    //     },
+  // props: {
+  //     directionType: {
+  /** out - manager / in - bot  */
+  //         type: String,
+  //     },
+  //     caption: {
+  //         type: String,
+  //     },
+  //     text: {
+  //         type: String,
+  //     },
   // },
 };
 </script>
@@ -64,44 +64,44 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media";
 .message {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	align-content: flex-start;
-	flex-wrap: nowrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: nowrap;
 
-	flex-direction: row-reverse;
+  flex-direction: row-reverse;
 
-	& + &{
-		margin-top: 20px;
-	}
+  & + &{
+    margin-top: 20px;
+  }
 
-	&--manager{
-		flex-direction: row;
-	}
+  &--manager{
+    flex-direction: row;
+  }
 
-	&__icon {
+  &__icon {
         background: #3F3F3F;
         height: 34px;
         color: #fff;
         padding: 8px;
         width: 34px;
         border-radius: 50%;
-		flex-shrink: 0;
+    flex-shrink: 0;
     }
 
-	&--manager &__icon{
-		background: linear-gradient(84.09deg, #2DC458 4.37%, #1ABAB0 94.11%);
-	}
+  &--manager &__icon{
+    background: linear-gradient(84.09deg, #2DC458 4.37%, #1ABAB0 94.11%);
+  }
 
-	&__box {
+  &__box {
         background: currentColor;
-		border-radius: 8px;
+    border-radius: 8px;
         margin-right: 14px;
         text-align: right;
-		position: relative;
-		padding: 17px 20px;
-		color: rgba(242, 242, 242, 0.75);
+    position: relative;
+    padding: 17px 20px;
+    color: rgba(242, 242, 242, 0.75);
 
         &::before {
             content: "";
@@ -113,53 +113,53 @@ export default {
         }
     }
 
-	&--manager &__box{
-		color: rgba(223, 255, 232, 0.75);
-		margin-right: 0;
-		margin-left: 14px;
-		text-align: left;
+  &--manager &__box{
+    color: rgba(223, 255, 232, 0.75);
+    margin-right: 0;
+    margin-left: 14px;
+    text-align: left;
 
-		&::before{
-			left: auto;
-			right: 100%;
-			border-left: 8px solid transparent;
+    &::before{
+      left: auto;
+      right: 100%;
+      border-left: 8px solid transparent;
             border-right: 9px solid currentColor;
-		}
-	}
+    }
+  }
 
-	&__caption {
+  &__caption {
         font-weight: 600;
-		font-size: 13px;
-		line-height: 1.23;
+    font-size: 13px;
+    line-height: 1.23;
 
-		color: #2D2D2D;
+    color: #2D2D2D;
     }
 
     &__text {
         font-size: 13px;
-		line-height: 1.23;
+    line-height: 1.23;
 
-		color: #666666;
-		margin-top: 4px;
+    color: #666666;
+    margin-top: 4px;
     }
 
-	@media (min-width: $mb_middle) {
-		&__box{
-			max-width: 388px;
-		}
-	}
+  @media (min-width: $mb_middle) {
+    &__box{
+      max-width: 388px;
+    }
+  }
 
-	@media (min-width: $mb_exlarge) {
-		& + &{
-			margin-top: 10px;
-		}
-	}
+  @media (min-width: $mb_exlarge) {
+    & + &{
+      margin-top: 10px;
+    }
+  }
 
-	@media (min-width: $mb_huge) {
-		&__box{
-			max-width: 54.5%;
-		}
-	}
+  @media (min-width: $mb_huge) {
+    &__box{
+      max-width: 54.5%;
+    }
+  }
 
     /* display: flex;
     width: 100%;

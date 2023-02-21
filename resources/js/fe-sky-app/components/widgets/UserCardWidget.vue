@@ -43,9 +43,9 @@ export default {
   }),
   props: {
     userInfo: {
-      type: Object
-    }
-  }
+      type: Object,
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
