@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-    <div :class="bem('item _nopc')">
+    <div :class="bem('item')">
       <router-link
         :to="{name: PAGE_NAMES.logout}"
         @click="onClose"
