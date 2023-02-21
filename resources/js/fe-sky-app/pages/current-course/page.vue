@@ -32,6 +32,8 @@
 
 				<div :class="bem('colr')">
 					<SpeedSpeech />
+
+					<QualityControl />
 				</div>
 			</div>
 		</div>
@@ -46,6 +48,7 @@ import {STATUSES} from "../../constants/common";
 import {appRouter} from "../../app-router";
 import {PAGE_NAMES} from "../../constants";
 import SpeedSpeech from "./components/SpeedSpeech.vue";
+import QualityControl from "./components/QualityControl.vue";
 
 const name = 'CurrentCoursePage';
 
@@ -56,7 +59,8 @@ export default {
   components: {
     DialogPanel,
     StartPanel,
-    SpeedSpeech
+    SpeedSpeech,
+    QualityControl
   },
   data: () => ({
     status: STATUSES.new,
