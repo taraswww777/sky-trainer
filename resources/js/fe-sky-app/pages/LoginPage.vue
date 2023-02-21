@@ -8,11 +8,17 @@
         </div>
     </div>
 </template>
+
 <script>
+import useBem from "vue3-bem";
+
+const componentName = 'QualityControl';
+const bem = useBem(componentName);
 
 export default {
-  mounted() {
-    // console.log('Example:mounted: this.$options', this.$options)
-  },
-};
+    name: componentName,
+    data: () => ({
+        bem,
+    })
+}
 </script>
