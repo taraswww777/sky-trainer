@@ -27,12 +27,12 @@
 
 					<HelpPanel :helpPhrases="helpPhrases"/>
 
-					<div>
-						<DialogPanel :dialogLogs="dialogLogs"/>
-					</div>
+					<DialogPanel :dialogLogs="dialogLogs"/>
 				</div>
 
-				<div :class="bem('colr')"></div>
+				<div :class="bem('colr')">
+					<SpeedSpeech />
+				</div>
             </div>
         </div>
     </BasePage>
@@ -45,6 +45,7 @@ import StartPanel from "./components/StartPanel.vue";
 import {STATUSES} from "../../constants/common";
 import {appRouter} from "../../app-router";
 import {PAGE_NAMES} from "../../constants";
+import SpeedSpeech from "./components/SpeedSpeech.vue";
 
 const componentName = 'CurrentCoursePage';
 
@@ -53,7 +54,8 @@ const bem = useBem(componentName);
 export default {
     components: {
         DialogPanel,
-        StartPanel
+        StartPanel,
+        SpeedSpeech
     },
     data: () => ({
         status: STATUSES.new,
@@ -107,16 +109,17 @@ export default {
 
     &__flex {
 		justify-content: space-between;
+		margin-top: -20px;
     }
 
 	&__coll{
 		width: 100%;
+		margin-top: 20px;
 	}
 
 	&__colr{
 		width: 100%;
-		height: 100%;
-		background: #000;
+		margin-top: 20px;
 
 		& > :last-child{
 			margin-bottom: 0;
@@ -143,8 +146,8 @@ export default {
 		&__coll{
 			width: calc(100% - 318px);
 			margin-left: 28px;
-			min-width: 560px;
-			
+			min-width: 540px;
+
 			flex-grow: 1;
 		}
 
@@ -153,6 +156,8 @@ export default {
 			margin-left: 28px;
 
 			flex-grow: 1;
+
+			align-self: flex-end;
 
 			& > :last-child{
 				margin-bottom: 0;

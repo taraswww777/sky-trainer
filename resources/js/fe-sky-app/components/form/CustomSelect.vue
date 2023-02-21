@@ -95,11 +95,11 @@ export default {
 			margin-top: -4px;
 			background: url(../../../../img/ic_arrow2.svg) 50%/contain no-repeat;
 		}
-    }
 
-	&__placeholder--active{
-		border-color: #7156F8;
-	}
+		&--active{
+			border-color: #7156F8;
+		}
+    }
 
     &__list {
         background: #FFFFFF;
@@ -162,6 +162,11 @@ export default {
 				color: #7156F8;
 			}
 		}
+
+		&--selected{
+			background: #EAEEF6;
+			color: #313131;
+		}
     }
 
 	&__item:first-child{
@@ -172,11 +177,6 @@ export default {
 	&__item:last-child{
 		border-bottom-left-radius: 8px;
 		border-bottom-right-radius: 8px;
-	}
-
-	&__item--selected{
-		background: #EAEEF6;
-		color: #313131;
 	}
 }
 </style>
