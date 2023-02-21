@@ -7,111 +7,120 @@
         >
             <img src="./mic.svg">
         </button>
-        <input
+
+    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу"></textarea>
+        <!-- <input
             :class="bem('textarea')"
             type="text"
             v-model="speechResult"
-            placeholder="Введите фразу"/>
+            placeholder="Введите фразу"/> -->
     </form>
 </template>
 
 <script>
-import useBem from "vue3-bem";
-import {requestDialogSpeechResult} from "../../../requests";
-import {noop} from "lodash";
-import {recognizer} from "../../../utils/recognizer";
+import useBem from 'vue3-bem';
+import {noop} from 'lodash';
+import {requestDialogSpeechResult} from '../../../requests';
+import {recognizer} from '../../../utils/recognizer';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
 
 export default {
-    name: componentName,
-    data: () => ({
-        bem,
-        isOnRec: false,
-        speechResult: undefined
-    }),
-    computed: {
-        courseId() {
-            return this.$store.getters.getCurrentCourseId
-        },
+  name: componentName,
+  data: () => ({
+    bem,
+    isOnRec: false,
+    speechResult: undefined,
+  }),
+  computed: {
+    courseId() {
+      return this.$store.getters.getCurrentCourseId;
     },
-    mounted() {
-        // Используем колбек для обработки результатов
-        recognizer.onresult = (event) => {
-            const result = event.results[event.resultIndex];
-            this.speechResult = result[0].transcript;
-            this.speechTimeStamp = event.timeStamp;
-            if (result.isFinal) {
-                console.log('result:', result)
-                this.pushMessage();
-                this.isOnRec = false;
-            }
-        };
-    },
-    unmounted() {
-        recognizer.onresult = noop;
-    },
-    methods: {
-        pushMessage() {
-            console.log('this.outputMessage:', this.speechResult, this.courseId);
-            requestDialogSpeechResult({
-                courseId: this.courseId,
-                speechResult: this.speechResult,
-                timing: this.speechTimeStamp
-            }).then(({data: {dialog_logs, next_phrases, dialog_end, $phrase}}) => {
-                this.speechResult = undefined;
-                this.$store.dispatch('setDialogLogs', dialog_logs);
-                this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
-
-                const audio = new Audio($phrase.audio);
-                audio.play();
-
-                setTimeout(() => {
-                    this.scrollToBottom();
-                })
-
-                if (dialog_end) {
-                    alert('Диалог заверщён');
-                }
-            })
+  },
+  mounted() {
+    // Используем колбек для обработки результатов
+    recognizer.onresult = (event) => {
+      const result = event.results[event.resultIndex];
+      this.speechResult = result[0].transcript;
+      this.speechTimeStamp = event.timeStamp;
+      if (result.isFinal) {
+        console.log('result:', result);
+        this.pushMessage();
+        this.isOnRec = false;
+      }
+    };
+  },
+  unmounted() {
+    recognizer.onresult = noop;
+  },
+  methods: {
+    pushMessage() {
+      console.log('this.outputMessage:', this.speechResult, this.courseId);
+      requestDialogSpeechResult({
+        courseId: this.courseId,
+        speechResult: this.speechResult,
+        timing: this.speechTimeStamp,
+      }).then(({
+        data: {
+          dialog_logs, next_phrases, dialog_end, $phrase,
         },
-        scrollToBottom() {
-            const container = document.querySelector("#DialogPanel__messages");
-            container.scroll(0, container.scrollWidth || 0);
-        },
-        onRec() {
-            console.log('onRec:');
-            if (!this.isOnRec) {
-                // Начинаем слушать микрофон и распознавать голос
-                this.isOnRec = true;
-                recognizer.start();
-            } else {
-                this.isOnRec = false;
-                recognizer.stop();
-            }
+      }) => {
+        this.speechResult = undefined;
+        this.$store.dispatch('setDialogLogs', dialog_logs);
+        this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
+
+        const audio = new Audio($phrase.audio);
+        audio.play();
+
+        setTimeout(() => {
+          this.scrollToBottom();
+        });
+
+        if (dialog_end) {
+          alert('Диалог заверщён');
         }
-    }
-}
+      });
+    },
+    scrollToBottom() {
+      const container = document.querySelector('#DialogPanel__messages');
+      container.scroll(0, container.scrollWidth || 0);
+    },
+    onRec() {
+      console.log('onRec:');
+      if (!this.isOnRec) {
+        // Начинаем слушать микрофон и распознавать голос
+        this.isOnRec = true;
+        recognizer.start();
+      } else {
+        this.isOnRec = false;
+        recognizer.stop();
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-@import '../../../../../sass/mixins';
+/* @import '../../../../../sass/mixins'; */
+@import "../../../../../sass/media";
 
 .dialog-input-area {
-    width: 100%;
-    padding: 25px 20px;
+    padding: 25px;
     background: #EAEEF6;
     display: flex;
     flex-wrap: nowrap;
+  border-radius: 0 0 8px 8px;
 
     &__btn-rec {
-        @include borderCircle;
-        padding: 12px 13.5px;
-        background: linear-gradient(45deg, #D485F1, #7156F8);
+        padding: 12px;
+        background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
         cursor: pointer;
-        width: fit-content;
-        height: fit-content;
+        width: 36px;
+        height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin: 5px 12px 0 0;
 
         &--recording {
             background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
@@ -119,15 +128,60 @@ export default {
     }
 
     &__textarea {
-        @include borderRadius;
-        margin: 0 0 0 16px;
-        padding: 10px 18px;
-        color: #737373;
-        min-height: 52px;
+        margin: 0;
+        padding: 15px 18px;
+
+        background: #FFFFFF;
+    border-radius: 8px;
+
         resize: none;
-        font-size: 13px;
-        line-height: 1.1;
-        flex-grow: 1;
+
+    height: 110px;
+    width: 100%;
+    display: block;
+
+    font: 13px "Inter", Helvetica, Roboto, Arial, sans-serif;
+    color: #29343E;
+    border: none;
+    box-shadow: none;
+
+    scrollbar-color: #EAEAEA #8C63F7;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar
+    {
+      width: 5px;
+      height: 5px;
+
+      background-color: #EAEAEA;
     }
+
+    &::-webkit-scrollbar-track
+    {
+      background-color: #EAEAEA;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      background-color: #8C63F7;
+    }
+  }
+
+  @media (min-width: $mb_middle) {
+    &__btn-rec {
+      width: 46px;
+      height: 46px;
+
+      margin: 0 16px 0 0;
+      padding: 12px;
+    }
+  }
+
+  @media (min-width: $mb_huge) {
+    &__textarea{
+      padding: 10px 18px;
+      height: 52px;
+    }
+  }
 }
 </style>

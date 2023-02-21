@@ -32,8 +32,8 @@ class Dump
             echo "----------[ $title[0]  $title[1] ]----------\n$info\n----------------------------------------\n";
         } else {
             echo $style, '<div class="xPrintWrapper"><div class="xPrintTitle">' . '<span>' . $title[0] . '</span> ' . $title[1] . '</div>
-										<pre>' . $info . '</pre>
-										</div>';
+                    <pre>' . $info . '</pre>
+                    </div>';
         }
     }
 

@@ -1,123 +1,195 @@
 <template>
-    <BasePage
-        :isLoading="isLoading"
-        :title=" course?.name"
-        :crumbs="[
-            {url:'/', title:'Гланая'},
-            {title:'Все курсы', url: '/courses'}
-        ]"
-    >
-        <div class="grid-x" :class="bem()">
-            <div class="cell small-12 margin-bottom-1" :class="bem('notice')" v-if="false">
-                <Notice>
-                    Супер! Выбери тип занятия и выключи подсказки, если уверен в своих силах. На тренировке подсказки не
-                    влияют на лояльность. В режиме обучения каждая подсказка будет отнимать очки лояльности. А на
-                    экзамене
-                    они будут недоступны. Вот так:)
-                </Notice>
+  <BasePage
+  :isLoading="isLoading"
+  :title=" course?.name"
+  :crumbs="[
+      {url:'/', title:'Гланая'},
+      {title:'Все курсы', url: '/courses'}
+    ]"
+  >
+
+  <div :class="bem()">
+    <StartPanel
+    :onChangeStatus="onChangeStatus"
+    v-if="status === STATUSES.new"/>
+
+            <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
+        <div :class="bem('coll')">
+          <div :class="bem('top _flex')">
+            <div :class="bem('top-box')">
+              <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
             </div>
-            <StartPanel
-                :onChangeStatus="onChangeStatus"
-                v-if="status === STATUSES.new"
-            />
-            <div class="cell small-12" v-if="status === STATUSES.inProgress">
-                <div
-                    class="cell small-12 margin-top-1 margin-bottom-1 grid-x"
-                    style="justify-content: space-between">
-                    <button type="submit" class="button warning margin-bottom-0" @click="endCall">
-                        Завершить звонок
-                    </button>
-                    <div
-                        class="grid-x align-middle align-right align-center-middle"
-                        style="{flex-grow: 1; align-content: center}">
-                        <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
-                    </div>
-                </div>
-                <div>
-                    <HelpPanel :helpPhrases="helpPhrases"/>
-                </div>
-                <div>
-                    <DialogPanel :dialogLogs="dialogLogs"/>
-                </div>
-            </div>
+
+            <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
+              <span>Завершить звонок</span>
+            </button>
+          </div>
+
+          <HelpPanel :helpPhrases="helpPhrases"/>
+
+          <DialogPanel :dialogLogs="dialogLogs"/>
         </div>
-    </BasePage>
+
+        <div :class="bem('colr')">
+          <SpeedSpeech />
+
+          <QualityControl />
+        </div>
+      </div>
+    </div>
+  </BasePage>
 </template>
 <script>
-import {requestCourseById} from "../../requests";
-import useBem from "vue3-bem";
-import DialogPanel from "./components/DialogPanel.vue";
-import StartPanel from "./components/StartPanel.vue";
-import {STATUSES} from "../../constants/common";
-import {appRouter} from "../../app-router";
-import {PAGE_NAMES} from "../../constants";
+import useBem from 'vue3-bem';
+import {requestCourseById} from '../../requests';
+import DialogPanel from './components/DialogPanel.vue';
+import StartPanel from './components/StartPanel.vue';
+import {STATUSES} from '../../constants/common';
+import {appRouter} from '../../app-router';
+import {PAGE_NAMES} from '../../constants';
+import SpeedSpeech from './components/SpeedSpeech.vue';
+import QualityControl from './components/QualityControl.vue';
 
-const componentName = 'CurrentCoursePage';
+const name = 'CurrentCoursePage';
 
-const bem = useBem(componentName);
+const bem = useBem(name);
 
 export default {
-    components: {
-        DialogPanel,
-        StartPanel
+  name,
+  components: {
+    DialogPanel,
+    StartPanel,
+    SpeedSpeech,
+    QualityControl,
+  },
+  data: () => ({
+    status: STATUSES.new,
+    STATUSES,
+    bem,
+    stage: undefined,
+    training_type: undefined,
+    trainer: undefined,
+  }),
+  mounted() {
+    this.$store.dispatch('setLoadingStart');
+    requestCourseById(this.$route.params.courseId)
+      .then(({data}) => {
+        this.$store.dispatch('setCurrentCourse', data);
+      })
+      .finally(() => {
+        this.$store.dispatch('setLoadingStop');
+      });
+  },
+  methods: {
+    onChangeStatus(status) {
+      this.status = status;
     },
-    data: () => ({
-        status: STATUSES.new,
-        STATUSES,
-        bem,
-        stage: undefined,
-        training_type: undefined,
-        trainer: undefined
-    }),
-    mounted() {
-        this.$store.dispatch('setLoadingStart');
-        requestCourseById(this.$route.params.courseId).then(({data}) => {
-            this.$store.dispatch('setCurrentCourse', data);
-        }).finally(() => {
-            this.$store.dispatch('setLoadingStop');
-        });
+    endCall() {
+      appRouter.push({name: PAGE_NAMES.courses});
     },
-    methods: {
-        onChangeStatus(status) {
-            this.status = status
-        }
+  },
+  computed: {
+    isLoading() {
+      return this.$store.getters.getIsLoading;
     },
-    computed: {
-        isLoading() {
-            return this.$store.getters.getIsLoading
-        },
-        dialogData() {
-            return this.$store.getters.getDialogsData
-        },
-        course() {
-            return this.$store.getters.getCurrentCourse
-        },
-        dialogLogs() {
-            return this.$store.getters.getDialogLogs
-        },
-        helpPhrases() {
-            return this.$store.getters.getHelpPhrases
-        },
-        endCall() {
-            appRouter.push({name: PAGE_NAMES.courses});
-        }
-    }
-}
+    dialogData() {
+      return this.$store.getters.getDialogsData;
+    },
+    course() {
+      return this.$store.getters.getCurrentCourse;
+    },
+    dialogLogs() {
+      return this.$store.getters.getDialogLogs;
+    },
+    helpPhrases() {
+      return this.$store.getters.getHelpPhrases;
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
-@import 'foundation-sites/scss/foundation.scss';
-@import '../../../../sass/colors';
+/* @import 'foundation-sites/scss/foundation.scss';
+@import '../../../../sass/colors'; */
+@import "../../../../sass/media";
 
 .current-course-page {
+  &__flex {
+    justify-content: space-between;
+    margin-top: -20px;
+  }
 
-    &__notice {
+  &__coll {
+    width: 100%;
+    margin-top: 20px;
+  }
 
+  &__colr {
+    width: 100%;
+    margin-top: 20px;
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__top {
+    margin-bottom: 25px;
+  }
+
+  &__top-box {
+    width: 100%;
+  }
+
+  &__top-btn {
+    margin-top: 18px;
+  }
+
+  @media (min-width: $mb_middle) {
+    &__flex {
+
+      margin-left: -28px;
     }
 
-    &__filter {
+    &__coll {
+      width: calc(100% - 318px);
+      margin-left: 28px;
+      min-width: 540px;
+
+      flex-grow: 1;
     }
 
-    &__main {
+    &__colr {
+      width: 262px;
+      margin-left: 28px;
+
+      flex-grow: 1;
+
+      align-self: flex-end;
+
+      & > :last-child{
+        margin-bottom: 0;
+      }
     }
+
+    &__top {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
+    &__top-box {
+      width: auto;
+      order: 2;
+      align-self: center;
+    }
+
+    &__top-box .tag-list {
+      justify-content: flex-end;
+    }
+
+    &__top-btn {
+      margin: 0 20px 0 0;
+      flex-shrink: 0;
+    }
+  }
 }
 </style>

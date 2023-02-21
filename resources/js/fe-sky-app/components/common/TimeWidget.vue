@@ -1,33 +1,33 @@
 <template>
-	<div :class="bem()" class="_flex">
-		<div :class="bem('icon iconCircleWrapper')">
-			<img src="../../../../img/ic_time.svg" alt="">
-		</div>
+  <div :class="bem()" class="_flex">
+    <div :class="bem('icon iconCircleWrapper')">
+      <img src="../../../../img/ic_time.svg" alt="">
+    </div>
 
-		<div :class="bem('box')">
-			<div :class="bem('val')">23:21 | 10000:00</div>
+    <div :class="bem('box')">
+      <div :class="bem('val')">23:21 | 10000:00</div>
 
-			<div :class="bem('text')">Общее время тренировок</div>
-		</div>
-	</div>
+      <div :class="bem('text')">Общее время тренировок</div>
+    </div>
+  </div>
 </template>
 <script>
-import useBem from "vue3-bem";
+import useBem from 'vue3-bem';
 
-const bem = useBem("time-block");
+const bem = useBem('time-block');
 
 export default {
-    data: () => ({
-        bem
-    })
-}
+  data: () => ({
+    bem,
+  }),
+};
 </script>
 <style lang="scss" scoped>
 @import "../../../../sass/media";
 
 .time-block
 {
-	flex-wrap: nowrap;
+  flex-wrap: nowrap;
 
     &__icon
     {

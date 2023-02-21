@@ -2,21 +2,21 @@
     <div class="footer__flex _flex">
         <div class="footer__copyright">© 2022</div>
 
-		<nav class="footer__menu _flex">
-			<div class="footer__menu-item">
-				<router-link to="/about" class="footer__menu-link">О нас</router-link>
-			</div>
-			<div class="footer__menu-item">
-				<router-link to="/support" class="footer__menu-link">Поддержка</router-link>
-			</div>
-			<div class="footer__menu-item">
-				<router-link to="/contacts" class="footer__menu-link">Контакты</router-link>
-			</div>
-		</nav>
+    <nav class="footer__menu _flex">
+      <div class="footer__menu-item">
+        <router-link to="/about" class="footer__menu-link">О нас</router-link>
+      </div>
+      <div class="footer__menu-item">
+        <router-link to="/support" class="footer__menu-link">Поддержка</router-link>
+      </div>
+      <div class="footer__menu-item">
+        <router-link to="/contacts" class="footer__menu-link">Контакты</router-link>
+      </div>
+    </nav>
     </div>
 </template>
 <script>
-export default {}
+export default {};
 </script>
 <style lang="scss" scoped>
 /* @import 'foundation-sites/scss/foundation.scss';
@@ -35,15 +35,15 @@ export default {}
 } */
 
 .footer__flex{
-	justify-content: space-between;
+  justify-content: space-between;
 }
 
 .footer__copyright {
     font-weight: 400;
-	font-size: 12px;
-	line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.5;
 
-	color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 /* .footerMenu {
@@ -99,21 +99,21 @@ export default {}
 }
 
 .footer__menu-item + .footer__menu-item{
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .footer__menu-link{
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 1.5;
-	text-decoration: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  text-decoration: none;
 
-	color: #000;
-	opacity: .4;
-	transition: opacity .2s linear;
+  color: #000;
+  opacity: .4;
+  transition: opacity .2s linear;
 
-	&:hover{
-		opacity: 1;
-	}
+  &:hover{
+    opacity: 1;
+  }
 }
 </style>

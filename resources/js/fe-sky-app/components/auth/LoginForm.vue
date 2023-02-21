@@ -32,44 +32,44 @@
     </form>
 </template>
 <script>
-import {isLogin, refreshCurrentUser, setToken} from "../../app-store/auth";
-import {requestLogin} from "../../requests";
-import {appRouter} from "../../app-router";
-import {PAGE_NAMES} from "../../constants";
+import {isLogin, refreshCurrentUser, setToken} from '../../app-store/auth';
+import {requestLogin} from '../../requests';
+import {appRouter} from '../../app-router';
+import {PAGE_NAMES} from '../../constants';
 
 export default {
-    beforeMount() {
-        if (isLogin()) {
-            appRouter.push({name: PAGE_NAMES.home});
-        }
-    },
-    data: () => ({
-        password: '',
-        email: '',
-    }),
-    methods: {
-        doLogin() {
-            requestLogin({
-                email: this.email,
-                password: this.password,
-            }).then(({data: {token}}) => {
-                if (token) {
-                    setToken(token);
-                    refreshCurrentUser(this.$store.dispatch).then((isLoad) => {
-                        if (isLoad) {
-                            appRouter.push({name: PAGE_NAMES.courses});
-                        }
-                    });
-                }
-            });
-        }
-    },
-    mounted() {
-        if (isLogin()) {
-            appRouter.push({name: PAGE_NAMES.home});
-        }
+  beforeMount() {
+    if (isLogin()) {
+      appRouter.push({name: PAGE_NAMES.home});
     }
-}
+  },
+  data: () => ({
+    password: '',
+    email: '',
+  }),
+  methods: {
+    doLogin() {
+      requestLogin({
+        email: this.email,
+        password: this.password,
+      }).then(({data: {token}}) => {
+        if (token) {
+          setToken(token);
+          refreshCurrentUser(this.$store.dispatch).then((isLoad) => {
+            if (isLoad) {
+              appRouter.push({name: PAGE_NAMES.courses});
+            }
+          });
+        }
+      });
+    },
+  },
+  mounted() {
+    if (isLogin()) {
+      appRouter.push({name: PAGE_NAMES.home});
+    }
+  },
+};
 </script>
 <style lang="scss" scoped>
 @import 'foundation-sites/scss/foundation.scss';

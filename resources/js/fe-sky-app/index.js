@@ -1,1 +1,1 @@
-export {initFeSkyApp} from './bootstrap'
+export {initFeSkyApp} from './bootstrap';
