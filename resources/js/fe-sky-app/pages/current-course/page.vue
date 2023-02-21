@@ -31,10 +31,14 @@
 
         </div>
 
-        <div :class="bem('colr')"><SpeedSpeech /></div>
-      </div>
-    </div>
-  </BasePage>
+				<div :class="bem('colr')">
+					<SpeedSpeech />
+
+					<QualityControl />
+				</div>
+			</div>
+		</div>
+	</BasePage>
 </template>
 <script>
 import useBem from 'vue3-bem';
@@ -45,6 +49,7 @@ import {STATUSES} from '../../constants/common';
 import {appRouter} from '../../app-router';
 import {PAGE_NAMES} from '../../constants';
 import SpeedSpeech from "./components/SpeedSpeech.vue";
+import QualityControl from "./components/QualityControl.vue";
 
 const name = 'CurrentCoursePage';
 
@@ -55,7 +60,9 @@ export default {
   components: {
     DialogPanel,
     StartPanel,
-  SpeedSpeech},
+    SpeedSpeech,
+    QualityControl
+  },
   data: () => ({
     status: STATUSES.new,
     STATUSES,
