@@ -1,27 +1,33 @@
 <template>
   <BaseTemplate>
-    <div class="grid-x">
-      <div class="cell small-12 medium-6">
-        <UserCardWidget :userInfo="user"/>
-      </div>
-      <div class="cell small-12 medium-6">
-        <ProgressWidget/>
-      </div>
-      <div class="cell small-12 medium-6">
-        <GrammarErrorsWidget/>
-      </div>
-      <div class="cell small-12 medium-6">
-        <ScriptMatchWidget/>
-      </div>
-      <div class="cell small-12 medium-6">
-        <VoiceAnalysisWidget/>
-      </div>
-      <div class="cell small-12 medium-3">
-        <ResponsibilityWidget/>
-      </div>
-      <div class="cell small-12 medium-3">
-        <MistakesNegotiationsWidget/>
-      </div>
+    <div class="main-section">
+		<div class="main-section__top">
+			<div class="main-section__top-col">
+				<UserCardWidget :userInfo="user"/>
+			</div>
+			<div class="main-section__top-col">
+				<ProgressWidget/>
+			</div>
+		</div>
+		<div class="main-section__info">
+			<div class="main-section__info-col">
+				<GrammarErrorsWidget/>
+			</div>
+			<div class="main-section__info-col">
+				<ScriptMatchWidget/>
+			</div>
+			<div class="main-section__info-col">
+				<VoiceAnalysisWidget/>
+			</div>
+		</div>
+		<div class="main-section__bot">
+			<div class="main-section__top-col">
+				<ResponsibilityWidget/>
+			</div>
+			<div class="main-section__bot-col">
+				<MistakesNegotiationsWidget/>
+			</div>
+		</div>
     </div>
   </BaseTemplate>
 </template>
@@ -51,3 +57,75 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../../../sass/media";
+
+.main-section__top{
+	margin-top: -20px;
+
+	&-col{
+		margin-top: 20px;
+	}
+
+	@media (min-width: $mb_middle) {
+		display: flex;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+		flex-wrap: wrap;
+
+		margin-left: -20px;
+
+		&-col{
+			width: calc(100%/2 - 20px);
+			margin-left: 20px;
+			min-width: 360px;
+			flex-grow: 1;
+		}
+
+		&-col > *{
+			min-height: 100%;
+		}
+	}
+}
+
+.main-section__info{
+	margin-top: -20px;
+
+	&-col{
+		margin-top: 20px;
+	}
+
+	@media (min-width: $mb_middle) {
+		display: flex;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+		flex-wrap: wrap;
+
+		margin-left: -20px;
+
+		&-col{
+			width: calc(100%/3 - 20px);
+			margin-left: 20px;
+			/* min-width: 360px;
+			flex-grow: 1; */
+		}
+
+		&-col > *{
+			min-height: 100%;
+		}
+	}
+}
+
+.main-section__bot{
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: flex-start;
+	flex-wrap: wrap;
+
+	grid-gap: 30px;
+}
+</style>
