@@ -189,6 +189,8 @@ export default {
 	}
 
 	@media (min-width: $mb_middle) {
+		padding: 24px 24px 32px;
+
 		&__progress-top{
 			display: block;
 		}
