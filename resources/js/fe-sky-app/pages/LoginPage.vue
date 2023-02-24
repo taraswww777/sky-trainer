@@ -11,12 +11,12 @@
         <div :class="bem('title')">С каждым днём ты становишься лучше, чем вчера!</div>
 
         <div :class="bem('slider')">
-          <div :class="bem('slide')">
-            <div :class="bem('desc')">
-              Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому. Просто
-              запускайте курсы и тренируйтесь!
-            </div>
-          </div>
+          <Slider
+            :items="[
+             'Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому. ' +
+             'Просто запускайте курсы и тренируйтесь!'
+             ]"
+          />
         </div>
       </div>
 
@@ -29,7 +29,7 @@
 
 <script>
 import useBem from 'vue3-bem';
-import {LoginForm} from '../components';
+import {LoginForm, Slider} from '../components';
 
 const componentName = 'PageLogin';
 const bem = useBem(componentName);
@@ -38,6 +38,7 @@ export default {
   name: componentName,
   components: {
     LoginForm,
+    Slider,
   },
   data: () => ({
     bem,
@@ -107,13 +108,6 @@ export default {
     margin-top: 15px;
   }
 
-  &__desc {
-    font-size: 12px;
-    line-height: 1.33;
-
-    color: #FFFFFF;
-  }
-
   @media (min-width: $mb_small) {
     &:before {
       left: 0;
@@ -127,11 +121,6 @@ export default {
 
     &__slider {
       margin-top: 20px;
-    }
-
-    &__desc {
-      font-size: 14px;
-      line-height: 1.71;
     }
   }
 
@@ -188,11 +177,6 @@ export default {
 
     &__title {
       font-size: 24px;
-    }
-
-    &__desc {
-      font-size: 12px;
-      line-height: 1.33;
     }
 
     &__col-right {

@@ -1,33 +1,38 @@
-@import 'foundation-sites/scss/foundation.scss';
 @import './colors';
 
-@include foundation-normalize();
-
-@import 'foundation-sites/assets/foundation-prototype';
-
 @import "./media";
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+div, dl, dt, dd, ul, ol, li, pre, form, p, blockquote, th, td,
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
 
 html, body {
-    background: #EAEEF6;
+  background: #EAEEF6;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    font-size: 2rem;
-    color: $colorBrand
+  font-size: 2rem;
+  color: $colorBrand
 }
 
 .iconCircleWrapper {
-    display: inline-flex;
-    width: 40px;
-    height: 40px;
-    background: $colorWhite;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  background: $colorWhite;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
 
-  img
-  {
+  img {
     display: block;
 
     max-width: 100%;
@@ -36,31 +41,30 @@ h1 {
 }
 
 .flex-nowrap {
-    flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 
 
 html,
 body,
-#rootVueApp{
+#rootVueApp {
   height: 100%;
 }
 
-body
-{
-    color: #1C1C1C;
-    font-family: "Inter", Helvetica, Roboto, Arial, sans-serif;
-    font-size: 13px;
-    line-height: 1.23;
+body {
+  color: #1C1C1C;
+  font-family: "Inter", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.23;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Inter", Helvetica, Roboto, Arial, sans-serif;
   margin: 0;
 }
 
 
-.cont-page{
+.cont-page {
   padding: 0 24px;
 
   display: flex;
@@ -68,7 +72,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   min-height: 100%;
   position: relative;
 
-  &:before{
+  &:before {
     content: '';
     position: absolute;
     right: 42px;
@@ -79,7 +83,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   }
 
   @media (min-width: $mb_small) {
-    &:before{
+    &:before {
       left: 0;
       right: auto;
       max-width: 100%;
@@ -89,7 +93,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   @media (min-width: $mb_middle) {
     padding: 0 30px;
 
-    &:before{
+    &:before {
       left: -197px;
       top: -45px;
       width: 950px;
@@ -101,22 +105,22 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   @media (min-width: $mb_exlarge) {
     padding: 0 30px 0 278px;
 
-    &.big{
+    &.big {
       padding-left: 128px;
     }
 
-    &:before{
+    &:before {
       left: 47px;
     }
   }
 }
 
-.main-sector{
+.main-sector {
   flex: 1 0 auto;
   position: relative;
 }
 
-._flex{
+._flex {
   display: flex;
   justify-content: flex-start;
   align-content: flex-start;
@@ -124,7 +128,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   flex-wrap: wrap;
 }
 
-.btn-purple{
+.btn-purple {
   border: 1px solid #7458F8;
   font-weight: 700;
   font-size: 12px;
@@ -139,7 +143,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   cursor: pointer;
   transition: color .2s linear, border .2s linear;
 
-  &::before{
+  &::before {
     content: '';
     position: absolute;
     left: -1px;
@@ -152,16 +156,16 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
     transition: opacity .2s linear;
   }
 
-  span{
+  span {
     position: relative;
   }
 
   @media (any-hover: hover) {
-    &:hover{
+    &:hover {
       border-color: transparent;
       color: #fff;
 
-      &:before{
+      &:before {
         opacity: 1;
       }
     }
@@ -169,7 +173,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
 }
 
 
-.btn-green{
+.btn-green {
   background: linear-gradient(84.09deg, #2DC458 4.37%, #1ABAB0 94.11%);
   border-radius: 50px;
 
@@ -186,7 +190,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   display: block;
   position: relative;
 
-  &::before{
+  &::before {
     content: '';
     position: absolute;
     left: 0;
@@ -199,11 +203,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
     transition: opacity .2s linear;
   }
 
-  span{
+  span {
     display: block;
     position: relative;
 
-    &::before{
+    &::before {
       content: '';
       position: absolute;
       left: -26px;
@@ -216,15 +220,15 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   }
 
   @media (any-hover: hover) {
-    &:hover{
-      &::before{
+    &:hover {
+      &::before {
         opacity: 1;
       }
     }
   }
 }
 
-.btn-orange{
+.btn-orange {
   background: linear-gradient(84.09deg, #EE4B60 4.37%, #FF8718 94.11%);
   border-radius: 50px;
 
@@ -242,7 +246,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   text-decoration: none;
   position: relative;
 
-  &::before{
+  &::before {
     content: '';
     position: absolute;
     left: 0;
@@ -255,13 +259,13 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
     transition: opacity .2s linear;
   }
 
-  span{
+  span {
     display: inline-block;
     vertical-align: top;
     padding-left: 35px;
     position: relative;
 
-    &::before{
+    &::before {
       content: '';
       position: absolute;
       left: 0;
@@ -274,49 +278,46 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
   }
 
   @media (any-hover: hover) {
-    &:hover{
-      &::before{
+    &:hover {
+      &::before {
         opacity: 1;
       }
     }
   }
 }
 
-.mob-menu-btn
-{
+.mob-menu-btn {
   flex-shrink: 0;
   margin-left: 10px;
   padding: 13px 10px;
   box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
 }
 
-.header__mob-menu-btn
-{
+.header__mob-menu-btn {
   margin-left: 34px;
 
-  @media (min-width: $mb_exlarge)
-  {
+  @media (min-width: $mb_exlarge) {
     display: none;
   }
 }
 
-.page-head{
+.page-head {
   margin-bottom: 30px;
 
-  &__title{
+  &__title {
     font-weight: 300;
     font-size: 32px;
     line-height: 1.12;
 
     color: #1C1C1C;
 
-    span{
+    span {
       display: inline-block;
       vertical-align: top;
       padding-bottom: 19px;
       position: relative;
 
-      &::before{
+      &::before {
         content: '';
         position: absolute;
         left: 0;
@@ -331,7 +332,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
 }
 
 
-.footer{
+.footer {
   padding: 53px 0 30px;
   position: relative;
 

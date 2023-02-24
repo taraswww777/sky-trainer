@@ -44,7 +44,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-/* @import 'foundation-sites/scss/foundation.scss';
+/* ;
 @import '../../../../sass/colors'; */
 @import "../../../../sass/media";
 

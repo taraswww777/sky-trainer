@@ -121,7 +121,7 @@ export default {
 		border-radius: 50px;
 
 		font: 12px "Inter", Helvetica, Roboto, Arial, sans-serif;
-		color: #29343E; 
+		color: #29343E;
 		margin: 0;
 		box-shadow: none;
 
@@ -175,7 +175,7 @@ export default {
 	}
 }
 
-/* @import 'foundation-sites/scss/foundation.scss';
+/* ;
 @import '../../../../sass/colors';
 
 .loginForm {

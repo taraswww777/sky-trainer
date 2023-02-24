@@ -94,7 +94,7 @@ export default {
 };
 </script>
 <style lang="scss">
-/* @import 'foundation-sites/scss/foundation.scss';
+/* ;
 @import '../../../../sass/colors'; */
 @import "../../../../sass/media";
 

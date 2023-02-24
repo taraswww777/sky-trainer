@@ -7,8 +7,10 @@ import TagList from './TagList.vue';
 import HelpPanel from './HelpPanel.vue';
 import SearchInput from './SearchInput.vue';
 import TimeWidget from './TimeWidget.vue';
+import Slider from './Slider.vue';
 
 export {
+  Slider,
   HelpPanel,
   TagList,
   Loader,

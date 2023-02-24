@@ -78,7 +78,7 @@ export default {
 	}
 }
 
-/* @import 'foundation-sites/scss/foundation.scss';
+/* ;
 @import '../../../../sass/colors'; */
 
 /* .primaryButton {
