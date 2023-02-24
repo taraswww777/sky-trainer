@@ -13,8 +13,8 @@
         <div :class="bem('slider')">
           <Slider
             :items="[
-             'Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому. ' +
-             'Просто запускайте курсы и тренируйтесь!'
+             'Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому.',
+             'Просто запускайте курсы и тренируйтесь!',
              ]"
           />
         </div>
@@ -106,6 +106,7 @@ export default {
 
   &__slider {
     margin-top: 15px;
+    color: #FFFFFF;
   }
 
   @media (min-width: $mb_small) {
@@ -208,12 +209,7 @@ export default {
 
     &__slider {
       margin-top: 40px;
-      max-width: 383px;
-    }
-
-    &__desc {
-      font-size: 14px;
-      line-height: 1.71;
+      width: 100%;
     }
   }
 
