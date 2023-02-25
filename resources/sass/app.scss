@@ -2,7 +2,7 @@
 
 @import "./media";
 *, *::before, *::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 div, dl, dt, dd, ul, ol, li, pre, form, p, blockquote, th, td,

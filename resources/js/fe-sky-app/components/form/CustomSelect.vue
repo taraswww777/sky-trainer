@@ -4,7 +4,7 @@
       :class="bem('placeholder', {active: isActive})"
       @click="onToggle"
     >
-      {{ options.find(({id}) => value === id).caption }}
+      {{ options.find(({id}) => value === id)?.caption }}
     </div>
 
     <div :class="bem('list')" v-if="isOpen">
@@ -78,6 +78,7 @@ export default {
 <style scoped lang="scss">
 .custom-select {
   position: relative;
+  width: 100%;
 
   &__placeholder {
     width: 100%;
