@@ -39,7 +39,7 @@
             </div>
           </swiper-slide>
 
-          <div class="slider-pagination" />
+          <div class="slider-pagination"></div>
         </swiper>
       </div>
 
@@ -153,6 +153,12 @@ export default {
     color: #FFFFFF;
   }
 
+  &__desc {
+    font-size: 12px;
+    line-height: 1.33;
+    color: #FFFFFF;
+  }
+
   @media (min-width: $mb_small) {
     &:before {
       left: 0;
@@ -254,6 +260,7 @@ export default {
     &__slider {
       margin-top: 40px;
       width: 100%;
+      max-width: 383px;
     }
     // возможно лишнее
     &__desc {

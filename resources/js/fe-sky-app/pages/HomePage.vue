@@ -126,13 +126,19 @@ export default {
 
     &-col{
       width: calc(100%/3 - 24px);
-      margin: 30px 0 0 24px;
+      margin-left: 24px;
       min-width: 280px;
       flex-grow: 1;
     }
 
     &-col > *{
       min-height: 100%;
+    }
+  }
+
+  @media (min-width: $mb_middle) {
+    &-col{
+      margin-top: 30px;
     }
   }
 
