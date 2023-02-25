@@ -31,6 +31,8 @@
           </div>
 
           <div :class="bem('colr')">
+			<FunnelStage/>
+
             <SpeedSpeech/>
 
             <QualityControl/>
@@ -50,6 +52,7 @@ import DialogPanel from './components/DialogPanel.vue';
 import StartPanel from './components/StartPanel.vue';
 import SpeedSpeech from './components/SpeedSpeech.vue';
 import QualityControl from './components/QualityControl.vue';
+import FunnelStage from './components/FunnelStage.vue';
 
 const name = 'CurrentCoursePage';
 
@@ -62,6 +65,7 @@ export default {
     StartPanel,
     SpeedSpeech,
     QualityControl,
+    FunnelStage,
   },
   data: () => ({
     status: STATUSES.new,
