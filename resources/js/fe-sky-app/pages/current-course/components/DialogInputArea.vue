@@ -1,20 +1,15 @@
 <template>
-    <form :class="bem()" @submit="pushMessage">
-        <button
-            :class="bem('btn-rec', `${isOnRec && 'recording'}`)"
-            type="button"
-            @click="onRec"
-        >
-            <img src="./mic.svg">
-        </button>
+  <form :class="bem()" @submit="pushMessage">
+    <button
+      :class="bem('btn-rec', `${isOnRec && 'recording'}`)"
+      type="button"
+      @click="onRec"
+    >
+      <img src="./mic.svg">
+    </button>
 
     <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу"></textarea>
-        <!-- <input
-            :class="bem('textarea')"
-            type="text"
-            v-model="speechResult"
-            placeholder="Введите фразу"/> -->
-    </form>
+  </form>
 </template>
 
 <script>
@@ -45,7 +40,6 @@ export default {
       this.speechResult = result[0].transcript;
       this.speechTimeStamp = event.timeStamp;
       if (result.isFinal) {
-        console.log('result:', result);
         this.pushMessage();
         this.isOnRec = false;
       }
@@ -61,26 +55,30 @@ export default {
         courseId: this.courseId,
         speechResult: this.speechResult,
         timing: this.speechTimeStamp,
-      }).then(({
-        data: {
-          dialog_logs, next_phrases, dialog_end, $phrase,
-        },
-      }) => {
-        this.speechResult = undefined;
-        this.$store.dispatch('setDialogLogs', dialog_logs);
-        this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
+      })
+        .then(({
+          data: {
+            dialog_logs,
+            next_phrases,
+            dialog_end,
+            $phrase,
+          },
+        }) => {
+          this.speechResult = undefined;
+          this.$store.dispatch('setDialogLogs', dialog_logs);
+          this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
-        const audio = new Audio($phrase.audio);
-        audio.play();
+          const audio = new Audio($phrase.audio);
+          audio.play();
 
-        setTimeout(() => {
-          this.scrollToBottom();
+          setTimeout(() => {
+            this.scrollToBottom();
+          });
+
+          if (dialog_end) {
+            alert('Диалог заверщён');
+          }
         });
-
-        if (dialog_end) {
-          alert('Диалог заверщён');
-        }
-      });
     },
     scrollToBottom() {
       const container = document.querySelector('#DialogPanel__messages');
@@ -102,39 +100,38 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/* @import '../../../../../sass/mixins'; */
 @import "../../../../../sass/media";
 
 .dialog-input-area {
-    padding: 25px;
-    background: #EAEEF6;
-    display: flex;
-    flex-wrap: nowrap;
+  padding: 25px;
+  background: #EAEEF6;
+  display: flex;
+  flex-wrap: nowrap;
   border-radius: 0 0 8px 8px;
 
-    &__btn-rec {
-        padding: 12px;
-        background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
-        cursor: pointer;
-        width: 36px;
-        height: 36px;
+  &__btn-rec {
+    padding: 12px;
+    background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     flex-shrink: 0;
     margin: 5px 12px 0 0;
 
-        &--recording {
-            background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
-        }
+    &--recording {
+      background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
     }
+  }
 
-    &__textarea {
-        margin: 0;
-        padding: 15px 18px;
+  &__textarea {
+    margin: 0;
+    padding: 15px 18px;
 
-        background: #FFFFFF;
+    background: #FFFFFF;
     border-radius: 8px;
 
-        resize: none;
+    resize: none;
 
     height: 110px;
     width: 100%;
@@ -148,21 +145,18 @@ export default {
     scrollbar-color: #EAEAEA #8C63F7;
     scrollbar-width: thin;
 
-    &::-webkit-scrollbar
-    {
+    &::-webkit-scrollbar {
       width: 5px;
       height: 5px;
 
       background-color: #EAEAEA;
     }
 
-    &::-webkit-scrollbar-track
-    {
+    &::-webkit-scrollbar-track {
       background-color: #EAEAEA;
     }
 
-    &::-webkit-scrollbar-thumb
-    {
+    &::-webkit-scrollbar-thumb {
       background-color: #8C63F7;
     }
   }
@@ -178,7 +172,7 @@ export default {
   }
 
   @media (min-width: $mb_huge) {
-    &__textarea{
+    &__textarea {
       padding: 10px 18px;
       height: 52px;
     }

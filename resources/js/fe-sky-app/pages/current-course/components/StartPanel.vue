@@ -153,13 +153,13 @@ import {requestDialogStart} from '../../../requests';
 import {STATUSES} from '../../../constants/common';
 import {CustomSelect} from '../../../components/form';
 
-const componentName = 'StartPanel';
+const name = 'StartPanel';
 
 // const bem = useBem(componentName);
 const bem = useBem('form');
 
 export default {
-  name: componentName,
+  name,
   components: {
     CustomSelect,
   },
