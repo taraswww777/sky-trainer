@@ -35,7 +35,6 @@ export default {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
 
   &__loader {
     position: absolute;
