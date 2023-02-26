@@ -110,18 +110,29 @@ export default {
   border-radius: 0 0 8px 8px;
 
   &__btn-rec {
-    padding: 12px;
+    padding: 9px;
     background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
     cursor: pointer;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     flex-shrink: 0;
     margin: 5px 12px 0 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		flex-wrap: wrap;
 
     &--recording {
       background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
     }
+
+		img{
+			display: block;
+			max-width: 100%;
+			max-height: 100%;
+		}
   }
 
   &__textarea {
