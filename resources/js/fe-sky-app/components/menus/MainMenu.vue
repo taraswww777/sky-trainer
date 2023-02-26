@@ -44,7 +44,7 @@
 
     <TimeWidget/>
 
-    <button :class="bem('theme')">
+    <button :class="bem('theme')" style="display: none;">
       <span :class="bem('theme-item active')">
         <span :class="bem('theme-icon')">
           <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
