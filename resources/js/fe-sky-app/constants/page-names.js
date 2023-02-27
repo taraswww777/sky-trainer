@@ -8,5 +8,5 @@ export const PAGE_NAMES = {
   forgotPassword: 'forgotPassword',
   register: 'register',
   courses: 'courses',
-  courseItem: 'courseItem',
+  courseItem: 'courseItem'
 };

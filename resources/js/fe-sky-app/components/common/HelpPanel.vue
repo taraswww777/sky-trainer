@@ -28,19 +28,19 @@ export default {
   name: componentName,
   data: () => ({
     bem,
-    isShowHelpText: true,
+    isShowHelpText: true
   }),
   props: {
     helpPhrases: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   methods: {
     toggleIsShowHelpText() {
       this.isShowHelpText = !this.isShowHelpText;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

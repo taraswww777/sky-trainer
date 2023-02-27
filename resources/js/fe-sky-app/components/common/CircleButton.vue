@@ -8,13 +8,13 @@ export default {
   props: {
     crumbs: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     type: {
       type: String,
-      default: 'button',
-    },
-  },
+      default: 'button'
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

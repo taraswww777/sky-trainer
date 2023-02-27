@@ -20,10 +20,10 @@ const bem = useBem(name);
 export default {
   name,
   components: {
-    Loader,
+    Loader
   },
   data: () => ({
-    bem,
+    bem
   }),
   mounted() {
     refreshCurrentUser(this.$store.dispatch);
@@ -31,8 +31,8 @@ export default {
   computed: {
     isLoading() {
       return this.$store.getters.getIsLoading;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

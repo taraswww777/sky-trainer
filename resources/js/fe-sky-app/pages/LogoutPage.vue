@@ -13,6 +13,6 @@ export default {
   beforeMount() {
     removeToken();
     appRouter.push({name: PAGE_NAMES.login});
-  },
+  }
 };
 </script>

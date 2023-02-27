@@ -18,8 +18,8 @@ const bem = useBem('head-user');
 export default {
   props: ['userName', 'userId'],
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 <style lang="scss" scoped>

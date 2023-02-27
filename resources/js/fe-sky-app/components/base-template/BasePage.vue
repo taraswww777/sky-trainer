@@ -23,11 +23,11 @@ export default {
   props: {
     title: {type: String, default: ''},
     crumbs: {type: Array, default: () => []},
-    isLoading: {type: Boolean, default: false},
+    isLoading: {type: Boolean, default: false}
   },
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 <style lang="scss" scoped>

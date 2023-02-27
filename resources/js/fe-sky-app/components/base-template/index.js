@@ -7,5 +7,5 @@ export {
   BasePage,
   BaseHeader,
   BaseFooter,
-  BaseTemplate,
+  BaseTemplate
 };

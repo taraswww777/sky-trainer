@@ -10,5 +10,5 @@ export const appStore = createStore({
     moduleCourses,
     moduleDialog,
     moduleLoadings
-  },
+  }
 });

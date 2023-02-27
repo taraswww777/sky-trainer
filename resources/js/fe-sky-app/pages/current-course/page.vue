@@ -61,7 +61,7 @@ export default {
     DialogPanel,
     StartPanel,
     SpeedSpeech,
-    QualityControl,
+    QualityControl
   },
   data: () => ({
     status: STATUSES.new,
@@ -69,7 +69,7 @@ export default {
     bem,
     stage: undefined,
     training_type: undefined,
-    trainer: undefined,
+    trainer: undefined
   }),
   mounted() {
     this.$store.dispatch('setLoadingStart');
@@ -87,7 +87,7 @@ export default {
     },
     endCall() {
       appRouter.push({name: PAGE_NAMES.courses});
-    },
+    }
   },
   computed: {
     isLoading() {
@@ -104,8 +104,8 @@ export default {
     },
     helpPhrases() {
       return this.$store.getters.getHelpPhrases;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -24,8 +24,8 @@ const bem = useBem(componentName);
 export default {
   name: componentName,
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 

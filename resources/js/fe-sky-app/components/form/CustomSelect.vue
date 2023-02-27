@@ -33,20 +33,20 @@ export default {
   name,
   props: {
     options: {
-      type: Array,
+      type: Array
     },
     value: {
-      type: String,
+      type: String
     },
     onChangeValue: {
       type: Function,
-      default: noop,
-    },
+      default: noop
+    }
   },
   data: () => ({
     bem,
     isOpen: false,
-    isActive: false,
+    isActive: false
   }),
   methods: {
     onChange(v) {
@@ -64,14 +64,14 @@ export default {
     },
     isSelected(option) {
       return Boolean(this.value === option.id);
-    },
+    }
   },
   mounted() {
     document.addEventListener('click', this.onHide.bind(this), true);
   },
   beforeUnmount() {
     document.removeEventListener('click', this.onHide, true);
-  },
+  }
 };
 </script>
 

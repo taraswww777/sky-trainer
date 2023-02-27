@@ -13,9 +13,9 @@ export default {
   props: {
     crumbs: {
       type: Array,
-      default: () => [],
-    },
-  },
+      default: () => []
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

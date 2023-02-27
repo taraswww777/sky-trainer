@@ -19,11 +19,11 @@ export default {
   props: {
     title: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>

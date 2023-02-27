@@ -26,11 +26,11 @@ export default {
   name,
   props: {
     items: Array,
-    default: [],
+    default: []
   },
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 <style lang="scss" scoped>

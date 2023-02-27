@@ -14,13 +14,13 @@ export default {
     activeTabId: String,
     tabs: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     onChangeTab: {
       type: Function,
-      default: noop,
-    },
-  },
+      default: noop
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

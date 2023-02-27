@@ -161,22 +161,22 @@ const bem = useBem('form');
 export default {
   name,
   components: {
-    CustomSelect,
+    CustomSelect
   },
   props: {
     status: {
-      type: String,
+      type: String
     },
     onChangeStatus: {
-      type: Function,
-    },
+      type: Function
+    }
   },
   data: () => ({
     bem,
     STATUSES,
     stageId: 1,
     training_type: 1,
-    trainer: 1,
+    trainer: 1
   }),
   methods: {
     start(e) {
@@ -187,7 +187,7 @@ export default {
         courseId: this.$route.params.courseId,
         phaseId: this.training_type,
         stageId: this.stageId,
-        trainerId: this.trainer,
+        trainerId: this.trainer
       })
         .then(({data}) => {
           console.log('dialogData:', data);
@@ -204,7 +204,7 @@ export default {
     },
     onChange_trainingTypeId(option) {
       this.training_type = option.id;
-    },
+    }
   },
   computed: {
     isLoading() {
@@ -221,8 +221,8 @@ export default {
     },
     helpPhrases() {
       return this.$store.getters.getHelpPhrases;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
