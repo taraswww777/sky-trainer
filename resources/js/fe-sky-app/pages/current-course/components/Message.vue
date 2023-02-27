@@ -24,20 +24,20 @@ const bem = useBem(name);
 export default {
   name,
   data: () => ({
-    bem,
+    bem
   }),
   props: {
     directionType: {
       /** out - manager / in - bot  */
-      type: String,
+      type: String
     },
     caption: {
-      type: String,
+      type: String
     },
     text: {
-      type: String,
-    },
-  },
+      type: String
+    }
+  }
 };
 </script>
 

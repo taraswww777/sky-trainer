@@ -24,7 +24,7 @@
 
 export default {
   data: () => ({
-    isOpen: false,
+    isOpen: false
   }),
   methods: {
     closeMenu() {
@@ -32,8 +32,8 @@ export default {
     },
     openMenu() {
       this.isOpen = true;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

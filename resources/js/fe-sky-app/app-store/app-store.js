@@ -9,6 +9,6 @@ export const appStore = createStore({
     moduleUser,
     moduleCourses,
     moduleDialog,
-    moduleLoadings,
-  },
+    moduleLoadings
+  }
 });

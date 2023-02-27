@@ -14,8 +14,8 @@ const bem = useBem(name);
 export default {
   name,
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 <style lang="scss" scoped>

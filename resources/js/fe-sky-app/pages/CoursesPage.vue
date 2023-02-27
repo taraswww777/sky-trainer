@@ -26,7 +26,7 @@ export default {
   computed: {
     courses() {
       return this.$store.getters.getCourses;
-    },
-  },
+    }
+  }
 };
 </script>

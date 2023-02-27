@@ -74,16 +74,16 @@ const bem = useBem('aside');
 
 export default {
   props: {
-    onClose: Function,
+    onClose: Function
   },
   data: () => ({
-    bem,
+    bem
   }),
   computed: {
     user() {
       return this.$store.getters.getCurrentUserInfo;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

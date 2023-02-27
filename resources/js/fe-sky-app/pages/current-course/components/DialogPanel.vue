@@ -29,17 +29,17 @@ export default {
   name,
   components: {
     Message,
-    DialogInputArea,
+    DialogInputArea
   },
   data: () => ({
-    bem,
+    bem
   }),
   props: {
     dialogLogs: {
       type: Array,
-      default: () => [],
-    },
-  },
+      default: () => []
+    }
+  }
 };
 </script>
 

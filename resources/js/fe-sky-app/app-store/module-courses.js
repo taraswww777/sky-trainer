@@ -3,7 +3,7 @@ import {map} from 'lodash';
 export const moduleCourses = {
   state: {
     courses: [],
-    currentCourse: {},
+    currentCourse: {}
   },
   getters: {
     getCourses(state) {
@@ -14,7 +14,7 @@ export const moduleCourses = {
     },
     getCurrentCourseId(state) {
       return state.currentCourse?.id;
-    },
+    }
   },
   mutations: {
     setCourses(state, courses) {
@@ -22,7 +22,7 @@ export const moduleCourses = {
     },
     setCurrentCourse(state, course) {
       state.currentCourse = course;
-    },
+    }
   },
   actions: {
     setCourses({commit}, courses) {
@@ -36,10 +36,10 @@ export const moduleCourses = {
           training_types: map(course?.extra?.training_types, (value, key) => ({
             id: key,
             caption: value,
-            value,
-          })),
-        },
+            value
+          }))
+        }
       });
-    },
-  },
+    }
+  }
 };

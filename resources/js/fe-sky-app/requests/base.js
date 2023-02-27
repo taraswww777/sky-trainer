@@ -5,11 +5,11 @@ import {API_URL} from './constants';
 export const axiosPost = (axiosParams = {}) => (
   axios({
     headers: {
-      Accept: 'application/json',
+      Accept: 'application/json'
     },
     method: 'post',
     baseURL: API_URL,
-    ...axiosParams,
+    ...axiosParams
   })
 );
 
@@ -17,10 +17,10 @@ export const axiosAuthGet = (axiosParams = {}) => (
   axios({
     headers: {
       Accept: 'application/json',
-      Authorization: `Bearer ${getToken()}`,
+      Authorization: `Bearer ${getToken()}`
     },
     method: 'get',
     baseURL: API_URL,
-    ...axiosParams,
+    ...axiosParams
   })
 );

@@ -18,8 +18,8 @@ const bem = useBem('time-block');
 
 export default {
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 <style lang="scss" scoped>

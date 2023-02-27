@@ -38,11 +38,11 @@ export default {
   name: componentName,
   components: {
     LoginForm,
-    Slider,
+    Slider
   },
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 

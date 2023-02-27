@@ -19,5 +19,5 @@ export {
   PrimaryButton,
   CircleButton,
   SearchInput,
-  TimeWidget,
+  TimeWidget
 };

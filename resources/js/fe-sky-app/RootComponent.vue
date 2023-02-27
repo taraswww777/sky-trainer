@@ -1,6 +1,6 @@
 <template>
   <div :class="bem()">
-    <div :class="bem('loader')">
+    <div :class="bem('loader')" v-if="isLoading">
       <Loader/>
     </div>
     <div :class="bem('page')">
@@ -20,14 +20,19 @@ const bem = useBem(name);
 export default {
   name,
   components: {
-    Loader,
+    Loader
   },
   data: () => ({
-    bem,
+    bem
   }),
   mounted() {
     refreshCurrentUser(this.$store.dispatch);
   },
+  computed: {
+    isLoading() {
+      return this.$store.getters.getIsLoading;
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -38,6 +43,9 @@ export default {
 
   &__loader {
     position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
   }
 
   &__page {

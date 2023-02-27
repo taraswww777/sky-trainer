@@ -4,8 +4,8 @@ export const requestLogin = async ({email, password}) => (
   axiosPost({
     params: {
       email,
-      password,
+      password
     },
-    url: '/token',
+    url: '/token'
   })
 );

@@ -12,11 +12,11 @@ import {
   faChartPie,
   faInfo,
   faSpinner,
-  faXmark,
+  faXmark
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFolderClosed,
-  faUser, faClock, faIdBadge,
+  faUser, faClock, faIdBadge
 } from '@fortawesome/free-regular-svg-icons';
 import RootComponent from '../RootComponent.vue';
 import * as allComponents from '../components';
@@ -44,7 +44,7 @@ export const initFeSkyApp = (rootSelector) => {
     faClock,
     faChartPie,
     faFolderClosed,
-    faSpinner,
+    faSpinner
   );
   // eslint-disable-next-line
     app.component('Fa', FontAwesomeIcon);

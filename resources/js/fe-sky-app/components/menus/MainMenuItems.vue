@@ -119,20 +119,20 @@ export default {
     PAGE_NAMES,
     bem,
     isOpen: true,
-    isActive: false,
+    isActive: false
   }),
   props: {
     onClose: {
       type: Function,
-      default: noop,
-    },
+      default: noop
+    }
   },
   methods: {
     toggle() {
       this.isOpen = !this.isOpen;
       this.isActive = !this.isActive;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

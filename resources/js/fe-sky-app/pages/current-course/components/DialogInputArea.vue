@@ -26,12 +26,12 @@ export default {
   data: () => ({
     bem,
     isOnRec: false,
-    speechResult: undefined,
+    speechResult: undefined
   }),
   computed: {
     courseId() {
       return this.$store.getters.getCurrentCourseId;
-    },
+    }
   },
   mounted() {
     // Используем колбек для обработки результатов
@@ -54,15 +54,15 @@ export default {
       requestDialogSpeechResult({
         courseId: this.courseId,
         speechResult: this.speechResult,
-        timing: this.speechTimeStamp,
+        timing: this.speechTimeStamp
       })
         .then(({
           data: {
             dialog_logs,
             next_phrases,
             dialog_end,
-            $phrase,
-          },
+            $phrase
+          }
         }) => {
           this.speechResult = undefined;
           this.$store.dispatch('setDialogLogs', dialog_logs);
@@ -94,8 +94,8 @@ export default {
         this.isOnRec = false;
         recognizer.stop();
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -118,21 +118,21 @@ export default {
     border-radius: 50%;
     flex-shrink: 0;
     margin: 5px 12px 0 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
-		flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
 
     &--recording {
       background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
     }
 
-		img{
-			display: block;
-			max-width: 100%;
-			max-height: 100%;
-		}
+    img{
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 
   &__textarea {

@@ -2,12 +2,12 @@ import {axiosAuthGet} from './base';
 
 export const requestCourses = () => (
   axiosAuthGet({
-    url: '/courses',
+    url: '/courses'
   })
 );
 
 export const requestCourseById = (courseId) => (
   axiosAuthGet({
-    url: `/courses/${courseId}`,
+    url: `/courses/${courseId}`
   })
 );

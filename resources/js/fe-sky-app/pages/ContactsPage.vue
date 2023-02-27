@@ -19,14 +19,14 @@ export default {
   props: {
     title: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   data: () => ({
-    bem,
+    bem
   }),
   mounted() {
     // console.log('Example:mounted: this.$options', this.$options)
-  },
+  }
 };
 </script>

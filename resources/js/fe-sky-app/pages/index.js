@@ -19,5 +19,5 @@ export {
   LoginPage,
   CurrentCoursePage,
   CoursesPage,
-  LogoutPage,
+  LogoutPage
 };

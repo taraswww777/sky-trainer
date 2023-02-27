@@ -10,8 +10,8 @@ const bem = useBem('search');
 
 export default {
   data: () => ({
-    bem,
-  }),
+    bem
+  })
 };
 </script>
 <style lang="scss" scoped>
