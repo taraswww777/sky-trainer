@@ -152,7 +152,6 @@ import useBem from 'vue3-bem';
 import {requestDialogStart} from '../../../requests';
 import {STATUSES} from '../../../constants/common';
 import {CustomSelect} from '../../../components/form';
-import CommonNotice from '../../../components/common/CommonNotice.vue';
 
 const name = 'StartPanel';
 
@@ -163,7 +162,6 @@ export default {
   name,
   components: {
     CustomSelect,
-	CommonNotice
   },
   props: {
     status: {
