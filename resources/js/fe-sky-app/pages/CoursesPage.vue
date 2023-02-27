@@ -1,6 +1,6 @@
 <template>
   <BaseTemplate>
-    <Breadcrumbs
+    <CommonBreadcrumbs
       :crumbs="[
       {url:'/', title:'Гланая'},
       {title:'Все курсы'}

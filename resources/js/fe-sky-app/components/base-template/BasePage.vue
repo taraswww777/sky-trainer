@@ -1,6 +1,6 @@
 <template>
     <div :class="bem()">
-        <Breadcrumbs :crumbs="crumbs"/>
+        <CommonBreadcrumbs :crumbs="crumbs"/>
 
         <div class="page-head">
             <h1 class="page-head__title">
@@ -35,9 +35,12 @@ export default {
 @import '../../../../sass/colors'; */
 @import "../../../../sass/media";
 
-.base-page {
-    /* @include xy-grid();
+.base-page
+{
+    padding: 30px;
 
+    border-radius: 8px;
+    /* @include xy-grid();
     width: 100%;
     padding: 30px;
     border-radius: 8px;
@@ -52,10 +55,7 @@ export default {
         padding: 0;
         line-height: 1;
     } */
-
-    background: #fff;
-    padding: 30px;
-    box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 0px 44px rgba(0, 0, 0, .1);
 }
 </style>
