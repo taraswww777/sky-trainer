@@ -13,36 +13,31 @@
       <div :class="bem('line')">
         <div :class="bem('label')">Выберете тип тренировки</div>
 
-        <div :class="bem('field')">
-          <!-- v-for="training_type in course.extra.training_types"-->
+        <div :class="bem('field')" v-if="course?.extra?.training_types">
+          <p style="display: none">{{ course?.extra?.training_types }}</p>
           <CustomSelect
             :value="training_type"
             :onChangeValue="onChange_trainingTypeId"
-            :options="[
-              {id:1, caption:'Тренировка по стадиям'},
-              {id:2, caption:'Потребности'},
-              {id:3, caption:'Презентация'},
-              {id:4, caption:'Возражения'}
-            ]"
+            :options="[{id:'1', caption:'Тренировка по стадиям'}]"
           />
+          <!--            :options="course?.extra?.training_types"-->
+          <!--          :options="[-->
+          <!--          {id:1, caption:'Тренировка по стадиям'},-->
+          <!--          {id:2, caption:'Потребности'},-->
+          <!--          {id:3, caption:'Презентация'},-->
+          <!--          {id:4, caption:'Возражения'}-->
+          <!--          ]"-->
         </div>
       </div>
 
-      <!--      v-if="course?.extra?.stages"-->
       <div :class="bem('line')">
         <div :class="bem('label')">Выберете стадию</div>
 
-        <div :class="bem('field')">
-          <!-- v-for="stage in course.extra.stages"-->
+        <div :class="bem('field')" v-if="course?.extra?.stages">
           <CustomSelect
             :value="stageId"
             :onChangeValue="onChange_stageId"
-            :options="[
-              {id:1, caption:'Приветствие'},
-              {id:2, caption:'Потребности'},
-              {id:3, caption:'Презентация'},
-              {id:4, caption:'Возражения'}
-            ]"
+            :options="course.extra.stages"
           />
         </div>
       </div>
@@ -54,7 +49,6 @@
           <div class="checkbox-duble">
             <label class="checkbox-duble__label">
               <input type="checkbox" name="" checked="">
-
               <span class="checkbox-duble__box">
                 <span class="checkbox-duble__text">Открытый</span>
                 <span class="checkbox-duble__text">Агрессивный</span>
@@ -73,49 +67,7 @@
         </button>
       </div>
     </div>
-    <!-- <div class="cell small-4">
-        <label>
-            Выберете тип тренировки
-            <select
-        class="margin-bottom-0"
-        v-if="course?.extra?.training_types"
-        v-model="training_type"
-        required
-      >
-        <option disabled value="">Select your training type</option>
-        <option key="1" value="1">
-          Тренировка 1
-        </option>
-        <option
-          v-for="training_type in course.extra.training_types"
-          :key="training_type.id"
-          :value="training_type.value"
-        >
-          {{ training_type.caption }}
-        </option>
-      </select>
-        </label>
-    </div>
-    <div class="cell small-4">
-        <label>
-            Выберете стадию
-            <select
-      class="margin-bottom-0"
-      v-if="course?.extra?.stages"
-      v-model="stageId"
-      required
-    >
-      <option disabled value="">Select your stage</option>
-      <option
-        v-for="stage in course.extra.stages"
-        :key="stage.id"
-        :value="stage.id"
-      >
-        {{ stage.caption }}
-      </option>
-    </select>
-        </label>
-    </div>
+    <!--
     <div class="cell small-4">
         <label>
             Тип диалога
@@ -136,15 +88,7 @@
             </select>
         </label>
     </div>
-    <div class="cell small-12 margin-top-1 margin-bottom-1">
-        <button
-            type="submit"
-            :class="bem('btn-start-call')"
-        >
-            <Fa icon="phone"/>
-            Начать звонок
-        </button>
-    </div> -->
+    -->
   </form>
 </template>
 <script>
@@ -174,9 +118,9 @@ export default {
   data: () => ({
     bem,
     STATUSES,
-    stageId: 1,
-    training_type: 1,
-    trainer: 1
+    stageId: '1',
+    training_type: '1',
+    trainer: '1'
   }),
   methods: {
     start(e) {

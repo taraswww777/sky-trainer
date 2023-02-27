@@ -4,7 +4,7 @@
       :class="bem('placeholder', {active: isActive})"
       @click="onToggle"
     >
-      {{ options.find(({id}) => value === id)?.caption }}
+      {{ options.find(({id}) => value === id)?.caption}}
     </div>
 
     <div :class="bem('list')" v-if="isOpen">
@@ -88,14 +88,13 @@ export default {
 
     font-weight: 400;
     font-size: 13px;
-    line-height: 46px;
 
     color: #29343E;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 
-    padding: 0 49px 0 19px;
+    padding: 16px 30px 16px 20px;
     position: relative;
     transition: border-color .2s linear;
 
