@@ -1,10 +1,10 @@
 <template>
     <div :class="bem()">
-		<div :class="bem('title')">Стадия воронки</div>
+    <div :class="bem('title')">Стадия воронки</div>
 
-		<SliderNames/>
+    <SliderNames/>
 
-		<SliderNumbers/>
+    <SliderNumbers/>
     </div>
 </template>
 
@@ -18,12 +18,12 @@ const bem = useBem(componentName);
 
 export default {
   name: componentName,
-	components: {
-		SliderNames,
-		SliderNumbers
-    },
+  components: {
+    SliderNames,
+    SliderNumbers
+  },
   data: () => ({
-    bem,
+    bem
   })
 };
 </script>

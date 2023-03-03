@@ -66,6 +66,9 @@ const bem = useBem(name);
 
 export default {
   name,
+  components: {
+    CustomSelect
+  },
   data: () => ({
     bem
   })

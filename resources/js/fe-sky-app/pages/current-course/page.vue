@@ -31,7 +31,7 @@
           </div>
 
           <div :class="bem('colr')">
-			<FunnelStage/>
+      <FunnelStage/>
 
             <SpeedSpeech/>
 

@@ -1,36 +1,44 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "airbnb",
-        "eslint-config-airbnb/base",
-        "plugin:vue/vue3-essential"
-    ],
-    "overrides": [
-    ],
-    "parserOptions": {
-        "ecmaVersion": 2021,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "vue"
-    ],
-    "rules": {
-      "max-len": ["error", 120],
-      "comma-dangle": ["error", {
-        "arrays": "never",
-        "objects": "never",
-        "imports": "never",
-        "exports": "never",
-        "functions": "never"
-      }],
-      "indent": ["error", 2],
-        "object-curly-spacing": ["error", "never"],
-        "import/prefer-default-export": "off",
-        "new-cap": "off",
-        "import/no-extraneous-dependencies": "off"
-    }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "eslint-config-airbnb/base",
+    "plugin:vue/vue3-essential"
+  ],
+  "overrides": [
+  ],
+  "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "vue"
+  ],
+  "rules": {
+    "max-len": ["warn", 120],
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "objects": "never",
+      "imports": "never",
+      "exports": "never",
+      "functions": "never"
+    }],
+    "indent": ["error", 2],
+    "object-curly-spacing": ["error", "never"],
+    "import/prefer-default-export": "off",
+    "new-cap": "off",
+    "import/no-extraneous-dependencies": "off",
+    "consistent-return": "warn",
+    "import/no-cycle": "warn",
+    "no-alert": "warn",
+    "no-console": "warn",
+    "vue/no-unused-components": "warn",
+    "import/no-unresolved": "warn",
+    "no-param-reassign": "warn",
+    "camelcase": "warn"
+  }
 }

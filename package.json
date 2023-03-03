@@ -1,39 +1,42 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "eslint": "eslint \"@(resources)/**/*.@(js|vue)\" --cache --cache-location \"./.eslint-cache/\"",
-        "eslint-fix": "npm run eslint -- --fix"
-    },
-    "devDependencies": {
-        "@vue/compiler-sfc": "3.2.45",
-        "axios": "1.2.5",
-        "cross-env": "7.0",
-        "eslint": "8.34.0",
-        "eslint-config-airbnb": "19.0.4",
-        "eslint-plugin-vue": "9.9.0",
-        "laravel-vite-plugin": "0.7.3",
-        "lodash": "4.17.21",
-        "resolve-url-loader": "3.1.5",
-        "sass": "1.57.1",
-        "scss": "0.2.4",
-        "vite": "4.0.0",
-        "vue": "3.2.45",
-        "vue-i18n": "9.2.2",
-        "vue-loader": "17.0.1",
-        "vue-router": "4.1.6",
-        "vue-template-compiler": "2.7.14",
-        "vue3-bem": "1.0.8",
-        "vuex": "4.1.0"
-    },
-    "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "6.2.1",
-        "@fortawesome/free-brands-svg-icons": "6.2.1",
-        "@fortawesome/free-regular-svg-icons": "6.2.1",
-        "@fortawesome/free-solid-svg-icons": "6.2.1",
-        "@fortawesome/vue-fontawesome": "3.0.2",
-        "@vitejs/plugin-vue": "4.0.0",
-        "swiper": "^9.0.5"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "npm run eslint",
+    "eslint": "eslint \"@(resources)/**/*.@(js|vue)\" --cache --cache-location \"./.eslint-cache/\"",
+    "eslint-fix": "npm run eslint -- --fix",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "3.2.45",
+    "axios": "1.2.5",
+    "cross-env": "7.0",
+    "eslint": "8.34.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-plugin-vue": "9.9.0",
+    "husky": "8.0.3",
+    "laravel-vite-plugin": "0.7.3",
+    "lodash": "4.17.21",
+    "resolve-url-loader": "3.1.5",
+    "sass": "1.57.1",
+    "scss": "0.2.4",
+    "vite": "4.0.0",
+    "vue": "3.2.45",
+    "vue-i18n": "9.2.2",
+    "vue-loader": "17.0.1",
+    "vue-router": "4.1.6",
+    "vue-template-compiler": "2.7.14",
+    "vue3-bem": "1.0.8",
+    "vuex": "4.1.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "6.2.1",
+    "@fortawesome/free-brands-svg-icons": "6.2.1",
+    "@fortawesome/free-regular-svg-icons": "6.2.1",
+    "@fortawesome/free-solid-svg-icons": "6.2.1",
+    "@fortawesome/vue-fontawesome": "3.0.2",
+    "@vitejs/plugin-vue": "4.0.0",
+    "swiper": "9.0.5"
+  }
 }
