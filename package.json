@@ -20,6 +20,7 @@
         "scss": "0.2.4",
         "vite": "4.0.0",
         "vue": "3.2.45",
+        "vue-i18n": "9.2.2",
         "vue-loader": "17.0.1",
         "vue-router": "4.1.6",
         "vue-template-compiler": "2.7.14",
