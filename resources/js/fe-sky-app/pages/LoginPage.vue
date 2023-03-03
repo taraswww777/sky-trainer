@@ -10,6 +10,33 @@
       <div :class="bem('col-left')">
         <div :class="bem('title')">С каждым днём ты становишься лучше, чем вчера!</div>
 
+				<swiper
+					:class="bem('slider')"
+					:modules="modules"
+					:slides-per-view="1"
+					:space-between="20"
+					:pagination="{
+						clickable: true,
+						el: '.slider-pagination',
+						bulletActiveClass: 'active',
+					}"
+					:loop="true"
+					@swiper="onSwiper"
+					@slideChange="onSlideChange"
+				>
+					<swiper-slide :class="bem('slide')">
+						<div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь  новому. Просто запускайте курсы и тренируйтесь!</div>
+					</swiper-slide>
+					<swiper-slide :class="bem('slide')">
+						<div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь  новому. Просто запускайте курсы и тренируйтесь!</div>
+					</swiper-slide>
+					<swiper-slide :class="bem('slide')">
+						<div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь  новому. Просто запускайте курсы и тренируйтесь!</div>
+					</swiper-slide>
+
+					<div class="slider-pagination"></div>
+				</swiper>
+			</div>
         <div :class="bem('slider')">
           <Slider
             :items="[
@@ -31,6 +58,15 @@
 import useBem from 'vue3-bem';
 import {LoginForm, Slider} from '../components';
 
+// import Swiper core and required modules
+import { Pagination } from 'swiper';
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/scss';
+import 'swiper/scss/pagination';
+
 const componentName = 'PageLogin';
 const bem = useBem(componentName);
 
@@ -42,7 +78,24 @@ export default {
   },
   data: () => ({
     bem
-  })
+  }),
+	components: {
+		Swiper,
+		SwiperSlide,
+    },
+	setup() {
+		const onSwiper = (swiper) => {
+			console.log(swiper);
+		};
+		const onSlideChange = () => {
+			console.log('slide change');
+		};
+		return {
+			onSwiper,
+			onSlideChange,
+			modules: [Pagination],
+		};
+	},
 };
 </script>
 
@@ -105,7 +158,7 @@ export default {
   }
 
   &__slider {
-    margin-top: 15px;
+    margin: 15px 0 0;
     color: #FFFFFF;
   }
 
@@ -211,6 +264,12 @@ export default {
       margin-top: 40px;
       width: 100%;
     }
+    // возможно лишнее
+    &__desc{
+      font-size: 14px;
+      line-height: 24px;
+      min-height: 108px;
+    }
   }
 
   @media (min-width: $mb_exlarge) {
@@ -218,5 +277,47 @@ export default {
       font-size: 48px;
     }
   }
+}
+</style>
+
+<style lang="scss">
+@import "../../../sass/media";
+
+.slider-pagination{
+	position: relative;
+	bottom: 0;
+	margin-top: 27px;
+	display: flex;
+
+	&.swiper-pagination-bullets{
+		bottom: 0;
+	}
+
+	& .swiper-pagination-bullet{
+		background: #D9D9D9;
+		opacity: 0.55;
+		width: 33px;
+		height: 1px;
+		transition: opacity .2s linear;
+		margin: 0;
+	}
+
+	& .swiper-pagination-bullet + .swiper-pagination-bullet{
+		margin-left: 3px;
+	}
+
+	& .swiper-pagination-bullet.active{
+		opacity: 1;
+	}
+
+	@media (any-hover: hover) {
+		& .swiper-pagination-bullet:hover{
+			opacity: 1;
+		}
+	}
+
+	@media (min-width: $mb_large) {
+		margin-top: 27px;
+	}
 }
 </style>
