@@ -8,69 +8,58 @@
 
     <div :class="bem('row')">
       <div :class="bem('col-left')">
-        <div :class="bem('title')">С каждым днём ты становишься лучше, чем вчера!</div>
-
+        <div :class="bem('title')">{{ $t('pages.login.greeting') }}</div>
         <swiper
           :class="bem('slider')"
           :modules="modules"
           :slides-per-view="1"
           :space-between="20"
           :pagination="{
-						clickable: true,
-						el: '.slider-pagination',
-						bulletActiveClass: 'active',
-					}"
+            clickable: true,
+            el: '.slider-pagination',
+            bulletActiveClass: 'active',
+          }"
           :loop="true"
           @swiper="onSwiper"
           @slideChange="onSlideChange"
         >
           <swiper-slide :class="bem('slide')">
-            <div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому. Просто
-              запускайте курсы и тренируйтесь!
+            <div :class="bem('desc')">
+              {{ $t('pages.login.greetingSlider.0') }}
             </div>
           </swiper-slide>
           <swiper-slide :class="bem('slide')">
-            <div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому. Просто
-              запускайте курсы и тренируйтесь!
+            <div :class="bem('desc')">
+              {{ $t('pages.login.greetingSlider.0') }}
             </div>
           </swiper-slide>
           <swiper-slide :class="bem('slide')">
-            <div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее Приветствуем вас в logoapp тут вы
-              станете умнее и&nbsp;научитесь новому. Просто запускайте курсы и тренируйтесь!
+            <div :class="bem('desc')">
+              {{ $t('pages.login.greetingSlider.0') }}
             </div>
           </swiper-slide>
 
           <div class="slider-pagination"></div>
         </swiper>
       </div>
-      <div :class="bem('slider')">
-        <Slider
-          :items="[
-             'Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому.',
-             'Просто запускайте курсы и тренируйтесь!',
-             ]"
-        />
-      </div>
-    </div>
 
-    <div :class="bem('col-right')">
-      <LoginForm/>
+      <div :class="bem('col-right')">
+        <LoginForm/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import useBem from 'vue3-bem';
-import {LoginForm, Slider} from '../components';
-
-// import Swiper core and required modules
 import {Pagination} from 'swiper';
-// Import Swiper Vue.js components
+// eslint-disable-next-line import/no-unresolved
 import {Swiper, SwiperSlide} from 'swiper/vue';
-
-// Import Swiper styles
+// eslint-disable-next-line import/no-unresolved
 import 'swiper/scss';
+// eslint-disable-next-line import/no-unresolved
 import 'swiper/scss/pagination';
+import {LoginForm} from '../components';
 
 const componentName = 'PageLogin';
 const bem = useBem(componentName);
@@ -78,16 +67,13 @@ const bem = useBem(componentName);
 export default {
   name: componentName,
   components: {
-    LoginForm,
-    Slider
+    Swiper,
+    SwiperSlide,
+    LoginForm
   },
   data: () => ({
     bem
   }),
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
   setup() {
     const onSwiper = (swiper) => {
       console.log(swiper);
@@ -98,9 +84,9 @@ export default {
     return {
       onSwiper,
       onSlideChange,
-      modules: [Pagination],
+      modules: [Pagination]
     };
-  },
+  }
 };
 </script>
 

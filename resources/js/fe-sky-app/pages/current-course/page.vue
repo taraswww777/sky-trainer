@@ -21,7 +21,7 @@
               </div>
 
               <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
-                <span>Завершить звонок</span>
+                <span>{{ t('finishCall') }}</span>
               </button>
             </div>
 
@@ -31,7 +31,7 @@
           </div>
 
           <div :class="bem('colr')">
-			<FunnelStage/>
+            <FunnelStage/>
 
             <SpeedSpeech/>
 
@@ -86,6 +86,9 @@ export default {
       });
   },
   methods: {
+    t(key) {
+      return this.$t(`pages.${PAGE_NAMES.courseItem}.${key}`);
+    },
     onChangeStatus(status) {
       this.status = status;
     },
