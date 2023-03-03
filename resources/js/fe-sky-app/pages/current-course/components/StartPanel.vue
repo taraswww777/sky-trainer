@@ -1,12 +1,12 @@
 <template>
-  <Notice>
+  <CommonNotice>
     <p>
       Супер! Выбери тип занятия и выключи подсказки, если уверен в своих силах.
       На тренировке подсказки не влияют на лояльность.
       В режиме обучения каждая подсказка будет отнимать очки лояльности.
       А на экзамене они будут недоступны. Вот так:)
     </p>
-  </Notice>
+  </CommonNotice>
 
   <form :class="bem()" class="_marg" @submit="start">
     <div :class="bem('flex _four _flex')">
@@ -172,178 +172,225 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../../sass/media";
 
-.form {
-  &._marg {
-    margin-top: 22px;
-  }
-
-  &__line {
-    margin-bottom: 13px;
-    width: 100%;
-  }
-
-  &__label {
-    margin-bottom: 8px;
-
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 28px;
-
-    color: #000000;
-  }
-
-  &__submit {
-    margin-top: 31px;
-    width: 100%;
-  }
-
-  &__flex &__submit,
-  &__flex + &__submit {
-    margin-top: 18px;
-  }
-
-  @media (min-width: $mb_small) {
-    &__flex {
-      margin-left: -16px;
+.form
+{
+    &._marg
+    {
+        margin-top: 22px;
     }
 
-    &__flex &__line {
-      width: calc(100% / 2 - 16px);
-      margin-left: 16px;
-      min-width: 220px;
-      flex-grow: 1;
+    &__line
+    {
+        width: 100%;
+        margin-bottom: 13px;
     }
 
-    &__flex._four &__line {
-      width: calc(100% / 2 - 16px);
-      min-width: 220px;
-      flex-grow: 1;
+    &__label
+    {
+        color: #000;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 28px;
+
+        margin-bottom: 8px;
     }
 
-    &__flex._four &__submit {
-      width: calc(100% / 2 - 16px);
-      min-width: 220px;
-      flex-grow: 1;
-      margin-left: 16px;
-      align-self: flex-end;
-      margin-bottom: 13px;
-    }
-  }
-
-  @media (min-width: $mb_middle) {
-    &__flex &__line {
-      margin-left: 16px;
-      min-width: 1px;
-      flex-grow: 0;
+    &__submit
+    {
+        width: 100%;
+        margin-top: 31px;
     }
 
-    &__flex._four &__line {
-      width: calc(100% / 3 - 16px);
-      min-width: 1px;
-      flex-grow: 0;
+    &__flex &__submit,
+    &__flex + &__submit
+    {
+        margin-top: 18px;
     }
 
-    &__flex._four &__submit {
-      width: 100%;
-      min-width: 1px;
-      flex-grow: 0;
-      margin-bottom: 0;
-      margin-left: 0;
+    @media (min-width: $mb_small)
+    {
+        &__flex
+        {
+            margin-left: -16px;
+        }
+
+        &__flex &__line
+        {
+            flex-grow: 1;
+
+            width: calc(100% / 2 - 16px);
+            min-width: 220px;
+            margin-left: 16px;
+        }
+
+        &__flex._four &__line
+        {
+            flex-grow: 1;
+
+            width: calc(100% / 2 - 16px);
+            min-width: 220px;
+        }
+
+        &__flex._four &__submit
+        {
+            align-self: flex-end;
+            flex-grow: 1;
+
+            width: calc(100% / 2 - 16px);
+            min-width: 220px;
+            margin-bottom: 13px;
+            margin-left: 16px;
+        }
     }
 
-    &__flex._four &__submit-btn {
-      width: calc(100% / 3 - 16px);
-      margin-left: 16px;
-    }
-  }
+    @media (min-width: $mb_middle)
+    {
+        &__flex &__line
+        {
+            flex-grow: 0;
 
-  @media (min-width: $mb_large) {
-    &__flex {
-      margin-left: -30px;
+            min-width: 1px;
+            margin-left: 16px;
+        }
+
+        &__flex._four &__line
+        {
+            flex-grow: 0;
+
+            width: calc(100% / 3 - 16px);
+            min-width: 1px;
+        }
+
+        &__flex._four &__submit
+        {
+            flex-grow: 0;
+
+            width: 100%;
+            min-width: 1px;
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+
+        &__flex._four &__submit-btn
+        {
+            width: calc(100% / 3 - 16px);
+            margin-left: 16px;
+        }
     }
 
-    &__flex &__line {
-      width: calc(100% / 2 - 30px);
-      margin-left: 30px;
-    }
+    @media (min-width: $mb_large)
+    {
+        &__flex
+        {
+            margin-left: -30px;
+        }
 
-    &__flex._four &__line {
-      width: calc(100% / 4 - 30px);
-    }
+        &__flex &__line
+        {
+            width: calc(100% / 2 - 30px);
+            margin-left: 30px;
+        }
 
-    &__flex._four &__submit-btn {
-      width: calc(100% / 4 - 30px);
-      margin-left: 30px;
+        &__flex._four &__line
+        {
+            width: calc(100% / 4 - 30px);
+        }
+
+        &__flex._four &__submit-btn
+        {
+            width: calc(100% / 4 - 30px);
+            margin-left: 30px;
+        }
     }
-  }
 }
 
-.checkbox-duble {
-  input[type=checkbox] {
-    display: none;
-  }
-
-  &__label {
-    display: block;
-    cursor: pointer;
-  }
-
-  &__box {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: normal;
-
-    text-align: center;
-
-    color: #29343E;
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-    position: relative;
-    border: 1px solid #E0E0E0;
-    border-radius: 50px;
-    height: 48px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: -1px;
-      width: calc(50% + 1px);
-      height: calc(100% + 2px);
-      background: #8C63F7;
-      transition: left .2s linear;
-      border-radius: 50px;
-    }
-  }
-
-  &__text {
-    position: relative;
-    width: 50%;
-    padding: 4px;
-    border-radius: 50px;
-    transition: color .2s linear;
-  }
-
-  &__text:first-child {
-    color: #fff;
-  }
-
-  input[type=checkbox]:checked + &__box {
-    &::before {
-      left: 50%;
+.checkbox-duble
+{
+    input[type=checkbox]
+    {
+        display: none;
     }
 
-    .checkbox-duble__text:first-child {
-      color: currentColor;
+    &__label
+    {
+        display: block;
+
+        cursor: pointer;
     }
 
-    .checkbox-duble__text + .checkbox-duble__text {
-      color: #fff;
+    &__box
+    {
+        position: relative;
+
+        color: #29343E;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: normal;
+
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        height: 48px;
+
+        text-align: center;
+
+        border: 1px solid #E0E0E0;
+        border-radius: 50px;
+
+        &::before
+        {
+            content: "";
+
+            position: absolute;
+            top: -1px;
+            left: -1px;
+
+            width: calc(50% + 1px);
+            height: calc(100% + 2px);
+
+            border-radius: 50px;
+            background: #8C63F7;
+
+            transition: left .2s linear;
+        }
     }
-  }
+
+    &__text
+    {
+        position: relative;
+
+        width: 50%;
+        padding: 4px;
+
+        border-radius: 50px;
+
+        transition: color .2s linear;
+    }
+
+    &__text:first-child
+    {
+        color: #FFF;
+    }
+
+    input[type=checkbox]:checked + &__box
+    {
+        &::before
+        {
+            left: 50%;
+        }
+
+        .checkbox-duble__text:first-child
+        {
+            color: currentColor;
+        }
+
+        .checkbox-duble__text + .checkbox-duble__text
+        {
+            color: #FFF;
+        }
+    }
 }
 </style>
