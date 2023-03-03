@@ -1,4 +1,4 @@
-import {map} from 'lodash';
+import {map, identity} from 'lodash';
 
 export const moduleCourses = {
   state: {
@@ -33,11 +33,12 @@ export const moduleCourses = {
         ...course,
         extra: {
           ...course?.extra,
-          training_types: map(course?.extra?.training_types, (value, key) => ({
+          training_types: map(course?.extra?.training_types, (value, key) => (value ? ({
             id: key,
-            caption: value,
-            value
-          }))
+            caption: key,
+            value: key
+          }) : undefined))
+            .filter(identity)
         }
       });
     }
