@@ -4,7 +4,7 @@
       :class="bem('placeholder', {active: isActive})"
       @click="onToggle"
     >
-      {{ options.find(({id}) => value === id)?.caption}}
+      {{ options.find(({id}) => value === id)?.caption }}
     </div>
 
     <div :class="bem('list')" v-if="isOpen">
@@ -76,6 +76,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../../../sass/mixins';
+
 .custom-select {
   position: relative;
   width: 100%;
@@ -126,30 +128,9 @@ export default {
   }
 
   &__scroll {
+    @include customScroll($bgColor: #FFFFFF);
+
     max-height: 200px;
-    overflow: hidden;
-    overflow-y: auto;
-
-    scrollbar-color: #EAEAEA #8C63F7;
-    scrollbar-width: thin;
-
-    &::-webkit-scrollbar {
-
-      width: 5px;
-      height: 5px;
-
-      background-color: #EAEAEA;
-    }
-
-    &::-webkit-scrollbar-track {
-
-      background-color: #EAEAEA;
-    }
-
-    &::-webkit-scrollbar-thumb {
-
-      background-color: #8C63F7;
-    }
   }
 
   &__item {
