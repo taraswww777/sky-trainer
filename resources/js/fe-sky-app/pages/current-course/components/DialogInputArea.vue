@@ -73,16 +73,20 @@ export default {
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
-          audioStream.src = $phrase.audio;
-          audioStream.addEventListener('ended', () => {
-            if (this.isOnRec) {
-              this.onStopRecord();
-            }
-            this.onStartRecord();
-          });
-          audioStream.play();
+          console.log('audioStream.src = $phrase.audio:', $phrase);
 
-          setTimeout(this.scrollToBottom, 500);
+          if ($phrase.audio) {
+            audioStream.src = $phrase.audio;
+            audioStream.addEventListener('ended', () => {
+              if (this.isOnRec) {
+                this.onStopRecord();
+              }
+              this.onStartRecord();
+            });
+            audioStream.play();
+
+            setTimeout(this.scrollToBottom, 500);
+          }
 
           if (dialog_end) {
             alert('Диалог завершён');
@@ -123,6 +127,15 @@ export default {
   flex-wrap: nowrap;
   border-radius: 0 0 8px 8px;
 
+  @keyframes pulse {
+    0% {
+      opacity: 70%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
   &__btn-rec {
     padding: 9px;
     background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
@@ -139,7 +152,8 @@ export default {
     flex-wrap: wrap;
 
     &--recording {
-      background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
+      background: linear-gradient(45deg, #ffc8c8, #ff3f3f);
+      animation: pulse 1s infinite;
     }
 
     img {
