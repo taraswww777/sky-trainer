@@ -22,7 +22,7 @@
 import useBem from 'vue3-bem';
 import MainMenu from './MainMenu.vue';
 
-const name = 'ThemeSwitch';
+const name = 'MobileMainMenu';
 const bem = useBem(name);
 
 export default {
@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../sass/media";
 
-.theme-switch {
+.mobile-main-menu {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
@@ -74,7 +74,7 @@ export default {
     top: 32px;
     right: -12px;
 
-    display: block;
+    display: none;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -93,6 +93,10 @@ export default {
 
     transition: color .2s linear;
     z-index: 10;
+
+    @media (min-width: $mb_exlarge) {
+      display: block;
+    }
 
     &:hover {
       background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
@@ -115,6 +119,10 @@ export default {
     &__close {
       display: flex;
     }
+  }
+
+  &__MainMenu {
+    height: 100%;
   }
 }
 </style>
