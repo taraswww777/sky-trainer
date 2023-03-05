@@ -44,13 +44,17 @@ export default {
         this.isOnRec = false;
       }
     };
+
+    // eslint-disable-next-line
+    if (confirm('Включить микрофон?')) {
+      this.onRec();
+    }
   },
   unmounted() {
     recognizer.onresult = noop;
   },
   methods: {
     pushMessage() {
-      console.log('this.outputMessage:', this.speechResult, this.courseId);
       requestDialogSpeechResult({
         courseId: this.courseId,
         speechResult: this.speechResult,
@@ -76,7 +80,7 @@ export default {
           });
 
           if (dialog_end) {
-            alert('Диалог заверщён');
+            alert('Диалог завершён');
           }
         });
     },
@@ -85,7 +89,6 @@ export default {
       container.scroll(0, container.scrollWidth || 0);
     },
     onRec() {
-      console.log('onRec:');
       if (!this.isOnRec) {
         // Начинаем слушать микрофон и распознавать голос
         this.isOnRec = true;
@@ -128,7 +131,7 @@ export default {
       background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
     }
 
-    img{
+    img {
       display: block;
       max-width: 100%;
       max-height: 100%;

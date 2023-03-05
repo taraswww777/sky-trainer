@@ -116,8 +116,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-/* ;
-@import '../../../../sass/colors'; */
 @import "../../../../sass/media";
 
 .current-course-page {
