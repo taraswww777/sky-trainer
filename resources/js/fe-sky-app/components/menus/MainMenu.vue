@@ -32,7 +32,7 @@
       <TimeWidget/>
     </div>
 
-    <div :class="bem('theme')">
+    <div :class="bem('theme')" v-if="false">
       <ThemeSwitch/>
     </div>
   </div>
