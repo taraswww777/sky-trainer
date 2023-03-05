@@ -88,9 +88,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../../../../sass/media";
+@import '../../../../sass/mixins';
 
 .aside
 {
+  @include customScroll($bgColor: #FFFFFF);
     display: flex;
     overflow: hidden;
     overflow-y: auto;
@@ -99,8 +101,7 @@ export default {
     width: 300px;
   max-width: 100%;
     height: 100%;
-    padding: 20px;
-    padding: 20px 24px 20px 20px;
+  padding: 20px 24px 20px 20px;
 
     background: #FFF;
   box-shadow: 0px 4px 44px rgba(0, 0, 0, 0.05);

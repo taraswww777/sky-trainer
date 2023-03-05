@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/* @import '../../../../../sass/mixins'; */
+@import '../../../../../sass/mixins';
 @import "../../../../../sass/media";
 
 .dialog-panel
@@ -68,35 +68,11 @@ export default {
 
     &__messages
     {
-        overflow: hidden;
-        overflow-y: auto;
+        @include customScroll();
 
         height: 219px;
         margin-top: 16px;
         padding-right: 20px;
-
-        scrollbar-color: #EAEAEA #8C63F7;
-        scrollbar-width: thin;
-
-        &::-webkit-scrollbar
-        {
-            width: 5px;
-            height: 5px;
-
-            background-color: #EAEAEA;
-        }
-
-        &::-webkit-scrollbar-track
-        {
-            border-radius: 4px;
-            background-color: #EAEAEA;
-        }
-
-        &::-webkit-scrollbar-thumb
-        {
-            border-radius: 4px;
-            background-color: #8C63F7;
-        }
     }
 
     &__message-item
