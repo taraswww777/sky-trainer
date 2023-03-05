@@ -20,6 +20,7 @@ import {recognizer} from '../../../utils/recognizer';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
+const audioStream = new Audio();
 
 export default {
   name: componentName,
@@ -72,12 +73,16 @@ export default {
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
-          const audio = new Audio($phrase.audio);
-          audio.play();
-
-          setTimeout(() => {
-            this.scrollToBottom();
+          audioStream.src = $phrase.audio;
+          audioStream.addEventListener('ended', () => {
+            if (this.isOnRec) {
+              this.onStopRecord();
+            }
+            this.onStartRecord();
           });
+          audioStream.play();
+
+          setTimeout(this.scrollToBottom, 500);
 
           if (dialog_end) {
             alert('Диалог завершён');
@@ -88,14 +93,20 @@ export default {
       const container = document.querySelector('#DialogPanel__messages');
       container.scroll(0, container.scrollWidth || 0);
     },
+    onStartRecord() {
+      this.isOnRec = true;
+      recognizer.start();
+    },
+    onStopRecord() {
+      this.isOnRec = false;
+      recognizer.stop();
+    },
     onRec() {
+      console.log('onRec');
       if (!this.isOnRec) {
-        // Начинаем слушать микрофон и распознавать голос
-        this.isOnRec = true;
-        recognizer.start();
+        this.onStartRecord();
       } else {
-        this.isOnRec = false;
-        recognizer.stop();
+        this.onStopRecord();
       }
     }
   }
