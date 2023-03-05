@@ -4,7 +4,7 @@
       :isLoading="isLoading"
       :title=" course?.name"
       :crumbs="[
-      {url:'/', title:'Гланая'},
+      {url:'/', title:'Главная'},
       {title:'Все курсы', url: '/courses'}
     ]"
     >
@@ -116,8 +116,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-/* ;
-@import '../../../../sass/colors'; */
 @import "../../../../sass/media";
 
 .current-course-page {

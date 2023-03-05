@@ -20,6 +20,7 @@ import {recognizer} from '../../../utils/recognizer';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
+const audioStream = new Audio();
 
 export default {
   name: componentName,
@@ -44,13 +45,17 @@ export default {
         this.isOnRec = false;
       }
     };
+
+    // eslint-disable-next-line
+    if (confirm('Включить микрофон?')) {
+      this.onRec();
+    }
   },
   unmounted() {
     recognizer.onresult = noop;
   },
   methods: {
     pushMessage() {
-      console.log('this.outputMessage:', this.speechResult, this.courseId);
       requestDialogSpeechResult({
         courseId: this.courseId,
         speechResult: this.speechResult,
@@ -68,15 +73,23 @@ export default {
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
-          const audio = new Audio($phrase.audio);
-          audio.play();
+          console.log('audioStream.src = $phrase.audio:', $phrase);
 
-          setTimeout(() => {
-            this.scrollToBottom();
-          });
+          if ($phrase.audio) {
+            audioStream.src = $phrase.audio;
+            audioStream.addEventListener('ended', () => {
+              if (this.isOnRec) {
+                this.onStopRecord();
+              }
+              this.onStartRecord();
+            });
+            audioStream.play();
+
+            setTimeout(this.scrollToBottom, 500);
+          }
 
           if (dialog_end) {
-            alert('Диалог заверщён');
+            alert('Диалог завершён');
           }
         });
     },
@@ -84,15 +97,20 @@ export default {
       const container = document.querySelector('#DialogPanel__messages');
       container.scroll(0, container.scrollWidth || 0);
     },
+    onStartRecord() {
+      this.isOnRec = true;
+      recognizer.start();
+    },
+    onStopRecord() {
+      this.isOnRec = false;
+      recognizer.stop();
+    },
     onRec() {
-      console.log('onRec:');
+      console.log('onRec');
       if (!this.isOnRec) {
-        // Начинаем слушать микрофон и распознавать голос
-        this.isOnRec = true;
-        recognizer.start();
+        this.onStartRecord();
       } else {
-        this.isOnRec = false;
-        recognizer.stop();
+        this.onStopRecord();
       }
     }
   }
@@ -108,6 +126,15 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   border-radius: 0 0 8px 8px;
+
+  @keyframes pulse {
+    0% {
+      opacity: 70%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
 
   &__btn-rec {
     padding: 9px;
@@ -125,10 +152,11 @@ export default {
     flex-wrap: wrap;
 
     &--recording {
-      background: linear-gradient(45deg, #ffc8c8, #ff3f3f)
+      background: linear-gradient(45deg, #ffc8c8, #ff3f3f);
+      animation: pulse 1s infinite;
     }
 
-    img{
+    img {
       display: block;
       max-width: 100%;
       max-height: 100%;
