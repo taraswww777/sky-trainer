@@ -34,7 +34,7 @@
         <div :class="bem('field')">
           <div class="checkbox-duble">
             <label class="checkbox-duble__label">
-              <input type="checkbox" name="" checked="" v-model="trainer">
+              <input type="checkbox" name="" checked="" v-model="trainer" disabled>
               <span class="checkbox-duble__box">
                 <span class="checkbox-duble__text">
                   {{availableTrainers?.[0]?.caption}}

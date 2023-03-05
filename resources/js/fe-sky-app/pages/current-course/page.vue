@@ -4,7 +4,7 @@
       :isLoading="isLoading"
       :title=" course?.name"
       :crumbs="[
-      {url:'/', title:'Гланая'},
+      {url:'/', title:'Главная'},
       {title:'Все курсы', url: '/courses'}
     ]"
     >
