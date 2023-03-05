@@ -28,7 +28,7 @@
       <MainMenuItems :onClose="onClose"/>
     </div>
 
-    <div :class="bem('time')">
+    <div :class="bem('time')"  v-if="false">
       <TimeWidget/>
     </div>
 
