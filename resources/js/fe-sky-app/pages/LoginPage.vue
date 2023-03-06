@@ -6,52 +6,6 @@
 			</router-link>
 		</div>
 
-<<<<<<< HEAD
-		<div :class="bem('row')">
-			<div :class="bem('col-left')">
-				<div :class="bem('title')">С каждым днём ты становишься лучше, чем вчера!</div>
-
-				<swiper
-					:class="bem('slider')"
-					:modules="modules"
-					:slides-per-view="1"
-					:space-between="20"
-					:pagination="{
-						clickable: true,
-						el: '.slider-pagination',
-						bulletActiveClass: 'active',
-					}"
-					:loop="true"
-				>
-					<swiper-slide :class="bem('slide')">
-						<div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь  новому. Просто запускайте курсы и тренируйтесь!</div>
-					</swiper-slide>
-					<swiper-slide :class="bem('slide')">
-						<div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь  новому. Просто запускайте курсы и тренируйтесь!</div>
-					</swiper-slide>
-					<swiper-slide :class="bem('slide')">
-						<div :class="bem('desc')">Приветствуем вас в logoapp тут вы станете умнее Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь  новому. Просто запускайте курсы и тренируйтесь!</div>
-					</swiper-slide>
-
-					<div class="slider-pagination"></div>
-				</swiper>
-
-				<!-- <div :class="bem('slider')">
-					<Slider
-						:items="[
-						'Приветствуем вас в logoapp тут вы станете умнее и&nbsp;научитесь новому.',
-						'Просто запускайте курсы и тренируйтесь!',
-						]"
-					/>
-				</div> -->
-			</div>
-
-			<div :class="bem('col-right')">
-				<LoginForm/>
-			</div>
-        </div>
-	</div>
-=======
     <div :class="bem('row')">
       <div :class="bem('col-left')">
         <div :class="bem('title')">{{ $t('pages.login.greeting') }}</div>
@@ -99,19 +53,6 @@
 
 <script>
 import useBem from 'vue3-bem';
-<<<<<<< HEAD
-// import {LoginForm, Slider} from '../components';
-import { LoginForm } from '../components';
-
-// import Swiper core and required modules
-import { Pagination } from 'swiper';
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
-
-// Import Swiper styles
-import 'swiper/scss';
-import 'swiper/scss/pagination';
-=======
 import {Pagination} from 'swiper';
 // eslint-disable-next-line import/no-unresolved
 import {Swiper, SwiperSlide} from 'swiper/vue';
@@ -120,30 +61,11 @@ import 'swiper/scss';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/scss/pagination';
 import {LoginForm} from '../components';
->>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 
 const componentName = 'PageLogin';
 const bem = useBem(componentName);
 
 export default {
-<<<<<<< HEAD
-	name: componentName,
-	data: () => ({
-			bem,
-	}),
-	components: {
-		LoginForm,
-		// Slider,
-		Swiper,
-		SwiperSlide,
-  },
-	setup() {
-		return {
-			modules: [Pagination],
-		};
-	},
-}
-=======
   name: componentName,
   components: {
     Swiper,
@@ -167,7 +89,6 @@ export default {
     };
   }
 };
->>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 </script>
 
 <style lang="scss" scoped>
@@ -332,16 +253,6 @@ export default {
       margin-top: 40px;
       max-width: 383px;
     }
-<<<<<<< HEAD
-=======
-    // возможно лишнее
-    &__desc {
-      font-size: 14px;
-      line-height: 24px;
-      min-height: 108px;
-    }
-  }
->>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 
 		&__desc{
 			font-size: 14px;
