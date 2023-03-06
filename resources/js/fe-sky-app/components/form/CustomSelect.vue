@@ -4,7 +4,7 @@
       :class="bem('placeholder', {active: isActive})"
       @click="onToggle"
     >
-      {{ options.find(({id}) => value === id).caption }}
+      {{ options.find(({id}) => value === id)?.caption }}
     </div>
 
     <div :class="bem('list')" v-if="isOpen">
@@ -33,20 +33,20 @@ export default {
   name,
   props: {
     options: {
-      type: Array,
+      type: Array
     },
     value: {
-      type: String,
+      type: String
     },
     onChangeValue: {
       type: Function,
-      default: noop,
-    },
+      default: noop
+    }
   },
   data: () => ({
     bem,
     isOpen: false,
-    isActive: false,
+    isActive: false
   }),
   methods: {
     onChange(v) {
@@ -64,20 +64,23 @@ export default {
     },
     isSelected(option) {
       return Boolean(this.value === option.id);
-    },
+    }
   },
   mounted() {
     document.addEventListener('click', this.onHide.bind(this), true);
   },
   beforeUnmount() {
     document.removeEventListener('click', this.onHide, true);
-  },
+  }
 };
 </script>
 
 <style scoped lang="scss">
+@import '../../../../sass/mixins';
+
 .custom-select {
   position: relative;
+  width: 100%;
 
   &__placeholder {
     width: 100%;
@@ -87,14 +90,13 @@ export default {
 
     font-weight: 400;
     font-size: 13px;
-    line-height: 46px;
 
     color: #29343E;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 
-    padding: 0 49px 0 19px;
+    padding: 16px 30px 16px 20px;
     position: relative;
     transition: border-color .2s linear;
 
@@ -126,30 +128,9 @@ export default {
   }
 
   &__scroll {
+    @include customScroll($bgColor: #FFFFFF);
+
     max-height: 200px;
-    overflow: hidden;
-    overflow-y: auto;
-
-    scrollbar-color: #EAEAEA #8C63F7;
-    scrollbar-width: thin;
-
-    &::-webkit-scrollbar {
-
-      width: 5px;
-      height: 5px;
-
-      background-color: #EAEAEA;
-    }
-
-    &::-webkit-scrollbar-track {
-
-      background-color: #EAEAEA;
-    }
-
-    &::-webkit-scrollbar-thumb {
-
-      background-color: #8C63F7;
-    }
   }
 
   &__item {

@@ -5,5 +5,5 @@ import MainMenuItems from './MainMenuItems.vue';
 export {
   MainMenuItems,
   MainMenu,
-  MobileMainMenu,
+  MobileMainMenu
 };

@@ -1,43 +1,43 @@
 <template>
   <BaseTemplate>
     <div class="main-section">
-		<div class="main-section__top">
-			<div class="main-section__top-col">
-				<UserCardWidget :userInfo="user"/>
-			</div>
-			<div class="main-section__top-col">
-				<ProgressWidget/>
-			</div>
-		</div>
-		<div class="main-section__info">
-			<div class="main-section__info-col">
-				<!-- <GrammarErrorsWidget/> -->
-				<MainInformationWidget/>
-			</div>
-			<div class="main-section__info-col">
-				<!-- <ScriptMatchWidget/> -->
-				<MainInformationWidget/>
-			</div>
-			<div class="main-section__info-col">
-				<!-- <VoiceAnalysisWidget/> -->
-				<MainInformationWidget/>
-			</div>
-		</div>
-		<div class="main-section__bot">
-			<div class="main-section__bot-col">
-				<VoiceAnalysis/>
-			</div>
+    <div class="main-section__top">
+      <div class="main-section__top-col">
+        <UserCardWidget :userInfo="user"/>
+      </div>
+      <div class="main-section__top-col">
+        <ProgressWidget/>
+      </div>
+    </div>
+    <div class="main-section__info">
+      <div class="main-section__info-col">
+        <!-- <GrammarErrorsWidget/> -->
+        <MainInformationWidget/>
+      </div>
+      <div class="main-section__info-col">
+        <!-- <ScriptMatchWidget/> -->
+        <MainInformationWidget/>
+      </div>
+      <div class="main-section__info-col">
+        <!-- <VoiceAnalysisWidget/> -->
+        <MainInformationWidget/>
+      </div>
+    </div>
+    <div class="main-section__bot">
+      <div class="main-section__bot-col">
+        <VoiceAnalysis/>
+      </div>
 
-			<div class="main-section__bot-col main-section__bot-col--flex">
-				<div class="main-section__bot-block">
-					<ResponsibilityWidget/>
-				</div>
+      <div class="main-section__bot-col main-section__bot-col--flex">
+        <div class="main-section__bot-block">
+          <ResponsibilityWidget/>
+        </div>
 
-				<div class="main-section__bot-block">
-					<MistakesNegotiationsWidget/>
-				</div>
-			</div>
-		</div>
+        <div class="main-section__bot-block">
+          <MistakesNegotiationsWidget/>
+        </div>
+      </div>
+    </div>
     </div>
   </BaseTemplate>
 </template>
@@ -61,14 +61,14 @@ export default {
     ResponsibilityWidget,
     MistakesNegotiationsWidget,
     UserCardWidget,
-	MainInformationWidget,
-	VoiceAnalysis
+    MainInformationWidget,
+    VoiceAnalysis
   },
   computed: {
     user() {
       return this.$store.getters.getCurrentUserInfo;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -76,165 +76,165 @@ export default {
 @import "../../../sass/media";
 
 .main-section__top{
-	margin-top: -20px;
+  margin-top: -20px;
 
-	&-col{
-		margin-top: 20px;
-	}
+  &-col{
+    margin-top: 20px;
+  }
 
-	@media (min-width: $mb_middle) {
-		display: flex;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
-		flex-wrap: wrap;
+  @media (min-width: $mb_middle) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: wrap;
 
-		margin: -30px 0 0 -24px;
+    margin: -30px 0 0 -24px;
 
-		&-col{
-			width: calc(100%/2 - 24px);
-			margin: 30px 0 0 24px;
-			min-width: 360px;
-			flex-grow: 1;
-		}
+    &-col{
+      width: calc(100%/2 - 24px);
+      margin: 30px 0 0 24px;
+      min-width: 360px;
+      flex-grow: 1;
+    }
 
-		&-col > *{
-			min-height: 100%;
-		}
-	}
+    &-col > *{
+      min-height: 100%;
+    }
+  }
 
-	@media (min-width: $mb_huge) {
-		margin-left: -30px;
+  @media (min-width: $mb_huge) {
+    margin-left: -30px;
 
-		&-col{
-			width: calc(100%/2 - 30px);
-			margin-left: 30px;
-		}
-	}
+    &-col{
+      width: calc(100%/2 - 30px);
+      margin-left: 30px;
+    }
+  }
 }
 
 .main-section__info{
-	&-col{
-		margin-top: 20px;
-	}
+  &-col{
+    margin-top: 20px;
+  }
 
-	@media (min-width: $mb_small) {
-		display: flex;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
-		flex-wrap: wrap;
+  @media (min-width: $mb_small) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: wrap;
 
-		margin-left: -24px;
+    margin-left: -24px;
 
-		&-col{
-			width: calc(100%/3 - 24px);
-			margin: 30px 0 0 24px;
-			min-width: 280px;
-			flex-grow: 1;
-		}
+    &-col{
+      width: calc(100%/3 - 24px);
+      margin: 30px 0 0 24px;
+      min-width: 280px;
+      flex-grow: 1;
+    }
 
-		&-col > *{
-			min-height: 100%;
-		}
-	}
+    &-col > *{
+      min-height: 100%;
+    }
+  }
 
-	@media (min-width: $mb_huge) {
-		margin-left: -30px;
+  @media (min-width: $mb_huge) {
+    margin-left: -30px;
 
-		&-col{
-			width: calc(100%/3 - 30px);
-			margin-left: 30px;
-			min-width: 1px;
-			flex-grow: 0;
-		}
-	}
+    &-col{
+      width: calc(100%/3 - 30px);
+      margin-left: 30px;
+      min-width: 1px;
+      flex-grow: 0;
+    }
+  }
 }
 
 .main-section__bot{
-	&-col{
-		margin-top: 20px;
+  &-col{
+    margin-top: 20px;
 
-		&--flex{
-			margin-top: 0;
+    &--flex{
+      margin-top: 0;
 
-			& > *{
-				padding-top: 20px;
-			}
-		}
-	}
+      & > *{
+        padding-top: 20px;
+      }
+    }
+  }
 
-	@media (min-width: $mb_small) {
-		&-col{
-			&--flex{
-				display: flex;
-				justify-content: space-between;
-				align-items: stretch;
-				align-content: stretch;
-				flex-wrap: wrap;
-				margin-top: 0;
+  @media (min-width: $mb_small) {
+    &-col{
+      &--flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        align-content: stretch;
+        flex-wrap: wrap;
+        margin-top: 0;
 
-				& > *{
-					padding-top: 20px;
-					min-height: 1px;
-					width: calc(100%/2 - 10px);
-				}
-			}
-		}
-	
-		&-block > *{
-			min-height: 100%;
-		}
-	}
+        & > *{
+          padding-top: 20px;
+          min-height: 1px;
+          width: calc(100%/2 - 10px);
+        }
+      }
+    }
 
-	@media (min-width: $mb_middle) {
-		display: flex;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
-		flex-wrap: wrap;
+    &-block > *{
+      min-height: 100%;
+    }
+  }
 
-		margin-left: -24px;
+  @media (min-width: $mb_middle) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: wrap;
 
-		&-col{
-			width: calc(100%/2 - 24px);
-			margin: 30px 0 0 24px;
-			min-width: 450px;
-			flex-grow: 1;
+    margin-left: -24px;
 
-			&--flex{
-				margin-top: 0;
+    &-col{
+      width: calc(100%/2 - 24px);
+      margin: 30px 0 0 24px;
+      min-width: 450px;
+      flex-grow: 1;
 
-				& > *{
-					padding-top: 30px;
-					min-height: 1px;
-					width: calc(100%/2 - 12px);
-				}
-			}
-		}
+      &--flex{
+        margin-top: 0;
 
-		&-col > *{
-			min-height: 100%;
-		}
-	}
+        & > *{
+          padding-top: 30px;
+          min-height: 1px;
+          width: calc(100%/2 - 12px);
+        }
+      }
+    }
 
-	@media (min-width: $mb_huge) {
-		margin-left: -30px;
+    &-col > *{
+      min-height: 100%;
+    }
+  }
 
-		&-col{
-			width: calc(100%/2 - 30px);
-			margin-left: 30px;
-			min-width: 1px;
-			flex-grow: 0;
+  @media (min-width: $mb_huge) {
+    margin-left: -30px;
 
-			&--flex{
-				margin-top: 0;
+    &-col{
+      width: calc(100%/2 - 30px);
+      margin-left: 30px;
+      min-width: 1px;
+      flex-grow: 0;
 
-				& > *{
-					width: calc(100%/2 - 15px);
-				}
-			}
-		}
-	}
+      &--flex{
+        margin-top: 0;
+
+        & > *{
+          width: calc(100%/2 - 15px);
+        }
+      }
+    }
+  }
 }
 </style>

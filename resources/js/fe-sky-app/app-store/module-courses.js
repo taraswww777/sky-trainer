@@ -1,9 +1,9 @@
-import {map} from 'lodash';
+import {map, identity} from 'lodash';
 
 export const moduleCourses = {
   state: {
     courses: [],
-    currentCourse: {},
+    currentCourse: {}
   },
   getters: {
     getCourses(state) {
@@ -14,7 +14,7 @@ export const moduleCourses = {
     },
     getCurrentCourseId(state) {
       return state.currentCourse?.id;
-    },
+    }
   },
   mutations: {
     setCourses(state, courses) {
@@ -22,7 +22,7 @@ export const moduleCourses = {
     },
     setCurrentCourse(state, course) {
       state.currentCourse = course;
-    },
+    }
   },
   actions: {
     setCourses({commit}, courses) {
@@ -33,13 +33,14 @@ export const moduleCourses = {
         ...course,
         extra: {
           ...course?.extra,
-          training_types: map(course?.extra?.training_types, (value, key) => ({
+          training_types: map(course?.extra?.training_types, (value, key) => (value ? ({
             id: key,
-            caption: value,
-            value,
-          })),
-        },
+            caption: key,
+            value: key
+          }) : undefined))
+            .filter(identity)
+        }
       });
-    },
-  },
+    }
+  }
 };

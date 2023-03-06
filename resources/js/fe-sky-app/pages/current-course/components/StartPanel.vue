@@ -1,98 +1,47 @@
 <template>
-  <Notice>
-    <p>
-      Супер! Выбери тип занятия и выключи подсказки, если уверен в своих силах.
-      На тренировке подсказки не влияют на лояльность.
-      В режиме обучения каждая подсказка будет отнимать очки лояльности.
-      А на экзамене они будут недоступны. Вот так:)
-    </p>
-  </Notice>
+  <CommonNotice>
+    {{ t('commonNotice') }}
+  </CommonNotice>
 
   <form :class="bem()" class="_marg" @submit="start">
-    <!-- <div class="cell small-4">
-            <p>{{ training_type }}</p>
-
-        </div> -->
     <div :class="bem('flex _four _flex')">
       <div :class="bem('line')">
-        <div :class="bem('label')">Выберете тип тренировки</div>
+        <div :class="bem('label')">{{ t('training_types.label') }}</div>
 
-        <div :class="bem('field')">
+        <div :class="bem('field')" v-if="course?.extra?.training_types">
           <CustomSelect
             :value="training_type"
-            :onChangeValue="onChange_training_type"
-            :options="[
-              {id:1, caption:'Тренировка по стадиям'},
-              {id:2, caption:'Потребности'},
-              {id:3, caption:'Презентация'},
-              {id:4, caption:'Возражения'}
-            ]"
+            :onChangeValue="onChange_trainingTypeId"
+            :options="trainingTypes"
           />
-          <!-- <select
-            class="margin-bottom-0"
-            v-if="course?.extra?.training_types"
-            v-model="training_type"
-            required
-          >
-            <option disabled value="">Select your training type</option>
-            <option key="1" value="1">
-              Тренировка 1
-            </option>
-            <option
-              v-for="training_type in course.extra.training_types"
-              :key="training_type.id"
-              :value="training_type.value"
-            >
-              {{ training_type.caption }}
-            </option>
-          </select> -->
         </div>
       </div>
 
       <div :class="bem('line')">
-        <div :class="bem('label')">Выберете стадию</div>
+        <div :class="bem('label')">{{ t('stages.label') }}</div>
 
-        <div :class="bem('field')">
+        <div :class="bem('field')" v-if="course?.extra?.stages">
           <CustomSelect
-            :value="training_type"
-            :onChangeValue="onChange_training_type"
-            :options="[
-              {id:1, caption:'Приветствие'},
-              {id:2, caption:'Потребности'},
-              {id:3, caption:'Презентация'},
-              {id:4, caption:'Возражения'}
-            ]"
+            :value="stageId"
+            :onChangeValue="onChange_stageId"
+            :options="course.extra.stages"
           />
-
-          <!-- <select
-            class="margin-bottom-0"
-            v-if="course?.extra?.stages"
-            v-model="stageId"
-            required
-          >
-            <option disabled value="">Select your stage</option>
-            <option
-              v-for="stage in course.extra.stages"
-              :key="stage.id"
-              :value="stage.id"
-            >
-              {{ stage.caption }}
-            </option>
-          </select> -->
         </div>
       </div>
 
       <div :class="bem('line')">
-        <div :class="bem('label')">Тип диалога</div>
-
+        <div :class="bem('label')">{{ t('available_trainers.label') }}</div>
         <div :class="bem('field')">
           <div class="checkbox-duble">
             <label class="checkbox-duble__label">
-              <input type="checkbox" name="" checked="">
-
+              <input type="checkbox" name="" checked="" v-model="trainer" disabled>
               <span class="checkbox-duble__box">
-                <span class="checkbox-duble__text">Открытый</span>
-                <span class="checkbox-duble__text">Агрессивный</span>
+                <span class="checkbox-duble__text">
+                  {{availableTrainers?.[0]?.caption}}
+                </span>
+                <span class="checkbox-duble__text">
+                  {{availableTrainers?.[1]?.caption}}
+                </span>
               </span>
             </label>
           </div>
@@ -108,78 +57,6 @@
         </button>
       </div>
     </div>
-    <!-- <div class="cell small-4">
-        <label>
-            Выберете тип тренировки
-            <select
-        class="margin-bottom-0"
-        v-if="course?.extra?.training_types"
-        v-model="training_type"
-        required
-      >
-        <option disabled value="">Select your training type</option>
-        <option key="1" value="1">
-          Тренировка 1
-        </option>
-        <option
-          v-for="training_type in course.extra.training_types"
-          :key="training_type.id"
-          :value="training_type.value"
-        >
-          {{ training_type.caption }}
-        </option>
-      </select>
-        </label>
-    </div>
-    <div class="cell small-4">
-        <label>
-            Выберете стадию
-            <select
-      class="margin-bottom-0"
-      v-if="course?.extra?.stages"
-      v-model="stageId"
-      required
-    >
-      <option disabled value="">Select your stage</option>
-      <option
-        v-for="stage in course.extra.stages"
-        :key="stage.id"
-        :value="stage.id"
-      >
-        {{ stage.caption }}
-      </option>
-    </select>
-        </label>
-    </div>
-    <div class="cell small-4">
-        <label>
-            Тип диалога
-            <select
-                class="margin-bottom-0"
-                v-if="course?.available_trainers"
-                v-model="trainer"
-                required
-            >
-                <option disabled value="">Select your trainer</option>
-                <option
-                    v-for="trainer in course.available_trainers"
-                    :key="trainer.id"
-                    :value="trainer.id"
-                >
-                    {{ trainer.name }}
-                </option>
-            </select>
-        </label>
-    </div>
-    <div class="cell small-12 margin-top-1 margin-bottom-1">
-        <button
-            type="submit"
-            :class="bem('btn-start-call')"
-        >
-            <Fa icon="phone"/>
-            Начать звонок
-        </button>
-    </div> -->
   </form>
 </template>
 <script>
@@ -187,33 +64,35 @@ import useBem from 'vue3-bem';
 import {requestDialogStart} from '../../../requests';
 import {STATUSES} from '../../../constants/common';
 import {CustomSelect} from '../../../components/form';
+import {PAGE_NAMES} from '../../../constants';
 
-const componentName = 'StartPanel';
-
-// const bem = useBem(componentName);
+const name = 'StartPanel';
 const bem = useBem('form');
 
 export default {
-  name: componentName,
+  name,
   components: {
-    CustomSelect,
+    CustomSelect
   },
   props: {
     status: {
-      type: String,
+      type: String
     },
     onChangeStatus: {
-      type: Function,
-    },
+      type: Function
+    }
   },
   data: () => ({
     bem,
     STATUSES,
-    stageId: 1,
-    training_type: 1,
-    trainer: 1,
+    stageId: '1',
+    training_type: '1',
+    trainer: '1'
   }),
   methods: {
+    t(key) {
+      return this.$t(`pages.${PAGE_NAMES.courseItem}.${key}`);
+    },
     start(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -222,7 +101,7 @@ export default {
         courseId: this.$route.params.courseId,
         phaseId: this.training_type,
         stageId: this.stageId,
-        trainerId: this.trainer,
+        trainerId: this.trainer
       })
         .then(({data}) => {
           console.log('dialogData:', data);
@@ -234,12 +113,26 @@ export default {
           this.$store.dispatch('setLoadingStop');
         });
     },
-    onChange_training_type(training) {
-      console.log('training:', training);
-      this.training_type = training.id;
+    onChange_stageId(option) {
+      this.stageId = option.id;
     },
+    onChange_trainingTypeId(option) {
+      this.training_type = option.id;
+    }
   },
   computed: {
+    trainingTypes() {
+      return this.course?.extra?.training_types?.map((item) => ({
+        ...item,
+        caption: this.$t(`data.training_types.${item.id}`)
+      }));
+    },
+    availableTrainers() {
+      return this.course?.available_trainers?.map((item) => ({
+        ...item,
+        caption: this.$t(`data.available_trainers.${item.name}`)
+      }));
+    },
     isLoading() {
       return this.$store.getters.getIsLoading;
     },
@@ -254,24 +147,11 @@ export default {
     },
     helpPhrases() {
       return this.$store.getters.getHelpPhrases;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
-/* ;
-@import '../../../../../sass/colors';
-@import '../../../../../sass/mixins';
-
-.start-panel {
-    &__btn-start-call {
-        @include borderRadius(50px);
-        cursor: pointer;
-        padding: 15px;
-        background: linear-gradient(45deg, #2DC358, #1ABAB0);
-        color: #FFFFFF;
-    }
-} */
 @import "../../../../../sass/media";
 
 .form {
@@ -280,23 +160,22 @@ export default {
   }
 
   &__line {
-    margin-bottom: 13px;
     width: 100%;
+    margin-bottom: 13px;
   }
 
   &__label {
-    margin-bottom: 8px;
-
-    font-weight: 400;
+    color: #000;
     font-size: 13px;
+    font-weight: 400;
     line-height: 28px;
 
-    color: #000000;
+    margin-bottom: 8px;
   }
 
   &__submit {
-    margin-top: 31px;
     width: 100%;
+    margin-top: 31px;
   }
 
   &__flex &__submit,
@@ -310,45 +189,51 @@ export default {
     }
 
     &__flex &__line {
-      width: calc(100% / 2 - 16px);
-      margin-left: 16px;
-      min-width: 220px;
       flex-grow: 1;
+
+      width: calc(100% / 2 - 16px);
+      min-width: 220px;
+      margin-left: 16px;
     }
 
     &__flex._four &__line {
+      flex-grow: 1;
+
       width: calc(100% / 2 - 16px);
       min-width: 220px;
-      flex-grow: 1;
     }
 
     &__flex._four &__submit {
+      align-self: flex-end;
+      flex-grow: 1;
+
       width: calc(100% / 2 - 16px);
       min-width: 220px;
-      flex-grow: 1;
-      margin-left: 16px;
-      align-self: flex-end;
       margin-bottom: 13px;
+      margin-left: 16px;
     }
   }
 
   @media (min-width: $mb_middle) {
     &__flex &__line {
-      margin-left: 16px;
-      min-width: 1px;
       flex-grow: 0;
+
+      min-width: 1px;
+      margin-left: 16px;
     }
 
     &__flex._four &__line {
+      flex-grow: 0;
+
       width: calc(100% / 3 - 16px);
       min-width: 1px;
-      flex-grow: 0;
     }
 
     &__flex._four &__submit {
+      flex-grow: 0;
+
       width: 100%;
       min-width: 1px;
-      flex-grow: 0;
       margin-bottom: 0;
       margin-left: 0;
     }
@@ -387,51 +272,61 @@ export default {
 
   &__label {
     display: block;
+
     cursor: pointer;
   }
 
   &__box {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: normal;
-
-    text-align: center;
+    position: relative;
 
     color: #29343E;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
 
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     align-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    position: relative;
-    border: 1px solid #E0E0E0;
-    border-radius: 50px;
+
     height: 48px;
 
+    text-align: center;
+
+    border: 1px solid #E0E0E0;
+    border-radius: 50px;
+
     &::before {
-      content: '';
+      content: "";
+
       position: absolute;
-      left: -1px;
       top: -1px;
+      left: -1px;
+
       width: calc(50% + 1px);
       height: calc(100% + 2px);
-      background: #8C63F7;
-      transition: left .2s linear;
+
       border-radius: 50px;
+      background: #8C63F7;
+
+      transition: left .2s linear;
     }
   }
 
   &__text {
     position: relative;
+
     width: 50%;
     padding: 4px;
+
     border-radius: 50px;
+
     transition: color .2s linear;
   }
 
   &__text:first-child {
-    color: #fff;
+    color: #FFF;
   }
 
   input[type=checkbox]:checked + &__box {
@@ -444,7 +339,7 @@ export default {
     }
 
     .checkbox-duble__text + .checkbox-duble__text {
-      color: #fff;
+      color: #FFF;
     }
   }
 }

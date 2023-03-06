@@ -32,13 +32,13 @@ const bem = useBem('header');
 
 export default {
   data: () => ({
-    bem,
+    bem
   }),
   computed: {
     user() {
       return this.$store.getters.getCurrentUserInfo;
-    },
-  },
+    }
+  }
 };
 </script>
 

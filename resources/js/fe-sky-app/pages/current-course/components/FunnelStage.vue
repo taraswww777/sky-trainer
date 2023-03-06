@@ -1,10 +1,18 @@
 <template>
     <div :class="bem()">
+<<<<<<< HEAD
 		<div :class="bem('title')">Стадия воронки</div>
 
 		<SliderNames/>
 
 		<SliderNumbers/>
+=======
+    <div :class="bem('title')">Стадия воронки</div>
+
+    <SliderNames/>
+
+    <SliderNumbers/>
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
     </div>
 </template>
 
@@ -18,12 +26,21 @@ const bem = useBem(componentName);
 
 export default {
   name: componentName,
+<<<<<<< HEAD
 	components: {
 		SliderNames,
 		SliderNumbers
     },
   data: () => ({
     bem,
+=======
+  components: {
+    SliderNames,
+    SliderNumbers
+  },
+  data: () => ({
+    bem
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
   })
 };
 </script>

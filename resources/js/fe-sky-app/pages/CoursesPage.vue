@@ -1,6 +1,6 @@
 <template>
   <BaseTemplate>
-    <Breadcrumbs
+    <CommonBreadcrumbs
       :crumbs="[
       {url:'/', title:'Гланая'},
       {title:'Все курсы'}
@@ -26,7 +26,7 @@ export default {
   computed: {
     courses() {
       return this.$store.getters.getCourses;
-    },
-  },
+    }
+  }
 };
 </script>

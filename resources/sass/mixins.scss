@@ -1,7 +1,36 @@
 @mixin borderRadius($radius: 8px) {
-    border-radius: $radius;
+  border-radius: $radius;
 }
 
 @mixin borderCircle() {
-    border-radius: 50%;
+  border-radius: 50%;
+}
+
+
+@mixin customScroll(
+  $bgColor: #EAEAEA,
+  $scrollColor: #8C63F7
+) {
+  overflow: hidden;
+  overflow-y: auto;
+
+  scrollbar-color: $bgColor $scrollColor;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+
+    background-color: $bgColor;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: $bgColor;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $scrollColor;
+  }
 }

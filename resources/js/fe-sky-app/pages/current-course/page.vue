@@ -4,7 +4,7 @@
       :isLoading="isLoading"
       :title=" course?.name"
       :crumbs="[
-      {url:'/', title:'Гланая'},
+      {url:'/', title:'Главная'},
       {title:'Все курсы', url: '/courses'}
     ]"
     >
@@ -21,7 +21,7 @@
               </div>
 
               <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
-                <span>Завершить звонок</span>
+                <span>{{ t('finishCall') }}</span>
               </button>
             </div>
 
@@ -31,7 +31,11 @@
           </div>
 
           <div :class="bem('colr')">
+<<<<<<< HEAD
 			<FunnelStage/>
+=======
+            <FunnelStage/>
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 
             <SpeedSpeech/>
 
@@ -65,7 +69,11 @@ export default {
     StartPanel,
     SpeedSpeech,
     QualityControl,
+<<<<<<< HEAD
     FunnelStage,
+=======
+    FunnelStage
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
   },
   data: () => ({
     status: STATUSES.new,
@@ -73,7 +81,7 @@ export default {
     bem,
     stage: undefined,
     training_type: undefined,
-    trainer: undefined,
+    trainer: undefined
   }),
   mounted() {
     this.$store.dispatch('setLoadingStart');
@@ -86,12 +94,15 @@ export default {
       });
   },
   methods: {
+    t(key) {
+      return this.$t(`pages.${PAGE_NAMES.courseItem}.${key}`);
+    },
     onChangeStatus(status) {
       this.status = status;
     },
     endCall() {
       appRouter.push({name: PAGE_NAMES.courses});
-    },
+    }
   },
   computed: {
     isLoading() {
@@ -108,13 +119,11 @@ export default {
     },
     helpPhrases() {
       return this.$store.getters.getHelpPhrases;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
-/* ;
-@import '../../../../sass/colors'; */
 @import "../../../../sass/media";
 
 .current-course-page {

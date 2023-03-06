@@ -11,14 +11,14 @@ import useBem from 'vue3-bem';
 const bem = useBem('tag-list');
 export default {
   data: () => ({
-    bem,
+    bem
   }),
   props: {
     tags: {
       type: Array,
-      default: () => [],
-    },
-  },
+      default: () => []
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

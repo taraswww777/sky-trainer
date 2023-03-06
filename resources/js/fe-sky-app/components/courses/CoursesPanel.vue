@@ -16,9 +16,9 @@ export default {
   props: {
     courses: {
       type: Array,
-      default: () => [],
-    },
-  },
+      default: () => []
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

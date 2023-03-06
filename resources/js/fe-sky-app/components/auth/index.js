@@ -3,5 +3,5 @@ import UserStatusWidget from './UserStatusWidget.vue';
 
 export {
   LoginForm,
-  UserStatusWidget,
+  UserStatusWidget
 };

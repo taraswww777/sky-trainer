@@ -5,5 +5,5 @@ import CourseCard from './CourseCard.vue';
 export {
   CoursesPanel,
   CoursesTabs,
-  CourseCard,
+  CourseCard
 };

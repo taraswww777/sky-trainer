@@ -5,16 +5,16 @@ export const requestDialogStart = (
     courseId,
     stageId,
     phaseId,
-    trainerId,
-  },
+    trainerId
+  }
 ) => (
   axiosAuthGet({
     url: `/dialog/start/${courseId}`,
     params: {
       stageId,
       phaseId,
-      trainerId,
-    },
+      trainerId
+    }
   })
 );
 
@@ -22,15 +22,15 @@ export const requestDialogSpeechResult = (
   {
     courseId,
     speechResult,
-    timing,
-  },
+    timing
+  }
 ) => (
   axiosAuthGet({
     url: `/dialog/speech-result/${courseId}`,
     method: 'post',
     data: {
       speechResult,
-      timing,
-    },
+      timing
+    }
   })
 );

@@ -6,6 +6,7 @@
 			</router-link>
 		</div>
 
+<<<<<<< HEAD
 		<div :class="bem('row')">
 			<div :class="bem('col-left')">
 				<div :class="bem('title')">С каждым днём ты становишься лучше, чем вчера!</div>
@@ -50,10 +51,55 @@
 			</div>
         </div>
 	</div>
+=======
+    <div :class="bem('row')">
+      <div :class="bem('col-left')">
+        <div :class="bem('title')">{{ $t('pages.login.greeting') }}</div>
+        <swiper
+          :class="bem('slider')"
+          :modules="modules"
+          :slides-per-view="1"
+          :space-between="20"
+          :pagination="{
+            clickable: true,
+            el: '.slider-pagination',
+            bulletActiveClass: 'active',
+          }"
+          :loop="true"
+          @swiper="onSwiper"
+          @slideChange="onSlideChange"
+        >
+          <swiper-slide :class="bem('slide')">
+            <div :class="bem('desc')">
+              {{ $t('pages.login.greetingSlider.0') }}
+            </div>
+          </swiper-slide>
+          <swiper-slide :class="bem('slide')">
+            <div :class="bem('desc')">
+              {{ $t('pages.login.greetingSlider.0') }}
+            </div>
+          </swiper-slide>
+          <swiper-slide :class="bem('slide')">
+            <div :class="bem('desc')">
+              {{ $t('pages.login.greetingSlider.0') }}
+            </div>
+          </swiper-slide>
+
+          <div class="slider-pagination"></div>
+        </swiper>
+      </div>
+
+      <div :class="bem('col-right')">
+        <LoginForm/>
+      </div>
+    </div>
+  </div>
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 </template>
 
 <script>
 import useBem from 'vue3-bem';
+<<<<<<< HEAD
 // import {LoginForm, Slider} from '../components';
 import { LoginForm } from '../components';
 
@@ -65,11 +111,22 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 // Import Swiper styles
 import 'swiper/scss';
 import 'swiper/scss/pagination';
+=======
+import {Pagination} from 'swiper';
+// eslint-disable-next-line import/no-unresolved
+import {Swiper, SwiperSlide} from 'swiper/vue';
+// eslint-disable-next-line import/no-unresolved
+import 'swiper/scss';
+// eslint-disable-next-line import/no-unresolved
+import 'swiper/scss/pagination';
+import {LoginForm} from '../components';
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 
 const componentName = 'PageLogin';
 const bem = useBem(componentName);
 
 export default {
+<<<<<<< HEAD
 	name: componentName,
 	data: () => ({
 			bem,
@@ -86,6 +143,31 @@ export default {
 		};
 	},
 }
+=======
+  name: componentName,
+  components: {
+    Swiper,
+    SwiperSlide,
+    LoginForm
+  },
+  data: () => ({
+    bem
+  }),
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log('slide change');
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+      modules: [Pagination]
+    };
+  }
+};
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 </script>
 
 <style lang="scss" scoped>
@@ -250,6 +332,16 @@ export default {
       margin-top: 40px;
       max-width: 383px;
     }
+<<<<<<< HEAD
+=======
+    // возможно лишнее
+    &__desc {
+      font-size: 14px;
+      line-height: 24px;
+      min-height: 108px;
+    }
+  }
+>>>>>>> d0aed1120c5383b20bf46047626b309a62b35296
 
 		&__desc{
 			font-size: 14px;
@@ -305,5 +397,47 @@ export default {
 	@media (min-width: $mb_large) {
 		margin-top: 27px;
 	}
+}
+</style>
+
+<style lang="scss">
+@import "../../../sass/media";
+
+.slider-pagination {
+  position: relative;
+  bottom: 0;
+  margin-top: 27px;
+  display: flex;
+
+  &.swiper-pagination-bullets {
+    bottom: 0;
+  }
+
+  & .swiper-pagination-bullet {
+    background: #D9D9D9;
+    opacity: 0.55;
+    width: 33px;
+    height: 1px;
+    transition: opacity .2s linear;
+    margin: 0;
+  }
+
+  & .swiper-pagination-bullet + .swiper-pagination-bullet {
+    margin-left: 3px;
+  }
+
+  & .swiper-pagination-bullet.active {
+    opacity: 1;
+  }
+
+  @media (any-hover: hover) {
+    & .swiper-pagination-bullet:hover {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: $mb_large) {
+    margin-top: 27px;
+  }
 }
 </style>

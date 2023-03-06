@@ -3,7 +3,7 @@ export const moduleDialog = {
     messages: [],
     dialogs: [],
     helpPhrases: [],
-    dialogLogs: [],
+    dialogLogs: []
   },
   getters: {
     getDialogsData(state) {
@@ -14,7 +14,7 @@ export const moduleDialog = {
     },
     getDialogLogs(state) {
       return state.dialogLogs;
-    },
+    }
   },
   mutations: {
     pushDialog(state, dialogData) {
@@ -25,7 +25,7 @@ export const moduleDialog = {
     },
     setDialogLogs(state, dialogLogs) {
       state.dialogLogs = dialogLogs;
-    },
+    }
   },
   actions: {
     setHelpPhrases({commit}, helpPhrases) {
@@ -36,6 +36,6 @@ export const moduleDialog = {
     },
     pushDialog({commit}, dialogData) {
       commit('pushDialog', dialogData);
-    },
-  },
+    }
+  }
 };

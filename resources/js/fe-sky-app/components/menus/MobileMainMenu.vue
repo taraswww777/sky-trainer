@@ -21,10 +21,9 @@
     </div>
 </template>
 <script>
-
 export default {
   data: () => ({
-    isOpen: false,
+    isOpen: false
   }),
   methods: {
     closeMenu() {
@@ -32,15 +31,15 @@ export default {
     },
     openMenu() {
       this.isOpen = true;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
 @import "../../../../sass/media";
 
 .wrap-aside {
-    display: flex;
+  display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   align-content: flex-start;
@@ -83,6 +82,10 @@ export default {
 
     transition: color .2s linear;
     z-index: 10;
+
+    @media (min-width: $mb_exlarge) {
+      display: block;
+    }
 
     &:before
     {
@@ -137,6 +140,10 @@ export default {
     .wrap-aside__close{
       display: flex;
     }
+  }
+
+  &__MainMenu {
+    height: 100%;
   }
 }
 </style>

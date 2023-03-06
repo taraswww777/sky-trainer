@@ -86,11 +86,11 @@ const bem = useBem('course-card');
 export default {
   data: () => ({
     PAGE_NAMES,
-    bem,
+    bem
   }),
   props: {
-    course: Object,
-  },
+    course: Object
+  }
 };
 </script>
 <style lang="scss">

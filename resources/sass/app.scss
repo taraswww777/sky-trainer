@@ -1,26 +1,114 @@
 @import './colors';
 
 @import "./media";
-*, *::before, *::after {
-  box-sizing: inherit;
-}
+@import './mixins';
 
-div, dl, dt, dd, ul, ol, li, pre, form, p, blockquote, th, td,
-h1, h2, h3, h4, h5, h6 {
+
+/*------------------
+    Reset styles
+------------------*/
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  @include customScroll();
+  margin: 0;
+  padding: 0;
+
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration-skip: objects;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  border-style: none;
+}
+
+textarea {
+  overflow: auto;
+}
+
+input,
+textarea,
+input:active,
+textarea:active,
+button {
+  margin: 0;
+
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  outline: none transparent !important;
+  box-shadow: none;
+
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-outline: none !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+:focus {
+  outline: 0;
+}
+
+:hover,
+:active {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+}
+
+
+::-ms-clear {
+  display: none;
+}
+
+button {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+
+  display: inline-block;
+
+  cursor: pointer;
+  vertical-align: top;
+
+  border: none;
+  background: none;
+}
+
 
 html, body {
   background: #EAEEF6;
-  margin: 0;
-  padding: 0;
 }
 
-h1 {
-  font-size: 2rem;
-  color: $colorBrand
-}
 
 .iconCircleWrapper {
   display: inline-flex;
@@ -58,18 +146,12 @@ body {
   line-height: 1.23;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-family: "Inter", Helvetica, Roboto, Arial, sans-serif;
-  margin: 0;
-}
-
-
 .cont-page {
   padding: 0 24px;
 
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
   position: relative;
 
   &:before {
