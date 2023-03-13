@@ -17,7 +17,14 @@
           <div :class="bem('coll')">
             <div :class="bem('top _flex')">
               <div :class="bem('top-box')">
-                <TagList :tags="['Тренировка', 'Открытый Диалог']"/>
+
+                <TagList :tags="[
+                  this.$t(`data.training_types.${dialogOptions.phaseId}`),
+                  course.extra?.stages?.find(({id})=>(
+                    id===dialogOptions.stageId
+                  ))?.caption,
+                  this.$t(`data.available_trainers.${dialogOptions.trainerId}`)
+                ].filter(v=>v)"/>
               </div>
 
               <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
@@ -111,6 +118,9 @@ export default {
     },
     helpPhrases() {
       return this.$store.getters.getHelpPhrases;
+    },
+    dialogOptions() {
+      return this.$store.getters.getDialogOptions;
     }
   }
 };
