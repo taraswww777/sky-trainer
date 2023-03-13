@@ -96,13 +96,15 @@ export default {
     start(e) {
       e.preventDefault();
       e.stopPropagation();
-      this.$store.dispatch('setLoadingStart');
-      requestDialogStart({
+      const trainingOptions = {
         courseId: this.$route.params.courseId,
         phaseId: this.training_type,
         stageId: this.stageId,
         trainerId: this.trainer
-      })
+      };
+      this.$store.dispatch('setLoadingStart');
+      this.$store.dispatch('setDialogOptions', trainingOptions);
+      requestDialogStart(trainingOptions)
         .then(({data}) => {
           console.log('dialogData:', data);
           this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);

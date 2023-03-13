@@ -14,6 +14,9 @@ export const moduleDialog = {
     },
     getDialogLogs(state) {
       return state.dialogLogs;
+    },
+    getDialogOptions(state) {
+      return state.dialogOptions;
     }
   },
   mutations: {
@@ -25,6 +28,9 @@ export const moduleDialog = {
     },
     setDialogLogs(state, dialogLogs) {
       state.dialogLogs = dialogLogs;
+    },
+    setDialogOptions(state, dialogOptions) {
+      state.dialogOptions = dialogOptions;
     }
   },
   actions: {
@@ -36,6 +42,9 @@ export const moduleDialog = {
     },
     pushDialog({commit}, dialogData) {
       commit('pushDialog', dialogData);
+    },
+    setDialogOptions({commit}, dialogOptions) {
+      commit('setDialogOptions', dialogOptions);
     }
   }
 };
