@@ -2,7 +2,7 @@
   <BaseTemplate>
     <CommonBreadcrumbs
       :crumbs="[
-      {url:'/', title:'Гланая'},
+      {url:'/', title:'Главная'},
       {title:'Все курсы'}
     ]"
     />
