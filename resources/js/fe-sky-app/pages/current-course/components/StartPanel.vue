@@ -16,8 +16,7 @@
           />
         </div>
       </div>
-
-      <div :class="bem('line')">
+      <div :class="bem('line')" v-if="training_type === '2'">
         <div :class="bem('label')">{{ t('stages.label') }}</div>
 
         <div :class="bem('field')" v-if="course?.extra?.stages">
@@ -99,7 +98,7 @@ export default {
       const trainingOptions = {
         courseId: this.$route.params.courseId,
         phaseId: this.training_type,
-        stageId: this.stageId,
+        stageId: this.training_type === '2' ? this.stageId : 1,
         trainerId: this.trainer
       };
       this.$store.dispatch('setLoadingStart');
