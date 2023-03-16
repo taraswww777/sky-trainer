@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import {
   HomePage,
   CoursesPage,
@@ -37,7 +37,7 @@ const routes = [
     path: '/auth/logout', component: LogoutPage, name: PAGE_NAMES.logout
   },
   {
-    path: '/auth/forgot',
+    path: '/auth/forgot-password',
     component: ForgotPasswordPage,
     name: PAGE_NAMES.forgotPassword,
     beforeEnter: checkAuth
@@ -63,6 +63,6 @@ const routes = [
 ];
 
 export const appRouter = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
