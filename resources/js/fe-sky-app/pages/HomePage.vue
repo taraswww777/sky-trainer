@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../sass/media";
+@import "@sass/media";
 
 .main-section__top{
   margin-top: -20px;

@@ -25,7 +25,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 ;
-@import '../../../../sass/colors';
+@import '@sass/colors';
 
 .coursesTabs {
     display: flex;

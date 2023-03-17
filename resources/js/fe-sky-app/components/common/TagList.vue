@@ -22,7 +22,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .tag-list {
     display: flex;

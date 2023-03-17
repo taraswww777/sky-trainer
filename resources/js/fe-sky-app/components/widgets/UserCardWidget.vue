@@ -65,7 +65,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .user-catd{
   padding: 22px;

@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../../../../sass/media";
+@import "@sass/media";
 
 .slider-numbers {
   margin-top: 8px;

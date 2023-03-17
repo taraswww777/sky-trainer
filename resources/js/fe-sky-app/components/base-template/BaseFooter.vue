@@ -21,7 +21,7 @@ export default {};
 <style lang="scss" scoped>
 /* ;
 @import '../../../../sass/colors'; */
-@import "../../../../sass/media";
+@import "@sass/media";
 
 /* .icon {
     display: inline-flex;

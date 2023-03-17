@@ -39,7 +39,7 @@ export default {
 
 <style scoped lang="scss">
 /* @import '../../../../../sass/mixins'; */
-@import "../../../../../sass/media";
+@import "@sass/media";
 
 .quality-control {
   background: linear-gradient(84.09deg, #2DC458 4.37%, #1ABAB0 94.11%);

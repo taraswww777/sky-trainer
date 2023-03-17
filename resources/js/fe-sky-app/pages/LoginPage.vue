@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../sass/media";
+@import "@sass/media";
 
 .page-login {
   padding: 18px 24px 40px;
@@ -272,7 +272,7 @@ export default {
 </style>
 
 <style lang="scss">
-@import "../../../sass/media";
+@import "@sass/media";
 
 .slider-pagination {
   position: relative;

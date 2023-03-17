@@ -61,8 +61,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
-@import '../../../../sass/mixins';
+@import "@sass/media";
+@import '@sass/mixins';
 
 .aside {
   @include customScroll($bgColor: #FFFFFF);

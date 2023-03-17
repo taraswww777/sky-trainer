@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../../../sass/media";
+@import "@sass/media";
 
 .dialog-input-area {
   padding: 25px;

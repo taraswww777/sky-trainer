@@ -66,7 +66,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .main-info {
   padding: 20px 22px 12px;

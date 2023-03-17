@@ -19,7 +19,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "@sass/media.scss";
+@import "@sass/_media.scss";
 
 .breadcrumbs {
     margin-bottom: 10px;

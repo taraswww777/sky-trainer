@@ -75,7 +75,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .mistakes-negotiations {
   padding: 22px;

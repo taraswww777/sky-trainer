@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../../../sass/mixins';
+@import '@sass/mixins';
 
 .custom-select {
   position: relative;

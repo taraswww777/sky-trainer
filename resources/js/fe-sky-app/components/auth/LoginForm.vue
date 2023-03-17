@@ -91,7 +91,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .form-login {
   padding: 37px 30px 54px;

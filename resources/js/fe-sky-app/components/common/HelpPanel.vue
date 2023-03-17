@@ -46,7 +46,7 @@ export default {
 <style lang="scss" scoped>
 /* ;
 @import '../../../../sass/colors'; */
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .help-panel {
     background: rgba(255, 255, 255, 0.75);

@@ -96,7 +96,7 @@ export default {
 <style lang="scss">
 /* ;
 @import '../../../../sass/colors'; */
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .course-card {
     background: rgba(255, 255, 255, 0.45);

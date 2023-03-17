@@ -30,7 +30,7 @@ export default {
 
 <style scoped lang="scss">
 /* @import '../../../../../sass/mixins'; */
-@import "../../../../../sass/media";
+@import "@sass/media";
 
 .funnel-stage {
   background: rgba(255, 255, 255, 0.75);
