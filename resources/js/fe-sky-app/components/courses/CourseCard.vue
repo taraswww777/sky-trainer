@@ -1,5 +1,5 @@
 <template>
-    <div :class="bem()">
+  <div :class="bem()">
     <div :class="bem('dots')">
       <img src="../../../../img/ic_dots.svg" alt="">
     </div>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div :class="bem('bot _flex')">
-      <router-link :to="{name:PAGE_NAMES.courseItem, params:{courseId: course.id}}" :class="bem('link btn-purple')">
+      <router-link :to="{ name: PAGE_NAMES.courseItem, params: { courseId: course.id } }" :class="bem('link btn-purple')">
         <span>Начать тренировку</span>
       </router-link>
 
@@ -75,7 +75,7 @@
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 <script>
 import useBem from 'vue3-bem';
@@ -96,7 +96,7 @@ export default {
 <style lang="scss">
 /* ;
 @import '../../../../sass/colors'; */
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .course-card {
     background: rgba(255, 255, 255, 0.45);

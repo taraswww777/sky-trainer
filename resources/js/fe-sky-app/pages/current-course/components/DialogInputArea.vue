@@ -8,7 +8,7 @@
       <img src="./mic.svg">
     </button>
 
-    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу"></textarea>
+    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
   </form>
 </template>
 
@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../../../sass/media";
+@import "@sass/media";
 
 .dialog-input-area {
   padding: 25px;

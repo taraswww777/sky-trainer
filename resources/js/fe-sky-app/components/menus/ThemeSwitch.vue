@@ -1,20 +1,20 @@
 <template>
   <button :class="bem()" type="button" @click="onClickBtn">
-      <span :class="bem(`item`,currentTheme===THEMES.Light ? 'active':'')">
-        <span :class="bem('theme-icon')">
-          <img src="../../../../img/sun-icon.svg" alt="Light">
-        </span>
-
-        <span :class="bem('theme-name')">Light</span>
+    <span :class="bem(`item`, currentTheme === THEMES.Light ? 'active' : '')">
+      <span :class="bem('theme-icon')">
+        <img src="../../../../img/sun-icon.svg" alt="Light">
       </span>
 
-    <span :class="bem('item',currentTheme===THEMES.Dark ? 'active':'')">
-        <span :class="bem('theme-icon')">
-          <img src="../../../../img/moon-icon.svg" alt="Dark">
-        </span>
+      <span :class="bem('theme-name')">Light</span>
+    </span>
 
-        <span :class="bem('theme-name')">Dark</span>
+    <span :class="bem('item', currentTheme === THEMES.Dark ? 'active' : '')">
+      <span :class="bem('theme-icon')">
+        <img src="../../../../img/moon-icon.svg" alt="Dark">
       </span>
+
+      <span :class="bem('theme-name')">Dark</span>
+    </span>
   </button>
 </template>
 <script>
@@ -52,8 +52,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
-@import '../../../../sass/mixins';
+@import "@sass/media";
+@import '@sass/mixins';
 
 .theme-switch {
   width: 100%;

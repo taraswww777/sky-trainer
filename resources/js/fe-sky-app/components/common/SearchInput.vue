@@ -15,26 +15,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/media";
 
-.search
-{
-    &__input
-    {
-        color: #000;
-        font: 14px 'Inter';
+.search {
+  &__input {
+    color: #000;
+    font: 14px 'Inter';
 
-        display: block;
+    display: block;
 
-        width: 100%;
-        height: 40px;
-        margin: 0;
-        padding: 0 15px 0 38px;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    padding: 0 15px 0 38px;
 
-        border: 1px solid #E6E6E6;
-        border-radius: 50px;
-        background: #FFF url(../../../../img/ic_search.svg) 18px 50%/16px auto no-repeat;
-        box-shadow: none;
-    }
+    border: 1px solid #E6E6E6;
+    border-radius: 50px;
+    background: #FFF url(../../../../img/ic_search.svg) 18px 50%/16px auto no-repeat;
+    box-shadow: none;
+  }
 }
 </style>

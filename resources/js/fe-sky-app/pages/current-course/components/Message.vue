@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../../../sass/media";
+@import "@sass/media";
 
 .message {
   display: flex;

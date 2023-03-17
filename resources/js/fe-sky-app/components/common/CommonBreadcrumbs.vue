@@ -1,10 +1,10 @@
 <template>
-    <div class="breadcrumbs" v-if="crumbs">
-        <div v-for="crumb in crumbs" :key="crumb.url" class="breadcrumbs__item">
-            <router-link v-if="crumb.url" :to="crumb.url">{{ crumb.title }}</router-link>
-            <span v-else>{{ crumb.title }}</span>
-        </div>
+  <div class="breadcrumbs" v-if="crumbs">
+    <div v-for="crumb in crumbs" :key="crumb.url" class="breadcrumbs__item">
+      <router-link v-if="crumb.url" :to="crumb.url">{{ crumb.title }}</router-link>
+      <span v-else>{{ crumb.title }}</span>
     </div>
+  </div>
 </template>
 <script>
 const name = 'CommonBreadcrumbs';
@@ -19,7 +19,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/_media.scss";
 
 .breadcrumbs {
     margin-bottom: 10px;

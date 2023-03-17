@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <DialogInputArea/>
+    <DialogInputArea />
   </div>
 </template>
 
@@ -44,8 +44,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../../../../sass/mixins';
-@import "../../../../../sass/media";
+@import '@sass/mixins';
+@import "@sass/media";
 
 .dialog-panel
 {

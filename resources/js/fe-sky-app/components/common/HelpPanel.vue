@@ -1,23 +1,23 @@
 <template>
-    <div :class="bem()" class="help-panel--marg">
-        <div :class="bem('header')">
-            <div :class="bem('title')">
-                Подсказки
-            </div>
-            <div :class="bem('checkbox-toggle')" class="checkbox-toggle">
-                <label class="checkbox-toggle__label" @change="toggleIsShowHelpText">
-                    <input type="checkbox" value="{{isShowHelpText}}" checked="{{isShowHelpText && 'checked'}}"/>
+  <div :class="bem()" class="help-panel--marg">
+    <div :class="bem('header')">
+      <div :class="bem('title')">
+        Подсказки
+      </div>
+      <div :class="bem('checkbox-toggle')" class="checkbox-toggle">
+        <label class="checkbox-toggle__label" @change="toggleIsShowHelpText">
+          <input type="checkbox" value="{{isShowHelpText}}" checked="{{isShowHelpText && 'checked'}}" />
 
-                    <span class="checkbox-toggle__text">Включить подсказки</span>
-                </label>
-            </div>
-        </div>
-        <div :class="bem('text')" v-if="isShowHelpText">
-            <ul>
-                <li v-for="(item, index) in helpPhrases" :key="index">{{ item }}</li>
-            </ul>
-        </div>
+          <span class="checkbox-toggle__text">Включить подсказки</span>
+        </label>
+      </div>
     </div>
+    <div :class="bem('text')" v-if="isShowHelpText">
+      <ul>
+        <li v-for="(item, index) in helpPhrases" :key="index">{{ item }}</li>
+      </ul>
+    </div>
+  </div>
 </template>
 <script>
 import useBem from 'vue3-bem';
@@ -46,7 +46,7 @@ export default {
 <style lang="scss" scoped>
 /* ;
 @import '../../../../sass/colors'; */
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .help-panel {
     background: rgba(255, 255, 255, 0.75);

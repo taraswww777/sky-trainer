@@ -1,55 +1,55 @@
 <template>
   <div :class="bem()">
-  <div :class="bem('icon')">
-  <!-- <div :class="bem('icon','orange')">
+    <div :class="bem('icon')">
+      <!-- <div :class="bem('icon','orange')">
   <div :class="bem('icon','purple')"> -->
-    <img src="../../../../img/ic_info1.svg" alt="">
+      <img src="../../../../img/ic_info1.svg" alt="">
     <!-- <img src="../../../../img/ic_info2.svg" alt="">
     <img src="../../../../img/ic_info3.svg" alt=""> -->
-  </div>
+    </div>
 
     <div :class="bem('flex')">
-    <div :class="bem('box')">
-      <div :class="bem('title')">Ошибки в тексте</div>
+      <div :class="bem('box')">
+        <div :class="bem('title')">Ошибки в тексте</div>
 
-      <div :class="bem('bot _flex')">
-        <div :class="bem('number')">120</div>
+        <div :class="bem('bot _flex')">
+          <div :class="bem('number')">120</div>
 
-        <div :class="bem('percent _flex')">
-          <div :class="bem('percent-number')">+11.01%</div>
-          <!-- <div :class="bem('percent-number','red')">+11.01%</div> -->
+          <div :class="bem('percent _flex')">
+            <div :class="bem('percent-number')">+11.01%</div>
+            <!-- <div :class="bem('percent-number','red')">+11.01%</div> -->
 
-          <div :class="bem('percent-icon')">
-            <img src="../../../../img/arrow_up.svg" alt="">
+            <div :class="bem('percent-icon')">
+              <img src="../../../../img/arrow_up.svg" alt="">
             <!-- <img src="../../../../img/arrow_down.svg" alt=""> -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div :class="bem('progress')">
-      <svg :class="bem('progress-svg')" width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Вместо 50.8 передаешь любое число от 0 до 100 (0 это 0%) (100 это 100%) -->
-        <circle :class="bem('progress-line')" cx="33" cy="33" r="29" stroke="url(#paint0_linear_581_8249)" stroke-width="8" stroke-dashoffset="calc(11 * 1.8 + 180)"/>
-        <defs>
-          <linearGradient id="paint0_linear_581_8249" x1="33" y1="0" x2="33" y2="66" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#6BD188"/>
-            <stop offset="1" stop-color="#3EAC5E"/>
+      <div :class="bem('progress')">
+        <svg :class="bem('progress-svg')" width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Вместо 50.8 передаешь любое число от 0 до 100 (0 это 0%) (100 это 100%) -->
+          <circle :class="bem('progress-line')" cx="33" cy="33" r="29" stroke="url(#paint0_linear_581_8249)" stroke-width="8" stroke-dashoffset="calc(11 * 1.8 + 180)" />
+          <defs>
+            <linearGradient id="paint0_linear_581_8249" x1="33" y1="0" x2="33" y2="66" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6BD188" />
+              <stop offset="1" stop-color="#3EAC5E" />
 
             <!-- <stop stop-color="#F19F52"/>
             <stop offset="1" stop-color="#FF6B7D"/>
 
             <stop stop-color="#9869F6"/>
             <stop offset="1" stop-color="#C17DF3"/> -->
-          </linearGradient>
-        </defs>
-      </svg>
+            </linearGradient>
+          </defs>
+        </svg>
 
-      <div :class="bem('progress-number')">
-        <span>11%</span>
+        <div :class="bem('progress-number')">
+          <span>11%</span>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 <script>
@@ -66,7 +66,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .main-info {
   padding: 20px 22px 12px;

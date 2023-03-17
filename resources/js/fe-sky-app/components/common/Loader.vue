@@ -1,9 +1,9 @@
 <template>
-    <div :class="bem()">
-        <div :class="bem('spinner')">
-            <Fa icon="spinner"/>
-        </div>
+  <div :class="bem()">
+    <div :class="bem('spinner')">
+      <Fa icon="spinner" />
     </div>
+  </div>
 </template>
 <script>
 import useBem from 'vue3-bem';
@@ -20,7 +20,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 ;
-@import '../../../../sass/colors';
+@import '@sass/colors';
 
 .loader {
     position: absolute;

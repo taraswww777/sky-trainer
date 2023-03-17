@@ -1,4 +1,3 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
 import {
   HomePage,
   CoursesPage,
@@ -14,7 +13,7 @@ import {
 import {PAGE_NAMES} from '../constants';
 import {checkAuth} from './guards';
 
-const routes = [
+export const routerConfig = [
   {
     path: '/',
     component: HomePage,
@@ -37,7 +36,7 @@ const routes = [
     path: '/auth/logout', component: LogoutPage, name: PAGE_NAMES.logout
   },
   {
-    path: '/auth/forgot',
+    path: '/auth/forgot-password',
     component: ForgotPasswordPage,
     name: PAGE_NAMES.forgotPassword,
     beforeEnter: checkAuth
@@ -61,8 +60,3 @@ const routes = [
     beforeEnter: checkAuth
   }
 ];
-
-export const appRouter = createRouter({
-  history: createWebHashHistory(),
-  routes
-});

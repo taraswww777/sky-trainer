@@ -1,7 +1,7 @@
 <template>
-    <div class="notice">
-        <slot></slot>
-    </div>
+  <div class="notice">
+    <slot />
+  </div>
 </template>
 <script>
 const name = 'CommonNotice';
@@ -17,7 +17,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-@import "../../../../sass/media";
+@import "@sass/media";
 
 .notice {
     background: #EAEEF6;

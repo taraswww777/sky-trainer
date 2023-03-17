@@ -1,7 +1,7 @@
 <template>
-    <button :type="type" class="circleButton">
-        <slot></slot>
-    </button>
+  <button :type="type" class="circleButton">
+    <slot />
+  </button>
 </template>
 <script>
 export default {
@@ -18,8 +18,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-;
-@import '../../../../sass/colors';
+@import '@sass/colors';
 
 .circleButton {
     height: 40px;

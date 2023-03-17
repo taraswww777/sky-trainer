@@ -1,11 +1,11 @@
 <template>
-    <div :class="bem()">
+  <div :class="bem()">
     <div :class="bem('title')">Стадия воронки</div>
 
-    <SliderNames/>
+    <SliderNames />
 
-    <SliderNumbers/>
-    </div>
+    <SliderNumbers />
+  </div>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
 
 <style scoped lang="scss">
 /* @import '../../../../../sass/mixins'; */
-@import "../../../../../sass/media";
+@import "@sass/media";
 
 .funnel-stage {
   background: rgba(255, 255, 255, 0.75);
