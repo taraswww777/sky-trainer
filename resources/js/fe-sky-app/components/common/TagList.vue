@@ -1,9 +1,9 @@
 <template>
-    <div :class="bem()" v-if="tags && tags.length > 0">
-        <div :class="bem('item')" v-for="tag in tags" :key="tag">
-            {{ tag }}
-        </div>
+  <div :class="bem()" v-if="tags && tags.length > 0">
+    <div :class="bem('item')" v-for="tag in tags" :key="tag">
+      {{ tag }}
     </div>
+  </div>
 </template>
 <script>
 import useBem from 'vue3-bem';

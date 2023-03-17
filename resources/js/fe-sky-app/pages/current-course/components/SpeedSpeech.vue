@@ -1,18 +1,18 @@
 <template>
-    <div :class="bem()">
+  <div :class="bem()">
     <div :class="bem('title')">Лог разговора</div>
 
     <div :class="bem('diagram')">
-      <div :class="bem('diagram-line')"></div>
+      <div :class="bem('diagram-line')" />
 
       <!-- Вместо 90 передаешь любое число от 0 до 100 (0 это 0%) (100 это 100%) -->
-      <div :class="bem('diagram-dot')" style="transform: rotate(calc(90deg * 1.8));"></div>
+      <div :class="bem('diagram-dot')" style="transform: rotate(calc(90deg * 1.8));" />
 
       <div :class="bem('diagram-text')">
         <span>Говорите <br>медленнее</span>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>

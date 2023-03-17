@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <DialogInputArea/>
+    <DialogInputArea />
   </div>
 </template>
 

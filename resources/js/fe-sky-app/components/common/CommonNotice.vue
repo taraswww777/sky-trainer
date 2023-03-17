@@ -1,7 +1,7 @@
 <template>
-    <div class="notice">
-        <slot></slot>
-    </div>
+  <div class="notice">
+    <slot />
+  </div>
 </template>
 <script>
 const name = 'CommonNotice';

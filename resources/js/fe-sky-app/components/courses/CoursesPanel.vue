@@ -1,15 +1,15 @@
 <template>
-    <div class="courses courses_marg">
-        <div class="courses__grid _flex">
-            <div
-                class="courses__item"
-                v-for="course in courses"
-                :key="course.id"
-            >
-                <CourseCard :course="course"/>
-            </div>
-        </div>
+  <div class="courses courses_marg">
+    <div class="courses__grid _flex">
+      <div
+        class="courses__item"
+        v-for="course in courses"
+        :key="course.id"
+      >
+        <CourseCard :course="course" />
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {

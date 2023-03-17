@@ -1,38 +1,46 @@
 <template>
-    <form :class="bem()" @submit="doLogin">
-      <div :class="bem('title')">Вход в личный кабинет</div>
+  <form :class="bem()" @submit="doLogin">
+    <div :class="bem('title')">Вход в личный кабинет</div>
 
-        <div :class="bem('line')">
+    <div :class="bem('line')">
       <div :class="bem('label')">Ваш логин</div>
 
       <div :class="bem('field')">
-                <input type="text" v-model="email" :class="bem('input')">
+        <input type="text" v-model="email" :class="bem('input')">
       </div>
     </div>
 
-        <div :class="bem('line')">
+    <div :class="bem('line')">
       <div :class="bem('label')">Ваш пароль</div>
 
       <div :class="bem('field')">
-                <input type="password" v-model="password" :class="bem('input')">
-            </div>
-        </div>
+        <input type="password" v-model="password" :class="bem('input')">
+      </div>
+    </div>
 
-        <div :class="bem('submit')">
-            <PrimaryButton type="submit" :class="bem('submit-btn')">
-                <span>Войти</span>
-            </PrimaryButton>
-        </div>
+    <div :class="bem('submit')">
+      <PrimaryButton type="submit" :class="bem('submit-btn')">
+        <span>Войти</span>
+      </PrimaryButton>
+    </div>
 
-        <div :class="bem('links _flex')">
+    <div :class="bem('links _flex')">
       <div :class="bem('links-item')">
-        <router-link to="/auth/fagot" :class="bem('links-link')">Забыли пароль?</router-link>
+        <router-link
+          to="/auth/fagot"
+          :class="bem('links-link')"
+        >Забыли пароль?
+        </router-link>
       </div>
       <div :class="bem('links-item')">
-        <router-link to="/auth/register" :class="bem('links-link')">Регистрация</router-link>
+        <router-link
+          to="/auth/register"
+          :class="bem('links-link')"
+        >Регистрация
+        </router-link>
       </div>
-        </div>
-    </form>
+    </div>
+  </form>
 </template>
 <script>
 import useBem from 'vue3-bem';
@@ -40,10 +48,12 @@ import {isLogin, refreshCurrentUser, setToken} from '../../app-store/auth';
 import {requestLogin} from '../../requests';
 import {appRouter} from '../../app-router';
 import {PAGE_NAMES} from '../../constants';
+import PrimaryButton from '../common/PrimaryButton.vue';
 
 const bem = useBem('form-login');
 
 export default {
+  components: {PrimaryButton},
   beforeMount() {
     if (isLogin()) {
       appRouter.push({name: PAGE_NAMES.home});
@@ -59,16 +69,18 @@ export default {
       requestLogin({
         email: this.email,
         password: this.password
-      }).then(({data: {token}}) => {
-        if (token) {
-          setToken(token);
-          refreshCurrentUser(this.$store.dispatch).then((isLoad) => {
-            if (isLoad) {
-              appRouter.push({name: PAGE_NAMES.courses});
-            }
-          });
-        }
-      });
+      })
+        .then(({data: {token}}) => {
+          if (token) {
+            setToken(token);
+            refreshCurrentUser(this.$store.dispatch)
+              .then((isLoad) => {
+                if (isLoad) {
+                  appRouter.push({name: PAGE_NAMES.courses});
+                }
+              });
+          }
+        });
     }
   },
   mounted() {
@@ -84,10 +96,10 @@ export default {
 .form-login {
   padding: 37px 30px 54px;
   background: #FFFFFF;
-  box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 44px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
 
-  &__title{
+  &__title {
     font-weight: 300;
     font-size: 32px;
     line-height: 1.12;
@@ -111,7 +123,7 @@ export default {
     color: #000000;
   }
 
-  &__input{
+  &__input {
     background: transparent;
     border: 1px solid #E0E0E0;
     padding: 0 19px;
@@ -125,7 +137,7 @@ export default {
     margin: 0;
     box-shadow: none;
 
-    &:focus{
+    &:focus {
       border-color: #7156F8;
     }
   }
@@ -135,15 +147,15 @@ export default {
     width: 100%;
   }
 
-  &__submit-btn{
+  &__submit-btn {
     width: 100%;
   }
 
-  &__links{
+  &__links {
     margin: 18px 0 0 -7px;
   }
 
-  &__links-item{
+  &__links-item {
     font-weight: 400;
     font-size: 12px;
     line-height: 20px;
@@ -152,18 +164,19 @@ export default {
     margin: 7px 0 0 7px;
   }
 
-  &__links-link{
+  &__links-link {
     color: #656565;
     text-decoration: none;
     border-bottom: 1px solid currentColor;
     transition: border .2s linear;
 
     @media (any-hover: hover) {
-      &:hover{
+      &:hover {
         border-bottom-color: transparent;
       }
     }
   }
+
   @media (min-width: $mb_middle) {
     padding: 0;
     background: none;

@@ -2,59 +2,59 @@
   <div :class="bem()">
     <div :class="bem('title')">Ошибки в переговорах</div>
 
-  <CustomSelect
-    :value="training_type"
-    :onChangeValue="onChange_training_type"
-    :options="[
-      {id:1, caption:'Тренировка по стадиям'},
-      {id:2, caption:'Потребности'},
-      {id:3, caption:'Презентация'},
-      {id:4, caption:'Возражения'}
-    ]"
-  />
+    <CustomSelect
+      :value="training_type"
+      :onChangeValue="onChange_training_type"
+      :options="[
+        { id: 1, caption: 'Тренировка по стадиям' },
+        { id: 2, caption: 'Потребности' },
+        { id: 3, caption: 'Презентация' },
+        { id: 4, caption: 'Возражения' },
+      ]"
+    />
 
-  <div :class="bem('table')">
-    <table>
-      <thead>
-        <tr>
-          <th>Стадия</th>
-          <th>Ошибки</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>
-            <span>0</span>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>
-            <span>22</span>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>
-            <span>0</span>
-          </td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>
-            <span>0</span>
-          </td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>
-            <span>0</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div :class="bem('table')">
+      <table>
+        <thead>
+          <tr>
+            <th>Стадия</th>
+            <th>Ошибки</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <span>0</span>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              <span>22</span>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+              <span>0</span>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              <span>0</span>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+              <span>0</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script>

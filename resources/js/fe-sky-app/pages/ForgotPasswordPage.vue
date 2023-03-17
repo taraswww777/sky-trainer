@@ -1,7 +1,7 @@
 <template>
-    <div>
-        ForgotPasswordPage
-    </div>
+  <div>
+    ForgotPasswordPage
+  </div>
 </template>
 <script>
 export default {

@@ -40,7 +40,7 @@
       <div :class="bem('number')">10</div>
     </swiper-slide>
   </swiper>
-  <button @click="slideNext()" class="prepend-slide">Slide 1</button>
+  <button type="button" @click="slideNext()" class="prepend-slide">Slide 1</button>
 </template>
 
 <script>

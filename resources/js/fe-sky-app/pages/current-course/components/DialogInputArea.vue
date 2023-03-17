@@ -8,7 +8,7 @@
       <img src="./mic.svg">
     </button>
 
-    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу"></textarea>
+    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
   </form>
 </template>
 

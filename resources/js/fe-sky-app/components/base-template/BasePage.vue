@@ -1,18 +1,18 @@
 <template>
-    <div :class="bem()">
-        <CommonBreadcrumbs :crumbs="crumbs"/>
+  <div :class="bem()">
+    <CommonBreadcrumbs :crumbs="crumbs" />
 
-        <div class="page-head">
-            <h1 class="page-head__title">
-                <span>{{ title }}</span>
-            </h1>
-        </div>
-
-        <div :class="bem('content')">
-            <slot></slot>
-        </div>
-        <Loader v-if="isLoading"/>
+    <div class="page-head">
+      <h1 class="page-head__title">
+        <span>{{ title }}</span>
+      </h1>
     </div>
+
+    <div :class="bem('content')">
+      <slot />
+    </div>
+    <Loader v-if="isLoading" />
+  </div>
 </template>
 <script>
 import useBem from 'vue3-bem';

@@ -1,10 +1,10 @@
 <template>
   <div :class="bem()">
     <div :class="bem('loader')" v-if="isLoading">
-      <Loader/>
+      <Loader />
     </div>
     <div :class="bem('page')">
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>

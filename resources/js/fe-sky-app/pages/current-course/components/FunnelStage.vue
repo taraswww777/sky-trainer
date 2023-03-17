@@ -1,11 +1,11 @@
 <template>
-    <div :class="bem()">
+  <div :class="bem()">
     <div :class="bem('title')">Стадия воронки</div>
 
-    <SliderNames/>
+    <SliderNames />
 
-    <SliderNumbers/>
-    </div>
+    <SliderNumbers />
+  </div>
 </template>
 
 <script>

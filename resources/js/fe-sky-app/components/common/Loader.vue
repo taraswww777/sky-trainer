@@ -1,9 +1,9 @@
 <template>
-    <div :class="bem()">
-        <div :class="bem('spinner')">
-            <Fa icon="spinner"/>
-        </div>
+  <div :class="bem()">
+    <div :class="bem('spinner')">
+      <Fa icon="spinner" />
     </div>
+  </div>
 </template>
 <script>
 import useBem from 'vue3-bem';

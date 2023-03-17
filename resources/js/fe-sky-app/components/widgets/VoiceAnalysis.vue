@@ -1,79 +1,79 @@
 <template>
   <div :class="bem()">
-  <div :class="bem('title')">Анализ голоса</div>
+    <div :class="bem('title')">Анализ голоса</div>
 
     <div :class="bem('items')">
-    <div :class="bem('item')">
-      <div :class="bem('item-top _flex')">
-        <div :class="bem('item-val')">Эмоциональный</div>
-        <div :class="bem('item-val')">Монотонный</div>
-      </div>
-
-      <div :class="bem('progress')">
-        <div :class="bem('progress-line')">
-          <span style="width: 80%;"></span>
+      <div :class="bem('item')">
+        <div :class="bem('item-top _flex')">
+          <div :class="bem('item-val')">Эмоциональный</div>
+          <div :class="bem('item-val')">Монотонный</div>
         </div>
 
-        <div :class="bem('progress-bot _flex')">
-          <div :class="bem('progress-number')">82%</div>
-          <div :class="bem('progress-number')">18%</div>
+        <div :class="bem('progress')">
+          <div :class="bem('progress-line')">
+            <span style="width: 80%;" />
+          </div>
+
+          <div :class="bem('progress-bot _flex')">
+            <div :class="bem('progress-number')">82%</div>
+            <div :class="bem('progress-number')">18%</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div :class="bem('item')">
-      <div :class="bem('item-top _flex')">
-        <div :class="bem('item-val')">Внятный</div>
+      <div :class="bem('item')">
+        <div :class="bem('item-top _flex')">
+          <div :class="bem('item-val')">Внятный</div>
         <!-- <div :class="bem('item-val')">Монотонный</div> -->
-      </div>
-
-      <div :class="bem('progress')">
-        <div :class="bem('progress-line')">
-          <span style="width: 100%;"></span>
         </div>
 
-        <div :class="bem('progress-bot _flex')">
-          <div :class="bem('progress-number')">100%</div>
+        <div :class="bem('progress')">
+          <div :class="bem('progress-line')">
+            <span style="width: 100%;" />
+          </div>
+
+          <div :class="bem('progress-bot _flex')">
+            <div :class="bem('progress-number')">100%</div>
           <!-- <div :class="bem('progress-number')">18%</div> -->
+          </div>
+        </div>
+      </div>
+      <div :class="bem('item')">
+        <div :class="bem('item-top _flex')">
+          <div :class="bem('item-val')">Медленный</div>
+          <div :class="bem('item-val', 'center')">Нормальный</div>
+          <div :class="bem('item-val')">Быстрый</div>
+        </div>
+
+        <div :class="bem('progress')">
+          <div :class="bem('progress-line', 'center')">
+            <span style="width: 29%;" />
+          </div>
+
+          <div :class="bem('progress-bot _flex')">
+            <div :class="bem('progress-number')">42%</div>
+            <div :class="bem('progress-number', 'center')">29%</div>
+            <div :class="bem('progress-number')">29%</div>
+          </div>
+        </div>
+      </div>
+      <div :class="bem('item')">
+        <div :class="bem('item-top _flex')">
+          <div :class="bem('item-val')">Уверенный</div>
+          <div :class="bem('item-val')">Неуверенный</div>
+        </div>
+
+        <div :class="bem('progress')">
+          <div :class="bem('progress-line')">
+            <span style="width: 4%;" />
+          </div>
+
+          <div :class="bem('progress-bot _flex')">
+            <div :class="bem('progress-number')">4%</div>
+            <div :class="bem('progress-number')">96%</div>
+          </div>
         </div>
       </div>
     </div>
-    <div :class="bem('item')">
-      <div :class="bem('item-top _flex')">
-        <div :class="bem('item-val')">Медленный</div>
-        <div :class="bem('item-val', 'center')">Нормальный</div>
-        <div :class="bem('item-val')">Быстрый</div>
-      </div>
-
-      <div :class="bem('progress')">
-        <div :class="bem('progress-line', 'center')">
-          <span style="width: 29%;"></span>
-        </div>
-
-        <div :class="bem('progress-bot _flex')">
-          <div :class="bem('progress-number')">42%</div>
-          <div :class="bem('progress-number', 'center')">29%</div>
-          <div :class="bem('progress-number')">29%</div>
-        </div>
-      </div>
-    </div>
-    <div :class="bem('item')">
-      <div :class="bem('item-top _flex')">
-        <div :class="bem('item-val')">Уверенный</div>
-        <div :class="bem('item-val')">Неуверенный</div>
-      </div>
-
-      <div :class="bem('progress')">
-        <div :class="bem('progress-line')">
-          <span style="width: 4%;"></span>
-        </div>
-
-        <div :class="bem('progress-bot _flex')">
-          <div :class="bem('progress-number')">4%</div>
-          <div :class="bem('progress-number')">96%</div>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 </template>
 <script>

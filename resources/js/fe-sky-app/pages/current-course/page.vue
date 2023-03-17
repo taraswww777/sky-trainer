@@ -4,27 +4,28 @@
       :isLoading="isLoading"
       :title=" course?.name"
       :crumbs="[
-      {url:'/', title:'Главная'},
-      {title:'Все курсы', url: '/courses'}
-    ]"
+        { url: '/', title: 'Главная' },
+        { title: 'Все курсы', url: '/courses' },
+      ]"
     >
       <div :class="bem()">
         <StartPanel
           :onChangeStatus="onChangeStatus"
-          v-if="status === STATUSES.new"/>
+          v-if="status === STATUSES.new" />
 
         <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
           <div :class="bem('coll')">
             <div :class="bem('top _flex')">
               <div :class="bem('top-box')">
 
-                <TagList :tags="[
-                  this.$t(`data.training_types.${dialogOptions.phaseId}`),
-                  course.extra?.stages?.find(({id})=>(
-                    id===dialogOptions.stageId
-                  ))?.caption,
-                  this.$t(`data.available_trainers.${dialogOptions.trainerId}`)
-                ].filter(v=>v)"/>
+                <TagList
+                  :tags="[
+                    this.$t(`data.training_types.${dialogOptions.phaseId}`),
+                    course.extra?.stages?.find(({ id })=>(
+                      id === dialogOptions.stageId
+                    ))?.caption,
+                    this.$t(`data.available_trainers.${dialogOptions.trainerId}`),
+                  ].filter(v=>v)" />
               </div>
 
               <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
@@ -32,17 +33,17 @@
               </button>
             </div>
 
-            <HelpPanel :helpPhrases="helpPhrases"/>
+            <HelpPanel :helpPhrases="helpPhrases" />
 
-            <DialogPanel :dialogLogs="dialogLogs"/>
+            <DialogPanel :dialogLogs="dialogLogs" />
           </div>
 
           <div :class="bem('colr')">
-            <FunnelStage/>
+            <FunnelStage />
 
-            <SpeedSpeech/>
+            <SpeedSpeech />
 
-            <QualityControl/>
+            <QualityControl />
           </div>
         </div>
       </div>
@@ -51,10 +52,10 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
-import {requestCourseById} from '../../requests';
-import {STATUSES} from '../../constants/common';
-import {appRouter} from '../../app-router';
-import {PAGE_NAMES} from '../../constants';
+import {requestCourseById} from '@src/requests';
+import {STATUSES} from '@src/constants/common';
+import {appRouter} from '@src/app-router';
+import {PAGE_NAMES} from '@src/constants';
 import DialogPanel from './components/DialogPanel.vue';
 import StartPanel from './components/StartPanel.vue';
 import SpeedSpeech from './components/SpeedSpeech.vue';

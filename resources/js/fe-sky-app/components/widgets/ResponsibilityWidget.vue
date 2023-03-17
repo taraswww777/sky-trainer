@@ -2,37 +2,37 @@
   <div :class="bem()">
     <div :class="bem('title')">Ответственность</div>
 
-  <div :class="bem('progress')">
-    <div :class="bem('progress-number')">50.8%</div>
+    <div :class="bem('progress')">
+      <div :class="bem('progress-number')">50.8%</div>
 
-    <svg :class="bem('progress-svg')" width="113" height="113" viewBox="0 0 113 113" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Вместо 50.8 передаешь любое число от 0 до 100 (0 это 0%) (100 это 100%) -->
-      <circle :class="bem('progress-line')" cx="56.5" cy="56.5" r="48.5" fill="none" stroke="url(#paint1_linear_523_8240)" stroke-width="16" stroke-dashoffset="calc(50.8 * 3.04 + 304)"/>
-      <defs>
-        <linearGradient id="paint1_linear_523_8240" x1="56.5" y1="0" x2="56.5" y2="113" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#00FFC2"/>
-          <stop offset="1" stop-color="#48F8ED" stop-opacity="0.45"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
+      <svg :class="bem('progress-svg')" width="113" height="113" viewBox="0 0 113 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Вместо 50.8 передаешь любое число от 0 до 100 (0 это 0%) (100 это 100%) -->
+        <circle :class="bem('progress-line')" cx="56.5" cy="56.5" r="48.5" fill="none" stroke="url(#paint1_linear_523_8240)" stroke-width="16" stroke-dashoffset="calc(50.8 * 3.04 + 304)" />
+        <defs>
+          <linearGradient id="paint1_linear_523_8240" x1="56.5" y1="0" x2="56.5" y2="113" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00FFC2" />
+            <stop offset="1" stop-color="#48F8ED" stop-opacity="0.45" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
 
-  <div :class="bem('items')">
-    <div :class="bem('item')">
-      <div :class="bem('item-dot')">
-        <span></span>
+    <div :class="bem('items')">
+      <div :class="bem('item')">
+        <div :class="bem('item-dot')">
+          <span />
+        </div>
+        <div :class="bem('item-val')">Время тренировок:</div>
+        <div :class="bem('item-time')">26:14</div>
       </div>
-      <div :class="bem('item-val')">Время тренировок:</div>
-      <div :class="bem('item-time')">26:14</div>
-    </div>
-    <div :class="bem('item')">
-      <div :class="bem('item-dot')">
-        <span style="background: #E7EFF4;"></span>
+      <div :class="bem('item')">
+        <div :class="bem('item-dot')">
+          <span style="background: #E7EFF4;" />
+        </div>
+        <div :class="bem('item-val')">Время обучения</div>
+        <div :class="bem('item-time')">28:20</div>
       </div>
-      <div :class="bem('item-val')">Время обучения</div>
-      <div :class="bem('item-time')">28:20</div>
     </div>
-  </div>
   </div>
 </template>
 <script>

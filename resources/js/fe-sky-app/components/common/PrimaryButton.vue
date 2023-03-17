@@ -1,7 +1,7 @@
 <template>
-    <button :type="type" class="btn-purple-bg">
-        <slot></slot>
-    </button>
+  <button :type="type" class="btn-purple-bg">
+    <slot />
+  </button>
 </template>
 <script>
 export default {

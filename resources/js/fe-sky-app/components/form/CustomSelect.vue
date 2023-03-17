@@ -1,10 +1,10 @@
 <template>
   <div :class="bem()">
     <div
-      :class="bem('placeholder', {active: isActive})"
+      :class="bem('placeholder', { active: isActive })"
       @click="onToggle"
     >
-      {{ options.find(({id}) => value === id)?.caption }}
+      {{ options.find(({ id }) => value === id)?.caption }}
     </div>
 
     <div :class="bem('list')" v-if="isOpen">
@@ -12,7 +12,7 @@
         <div
           v-for="option in options"
           :key="option.id"
-          :class="bem('item',isSelected(option)?'selected':'')"
+          :class="bem('item', isSelected(option) ? 'selected' : '')"
           @click="()=>onChange(option)"
         >
           <span>{{ option.caption }}</span>

@@ -1,43 +1,43 @@
 <template>
   <BaseTemplate>
     <div class="main-section">
-    <div class="main-section__top">
-      <div class="main-section__top-col">
-        <UserCardWidget :userInfo="user"/>
-      </div>
-      <div class="main-section__top-col">
-        <ProgressWidget/>
-      </div>
-    </div>
-    <div class="main-section__info">
-      <div class="main-section__info-col">
-        <!-- <GrammarErrorsWidget/> -->
-        <MainInformationWidget/>
-      </div>
-      <div class="main-section__info-col">
-        <!-- <ScriptMatchWidget/> -->
-        <MainInformationWidget/>
-      </div>
-      <div class="main-section__info-col">
-        <!-- <VoiceAnalysisWidget/> -->
-        <MainInformationWidget/>
-      </div>
-    </div>
-    <div class="main-section__bot">
-      <div class="main-section__bot-col">
-        <VoiceAnalysis/>
-      </div>
-
-      <div class="main-section__bot-col main-section__bot-col--flex">
-        <div class="main-section__bot-block">
-          <ResponsibilityWidget/>
+      <div class="main-section__top">
+        <div class="main-section__top-col">
+          <UserCardWidget :userInfo="user" />
         </div>
-
-        <div class="main-section__bot-block">
-          <MistakesNegotiationsWidget/>
+        <div class="main-section__top-col">
+          <ProgressWidget />
         </div>
       </div>
-    </div>
+      <div class="main-section__info">
+        <div class="main-section__info-col">
+          <!-- <GrammarErrorsWidget/> -->
+          <MainInformationWidget />
+        </div>
+        <div class="main-section__info-col">
+          <!-- <ScriptMatchWidget/> -->
+          <MainInformationWidget />
+        </div>
+        <div class="main-section__info-col">
+          <!-- <VoiceAnalysisWidget/> -->
+          <MainInformationWidget />
+        </div>
+      </div>
+      <div class="main-section__bot">
+        <div class="main-section__bot-col">
+          <VoiceAnalysis />
+        </div>
+
+        <div class="main-section__bot-col main-section__bot-col--flex">
+          <div class="main-section__bot-block">
+            <ResponsibilityWidget />
+          </div>
+
+          <div class="main-section__bot-block">
+            <MistakesNegotiationsWidget />
+          </div>
+        </div>
+      </div>
     </div>
   </BaseTemplate>
 </template>

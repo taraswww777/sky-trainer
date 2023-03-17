@@ -1,14 +1,14 @@
 <template>
-    <div class="head-user">
-        <div :class="bem('icon iconCircleWrapper')">
-            <!-- <span class="iconCircleWrapper"><Fa :icon="['far','user']"/></span> -->
+  <div class="head-user">
+    <div :class="bem('icon iconCircleWrapper')">
+      <!-- <span class="iconCircleWrapper"><Fa :icon="['far','user']"/></span> -->
       <img src="../../../../img/ic_user.svg" alt="">
-        </div>
-        <div :class="bem('box')">
-            <div :class="bem('name userName')">{{ userName }}</div>
-            <div :class="bem('id userId')">Ваш ID: {{ userId }}</div>
-        </div>
     </div>
+    <div :class="bem('box')">
+      <div :class="bem('name userName')">{{ userName }}</div>
+      <div :class="bem('id userId')">Ваш ID: {{ userId }}</div>
+    </div>
+  </div>
 </template>
 <script>
 import useBem from 'vue3-bem';

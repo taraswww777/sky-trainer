@@ -1,10 +1,10 @@
 <template>
   <BaseTemplate>
     <div :class="bem()">
-        HomePage
-        <b>{{ title }}</b>
-        <!--  Вот так обращаемся к props.children -->
-        <slot></slot>
+      HomePage
+      <b>{{ title }}</b>
+      <!--  Вот так обращаемся к props.children -->
+      <slot />
     </div>
   </BaseTemplate>
 </template>

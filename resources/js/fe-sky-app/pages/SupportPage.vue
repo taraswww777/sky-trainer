@@ -4,7 +4,7 @@
       HomePage
       <b>{{ title }}</b>
       <!--  Вот так обращаемся к props.children -->
-      <slot></slot>
+      <slot />
     </div>
   </BaseTemplate>
 </template>

@@ -1,10 +1,10 @@
 <template>
-    <ul class="coursesTabs">
-        <template v-for="tab in tabs" :key="tab.id">
-            <li v-if="tab.id===activeTabId" class="item is-active">{{ tab.title }}</li>
-            <li v-else @click="()=>onChangeTab(tab.id)" class="item">{{ tab.title }}</li>
-        </template>
-    </ul>
+  <ul class="coursesTabs">
+    <template v-for="tab in tabs" :key="tab.id">
+      <li v-if="tab.id === activeTabId" class="item is-active">{{ tab.title }}</li>
+      <li v-else @click="()=>onChangeTab(tab.id)" class="item">{{ tab.title }}</li>
+    </template>
+  </ul>
 </template>
 <script>
 import {noop} from 'lodash';

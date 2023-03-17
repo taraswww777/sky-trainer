@@ -10,7 +10,7 @@
 
     <div :class="bem('head')">
       <div :class="bem('head-user')">
-        <UserStatusWidget v-if="user" :userName="user.name" :userId="user.id"/>
+        <UserStatusWidget v-if="user" :userName="user.name" :userId="user.id" />
       </div>
       <button
         v-if="onClose"
@@ -22,18 +22,18 @@
       </button>
     </div>
 
-    <SearchInput/>
+    <SearchInput />
 
     <div :class="bem('menu')">
-      <MainMenuItems :onClose="onClose"/>
+      <MainMenuItems :onClose="onClose" />
     </div>
 
-    <div :class="bem('time')"  v-if="false">
-      <TimeWidget/>
+    <div :class="bem('time')" v-if="false">
+      <TimeWidget />
     </div>
 
     <div :class="bem('theme')" v-if="false">
-      <ThemeSwitch/>
+      <ThemeSwitch />
     </div>
   </div>
 </template>

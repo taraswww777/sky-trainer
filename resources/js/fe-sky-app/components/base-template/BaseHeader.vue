@@ -8,19 +8,20 @@
           </router-link>
         </div>
 
-        <SearchInput :class="bem('search')"/>
+        <SearchInput :class="bem('search')" />
       </div>
 
       <div :class="bem('colr _flex')">
-        <TimeWidget :class="bem('time-block')"/>
+        <TimeWidget :class="bem('time-block')" />
 
-        <UserStatusWidget v-if="user"
+        <UserStatusWidget
+          v-if="user"
           :class="bem('head-user')"
           :userName="user.name"
           :userId="user.id"
         />
 
-        <MobileMainMenu/>
+        <MobileMainMenu />
       </div>
     </div>
   </div>

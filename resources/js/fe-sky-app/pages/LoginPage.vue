@@ -39,12 +39,12 @@
             </div>
           </swiper-slide>
 
-          <div class="slider-pagination"></div>
+          <div class="slider-pagination" />
         </swiper>
       </div>
 
       <div :class="bem('col-right')">
-        <LoginForm/>
+        <LoginForm />
       </div>
     </div>
   </div>

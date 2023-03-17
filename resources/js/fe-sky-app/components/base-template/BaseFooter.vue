@@ -1,6 +1,6 @@
 <template>
-    <div class="footer__flex _flex">
-        <div class="footer__copyright">© 2022</div>
+  <div class="footer__flex _flex">
+    <div class="footer__copyright">© 2022</div>
 
     <nav class="footer__menu _flex">
       <div class="footer__menu-item">
@@ -13,7 +13,7 @@
         <router-link to="/contacts" class="footer__menu-link">Контакты</router-link>
       </div>
     </nav>
-    </div>
+  </div>
 </template>
 <script>
 export default {};
