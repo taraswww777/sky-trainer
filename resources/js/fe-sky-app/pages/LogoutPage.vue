@@ -3,8 +3,8 @@
 </template>
 <script>
 
-import {removeToken} from '../app-store/auth';
-import {appRouter} from '../app-router';
+import {removeToken} from '@src/modules/auth';
+import {appRouter} from '@src/app-router';
 import {PAGE_NAMES} from '../constants';
 
 export default {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getToken} from '../app-store/auth';
+import {getToken} from '@src/modules/auth';
 import {API_URL} from './constants';
 
 export const axiosPost = (axiosParams = {}) => (

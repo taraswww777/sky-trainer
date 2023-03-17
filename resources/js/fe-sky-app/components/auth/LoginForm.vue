@@ -44,7 +44,7 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
-import {isLogin, refreshCurrentUser, setToken} from '../../app-store/auth';
+import {isLogin, refreshCurrentUser, setToken} from '@src/modules/auth';
 import {requestLogin} from '../../requests';
 import {appRouter} from '../../app-router';
 import {PAGE_NAMES} from '../../constants';

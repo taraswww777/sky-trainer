@@ -1,4 +1,4 @@
-import {isLogin} from '../app-store/auth';
+import {isLogin} from '@src/modules/auth';
 import {PAGE_NAMES} from '../constants';
 
 export const checkAuth = (to, from, next) => {

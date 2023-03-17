@@ -1,4 +1,3 @@
-import {createRouter, createWebHistory} from 'vue-router';
 import {
   HomePage,
   CoursesPage,
@@ -14,7 +13,7 @@ import {
 import {PAGE_NAMES} from '../constants';
 import {checkAuth} from './guards';
 
-const routes = [
+export const routerConfig = [
   {
     path: '/',
     component: HomePage,
@@ -61,8 +60,3 @@ const routes = [
     beforeEnter: checkAuth
   }
 ];
-
-export const appRouter = createRouter({
-  history: createWebHistory(),
-  routes
-});

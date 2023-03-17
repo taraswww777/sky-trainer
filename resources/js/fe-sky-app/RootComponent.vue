@@ -11,7 +11,7 @@
 
 <script>
 import useBem from 'vue3-bem';
-import {refreshCurrentUser} from './app-store/auth';
+import {refreshCurrentUser} from '@src/modules/auth';
 import {Loader} from './components';
 
 const name = 'Root';

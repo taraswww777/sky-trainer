@@ -1,5 +1,5 @@
 import {PAGE_NAMES} from '@srs/constants';
-import {isLogin} from '../app-store/auth';
+import {isLogin} from '@src/modules/auth';
 
 export const checkAuth = (to, from, next) => {
   // TODO: Потенциальное место для улучшений
