@@ -65,7 +65,10 @@ export default {
     bem
   }),
   methods: {
-    doLogin() {
+    doLogin(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
       requestLogin({
         email: this.email,
         password: this.password
