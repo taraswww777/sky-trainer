@@ -5,9 +5,9 @@
   },
   "extends": [
     "eslint:recommended",
-    "airbnb",
-    "eslint-config-airbnb/base",
-    "plugin:vue/vue3-essential"
+    "plugin:import/recommended",
+    "plugin:vue/vue3-essential",
+    "@vue/eslint-config-airbnb"
   ],
   "overrides": [
   ],
