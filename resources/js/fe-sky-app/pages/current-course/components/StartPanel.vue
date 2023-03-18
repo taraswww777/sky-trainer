@@ -105,7 +105,7 @@ export default {
       this.$store.dispatch('setDialogOptions', trainingOptions);
       requestDialogStart(trainingOptions)
         .then(({data}) => {
-          console.log('dialogData:', data);
+          // console.log('dialogData:', data);
           this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);
           this.$store.dispatch('pushDialog', data);
           this.onChangeStatus(STATUSES.inProgress);
