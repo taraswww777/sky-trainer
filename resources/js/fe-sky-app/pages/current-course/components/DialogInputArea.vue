@@ -5,10 +5,10 @@
       type="button"
       @click="onRec"
     >
-      <img src="./mic.svg">
+      <img src="./mic.svg" alt="">
     </button>
 
-    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
+    <label><textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" /></label>
   </form>
 </template>
 

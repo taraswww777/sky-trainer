@@ -60,10 +60,10 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
-import {requestDialogStart} from '../../../requests';
-import {STATUSES} from '../../../constants/common';
+import {requestDialogStart} from '@src/requests';
+import {STATUSES} from '@src/constants/common';
+import {PAGE_NAMES} from '@src/constants';
 import {CustomSelect} from '../../../components/form';
-import {PAGE_NAMES} from '../../../constants';
 
 const name = 'StartPanel';
 const bem = useBem('form');

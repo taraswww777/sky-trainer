@@ -39,7 +39,7 @@
       <div :class="bem('name')">ПОТРЕБНОСТИ</div>
     </swiper-slide>
   </swiper>
-  <button @click="slideTo(8)" class="prepend-slide">Slide 1</button>
+  <button type="button" @click="slideTo(8)" class="prepend-slide">Slide 1</button>
 </template>
 
 <script>
