@@ -21,6 +21,12 @@ export const routerConfig = [
     beforeEnter: checkAuth
   },
   {
+    path: '/',
+    component: HomePage,
+    name: PAGE_NAMES.profile,
+    beforeEnter: checkAuth
+  },
+  {
     path: '/about', component: AboutPage, name: PAGE_NAMES.about
   },
   {
