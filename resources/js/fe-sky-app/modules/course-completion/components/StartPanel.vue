@@ -34,15 +34,14 @@
         <div :class="bem('form-control')">
           <div :class="bem('label')">
             {{ t('available_trainers.label') }}
-            {{ trainer }}
           </div>
           <div :class="bem('field')">
             <InputSwitcher
               :onChangeValue="this.onChange_trainer"
               :value="trainer"
               :options="[
-                { caption: availableTrainers?.[0]?.caption, value: 0 },
-                { caption: availableTrainers?.[1]?.caption, value: 1 },
+                { caption: availableTrainers?.[0]?.caption, value: '1' },
+                { caption: availableTrainers?.[1]?.caption, value: '2' },
               ]"
             />
           </div>
