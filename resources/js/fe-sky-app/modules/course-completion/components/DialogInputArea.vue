@@ -5,10 +5,10 @@
       type="button"
       @click="onRec"
     >
-      <img src="./mic.svg">
+      <img src="./mic.svg" alt="">
     </button>
 
-    <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
+    <label><textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" /></label>
   </form>
 </template>
 
@@ -73,7 +73,7 @@ export default {
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
-          console.log('audioStream.src = $phrase.audio:', $phrase);
+          // console.log('audioStream.src = $phrase.audio:', $phrase);
 
           if ($phrase.audio) {
             audioStream.src = $phrase.audio;
@@ -106,7 +106,7 @@ export default {
       recognizer.stop();
     },
     onRec() {
-      console.log('onRec');
+      // console.log('onRec');
       if (!this.isOnRec) {
         this.onStartRecord();
       } else {

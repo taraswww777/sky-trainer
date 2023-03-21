@@ -5,7 +5,7 @@
         <BaseHeader />
       </header>
 
-      <main>
+      <main style="margin-top: 22px;">
         <slot />
       </main>
     </div>

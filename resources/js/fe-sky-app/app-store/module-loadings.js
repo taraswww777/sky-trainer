@@ -13,11 +13,11 @@ export const moduleLoadings = {
   },
   mutations: {
     setLoadingStart(state, loaderName = DEFAULT_LOADING_NAME) {
-      console.log('setLoadingStart');
+      // console.log('setLoadingStart');
       state.loadings[loaderName] = true;
     },
     setLoadingStop(state, loaderName = DEFAULT_LOADING_NAME) {
-      console.log('setLoadingStop');
+      // console.log('setLoadingStop');
       state.loadings[loaderName] = false;
     }
   },

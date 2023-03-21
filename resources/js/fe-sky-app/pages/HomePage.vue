@@ -55,9 +55,6 @@ import VoiceAnalysis from '../components/widgets/VoiceAnalysis.vue';
 export default {
   components: {
     ProgressWidget,
-    GrammarErrorsWidget,
-    ScriptMatchWidget,
-    VoiceAnalysisWidget,
     ResponsibilityWidget,
     MistakesNegotiationsWidget,
     UserCardWidget,

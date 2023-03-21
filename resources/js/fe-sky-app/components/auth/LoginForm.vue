@@ -3,18 +3,18 @@
     <div :class="bem('title')">Вход в личный кабинет</div>
 
     <div :class="bem('line')">
-      <div :class="bem('label')">Ваш логин</div>
+      <label :class="bem('label')" for="email">Ваш логин</label>
 
       <div :class="bem('field')">
-        <input type="text" v-model="email" :class="bem('input')">
+        <input type="text" v-model="email" id="email" :class="bem('input')">
       </div>
     </div>
 
     <div :class="bem('line')">
-      <div :class="bem('label')">Ваш пароль</div>
+      <label :class="bem('label')" for="password">Ваш пароль</label>
 
       <div :class="bem('field')">
-        <input type="password" v-model="password" :class="bem('input')">
+        <input type="password" v-model="password" id="password" :class="bem('input')">
       </div>
     </div>
 
@@ -45,9 +45,9 @@
 <script>
 import useBem from 'vue3-bem';
 import {isLogin, refreshCurrentUser, setToken} from '@src/modules/auth';
-import {requestLogin} from '../../requests';
-import {appRouter} from '../../app-router';
-import {PAGE_NAMES} from '../../constants';
+import {requestLogin} from '@src/requests';
+import {appRouter} from '@src/app-router';
+import {PAGE_NAMES} from '@src/constants';
 import PrimaryButton from '../common/PrimaryButton.vue';
 
 const bem = useBem('form-login');

@@ -39,6 +39,7 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
+import {noop} from 'lodash';
 import ThemeSwitch from './ThemeSwitch.vue';
 
 const bem = useBem('aside');
@@ -48,7 +49,8 @@ export default {
     ThemeSwitch
   },
   props: {
-    onClose: Function
+    onClose: Function,
+    default: noop()
   },
   data: () => ({
     bem
