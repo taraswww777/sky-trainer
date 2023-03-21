@@ -22,11 +22,11 @@
         <div :class="bem('form-control')" v-if="training_type === '2'">
           <div :class="bem('label')">{{ t('stages.label') }}</div>
 
-          <div :class="bem('field')" v-if="course?.extra?.stages">
+          <div :class="bem('field')" v-if="stageOptions">
             <CustomSelect
               :value="stageId"
               :onChangeValue="onChange_stageId"
-              :options="course.extra.stages"
+              :options="stageOptions"
             />
           </div>
         </div>
@@ -67,6 +67,7 @@ import {requestDialogStart} from '@src/requests';
 import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
 import {CustomSelect, InputSwitcher} from '@src/components/form';
+import {filter} from 'lodash';
 
 const name = 'StartPanel';
 const bem = useBem(name);
@@ -88,7 +89,7 @@ export default {
   data: () => ({
     bem,
     STATUSES,
-    stageId: '1',
+    stageId: 1,
     training_type: '1',
     trainer: '1'
   }),
@@ -129,6 +130,13 @@ export default {
     }
   },
   computed: {
+    stageOptions() {
+      return filter(this.course?.phases, (({enabled}) => enabled))
+        .map((stage) => ({
+          ...stage,
+          caption: stage.name
+        }));
+    },
     trainingTypes() {
       return this.course?.extra?.training_types?.map((item) => ({
         ...item,

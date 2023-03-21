@@ -4,7 +4,7 @@
       :class="bem('placeholder', { active: isActive })"
       @click="onToggle"
     >
-      {{ options.find(({ id }) => value === id)?.caption }}
+      {{ options.find(({ id }) => value === id)?.caption || '&nbsp;'}}
     </div>
 
     <div :class="bem('list')" v-if="isOpen">

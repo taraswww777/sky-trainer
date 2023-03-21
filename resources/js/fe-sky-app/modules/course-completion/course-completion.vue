@@ -43,18 +43,17 @@
 </template>
 <script lang="ts">
 import useBem from 'vue3-bem';
-import {noop} from 'lodash';
 import {STATUSES} from '@src/constants/common';
-import {requestCourseById} from '@src/requests';
 import {PAGE_NAMES} from '@src/constants';
 import {appRouter} from '@src/app-router';
-import StartPanel from './components/StartPanel.vue';
-import FunnelStage from '@src/modules/course-completion/components/FunnelStage.vue';
-import SpeedSpeech from '@src/modules/course-completion/components/SpeedSpeech.vue';
-import QualityControl from '@src/modules/course-completion/components/QualityControl.vue';
 import HelpPanel from '@src/components/common/HelpPanel.vue';
-import DialogPanel from '@src/modules/course-completion/components/DialogPanel.vue';
 import TagList from '@src/components/common/TagList.vue';
+import {apiClient} from '@src/api';
+import FunnelStage from './components/FunnelStage.vue';
+import SpeedSpeech from './components/SpeedSpeech.vue';
+import QualityControl from './components/QualityControl.vue';
+import DialogPanel from './components/DialogPanel.vue';
+import StartPanel from './components/StartPanel.vue';
 
 const name = 'CourseCompletionModule';
 
@@ -62,7 +61,6 @@ const bem = useBem(name);
 
 export default {
   name,
-  methods: {noop},
   components: {
     TagList,
     DialogPanel,
@@ -82,7 +80,7 @@ export default {
   }),
   mounted() {
     this.$store.dispatch('setLoadingStart');
-    requestCourseById(this.$route.params.courseId)
+    apiClient.getCourseById(this.$route.params.courseId)
       .then(({data}) => {
         this.$store.dispatch('setCurrentCourse', data);
       })
