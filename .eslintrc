@@ -24,6 +24,7 @@
   ],
   "rules": {
     "max-len": ["warn", 120],
+    "vue/max-len": ["warn", 120],
     "comma-dangle": ["error", {
       "arrays": "never",
       "objects": "never",
