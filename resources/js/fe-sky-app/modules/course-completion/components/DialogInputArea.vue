@@ -8,15 +8,16 @@
       <img src="./mic.svg" alt="">
     </button>
 
-    <label><textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" /></label>
+    <label :class="bem('label')">
+      <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
+    </label>
   </form>
 </template>
 
 <script>
 import useBem from 'vue3-bem';
-import {noop} from 'lodash';
-import {requestDialogSpeechResult} from '../../../requests';
-import {recognizer} from '../../../utils/recognizer';
+import {requestDialogSpeechResult} from '@src/requests';
+import {recognizer} from './utils/recognizer';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
@@ -35,16 +36,7 @@ export default {
     }
   },
   mounted() {
-    // Используем колбек для обработки результатов
-    recognizer.onresult = (event) => {
-      const result = event.results[event.resultIndex];
-      this.speechResult = result[0].transcript;
-      this.speechTimeStamp = event.timeStamp;
-      if (result.isFinal) {
-        this.pushMessage();
-        this.isOnRec = false;
-      }
-    };
+    this.initRecognizer();
 
     // eslint-disable-next-line
     if (confirm('Включить микрофон?')) {
@@ -52,9 +44,36 @@ export default {
     }
   },
   unmounted() {
-    recognizer.onresult = noop;
+    recognizer.inst.removeEventListener('result', this.onRecResult);
+    recognizer.inst.removeEventListener('start', this.onRecStart);
+    recognizer.inst.removeEventListener('end', this.onRecStop);
+
+    audioStream.removeEventListener('ended', this.onRec);
   },
   methods: {
+    initRecognizer() {
+      // Используем колбек для обработки результатов
+      recognizer.inst.addEventListener('result', this.onRecResult);
+      recognizer.inst.addEventListener('start', this.onRecStart);
+      recognizer.inst.addEventListener('end', this.onRecStop);
+      audioStream.addEventListener('ended', this.onRec);
+    },
+    /** Отработает после завершения распознавания */
+    onRecResult(event) {
+      const result = event.results[event.resultIndex];
+      this.speechResult = result[0].transcript;
+      this.speechTimeStamp = event.timeStamp;
+      if (result.isFinal) {
+        this.pushMessage();
+        this.isOnRec = false;
+      }
+    },
+    onRecStart() {
+      this.isOnRec = true;
+    },
+    onRecStop() {
+      this.isOnRec = false;
+    },
     pushMessage() {
       requestDialogSpeechResult({
         courseId: this.courseId,
@@ -73,19 +92,14 @@ export default {
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
-          // console.log('audioStream.src = $phrase.audio:', $phrase);
+          setTimeout(this.scrollToBottom, 500);
 
           if ($phrase.audio) {
             audioStream.src = $phrase.audio;
-            audioStream.addEventListener('ended', () => {
-              if (this.isOnRec) {
-                this.onStopRecord();
-              }
-              this.onStartRecord();
-            });
+            audioStream.currentTime = 0;
             audioStream.play();
-
-            setTimeout(this.scrollToBottom, 500);
+          } else {
+            this.onRec();
           }
 
           if (dialog_end) {
@@ -97,20 +111,11 @@ export default {
       const container = document.querySelector('#DialogPanel__messages');
       container.scroll(0, container.scrollWidth || 0);
     },
-    onStartRecord() {
-      this.isOnRec = true;
-      recognizer.start();
-    },
-    onStopRecord() {
-      this.isOnRec = false;
-      recognizer.stop();
-    },
     onRec() {
-      // console.log('onRec');
-      if (!this.isOnRec) {
-        this.onStartRecord();
+      if (this.isOnRec) {
+        recognizer.inst.stop();
       } else {
-        this.onStopRecord();
+        recognizer.inst.start();
       }
     }
   }
@@ -161,6 +166,10 @@ export default {
       max-width: 100%;
       max-height: 100%;
     }
+  }
+
+  &__label {
+    flex-grow: 1;
   }
 
   &__textarea {
