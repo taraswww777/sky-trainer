@@ -8,7 +8,9 @@
       <img src="./mic.svg" alt="">
     </button>
 
-    <label><textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" /></label>
+    <label :class="bem('label')">
+      <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
+    </label>
   </form>
 </template>
 
@@ -90,14 +92,12 @@ export default {
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
-          // console.log('audioStream.src = $phrase.audio:', $phrase);
+          setTimeout(this.scrollToBottom, 500);
 
           if ($phrase.audio) {
             audioStream.src = $phrase.audio;
             audioStream.currentTime = 0;
             audioStream.play();
-
-            setTimeout(this.scrollToBottom, 500);
           } else {
             this.onRec();
           }
@@ -166,6 +166,10 @@ export default {
       max-width: 100%;
       max-height: 100%;
     }
+  }
+
+  &__label {
+    flex-grow: 1;
   }
 
   &__textarea {
