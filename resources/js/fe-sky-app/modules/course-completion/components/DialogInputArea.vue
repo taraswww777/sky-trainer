@@ -15,8 +15,8 @@
 <script>
 import useBem from 'vue3-bem';
 import {noop} from 'lodash';
-import {requestDialogSpeechResult} from '../../../requests';
-import {recognizer} from '../../../utils/recognizer';
+import {requestDialogSpeechResult} from '@src/requests';
+import {recognizer} from './utils/recognizer';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
@@ -52,7 +52,7 @@ export default {
     }
   },
   unmounted() {
-    recognizer.onresult = noop;
+    recognizer.inst.onresult = noop;
   },
   methods: {
     pushMessage() {
@@ -99,11 +99,11 @@ export default {
     },
     onStartRecord() {
       this.isOnRec = true;
-      recognizer.start();
+      recognizer.inst.start();
     },
     onStopRecord() {
       this.isOnRec = false;
-      recognizer.stop();
+      recognizer.inst.stop();
     },
     onRec() {
       // console.log('onRec');
