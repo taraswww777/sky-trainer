@@ -1,6 +1,6 @@
 <template>
-  <div class="head-user">
-    <div :class="bem('icon iconCircleWrapper')">
+  <div :class="bem()">
+    <div :class="bem('icon')">
       <!-- <span class="iconCircleWrapper"><Fa :icon="['far','user']"/></span> -->
       <img src="../../../../img/ic_user.svg" alt="">
     </div>
@@ -13,17 +13,19 @@
 <script>
 import useBem from 'vue3-bem';
 
-const bem = useBem('head-user');
+const name = 'UserStatusWidget';
+
+const bem = useBem(name);
 
 export default {
   props: ['userName', 'userId'],
-  data: () => ({
-    bem
-  })
+  data: () => ({bem})
 };
 </script>
 <style lang="scss" scoped>
-.head-user
+@import '@sass/mixins';
+
+.user-status-widget
 {
     display: flex;
     justify-content: flex-start;
@@ -31,13 +33,13 @@ export default {
     align-items: flex-start;
     flex-wrap: nowrap;
 
-    &__icon
-    {
-        flex-shrink: 0;
+    &__icon {
+      @include iconCircleWrapper();
+      flex-shrink: 0;
 
-        margin-right: 10px;
-        padding: 11px;
-    box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
+      margin-right: 10px;
+      padding: 11px;
+      box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.1);
     }
 
     &__box

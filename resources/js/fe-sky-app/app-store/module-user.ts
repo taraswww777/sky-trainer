@@ -1,11 +1,11 @@
-import {StoreOptions} from 'vuex';
+import {type Module} from 'vuex';
 import {CurrentUserDto} from '@src/types/dto';
 
-interface ModuleUserState {
+export interface ModuleUserState {
   currentUserInfo?: CurrentUserDto | undefined
 }
 
-export const moduleUser:StoreOptions<ModuleUserState> = {
+export const moduleUser: Module<ModuleUserState, any> = {
   state: {
     currentUserInfo: undefined
   },

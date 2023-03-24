@@ -41,7 +41,7 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script>
 import useBem from 'vue3-bem';
 import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
@@ -83,6 +83,7 @@ export default {
     apiClient.getCourseById(this.$route.params.courseId)
       .then(({data}) => {
         this.$store.dispatch('setCurrentCourse', data);
+        this.$store.dispatch('setPageTitle', data?.name);
       })
       .finally(() => {
         this.$store.dispatch('setLoadingStop');

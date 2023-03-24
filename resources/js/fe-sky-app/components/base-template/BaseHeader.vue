@@ -13,7 +13,6 @@
 
       <div :class="bem('colr _flex')">
         <TimeWidget :class="bem('time-block')" />
-
         <UserStatusWidget
           v-if="user"
           :class="bem('head-user')"
@@ -28,15 +27,27 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
+import TimeWidget from '@src/components/common/TimeWidget.vue';
+import UserStatusWidget from '@src/components/auth/UserStatusWidget.vue';
+import MobileMainMenu from '@src/components/menus/MobileMainMenu.vue';
+import SearchInput from '@src/components/common/SearchInput.vue';
 
 const bem = useBem('header');
 
 export default {
+  components: {
+    SearchInput,
+    MobileMainMenu,
+    UserStatusWidget,
+    TimeWidget
+  },
   data: () => ({
     bem
   }),
   computed: {
     user() {
+      console.log('this.$store.getters.getCurrentUserInfo:', this.$store.getters.getCurrentUserInfo);
+      console.log('this.$store.getters  :', this.$store.getters);
       return this.$store.getters.getCurrentUserInfo;
     }
   }
@@ -77,7 +88,7 @@ export default {
     }
   }
 
-  &__time-block.time-block
+  &__time-block
   {
     display: none;
 
@@ -87,7 +98,7 @@ export default {
     }
   }
 
-  &__head-user.head-user
+  &__head-user
   {
     display: none;
 
