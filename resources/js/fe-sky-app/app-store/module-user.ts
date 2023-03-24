@@ -1,11 +1,11 @@
-import {StoreOptions} from 'vuex';
+import {createStore} from 'vuex';
 import {CurrentUserDto} from '@src/types/dto';
 
-interface ModuleUserState {
+export interface ModuleUserState {
   currentUserInfo?: CurrentUserDto | undefined
 }
 
-export const moduleUser:StoreOptions<ModuleUserState> = {
+export const moduleUser = createStore<ModuleUserState>({
   state: {
     currentUserInfo: undefined
   },
@@ -24,4 +24,4 @@ export const moduleUser:StoreOptions<ModuleUserState> = {
       commit('setCurrentUserInfo', currentUserInfoDto);
     }
   }
-};
+});

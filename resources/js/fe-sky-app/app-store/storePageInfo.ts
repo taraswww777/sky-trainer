@@ -1,6 +1,6 @@
 import {createStore} from 'vuex';
 
-interface StorePageInfoState {
+export interface StorePageInfoState {
   pageTitle: string,
   isLoading: boolean
 }
