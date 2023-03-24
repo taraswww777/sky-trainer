@@ -13,7 +13,6 @@
 
       <div :class="bem('colr _flex')">
         <TimeWidget :class="bem('time-block')" />
-
         <UserStatusWidget
           v-if="user"
           :class="bem('head-user')"
@@ -47,6 +46,8 @@ export default {
   }),
   computed: {
     user() {
+      console.log('this.$store.getters.getCurrentUserInfo:', this.$store.getters.getCurrentUserInfo);
+      console.log('this.$store.getters  :', this.$store.getters);
       return this.$store.getters.getCurrentUserInfo;
     }
   }
@@ -87,7 +88,7 @@ export default {
     }
   }
 
-  &__time-block.time-block
+  &__time-block
   {
     display: none;
 
@@ -97,7 +98,7 @@ export default {
     }
   }
 
-  &__head-user.head-user
+  &__head-user
   {
     display: none;
 

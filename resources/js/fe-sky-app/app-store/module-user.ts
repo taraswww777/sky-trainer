@@ -11,9 +11,7 @@ export const moduleUser: Module<ModuleUserState, any> = {
   },
   getters: {
     getCurrentUserInfo(state) {
-      console.log('getCurrentUserInfo:state:', state);
-      return {};
-      // return state.currentUserInfo;
+      return state.currentUserInfo;
     }
   },
   mutations: {

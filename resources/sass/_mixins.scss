@@ -1,3 +1,5 @@
+@import './colors';
+
 @mixin borderRadius($radius: 8px) {
   border-radius: $radius;
 }
@@ -32,5 +34,23 @@
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: $scrollColor;
+  }
+}
+
+@mixin iconCircleWrapper(){
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  background: $colorWhite;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+
+  img {
+    display: block;
+
+    max-width: 100%;
+    max-height: 100%;
   }
 }
