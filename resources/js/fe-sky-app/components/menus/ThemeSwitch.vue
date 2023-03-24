@@ -43,12 +43,7 @@ export default {
       this.currentTheme = this.currentTheme === THEMES.Light ? THEMES.Dark : THEMES.Light;
       (this.onChange || noop)(this.currentTheme);
     }
-  }),
-  computed: {
-    user() {
-      return this.$store.getters.getCurrentUserInfo;
-    }
-  }
+  })
 };
 </script>
 <style lang="scss" scoped>

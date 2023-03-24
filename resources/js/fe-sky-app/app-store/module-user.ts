@@ -1,17 +1,19 @@
-import {createStore} from 'vuex';
+import {type Module} from 'vuex';
 import {CurrentUserDto} from '@src/types/dto';
 
 export interface ModuleUserState {
   currentUserInfo?: CurrentUserDto | undefined
 }
 
-export const moduleUser = createStore<ModuleUserState>({
+export const moduleUser: Module<ModuleUserState, any> = {
   state: {
     currentUserInfo: undefined
   },
   getters: {
     getCurrentUserInfo(state) {
-      return state.currentUserInfo;
+      console.log('getCurrentUserInfo:state:', state);
+      return {};
+      // return state.currentUserInfo;
     }
   },
   mutations: {
@@ -24,4 +26,4 @@ export const moduleUser = createStore<ModuleUserState>({
       commit('setCurrentUserInfo', currentUserInfoDto);
     }
   }
-});
+};

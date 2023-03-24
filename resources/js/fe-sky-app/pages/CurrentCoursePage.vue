@@ -2,7 +2,7 @@
   <BaseTemplate>
     <BasePage
       :isLoading="isLoading"
-      :title=" course?.name"
+      :title="course?.name"
       :crumbs="[
         { url: '/', title: 'Главная' },
         { title: 'Все курсы', url: '/courses' },

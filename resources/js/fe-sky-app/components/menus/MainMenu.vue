@@ -40,12 +40,20 @@
 <script>
 import useBem from 'vue3-bem';
 import {noop} from 'lodash';
+import UserStatusWidget from '@src/components/auth/UserStatusWidget.vue';
+import SearchInput from '@src/components/common/SearchInput.vue';
+import MainMenuItems from '@src/components/menus/MainMenuItems.vue';
+import TimeWidget from '@src/components/common/TimeWidget.vue';
 import ThemeSwitch from './ThemeSwitch.vue';
 
 const bem = useBem('aside');
 
 export default {
   components: {
+    TimeWidget,
+    MainMenuItems,
+    SearchInput,
+    UserStatusWidget,
     ThemeSwitch
   },
   props: {

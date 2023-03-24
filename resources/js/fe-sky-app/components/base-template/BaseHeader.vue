@@ -28,10 +28,20 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
+import TimeWidget from '@src/components/common/TimeWidget.vue';
+import UserStatusWidget from '@src/components/auth/UserStatusWidget.vue';
+import MobileMainMenu from '@src/components/menus/MobileMainMenu.vue';
+import SearchInput from '@src/components/common/SearchInput.vue';
 
 const bem = useBem('header');
 
 export default {
+  components: {
+    SearchInput,
+    MobileMainMenu,
+    UserStatusWidget,
+    TimeWidget
+  },
   data: () => ({
     bem
   }),

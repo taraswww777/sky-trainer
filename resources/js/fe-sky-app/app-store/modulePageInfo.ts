@@ -1,37 +1,37 @@
-import {createStore} from 'vuex';
+import {type Module} from 'vuex';
 
 export interface StorePageInfoState {
   pageTitle: string,
-  isLoading: boolean
+  pageIsLoading: boolean
 }
 
-export const storePageInfo = createStore<StorePageInfoState>({
+export const modulePageInfo: Module<StorePageInfoState, any> = {
   state: {
     pageTitle: '',
-    isLoading: false
+    pageIsLoading: false
   },
   getters: {
     getPageTitle(state) {
       return state.pageTitle;
     },
-    getIsLoading(state) {
-      return state.isLoading;
+    getPageIsLoading(state) {
+      return state.pageIsLoading;
     }
   },
   mutations: {
     setPageTitle(state, value: string) {
       state.pageTitle = value;
     },
-    setIsLoading(state, value: boolean) {
-      state.isLoading = value;
+    setPageIsLoading(state, value: boolean) {
+      state.pageIsLoading = value;
     }
   },
   actions: {
     setPageTitle({commit}, value: string) {
       commit('setPageTitle', value);
     },
-    setIsLoading({commit}, value: boolean) {
-      commit('setIsLoading', value);
+    setPageIsLoading({commit}, value: boolean) {
+      commit('setPageIsLoading', value);
     }
   }
-});
+};

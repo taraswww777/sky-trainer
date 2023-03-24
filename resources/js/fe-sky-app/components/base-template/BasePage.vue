@@ -51,7 +51,7 @@ export default {
       return this.$props.title || this.$store.getters.getPageTitle;
     },
     pageIsLoading() {
-      return this.$props.isLoading || this.$store.getters.getIsLoading();
+      return this.$props.isLoading || this.$store.getters.getPageIsLoading;
     }
   }
 };
