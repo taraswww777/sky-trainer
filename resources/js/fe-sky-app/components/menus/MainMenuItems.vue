@@ -61,7 +61,7 @@
         <span :class="bem('name')">Курсы</span>
 
         <button type="button" :class="[bem('link-sub'), { active: isActive }]" @click="toggle">
-          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"

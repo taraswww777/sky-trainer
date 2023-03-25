@@ -9,7 +9,7 @@
         <div :class="bem('items _flex')">
           <div :class="bem('item')">
             <div :class="bem('item-icon')">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.125 10.1665L6.91667 12.8748L13.9583 3.6665" />
               </svg>
             </div>
@@ -20,7 +20,7 @@
           </div>
           <div :class="bem('item')">
             <div :class="bem('item-icon')">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4.55273 11.9888L11.447 5.09448" />
                 <path d="M11.4473 11.9888L4.55297 5.09448" />
               </svg>
