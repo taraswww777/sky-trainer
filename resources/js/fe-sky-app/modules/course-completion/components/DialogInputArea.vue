@@ -21,6 +21,7 @@ import useBem from 'vue3-bem';
 import {requestDialogSpeechResult} from '@src/requests';
 import UiButton from '@src/ui/UiButton.vue';
 import {recognizer} from './utils/recognizer';
+import {apiClient} from '@src/api';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
@@ -79,19 +80,18 @@ export default {
       this.isOnRec = false;
     },
     pushMessage() {
-      requestDialogSpeechResult({
+      apiClient.postDialogSpeechResult({
         courseId: this.courseId,
         speechResult: this.speechResult,
         timing: this.speechTimeStamp
       })
-        .then(({
-          data: {
+        .then(({data: dialogFlow}) => {
+          const {
             dialog_logs,
             next_phrases,
             dialog_end,
             $phrase
-          }
-        }) => {
+          } = dialogFlow;
           this.speechResult = undefined;
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);

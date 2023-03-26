@@ -1,5 +1,18 @@
-export const moduleDialog = {
+import {Module} from 'vuex';
+import {DialogFlowDto} from '@src/types/dto';
+
+export interface ModuleDialogState {
+  dialogFlow: DialogFlowDto[],
+  messages: any[],
+  dialogs: any[],
+  helpPhrases: any[],
+  dialogLogs: any[]
+  dialogOptions?: any
+}
+
+export const moduleDialog: Module<ModuleDialogState, any> = {
   state: {
+    dialogFlow: [],
     messages: [],
     dialogs: [],
     helpPhrases: [],
@@ -20,6 +33,9 @@ export const moduleDialog = {
     }
   },
   mutations: {
+    pushDialogFlow(state, dialogFlow: DialogFlowDto) {
+      state.dialogFlow.push(dialogFlow);
+    },
     pushDialog(state, dialogData) {
       state.dialogs.push(dialogData);
     },
@@ -39,6 +55,9 @@ export const moduleDialog = {
     },
     setDialogLogs({commit}, dialogLogs) {
       commit('setDialogLogs', dialogLogs);
+    },
+    pushDialogFlow({commit}, dialogFlow: DialogFlowDto) {
+      commit('pushDialogFlow', dialogFlow);
     },
     pushDialog({commit}, dialogData) {
       commit('pushDialog', dialogData);
