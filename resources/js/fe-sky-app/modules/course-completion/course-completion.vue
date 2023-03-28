@@ -21,9 +21,13 @@
             />
           </div>
 
-          <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
+          <UiButton
+            type="submit"
+            btnType="call-end"
+            @click="endCall"
+          >
             <span>{{ t('finishCall') }}</span>
-          </button>
+          </UiButton>
         </div>
 
         <HelpPanel :helpPhrases="helpPhrases" />
@@ -49,6 +53,7 @@ import {appRouter} from '@src/app-router';
 import HelpPanel from '@src/components/common/HelpPanel.vue';
 import TagList from '@src/components/common/TagList.vue';
 import {apiClient} from '@src/api';
+import UiButton from '@src/ui/UiButton.vue';
 import FunnelStage from './components/FunnelStage.vue';
 import SpeedSpeech from './components/SpeedSpeech.vue';
 import QualityControl from './components/QualityControl.vue';
@@ -62,6 +67,7 @@ const bem = useBem(name);
 export default {
   name,
   components: {
+    UiButton,
     TagList,
     DialogPanel,
     HelpPanel,

@@ -50,12 +50,12 @@
 
       <div :class="bem('form-control-group')">
         <div :class="bem('form-control')">
-          <button
+          <UiButton
             type="submit"
-            :class="bem('submit-btn btn-green')"
+            :btnType="'call-start'"
           >
-            <span>Начать звонок</span>
-          </button>
+            Начать звонок
+          </UiButton>
         </div>
       </div>
     </form>
@@ -68,6 +68,7 @@ import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
 import {CustomSelect, InputSwitcher} from '@src/components/form';
 import {filter} from 'lodash';
+import UiButton from '@src/ui/UiButton.vue';
 
 const name = 'StartPanel';
 const bem = useBem(name);
@@ -76,7 +77,8 @@ export default {
   name,
   components: {
     CustomSelect,
-    InputSwitcher
+    InputSwitcher,
+    UiButton
   },
   props: {
     status: {

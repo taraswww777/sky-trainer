@@ -36,22 +36,38 @@ export default {
 
 <style lang="scss" scoped>
 @import "@sass/media";
+@import "@sass/animations";
 
 .ui-button {
   cursor: pointer;
+  color: #FFFFFF;
 
-  @keyframes pulse {
-    0% {
-      opacity: 70%;
+  &--primary, &--rec, &--rec-on {
+    background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
+
+    &:hover {
+      background: linear-gradient(84.09deg, #7156F8 4.37%, #D485F1 94.11%);
     }
-    100% {
-      opacity: 100%;
+  }
+
+  &--danger, &--call-end, &--rec-on {
+    background: linear-gradient(84.09deg, #EE4B60 4.37%, #FF8718 94.11%);
+
+    &:hover {
+      background: linear-gradient(84.09deg, #FF8718 4.37%, #EE4B60 94.11%);
+    }
+  }
+
+  &--success, &--call-start {
+    background: linear-gradient(84.09deg, #2DC458 4.37%, #1ABAB0 94.11%);
+
+    &:hover {
+      background: linear-gradient(84.09deg, #1ABAB0 4.37%, #2DC458 94.11%);
     }
   }
 
   &--rec, &--rec-on {
     padding: 9px;
-    background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
     width: 34px;
     height: 34px;
     border-radius: 50%;
@@ -77,12 +93,41 @@ export default {
   }
 
   &--rec-on {
-    background: linear-gradient(45deg, #ffc8c8, #ff3f3f);
     animation: pulse 1s infinite;
   }
 
-  &--primary {
+  &--call-start, &--call-end {
+    border-radius: 50px;
 
+    padding: 0 41px;
+    text-align: center;
+    height: 48px;
+
+    font: 14px/48px "Inter", Helvetica, Roboto, Arial, sans-serif;
+    cursor: pointer;
+
+    border: none;
+    display: block;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      transform: translateY(-50%) translateX(50%);
+      background: url(../../../img/ic_phone.svg) 50%/contain no-repeat;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
   }
 }
 </style>
