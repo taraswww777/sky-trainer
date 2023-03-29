@@ -49,16 +49,17 @@
 import useBem from 'vue3-bem';
 import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
-import {appRouter} from '@src/app-router';
 import HelpPanel from '@src/components/common/HelpPanel.vue';
 import TagList from '@src/components/common/TagList.vue';
 import {apiClient} from '@src/api';
 import UiButton from '@src/ui/UiButton.vue';
+import {identity, map} from 'lodash';
 import FunnelStage from './components/FunnelStage.vue';
 import SpeedSpeech from './components/SpeedSpeech.vue';
 import QualityControl from './components/QualityControl.vue';
 import DialogPanel from './components/DialogPanel.vue';
 import StartPanel from './components/StartPanel.vue';
+import {actionEndCall} from './actions';
 
 const name = 'CourseCompletionModule';
 
@@ -84,14 +85,25 @@ export default {
     trainer: undefined
   }),
   mounted() {
-    this.$store.dispatch('setLoadingStart');
+    this.$store.commit('setLoadingStart');
     apiClient.getCourseById(this.$route.params.courseId)
-      .then(({data}) => {
-        this.$store.dispatch('setCurrentCourse', data);
-        this.$store.dispatch('setPageTitle', data?.name);
+      .then(({data: course}) => {
+        this.$store.commit('setCurrentCourse', {
+          ...course,
+          extra: {
+            ...course?.extra,
+            training_types: map(course?.extra?.training_types, (value, key) => (value ? ({
+              id: key,
+              caption: key,
+              value: key
+            }) : undefined))
+              .filter(identity)
+          }
+        });
+        this.$store.commit('setPageTitle', course?.name);
       })
       .finally(() => {
-        this.$store.dispatch('setLoadingStop');
+        this.$store.commit('setLoadingStop');
       });
   },
   methods: {
@@ -100,12 +112,11 @@ export default {
     },
 
     endCall() {
-      appRouter.push({name: PAGE_NAMES.courses});
+      actionEndCall(this.$store)();
     }
   },
   computed: {
     status() {
-      console.log('this.$store.getters.getStatus:', this.$store.getters.getStatus);
       return this.$store.getters.getStatus;
     },
     isLoading() {

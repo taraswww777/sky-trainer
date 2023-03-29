@@ -69,7 +69,7 @@ import {CustomSelect, InputSwitcher} from '@src/components/form';
 import {filter} from 'lodash';
 import UiButton from '@src/ui/UiButton.vue';
 import CommonNotice from '@src/components/common/CommonNotice.vue';
-import {actionStartCall} from '@src/modules/course-completion/actions/actionStartCall';
+import {actionStartCall} from '../actions';
 
 const name = 'StartPanel';
 const bem = useBem(name);

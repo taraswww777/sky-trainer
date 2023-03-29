@@ -17,6 +17,7 @@ export const actionStartCall = ($store: Store<AppStore>) => async (
 
   try {
     const {data} = await apiClient.getDialogStart(params);
+    await $store.commit('clearDialogFlow');
     await $store.commit('pushDialogFlow', data);
     await $store.commit('setStatus', STATUSES.inProgress);
   } catch (e) {
