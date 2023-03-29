@@ -20,13 +20,5 @@ export const moduleLoadings = {
       // console.log('setLoadingStop');
       state.loadings[loaderName] = false;
     }
-  },
-  actions: {
-    setLoadingStart({commit}, loaderName = DEFAULT_LOADING_NAME) {
-      commit('setLoadingStart', loaderName);
-    },
-    setLoadingStop({commit}, loaderName = DEFAULT_LOADING_NAME) {
-      commit('setLoadingStop', loaderName);
-    }
   }
 };
