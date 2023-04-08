@@ -1,10 +1,10 @@
 <template>
   <div :class="bem()">
-    <div :class="bem('start-panel')">
-      <StartPanel
-        :onChangeStatus="this.onChangeStatus"
-        v-if="status === STATUSES.new"
-      />
+    <div
+      v-if="status === STATUSES.new"
+      :class="bem('start-panel')"
+    >
+      <StartPanel />
     </div>
     <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
       <div :class="bem('coll')">
@@ -12,18 +12,22 @@
           <div :class="bem('top-box')">
             <TagList
               :tags="[
-                this.$t(`data.training_types.${dialogOptions.phaseId}`),
+                this.$t(`data.training_types.${dialogOptions?.phaseId}`),
                 course.extra?.stages?.find(({ id })=>(
-                  id === dialogOptions.stageId
+                  id === dialogOptions?.stageId
                 ))?.caption,
-                this.$t(`data.available_trainers.${dialogOptions.trainerId}`),
+                this.$t(`data.available_trainers.${dialogOptions?.trainerId}`),
               ].filter(v=>v)"
             />
           </div>
 
-          <button type="submit" :class="bem('top-btn')" class="btn-orange" @click="endCall">
+          <UiButton
+            type="submit"
+            btnType="call-end"
+            @click="endCall"
+          >
             <span>{{ t('finishCall') }}</span>
-          </button>
+          </UiButton>
         </div>
 
         <HelpPanel :helpPhrases="helpPhrases" />
@@ -45,15 +49,17 @@
 import useBem from 'vue3-bem';
 import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
-import {appRouter} from '@src/app-router';
 import HelpPanel from '@src/components/common/HelpPanel.vue';
 import TagList from '@src/components/common/TagList.vue';
 import {apiClient} from '@src/api';
+import UiButton from '@src/ui/UiButton.vue';
+import {identity, map} from 'lodash';
 import FunnelStage from './components/FunnelStage.vue';
 import SpeedSpeech from './components/SpeedSpeech.vue';
 import QualityControl from './components/QualityControl.vue';
 import DialogPanel from './components/DialogPanel.vue';
 import StartPanel from './components/StartPanel.vue';
+import {actionEndCall} from './actions';
 
 const name = 'CourseCompletionModule';
 
@@ -62,6 +68,7 @@ const bem = useBem(name);
 export default {
   name,
   components: {
+    UiButton,
     TagList,
     DialogPanel,
     HelpPanel,
@@ -72,49 +79,57 @@ export default {
   },
   data: () => ({
     bem,
-    status: STATUSES.new,
     STATUSES,
     stage: undefined,
     training_type: undefined,
     trainer: undefined
   }),
   mounted() {
-    this.$store.dispatch('setLoadingStart');
+    this.$store.commit('setLoadingStart');
     apiClient.getCourseById(this.$route.params.courseId)
-      .then(({data}) => {
-        this.$store.dispatch('setCurrentCourse', data);
-        this.$store.dispatch('setPageTitle', data?.name);
+      .then(({data: course}) => {
+        this.$store.commit('setCurrentCourse', {
+          ...course,
+          extra: {
+            ...course?.extra,
+            training_types: map(course?.extra?.training_types, (value, key) => (value ? ({
+              id: key,
+              caption: key,
+              value: key
+            }) : undefined))
+              .filter(identity)
+          }
+        });
+        this.$store.commit('setPageTitle', course?.name);
       })
       .finally(() => {
-        this.$store.dispatch('setLoadingStop');
+        this.$store.commit('setLoadingStop');
       });
   },
   methods: {
     t(key) {
       return this.$t(`pages.${PAGE_NAMES.courseItem}.${key}`);
     },
-    onChangeStatus(status) {
-      this.status = status;
-    },
+
     endCall() {
-      appRouter.push({name: PAGE_NAMES.courses});
+      actionEndCall(this.$store)();
     }
   },
   computed: {
+    status() {
+      return this.$store.getters.getStatus;
+    },
     isLoading() {
       return this.$store.getters.getIsLoading;
-    },
-    dialogData() {
-      return this.$store.getters.getDialogsData;
     },
     course() {
       return this.$store.getters.getCurrentCourse;
     },
     dialogLogs() {
-      return this.$store.getters.getDialogLogs;
+      return this.$store.getters.getDialogFlow;
     },
     helpPhrases() {
-      return this.$store.getters.getHelpPhrases;
+      return this.$store.getters.getNextHelpPhrases;
     },
     dialogOptions() {
       return this.$store.getters.getDialogOptions;

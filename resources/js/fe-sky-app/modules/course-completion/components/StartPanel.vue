@@ -50,12 +50,12 @@
 
       <div :class="bem('form-control-group')">
         <div :class="bem('form-control')">
-          <button
+          <UiButton
             type="submit"
-            :class="bem('submit-btn btn-green')"
+            :btnType="'call-start'"
           >
-            <span>Начать звонок</span>
-          </button>
+            Начать звонок
+          </UiButton>
         </div>
       </div>
     </form>
@@ -63,11 +63,13 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
-import {requestDialogStart} from '@src/requests';
 import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
 import {CustomSelect, InputSwitcher} from '@src/components/form';
 import {filter} from 'lodash';
+import UiButton from '@src/ui/UiButton.vue';
+import CommonNotice from '@src/components/common/CommonNotice.vue';
+import {actionStartCall} from '../actions';
 
 const name = 'StartPanel';
 const bem = useBem(name);
@@ -75,16 +77,10 @@ const bem = useBem(name);
 export default {
   name,
   components: {
+    CommonNotice,
     CustomSelect,
-    InputSwitcher
-  },
-  props: {
-    status: {
-      type: String
-    },
-    onChangeStatus: {
-      type: Function
-    }
+    InputSwitcher,
+    UiButton
   },
   data: () => ({
     bem,
@@ -100,24 +96,13 @@ export default {
     start(e) {
       e.preventDefault();
       e.stopPropagation();
-      const trainingOptions = {
+
+      actionStartCall(this.$store)({
         courseId: this.$route.params.courseId,
         phaseId: this.training_type,
         stageId: this.training_type === '2' ? this.stageId : 1,
         trainerId: this.trainer
-      };
-      this.$store.dispatch('setLoadingStart');
-      this.$store.dispatch('setDialogOptions', trainingOptions);
-      requestDialogStart(trainingOptions)
-        .then(({data}) => {
-          // console.log('dialogData:', data);
-          this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);
-          this.$store.dispatch('pushDialog', data);
-          this.onChangeStatus(STATUSES.inProgress);
-        })
-        .finally(() => {
-          this.$store.dispatch('setLoadingStop');
-        });
+      });
     },
     onChange_stageId(option) {
       this.stageId = option.id;
@@ -152,17 +137,11 @@ export default {
     isLoading() {
       return this.$store.getters.getIsLoading;
     },
-    dialogData() {
-      return this.$store.getters.getDialogsData;
-    },
     course() {
       return this.$store.getters.getCurrentCourse;
     },
     dialogLogs() {
-      return this.$store.getters.getDialogLogs;
-    },
-    helpPhrases() {
-      return this.$store.getters.getHelpPhrases;
+      return this.$store.getters.getDialogFlow;
     }
   }
 };
