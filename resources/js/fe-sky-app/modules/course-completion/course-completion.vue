@@ -122,17 +122,14 @@ export default {
     isLoading() {
       return this.$store.getters.getIsLoading;
     },
-    dialogData() {
-      return this.$store.getters.getDialogsData;
-    },
     course() {
       return this.$store.getters.getCurrentCourse;
     },
     dialogLogs() {
-      return this.$store.getters.getDialogLogs;
+      return this.$store.getters.getDialogFlow;
     },
     helpPhrases() {
-      return this.$store.getters.getHelpPhrases;
+      return this.$store.getters.getNextHelpPhrases;
     },
     dialogOptions() {
       return this.$store.getters.getDialogOptions;

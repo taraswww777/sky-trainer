@@ -11,7 +11,12 @@
     </div>
 
     <label :class="bem('label')">
-      <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
+      <textarea
+        :class="bem('textarea')"
+        v-model="speechResult"
+        disabled="disabled"
+        placeholder="Введите фразу"
+      />
     </label>
   </form>
 </template>
@@ -137,7 +142,7 @@ export default {
 
     resize: none;
 
-    height: 110px;
+    height: 5rem;
     width: 100%;
     display: block;
 
@@ -150,7 +155,6 @@ export default {
   @media (min-width: $mb_huge) {
     &__textarea {
       padding: 10px 18px;
-      height: 52px;
     }
   }
 }
