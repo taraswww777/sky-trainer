@@ -72,9 +72,7 @@ export default {
     },
     /** Отработает после завершения распознавания */
     onRecResult(event) {
-      console.log('onRecResult:event.results:', event.results);
       const result = event.results[event.resultIndex];
-      console.log('onRecResult:event.results:', event.results, 'result:', result);
       this.speechResult = result[0].transcript;
       this.speechTimeStamp = event.timeStamp;
 

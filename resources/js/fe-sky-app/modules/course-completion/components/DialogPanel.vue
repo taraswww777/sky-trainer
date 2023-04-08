@@ -4,8 +4,8 @@
       <div :class="bem('title')">Лог разговора</div>
       <div :class="bem('messages')" id="DialogPanel__messages">
         <template
-          v-for="(dialogItem, index) of dialogFlow"
-          :key="index"
+          v-for="(dialogItem, indexDialog) of dialogFlow"
+          :key="indexDialog"
         >
           <p>dialogItem.images:</p>
           <p>dialogItem?.$phrase: {{ JSON.stringify(Object.keys(dialogItem?.$phrase || {})) }}</p>
@@ -26,17 +26,8 @@
           </div>
           <div :class="bem('message-item')" v-if="dialogItem?.$phrase?.images">
             <ul>
-              <li v-for="(image, index) in dialogItem?.$phrase?.images" :key="index">
-                <img :class="bem('message-item-img')" :src="image.path" alt="">
-                <button
-                  v-for="(area, indexArea) in image.imgmap"
-                  :key="indexArea"
-                  type="button"
-                  @click="()=>onClickBtnArea(indexArea)"
-                  :style="prepareAreaStyle(area)"
-                  :class="bem('message-item-img-area')">
-                  {{ indexArea }}
-                </button>
+              <li v-for="(image, indexImg) in dialogItem?.$phrase?.images" :key="indexImg">
+                <InteractiveImg :image="image" :onClickBtnArea="onClickBtnArea" />
               </li>
             </ul>
           </div>
@@ -50,6 +41,7 @@
 
 <script>
 import useBem from 'vue3-bem';
+import InteractiveImg from '@src/modules/course-completion/components/InteractiveImg.vue';
 import Message from './Message.vue';
 import DialogInputArea from './DialogInputArea.vue';
 
@@ -59,20 +51,12 @@ const bem = useBem(name);
 export default {
   name,
   components: {
+    InteractiveImg,
     Message,
     DialogInputArea
   },
   data: () => ({bem}),
   methods: {
-    prepareAreaStyle(area) {
-      // return {`${area[0]?.join(',')},${area[2]?.join(',')}`
-      return {
-        left: `${area[0][0]}px`, // 439
-        top: `${area[0][1] - 4}px`, // 194
-        width: `${area[1][0] - area[0][0] + 6}px`, // 54
-        height: `${area[1][1] - area[0][1] + 10}px` // 41
-      };
-    },
     onClickBtnArea(code) {
       console.log('onClickBtnArea:', code);
     }
@@ -81,6 +65,9 @@ export default {
     dialogFlow() {
       return this.$store.getters.getDialogFlow;
     }
+  },
+  mounted() {
+    console.log('mounted:', this.$refs);
   }
 };
 </script>
@@ -116,27 +103,6 @@ export default {
   &__message-item {
     margin-top: 20px;
     position: relative;
-  }
-
-  &__message-item-img {
-    max-width: 100%;
-  }
-
-  &__message-item-img-area {
-    position: absolute;
-    cursor: pointer;
-    border: 2px solid red;
-    background: transparent;
-    color: transparent;
-    font-size: 0;
-
-    &:hover {
-      border-color: orange;
-    }
-
-    &--ok {
-      border-color: lawngreen;
-    }
   }
 
   @media (min-width: $mb_exlarge) {
