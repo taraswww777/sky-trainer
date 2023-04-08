@@ -6,41 +6,41 @@
     >
       <StartPanel />
     </div>
-    <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
-      <div :class="bem('coll')">
-        <div :class="bem('top _flex')">
-          <div :class="bem('top-box')">
-            <TagList
-              :tags="[
-                this.$t(`data.training_types.${dialogOptions?.phaseId}`),
-                course.extra?.stages?.find(({ id })=>(
-                  id === dialogOptions?.stageId
-                ))?.caption,
-                this.$t(`data.available_trainers.${dialogOptions?.trainerId}`),
-              ].filter(v=>v)"
-            />
-          </div>
-
-          <UiButton
-            type="submit"
-            btnType="call-end"
-            @click="endCall"
-          >
-            <span>{{ t('finishCall') }}</span>
-          </UiButton>
+    <div :class="bem('process')" v-if="status === STATUSES.inProgress">
+      <div :class="bem('process-header')">
+        <div :class="bem('top-box')">
+          <TagList
+            :tags="[
+              this.$t(`data.training_types.${dialogOptions?.phaseId}`),
+              course.extra?.stages?.find(({ id })=>(
+                id === dialogOptions?.stageId
+              ))?.caption,
+              this.$t(`data.available_trainers.${dialogOptions?.trainerId}`),
+            ].filter(v=>v)"
+          />
         </div>
 
-        <HelpPanel :helpPhrases="helpPhrases" />
-
-        <DialogPanel :dialogLogs="dialogLogs" />
+        <UiButton
+          type="submit"
+          btnType="call-end"
+          @click="endCall"
+        >
+          <span>{{ t('finishCall') }}</span>
+        </UiButton>
       </div>
+      <div :class="bem('process-content')">
+        <div :class="bem('main')">
+          <HelpPanel :helpPhrases="helpPhrases" />
 
-      <div :class="bem('colr')">
-        <FunnelStage />
+          <DialogPanel :dialogLogs="dialogLogs" />
+        </div>
+        <div :class="bem('bar')">
+          <FunnelStage />
 
-        <SpeedSpeech />
+          <SpeedSpeech />
 
-        <QualityControl />
+          <QualityControl />
+        </div>
       </div>
     </div>
   </div>
@@ -145,19 +145,31 @@ export default {
 
   }
 
-  &__flex {
-    justify-content: space-between;
-    margin-top: -20px;
+  &__process {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 20px;
   }
 
-  &__coll {
+  &__process-header {
     width: 100%;
-    margin-top: 20px;
   }
 
-  &__colr {
+  &__process-content {
+    row-gap: 20px;
+    column-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    margin-top: 20px;
+  }
+
+  &__main {
+    width: 100%;
+  }
+
+  &__bar {
+    width: 100%;
 
     & > :last-child {
       margin-bottom: 0;
@@ -177,30 +189,16 @@ export default {
   }
 
   @media (min-width: $mb_middle) {
-    &__flex {
-
-      margin-left: -28px;
+    &__process-content {
+      flex-wrap: nowrap;
+    }
+    &__main {
+      width: calc(80% - 10px);
     }
 
-    &__coll {
-      width: calc(100% - 318px);
-      margin-left: 28px;
-      min-width: 540px;
-
-      flex-grow: 1;
-    }
-
-    &__colr {
-      width: 262px;
-      margin-left: 28px;
-
-      flex-grow: 1;
-
-      align-self: flex-end;
-
-      & > :last-child {
-        margin-bottom: 0;
-      }
+    &__bar {
+      width: calc(20% - 10px);
+      min-width: 262px;
     }
 
     &__top {
