@@ -7,9 +7,6 @@
           v-for="(dialogItem, indexDialog) of dialogFlow"
           :key="indexDialog"
         >
-          <p>dialogItem.images:</p>
-          <p>dialogItem?.$phrase: {{ JSON.stringify(Object.keys(dialogItem?.$phrase || {})) }}</p>
-          <p>dialogItem.images: {{ JSON.stringify(dialogItem?.$phrase?.images) }}</p>
           <div :class="bem('message-item')" v-if="dialogItem.$message">
             <Message
               directionType="manager"
@@ -41,7 +38,7 @@
 
 <script>
 import useBem from 'vue3-bem';
-import InteractiveImg from '@src/modules/course-completion/components/InteractiveImg.vue';
+import InteractiveImg from './InteractiveImg.vue';
 import Message from './Message.vue';
 import DialogInputArea from './DialogInputArea.vue';
 
