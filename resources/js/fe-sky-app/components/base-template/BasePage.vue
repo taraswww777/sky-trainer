@@ -61,9 +61,16 @@ export default {
 
 .base-page {
   padding: 30px;
-
   border-radius: 8px;
   background: #FFF;
   box-shadow: 0 0 44px rgba(0, 0, 0, .1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__content {
+    flex-grow: 1;
+    display: flex;
+  }
 }
 </style>

@@ -35,6 +35,7 @@
     margin-top: 22px;
     flex-grow: 1;
     position: relative;
+    display: flex;
   }
 
   &__footer {

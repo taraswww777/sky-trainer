@@ -7,9 +7,6 @@
           v-for="(dialogItem, indexDialog) of dialogFlow"
           :key="indexDialog"
         >
-          <p>dialogItem.images:</p>
-          <p>dialogItem?.$phrase: {{ JSON.stringify(Object.keys(dialogItem?.$phrase || {})) }}</p>
-          <p>dialogItem.images: {{ JSON.stringify(dialogItem?.$phrase?.images) }}</p>
           <div :class="bem('message-item')" v-if="dialogItem.$message">
             <Message
               directionType="manager"
@@ -41,7 +38,7 @@
 
 <script>
 import useBem from 'vue3-bem';
-import InteractiveImg from '@src/modules/course-completion/components/InteractiveImg.vue';
+import InteractiveImg from './InteractiveImg.vue';
 import Message from './Message.vue';
 import DialogInputArea from './DialogInputArea.vue';
 
@@ -80,9 +77,18 @@ export default {
   border-radius: 8px;
   background: rgba(255, 255, 255, .75);
   box-shadow: 0px 0px 44px rgba(0, 0, 0, .075);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-grow: 1;
 
   &__pad {
     padding: 20px 25px 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   &__title {
@@ -95,9 +101,10 @@ export default {
   &__messages {
     @include customScroll();
 
-    height: 219px;
+    height: 300px;
     margin-top: 16px;
     padding-right: 20px;
+    flex-grow: 1;
   }
 
   &__message-item {

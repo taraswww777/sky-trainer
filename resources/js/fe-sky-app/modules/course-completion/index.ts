@@ -1,3 +1,3 @@
-import CourseCompletionModule from './course-completion.vue';
+import CourseCompletionModule from './CourseCompletionModule.vue';
 
 export {CourseCompletionModule};
