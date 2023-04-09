@@ -89,7 +89,8 @@ export default {
     font-size: 0;
 
     &:hover {
-      border-color: orange;
+      border-width: 3px;
+      background: rgba(255, 0, 0, 0.2);
     }
 
     &--ok {
