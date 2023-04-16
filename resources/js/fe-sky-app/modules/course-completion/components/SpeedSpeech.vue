@@ -1,6 +1,6 @@
 <template>
   <div :class="bem()">
-    <div :class="bem('title')">Скорость речи</div>
+    <div :class="bem('title')">Лог разговора</div>
 
     <div :class="bem('diagram')">
       <div :class="bem('diagram-line')" />
@@ -23,11 +23,14 @@ const bem = useBem(componentName);
 
 export default {
   name: componentName,
-  data: () => ({bem})
+  data: () => ({
+    bem
+  })
 };
 </script>
 
 <style scoped lang="scss">
+/* @import '../../../../../sass/mixins'; */
 @import "@sass/media";
 
 .speed-speech {
@@ -37,7 +40,7 @@ export default {
   padding: 20px 25px 0;
   margin-bottom: 20px;
 
-  &__title {
+  &__title{
     font-weight: 600;
     font-size: 14px;
     line-height: 1.14;
@@ -46,15 +49,14 @@ export default {
     margin-bottom: 10px;
   }
 
-  &__diagram {
+  &__diagram{
     overflow: hidden;
     height: 99px;
     width: 181px;
     margin-left: auto;
     position: relative;
   }
-
-  &__diagram-line {
+  &__diagram-line{
     position: absolute;
     top: 0;
     left: 0;
@@ -64,7 +66,7 @@ export default {
     background: url(../../../../../img/speed_speech.svg) 0 0/contain no-repeat;
   }
 
-  &__diagram-dot {
+  &__diagram-dot{
     width: 100%;
     padding-bottom: 100%;
     position: absolute;
@@ -72,7 +74,7 @@ export default {
     left: 0;
     top: 0;
 
-    &::before {
+    &::before{
       content: '';
       position: absolute;
       left: 0;
@@ -86,7 +88,7 @@ export default {
     }
   }
 
-  &__diagram-text {
+  &__diagram-text{
     position: absolute;
     left: 14.36%;
     bottom: 0;
@@ -106,7 +108,7 @@ export default {
 
     color: #353535;
 
-    &:before {
+    &:before{
       content: '';
       position: absolute;
       left: 0;
@@ -117,13 +119,13 @@ export default {
       border-radius: 50%;
     }
 
-    span {
+    span{
       position: relative;
     }
   }
 
   @media (min-width: $mb_large) {
-    &__diagram {
+    &__diagram{
       margin-right: auto;
     }
   }
