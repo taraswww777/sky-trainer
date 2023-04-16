@@ -24,7 +24,7 @@ export const getDialogStart = ({
   })
 );
 
-export interface PostDialogSpeechResultParams {
+interface GetDialogSpeechResultParams {
   courseId: string,
   speechResult: string,
   timing: string
@@ -34,7 +34,7 @@ export const postDialogSpeechResult = ({
   courseId,
   speechResult,
   timing
-}: PostDialogSpeechResultParams) => (
+}: GetDialogSpeechResultParams) => (
   axiosAuthGet<DialogFlowDto>({
     url: `/dialog/speech-result/${courseId}`,
     method: 'post',
