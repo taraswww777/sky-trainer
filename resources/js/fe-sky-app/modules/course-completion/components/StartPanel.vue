@@ -63,7 +63,7 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
-import {apiClient} from '@src/api';
+import {requestDialogStart} from '@src/requests';
 import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
 import {CustomSelect, InputSwitcher} from '@src/components/form';
@@ -108,11 +108,11 @@ export default {
       };
       this.$store.dispatch('setLoadingStart');
       this.$store.dispatch('setDialogOptions', trainingOptions);
-      apiClient.getDialogStart(trainingOptions)
+      requestDialogStart(trainingOptions)
         .then(({data}) => {
           // console.log('dialogData:', data);
           this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);
-          this.$store.dispatch('pushDialogFlow', data);
+          this.$store.dispatch('pushDialog', data);
           this.onChangeStatus(STATUSES.inProgress);
         })
         .finally(() => {
