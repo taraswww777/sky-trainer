@@ -7,9 +7,6 @@
           v-for="(dialogItem, index) of dialogFlow"
           :key="index"
         >
-          <p>dialogItem.images:</p>
-          <p>dialogItem?.$phrase: {{ JSON.stringify(Object.keys(dialogItem?.$phrase || {})) }}</p>
-          <p>dialogItem.images: {{ JSON.stringify(dialogItem?.$phrase?.images) }}</p>
           <div :class="bem('message-item')" v-if="dialogItem.$message">
             <Message
               directionType="manager"
@@ -23,22 +20,6 @@
               caption="bot"
               :text="dialogItem.$message.response_phrase"
             />
-          </div>
-          <div :class="bem('message-item')" v-if="dialogItem?.$phrase?.images">
-            <ul>
-              <li v-for="(image, index) in dialogItem?.$phrase?.images" :key="index">
-                <img :class="bem('message-item-img')" :src="image.path" alt="">
-                <button
-                  v-for="(area, indexArea) in image.imgmap"
-                  :key="indexArea"
-                  type="button"
-                  @click="()=>onClickBtnArea(indexArea)"
-                  :style="prepareAreaStyle(area)"
-                  :class="bem('message-item-img-area')">
-                  {{ indexArea }}
-                </button>
-              </li>
-            </ul>
           </div>
         </template>
       </div>
@@ -62,21 +43,9 @@ export default {
     Message,
     DialogInputArea
   },
-  data: () => ({bem}),
-  methods: {
-    prepareAreaStyle(area) {
-      // return {`${area[0]?.join(',')},${area[2]?.join(',')}`
-      return {
-        left: `${area[0][0]}px`, // 439
-        top: `${area[0][1] - 4}px`, // 194
-        width: `${area[1][0] - area[0][0] + 6}px`, // 54
-        height: `${area[1][1] - area[0][1] + 10}px` // 41
-      };
-    },
-    onClickBtnArea(code) {
-      console.log('onClickBtnArea:', code);
-    }
-  },
+  data: () => ({
+    bem
+  }),
   computed: {
     dialogFlow() {
       return this.$store.getters.getDialogFlow;
@@ -115,28 +84,6 @@ export default {
 
   &__message-item {
     margin-top: 20px;
-    position: relative;
-  }
-
-  &__message-item-img {
-    max-width: 100%;
-  }
-
-  &__message-item-img-area {
-    position: absolute;
-    cursor: pointer;
-    border: 2px solid red;
-    background: transparent;
-    color: transparent;
-    font-size: 0;
-
-    &:hover {
-      border-color: orange;
-    }
-
-    &--ok {
-      border-color: lawngreen;
-    }
   }
 
   @media (min-width: $mb_exlarge) {
@@ -148,5 +95,58 @@ export default {
       margin-top: 10px;
     }
   }
+
+  /* @include borderRadius;
+
+display: flex;
+flex-wrap: nowrap;
+width: 100%;
+max-height: calc(100vh - 200px);
+flex-direction: column;
+overflow: hidden;
+
+&__header {
+    padding: 20px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+&__messages {
+    padding: 20px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #EAEAEA;
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: 4px;
+        background-color: #8C63F7;
+        border-radius: 20px;
+        border: 3px solid #8C63F7;
+    }
+}
+
+&__message-item {
+    margin: 0 0 10px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+&__dialog-input-area {
+    width: 100%;
+} */
 }
 </style>
