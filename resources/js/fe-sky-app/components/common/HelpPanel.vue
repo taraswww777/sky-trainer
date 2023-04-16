@@ -55,7 +55,6 @@ export default {
   box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.075);
   border-radius: 8px;
   padding: 18px 25px 32px;
-  width: 100%;
 
   &--marg {
     margin-bottom: 18px;

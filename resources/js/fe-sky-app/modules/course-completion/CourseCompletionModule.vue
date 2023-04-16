@@ -30,12 +30,9 @@
       </div>
       <div :class="bem('process-content')">
         <div :class="bem('main')">
-          <div :class="bem('help-panel')">
-            <HelpPanel :helpPhrases="helpPhrases" />
-          </div>
-          <div :class="bem('dialog-panel')">
-            <DialogPanel :dialogLogs="dialogLogs" />
-          </div>
+          <HelpPanel :helpPhrases="helpPhrases" />
+
+          <DialogPanel :dialogLogs="dialogLogs" />
         </div>
         <div :class="bem('bar')">
           <FunnelStage />
@@ -144,11 +141,6 @@ export default {
 @import "@sass/media";
 
 .course-completion-module {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
   &__start-panel {
 
   }
@@ -158,8 +150,6 @@ export default {
     flex-wrap: wrap;
     row-gap: 20px;
     column-gap: 20px;
-    flex-grow: 1;
-    flex-direction: column;
   }
 
   &__process-header {
@@ -172,23 +162,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    flex-grow: 1;
   }
 
   &__main {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-
-  &__help-panel, &__dialog-panel {
-    width: 100%;
-  }
-
-  &__dialog-panel {
-    flex-grow: 1;
-    display: flex;
   }
 
   &__bar {

@@ -77,18 +77,9 @@ export default {
   border-radius: 8px;
   background: rgba(255, 255, 255, .75);
   box-shadow: 0px 0px 44px rgba(0, 0, 0, .075);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  flex-grow: 1;
 
   &__pad {
     padding: 20px 25px 40px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
   }
 
   &__title {
@@ -101,10 +92,9 @@ export default {
   &__messages {
     @include customScroll();
 
-    height: 300px;
+    height: 219px;
     margin-top: 16px;
     padding-right: 20px;
-    flex-grow: 1;
   }
 
   &__message-item {
