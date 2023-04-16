@@ -63,13 +63,12 @@
 </template>
 <script>
 import useBem from 'vue3-bem';
+import {apiClient} from '@src/api';
 import {STATUSES} from '@src/constants/common';
 import {PAGE_NAMES} from '@src/constants';
 import {CustomSelect, InputSwitcher} from '@src/components/form';
 import {filter} from 'lodash';
 import UiButton from '@src/ui/UiButton.vue';
-import CommonNotice from '@src/components/common/CommonNotice.vue';
-import {actionStartCall} from '@src/modules/course-completion/actions/actionStartCall';
 
 const name = 'StartPanel';
 const bem = useBem(name);
@@ -77,10 +76,17 @@ const bem = useBem(name);
 export default {
   name,
   components: {
-    CommonNotice,
     CustomSelect,
     InputSwitcher,
     UiButton
+  },
+  props: {
+    status: {
+      type: String
+    },
+    onChangeStatus: {
+      type: Function
+    }
   },
   data: () => ({
     bem,
@@ -96,13 +102,24 @@ export default {
     start(e) {
       e.preventDefault();
       e.stopPropagation();
-
-      actionStartCall(this.$store)({
+      const trainingOptions = {
         courseId: this.$route.params.courseId,
         phaseId: this.training_type,
         stageId: this.training_type === '2' ? this.stageId : 1,
         trainerId: this.trainer
-      });
+      };
+      this.$store.dispatch('setLoadingStart');
+      this.$store.dispatch('setDialogOptions', trainingOptions);
+      apiClient.getDialogStart(trainingOptions)
+        .then(({data}) => {
+          // console.log('dialogData:', data);
+          this.$store.dispatch('setHelpPhrases', data?.next_phrases?.phrases[0] || []);
+          this.$store.dispatch('pushDialogFlow', data);
+          this.onChangeStatus(STATUSES.inProgress);
+        })
+        .finally(() => {
+          this.$store.dispatch('setLoadingStop');
+        });
     },
     onChange_stageId(option) {
       this.stageId = option.id;
@@ -145,6 +162,9 @@ export default {
     },
     dialogLogs() {
       return this.$store.getters.getDialogLogs;
+    },
+    helpPhrases() {
+      return this.$store.getters.getHelpPhrases;
     }
   }
 };

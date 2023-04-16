@@ -1,10 +1,10 @@
 <template>
   <div :class="bem()">
-    <div
-      v-if="status === STATUSES.new"
-      :class="bem('start-panel')"
-    >
-      <StartPanel />
+    <div :class="bem('start-panel')">
+      <StartPanel
+        :onChangeStatus="this.onChangeStatus"
+        v-if="status === STATUSES.new"
+      />
     </div>
     <div :class="bem('flex _flex')" v-if="status === STATUSES.inProgress">
       <div :class="bem('coll')">
@@ -12,11 +12,11 @@
           <div :class="bem('top-box')">
             <TagList
               :tags="[
-                this.$t(`data.training_types.${dialogOptions?.phaseId}`),
+                this.$t(`data.training_types.${dialogOptions.phaseId}`),
                 course.extra?.stages?.find(({ id })=>(
-                  id === dialogOptions?.stageId
+                  id === dialogOptions.stageId
                 ))?.caption,
-                this.$t(`data.available_trainers.${dialogOptions?.trainerId}`),
+                this.$t(`data.available_trainers.${dialogOptions.trainerId}`),
               ].filter(v=>v)"
             />
           </div>
@@ -78,6 +78,7 @@ export default {
   },
   data: () => ({
     bem,
+    status: STATUSES.new,
     STATUSES,
     stage: undefined,
     training_type: undefined,
@@ -98,16 +99,14 @@ export default {
     t(key) {
       return this.$t(`pages.${PAGE_NAMES.courseItem}.${key}`);
     },
-
+    onChangeStatus(status) {
+      this.status = status;
+    },
     endCall() {
       appRouter.push({name: PAGE_NAMES.courses});
     }
   },
   computed: {
-    status() {
-      console.log('this.$store.getters.getStatus:', this.$store.getters.getStatus);
-      return this.$store.getters.getStatus;
-    },
     isLoading() {
       return this.$store.getters.getIsLoading;
     },
