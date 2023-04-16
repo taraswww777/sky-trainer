@@ -249,6 +249,120 @@ body {
   }
 }
 
+
+.btn-green {
+  background: linear-gradient(84.09deg, #2DC458 4.37%, #1ABAB0 94.11%);
+  border-radius: 50px;
+
+  padding: 0 41px;
+  text-align: center;
+  height: 48px;
+
+  font: 14px/48px "Inter", Helvetica, Roboto, Arial, sans-serif;
+  cursor: pointer;
+
+  color: #FFFFFF;
+  border: none;
+  width: 100%;
+  display: block;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(84.09deg, #1ABAB0 4.37%, #2DC458 94.11%);
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity .2s linear;
+  }
+
+  span {
+    display: block;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+      background: url(../img/ic_phone.svg) 50%/contain no-repeat;
+    }
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.btn-orange {
+  background: linear-gradient(84.09deg, #EE4B60 4.37%, #FF8718 94.11%);
+  border-radius: 50px;
+
+  padding: 0 25px 0 20px;
+  text-align: center;
+  height: 48px;
+
+  font: 14px/48px "Inter", Helvetica, Roboto, Arial, sans-serif;
+  cursor: pointer;
+
+  color: #FFFFFF;
+  border: none;
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: none;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(84.09deg, #FF8718 4.37%, #EE4B60 94.11%);
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity .2s linear;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 35px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+      background: url(../img/ic_phone.svg) 50%/contain no-repeat;
+    }
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
 .mob-menu-btn {
   flex-shrink: 0;
   margin-left: 10px;
