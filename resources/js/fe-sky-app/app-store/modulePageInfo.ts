@@ -25,5 +25,13 @@ export const modulePageInfo: Module<StorePageInfoState, any> = {
     setPageIsLoading(state, value: boolean) {
       state.pageIsLoading = value;
     }
+  },
+  actions: {
+    setPageTitle({commit}, value: string) {
+      commit('setPageTitle', value);
+    },
+    setPageIsLoading({commit}, value: boolean) {
+      commit('setPageIsLoading', value);
+    }
   }
 };

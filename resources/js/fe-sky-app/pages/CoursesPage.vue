@@ -14,26 +14,22 @@
     <CoursesPanel :courses="courses" />
   </BaseTemplate>
 </template>
-<script>
+<script lang="ts">
 import {apiClient} from '@src/api';
+import {CourseDetailDto} from '@src/types/dto';
 import CoursesPanel from '@src/components/courses/CoursesPanel.vue';
 import BaseTemplate from '@src/components/base-template/BaseTemplate.vue';
 import CommonBreadcrumbs from '@src/components/common/CommonBreadcrumbs.vue';
 
 export default {
-  components: {
-    CommonBreadcrumbs,
-    BaseTemplate,
-    CoursesPanel
-  },
+  components: {CommonBreadcrumbs, BaseTemplate, CoursesPanel},
   mounted() {
-    apiClient.getCourses()
-      .then(({data}) => {
-        this.$store.commit('setCourses', data);
-      });
+    apiClient.getCourses().then(({data}) => {
+      this.$store.dispatch('setCourses', data);
+    });
   },
   computed: {
-    courses() {
+    courses():CourseDetailDto[] {
       return this.$store.getters.getCourses;
     }
   }

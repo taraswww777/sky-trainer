@@ -1,6 +1,9 @@
 import {RecognizerObj} from './types';
 
-export const recognizerInstance: RecognizerObj = {} as RecognizerObj;
+const recognizerInstance: Partial<RecognizerObj> = {
+  inst: undefined,
+  event: undefined
+};
 
 /** @see https://itproger.com/course/programming/6 */
 export const initRecognizer = () => {
