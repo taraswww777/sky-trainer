@@ -18,9 +18,10 @@
 
 <script>
 import useBem from 'vue3-bem';
+import {requestDialogSpeechResult} from '@src/requests';
 import UiButton from '@src/ui/UiButton.vue';
-import {apiClient} from '@src/api';
 import {recognizer} from './utils/recognizer';
+import {apiClient} from '@src/api';
 
 const componentName = 'DialogInputArea';
 const bem = useBem(componentName);
