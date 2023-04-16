@@ -1,14 +1,12 @@
 <template>
   <form :class="bem()" @submit="pushMessage">
-    <div :class="bem('mic')">
-      <UiButton
-        :btnType="isOnRec ? 'rec-on' : 'rec'"
-        type="button"
-        @click="onRec"
-      >
-        <img src="./mic.svg" alt="">
-      </UiButton>
-    </div>
+    <button
+      :class="bem('btn-rec', `${isOnRec && 'recording'}`)"
+      type="button"
+      @click="onRec"
+    >
+      <img src="./mic.svg" alt="">
+    </button>
 
     <label :class="bem('label')">
       <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
@@ -19,7 +17,6 @@
 <script>
 import useBem from 'vue3-bem';
 import {requestDialogSpeechResult} from '@src/requests';
-import UiButton from '@src/ui/UiButton.vue';
 import {recognizer} from './utils/recognizer';
 
 const componentName = 'DialogInputArea';
@@ -28,7 +25,6 @@ const audioStream = new Audio();
 
 export default {
   name: componentName,
-  components: {UiButton},
   data: () => ({
     bem,
     isOnRec: false,
@@ -128,7 +124,6 @@ export default {
 
 <style scoped lang="scss">
 @import "@sass/media";
-@import "@sass/mixins";
 
 .dialog-input-area {
   padding: 25px;
@@ -137,11 +132,39 @@ export default {
   flex-wrap: nowrap;
   border-radius: 0 0 8px 8px;
 
-  &__mic {
-    margin: 5px 12px 0 0;
+  @keyframes pulse {
+    0% {
+      opacity: 70%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
 
-    @media (min-width: $mb_middle) {
-      margin: 0 16px 0 0;
+  &__btn-rec {
+    padding: 9px;
+    background: linear-gradient(84.09deg, #D485F1 4.37%, #7156F8 94.11%);
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin: 5px 12px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    &--recording {
+      background: linear-gradient(45deg, #ffc8c8, #ff3f3f);
+      animation: pulse 1s infinite;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
     }
   }
 
@@ -150,8 +173,6 @@ export default {
   }
 
   &__textarea {
-    @include customScroll();
-
     margin: 0;
     padding: 15px 18px;
 
@@ -168,6 +189,34 @@ export default {
     color: #29343E;
     border: none;
     box-shadow: none;
+
+    scrollbar-color: #EAEAEA #8C63F7;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+
+      background-color: #EAEAEA;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #EAEAEA;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #8C63F7;
+    }
+  }
+
+  @media (min-width: $mb_middle) {
+    &__btn-rec {
+      width: 46px;
+      height: 46px;
+
+      margin: 0 16px 0 0;
+      padding: 12px;
+    }
   }
 
   @media (min-width: $mb_huge) {
