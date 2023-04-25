@@ -117,6 +117,7 @@ export default {
           }
         }) => {
           this.phrases = '';
+          this.speechResult = '';
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
@@ -137,7 +138,7 @@ export default {
     },
     scrollToBottom() {
       const container = document.querySelector('#DialogPanel__messages');
-      container.scroll(0, container.scrollWidth || 0);
+      container.scrollTop = container.scrollHeight;
     },
     onRec() {
       if (this.isOnRec) {
