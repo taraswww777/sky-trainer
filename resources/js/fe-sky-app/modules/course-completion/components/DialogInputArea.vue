@@ -138,8 +138,10 @@ export default {
     },
     onRec() {
       if (this.isOnRec) {
+        this.isOnRec = false;
         recognizer.inst.stop();
       } else {
+        this.isOnRec = true;
         recognizer.inst.start();
       }
     }
