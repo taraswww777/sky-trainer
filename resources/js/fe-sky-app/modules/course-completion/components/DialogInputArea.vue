@@ -9,7 +9,7 @@
     </button>
 
     <label :class="bem('label')">
-      <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
+      <textarea :class="bem('textarea')" id="DialogInputArea" v-model="speechResult" placeholder="Введите фразу" />
     </label>
   </form>
 </template>
@@ -65,6 +65,9 @@ export default {
       const result = event.results[event.resultIndex];
       this.speechResult = `${this.phrases || ''}${result[0].transcript}`;
       this.speechTimeStamp = event.timeStamp;
+
+      const textarea = document.querySelector('#DialogInputArea');
+      textarea.scrollTop = textarea.scrollHeight;
 
       if (this.sendTimeout) {
         clearTimeout(this.sendTimeout);
