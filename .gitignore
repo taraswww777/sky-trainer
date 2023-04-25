@@ -15,3 +15,5 @@ npm-debug.log
 yarn-error.log
 logs
 .eslint-cache
+/db-temp
+.vscode
