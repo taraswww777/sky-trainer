@@ -18,6 +18,16 @@ export const requestDialogStart = (
   })
 );
 
+export const requestDialogStop = (
+  {
+    courseId
+  }
+) => (
+  axiosAuthGet({
+    url: `/dialog/stop/${courseId}`
+  })
+);
+
 export const requestDialogSpeechResult = (
   {
     courseId,

@@ -9,7 +9,7 @@
     </button>
 
     <label :class="bem('label')">
-      <textarea :class="bem('textarea')" v-model="phrases" placeholder="Введите фразу" />
+      <textarea :class="bem('textarea')" id="DialogInputArea" v-model="speechResult" placeholder="Введите фразу" />
     </label>
   </form>
 </template>
@@ -63,15 +63,18 @@ export default {
     /** Отработает после завершения распознавания */
     onRecResult(event) {
       const result = event.results[event.resultIndex];
-      this.speechResult = result[0].transcript;
+      this.speechResult = `${this.phrases || ''}${result[0].transcript}`;
       this.speechTimeStamp = event.timeStamp;
+
+      const textarea = document.querySelector('#DialogInputArea');
+      textarea.scrollTop = textarea.scrollHeight;
 
       if (this.sendTimeout) {
         clearTimeout(this.sendTimeout);
       }
 
       if (result.isFinal) {
-        this.phrases += `${this.speechResult}. `;
+        this.phrases += `${result[0].transcript}. `;
       }
     },
     onEndSpeech() {
@@ -114,6 +117,7 @@ export default {
           }
         }) => {
           this.phrases = '';
+          this.speechResult = '';
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
@@ -134,7 +138,7 @@ export default {
     },
     scrollToBottom() {
       const container = document.querySelector('#DialogPanel__messages');
-      container.scroll(0, container.scrollWidth || 0);
+      container.scrollTop = container.scrollHeight;
     },
     onRec() {
       if (this.isOnRec) {
