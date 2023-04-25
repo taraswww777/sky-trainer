@@ -9,7 +9,7 @@
     </button>
 
     <label :class="bem('label')">
-      <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
+      <textarea :class="bem('textarea')" v-model="phrases" placeholder="Введите фразу" />
     </label>
   </form>
 </template>
@@ -28,7 +28,9 @@ export default {
   data: () => ({
     bem,
     isOnRec: false,
-    speechResult: undefined
+    speechResult: undefined,
+    phrases: '',
+    sendTimeout: null
   }),
   computed: {
     courseId() {
@@ -63,21 +65,44 @@ export default {
       const result = event.results[event.resultIndex];
       this.speechResult = result[0].transcript;
       this.speechTimeStamp = event.timeStamp;
-      if (result.isFinal) {
-        this.pushMessage();
-        this.isOnRec = false;
+
+      if (this.sendTimeout) {
+        clearTimeout(this.sendTimeout);
       }
+
+      if (result.isFinal) {
+        this.phrases += `${this.speechResult}. `;
+      }
+    },
+    onEndSpeech() {
+      this.isOnRec = false;
+      if (this.sendTimeout) {
+        clearTimeout(this.sendTimeout);
+      }
+      this.speechResult = undefined;
+      recognizer.inst.stop();
+      this.pushMessage();
     },
     onRecStart() {
       this.isOnRec = true;
     },
     onRecStop() {
-      this.isOnRec = false;
+      if (this.sendTimeout) {
+        clearTimeout(this.sendTimeout);
+      }
+
+      if (this.isOnRec) {
+        recognizer.inst.start();
+
+        this.sendTimeout = setTimeout(() => {
+          this.onEndSpeech();
+        }, 2000);
+      }
     },
     pushMessage() {
       requestDialogSpeechResult({
         courseId: this.courseId,
-        speechResult: this.speechResult,
+        speechResult: this.phrases,
         timing: this.speechTimeStamp
       })
         .then(({
@@ -88,7 +113,7 @@ export default {
             $phrase
           }
         }) => {
-          this.speechResult = undefined;
+          this.phrases = '';
           this.$store.dispatch('setDialogLogs', dialog_logs);
           this.$store.dispatch('setHelpPhrases', next_phrases?.phrases[0] || []);
 
@@ -113,8 +138,10 @@ export default {
     },
     onRec() {
       if (this.isOnRec) {
+        this.isOnRec = false;
         recognizer.inst.stop();
       } else {
+        this.isOnRec = true;
         recognizer.inst.start();
       }
     }
