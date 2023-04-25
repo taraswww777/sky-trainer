@@ -9,7 +9,7 @@
     </button>
 
     <label :class="bem('label')">
-      <textarea :class="bem('textarea')" v-model="phrases" placeholder="Введите фразу" />
+      <textarea :class="bem('textarea')" v-model="speechResult" placeholder="Введите фразу" />
     </label>
   </form>
 </template>
@@ -63,7 +63,7 @@ export default {
     /** Отработает после завершения распознавания */
     onRecResult(event) {
       const result = event.results[event.resultIndex];
-      this.speechResult = result[0].transcript;
+      this.speechResult = `${this.phrases || ''}${result[0].transcript}`;
       this.speechTimeStamp = event.timeStamp;
 
       if (this.sendTimeout) {
@@ -71,7 +71,7 @@ export default {
       }
 
       if (result.isFinal) {
-        this.phrases += `${this.speechResult}. `;
+        this.phrases += `${result[0].transcript}. `;
       }
     },
     onEndSpeech() {
