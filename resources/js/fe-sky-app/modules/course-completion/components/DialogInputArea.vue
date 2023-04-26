@@ -28,7 +28,7 @@ export default {
   data: () => ({
     bem,
     isOnRec: false,
-    speechResult: undefined,
+    speechResult: '',
     phrases: '',
     sendTimeout: null
   }),
@@ -145,6 +145,7 @@ export default {
         this.isOnRec = false;
         recognizer.inst.stop();
       } else {
+        this.phrases = this.speechResult;
         this.isOnRec = true;
         recognizer.inst.start();
       }
@@ -154,6 +155,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@sass/mixins';
 @import "@sass/media";
 
 .dialog-input-area {
@@ -204,6 +206,8 @@ export default {
   }
 
   &__textarea {
+    @include customScroll();
+
     margin: 0;
     padding: 15px 18px;
 
