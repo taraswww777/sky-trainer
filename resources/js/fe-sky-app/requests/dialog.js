@@ -28,6 +28,16 @@ export const requestDialogStop = (
   })
 );
 
+export const requestDialogReset = (
+  {
+    courseId
+  }
+) => (
+  axiosAuthGet({
+    url: `/dialog/reset/${courseId}`
+  })
+);
+
 export const requestDialogSpeechResult = (
   {
     courseId,

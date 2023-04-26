@@ -49,7 +49,7 @@ import {appRouter} from '@src/app-router';
 import HelpPanel from '@src/components/common/HelpPanel.vue';
 import TagList from '@src/components/common/TagList.vue';
 import {apiClient} from '@src/api';
-import {requestDialogStop} from '@src/requests';
+import {requestDialogReset, requestDialogStop} from '@src/requests';
 import FunnelStage from './components/FunnelStage.vue';
 import SpeedSpeech from './components/SpeedSpeech.vue';
 import QualityControl from './components/QualityControl.vue';
@@ -97,12 +97,12 @@ export default {
     onChangeStatus(status) {
       this.status = status;
     },
-    endCall() {
-      requestDialogStop({courseId: this.$route.params.courseId}).then(() => {
-        this.$store.dispatch('setDialogLogs', []);
-        this.$store.dispatch('setHelpPhrases', []);
-        appRouter.push({name: PAGE_NAMES.courses});
-      });
+    async endCall() {
+      await requestDialogReset({courseId: this.$route.params.courseId});
+      await requestDialogStop({courseId: this.$route.params.courseId});
+      this.$store.dispatch('setDialogLogs', []);
+      this.$store.dispatch('setHelpPhrases', []);
+      appRouter.push({name: PAGE_NAMES.courses});
     }
   },
   computed: {
